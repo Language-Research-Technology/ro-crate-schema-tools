@@ -47,35 +47,37 @@ const argv = yargs(process.argv.slice(2))
   .argv;
 
 /**
- * ModeToSOSSPlus class to convert mode files to RO-Crate with SOSSPlus profile
+ * ModeConverter class to convert mode files to RO-Crate with SOSSPlus profile
  */
-class ModeToSOSSPlus {
-  constructor(modePath, outputDir, namespace) {
+class ModeConverter {
+  constructor(modeFilePath, outputDir, namespace) {
     console.log(`Initializing converter with:
-    - Mode file: ${modePath}
+    - Mode file: ${modeFilePath}
     - Output directory: ${outputDir}
     - Namespace: ${namespace}`);
     
-    this.modePath = modePath;
+    this.modeFilePath = modeFilePath;
     this.outputDir = outputDir;
     this.namespace = namespace;
-    this.propertyMap = new Map(); // Map to track properties to avoid duplication
     
-    // Create new RO-Crate
-    this.crate = new ROCrate({ array: true, link: true });
+    // Map to track properties by ID to avoid duplication
+    this.propertyMap = new Map();
+    
+    // Create the RO-Crate object
+    this.crate = new ROCrate();
   }
-
+  
   /**
-   * Load the mode file with comment handling
+   * Load the mode file from disk
    */
   loadModeFile() {
-    console.log(`Loading mode file: ${this.modePath}`);
+    console.log(`Loading mode file: ${this.modeFilePath}`);
     try {
-      // Read file as text to handle any comment lines
-      const fileContent = fs.readFileSync(this.modePath, 'utf8');
+      // Read the file as text
+      const fileContent = fs.readFileSync(this.modeFilePath, 'utf8');
       console.log("File read successfully");
       
-      // Remove comment lines that start with //
+      // Remove any comment lines that start with //
       const contentWithoutComments = fileContent
         .split('\n')
         .filter(line => !line.trim().startsWith('//'))
@@ -85,8 +87,22 @@ class ModeToSOSSPlus {
       // Parse the JSON
       const modeData = JSON.parse(contentWithoutComments);
       console.log("JSON parsed successfully");
-      
+
+      // Store the original mode file
       this.modeData = modeData;
+      
+      // Create a copy with UI hints
+      this.createModeWithUIHints();
+      
+      console.log("Mode file loaded");
+      
+      // Log the structure of the mode file
+      console.log("\nMode file structure:");
+      console.log(`- Metadata: ${modeData.metadata ? 'Present' : 'Not present'}`);
+      console.log(`- Root Data Entity: ${modeData.rootDataEntity ? 'Present' : 'Not present'}`);
+      console.log(`- Classes: ${modeData.classes ? Object.keys(modeData.classes).length : 0} defined`);
+      console.log(`- Lookups: ${modeData.lookups ? Object.keys(modeData.lookups).length : 0} defined`);
+      
       return modeData;
     } catch (error) {
       console.error(`Error loading mode file: ${error}`);
@@ -95,9 +111,54 @@ class ModeToSOSSPlus {
   }
 
   /**
+   * Create a copy of the mode file with UI hints
+   */
+  createModeWithUIHints() {
+    // Create a deep copy of the mode data
+    const modeWithHints = JSON.parse(JSON.stringify(this.modeData));
+    
+    // Add a ui-hints section
+    modeWithHints['ui-hints'] = {
+      textAreas: {},
+      lookups: {}
+    };
+    
+    // Process all classes to extract UI hints
+    if (modeWithHints.classes) {
+      Object.entries(modeWithHints.classes).forEach(([className, classData]) => {
+        if (classData.inputs) {
+          classData.inputs.forEach(input => {
+            // Store TextArea hints
+            if (input.type && input.type.includes('TextArea')) {
+              if (!modeWithHints['ui-hints'].textAreas[className]) {
+                modeWithHints['ui-hints'].textAreas[className] = {};
+              }
+              modeWithHints['ui-hints'].textAreas[className][input.name] = true;
+            }
+          });
+        }
+      });
+    }
+    
+    // Process all lookups to store their information
+    if (modeWithHints.lookups) {
+      modeWithHints['ui-hints'].lookups = { ...modeWithHints.lookups };
+    }
+    
+    // Save the mode file with UI hints
+    const hintsFilePath = path.join(this.outputDir, 'mode-with-ui-hints.json');
+    fs.ensureDirSync(path.dirname(hintsFilePath));
+    fs.writeJSONSync(hintsFilePath, modeWithHints, { spaces: 2 });
+    console.log(`Saved mode file with UI hints to ${hintsFilePath}`);
+    
+    // Store reference to the hints file path
+    this.hintsFilePath = hintsFilePath;
+  }
+
+  /**
    * Initialize the RO-Crate with metadata
    */
-  initCrate() {
+  initializeCrate() {
     console.log("Initializing RO-Crate structure");
     this.crate.resolveContext();
     
@@ -404,7 +465,6 @@ class ModeToSOSSPlus {
    * Process lookup definitions
    */
   processLookups() {
-    // TODO this is completely wrong
     const lookups = this.modeData.lookup || {};
     
     console.log(`Processing ${Object.keys(lookups).length} lookup definitions`);
@@ -455,21 +515,7 @@ class ModeToSOSSPlus {
   }
 
   /**
-   * Process all classes in the mode file
-   */
-  processClasses() {
-    const classes = this.modeData.classes || {};
-    const classNames = Object.keys(classes);
-    
-    console.log(`Processing ${classNames.length} classes from mode file`);
-    
-    for (const className of classNames) {
-      this.processClass(className, classes[className]);
-    }
-  }
-
-  /**
-   * Convert the mode file to RO-Crate and save it
+   * Convert the mode file to an RO-Crate
    */
   async convert() {
     try {
@@ -477,37 +523,40 @@ class ModeToSOSSPlus {
       
       // Load the mode file
       this.loadModeFile();
-      console.log("Mode file loaded");
       
-      // Display mode file structure
-      console.log("\nMode file structure:");
-      console.log("- Metadata:", this.modeData.metadata ? "Present" : "Not present");
-      console.log("- Root Data Entity:", this.modeData.rootDataEntity ? "Present" : "Not present");
-      console.log("- Classes:", Object.keys(this.modeData.classes || {}).length, "defined");
-      console.log("- Lookups:", Object.keys(this.modeData.lookup || {}).length, "defined");
+      // Initialize the RO-Crate
+      this.initializeCrate();
       
-      // Initialize the crate with metadata
-      this.initCrate();
+      // Process the classes
+      const classes = this.modeData.classes;
+      if (classes) {
+        console.log(`Processing ${Object.keys(classes).length} classes from mode file`);
+        Object.entries(classes).forEach(([className, classData]) => {
+          this.processClass(className, classData);
+        });
+      }
       
-      // Process all classes and their properties
-      this.processClasses();
+      // Process root data entity if it exists
+      if (this.modeData.rootDataEntity) {
+        console.log("Processing root data entity");
+        this.processRootDataEntity();
+      } else {
+        console.log("No rootDataEntity defined in mode file");
+      }
       
-      // Process root data entities
-      this.processRootDataEntity();
+      // Process lookups if they exist
+      if (this.modeData.lookups) {
+        console.log(`Processing ${Object.keys(this.modeData.lookups).length} lookup definitions`);
+        this.processLookups();
+      }
       
-      // Process lookups
-      this.processLookups();
+      // Write the RO-Crate to disk
+      const outputPath = path.join(this.outputDir, 'ro-crate-metadata.json');
+      fs.ensureDirSync(this.outputDir);
+      fs.writeJSONSync(outputPath, this.crate.toJSON(), { spaces: 2 });
+      console.log(`RO-Crate metadata written to: ${outputPath}\n`);
       
-      // Create output directory if it doesn't exist
-      await fs.ensureDir(this.outputDir);
-      console.log(`Ensured output directory exists: ${this.outputDir}`);
-      
-      // Write the RO-Crate to the output directory
-      const metadataPath = path.join(this.outputDir, 'ro-crate-metadata.json');
-      await fs.writeJson(metadataPath, this.crate.toJSON(), { spaces: 2 });
-      console.log(`RO-Crate metadata written to: ${metadataPath}`);
-      
-      console.log("\nConversion completed successfully!");
+      console.log("Conversion completed successfully!");
       
       return this.crate;
     } catch (error) {
@@ -529,7 +578,7 @@ async function main() {
     console.log(`Converting mode file: ${modePath}`);
     console.log(`Output directory: ${outputDir}`);
     
-    const converter = new ModeToSOSSPlus(modePath, outputDir, namespace);
+    const converter = new ModeConverter(modePath, outputDir, namespace);
     await converter.convert();
     
     console.log("Conversion completed successfully");

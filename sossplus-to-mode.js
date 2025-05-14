@@ -37,6 +37,11 @@ const argv = yargs(process.argv.slice(2))
     type: "string",
     demandOption: true
   })
+  .option("h", {
+    alias: "ui-hints-file",
+    describe: "Path to the UI hints file (mode-with-ui-hints.json)",
+    type: "string"
+  })
   .help()
   .argv;
 
@@ -44,13 +49,15 @@ const argv = yargs(process.argv.slice(2))
  * SOSSPlusToMode class to convert RO-Crate with SOSSplus profile back to a mode file
  */
 class SOSSPlusToMode {
-  constructor(socratePath, outputPath) {
+  constructor(socratePath, outputPath, uiHintsPath) {
     console.log(`Initializing converter with:
     - SOSSplus file: ${socratePath}
-    - Output file: ${outputPath}`);
+    - Output file: ${outputPath}${uiHintsPath ? '\n    - UI hints file: ' + uiHintsPath : ''}`);
     
     this.socratePath = socratePath;
     this.outputPath = outputPath;
+    this.uiHintsPath = uiHintsPath;
+    this.uiHints = null;
     this.mode = {
       metadata: {},
       classes: {}
@@ -71,6 +78,48 @@ class SOSSPlusToMode {
       console.error(`Error loading RO-Crate: ${error}`);
       throw error;
     }
+  }
+
+  /**
+   * Load the UI hints file if available
+   */
+  loadUIHints() {
+    if (!this.uiHintsPath) {
+      // Try to find the UI hints file in the same directory as the RO-Crate
+      const dirname = path.dirname(this.socratePath);
+      const potentialHintsPath = path.join(dirname, '..', 'mode-with-ui-hints.json');
+      
+      if (fs.existsSync(potentialHintsPath)) {
+        this.uiHintsPath = potentialHintsPath;
+        console.log(`Found UI hints file at: ${potentialHintsPath}`);
+      } else {
+        console.log("No UI hints file provided or found");
+        return;
+      }
+    }
+
+    try {
+      console.log(`Loading UI hints file: ${this.uiHintsPath}`);
+      this.uiHints = fs.readJSONSync(this.uiHintsPath);
+      console.log("UI hints loaded successfully");
+    } catch (error) {
+      console.error(`Error loading UI hints file: ${error}`);
+      this.uiHints = null;
+    }
+  }
+
+  /**
+   * Check if a property should be a TextArea based on UI hints
+   * @param {string} className - The class name
+   * @param {string} propertyName - The property name
+   * @returns {boolean} - True if the property should be a TextArea
+   */
+  isTextArea(className, propertyName) {
+    if (!this.uiHints || !this.uiHints['ui-hints'] || !this.uiHints['ui-hints'].textAreas) {
+      return false;
+    }
+    
+    return this.uiHints['ui-hints'].textAreas[className]?.[propertyName] === true;
   }
 
   /**
@@ -104,6 +153,11 @@ class SOSSPlusToMode {
     
     if (rootDataset.license) {
       this.mode.metadata.license = rootDataset.license;
+    }
+    
+    // If UI hints file has additional metadata, merge it in
+    if (this.uiHints && this.uiHints.metadata) {
+      this.mode.metadata = { ...this.mode.metadata, ...this.uiHints.metadata };
     }
     
     console.log("Metadata extracted");
@@ -200,9 +254,15 @@ class SOSSPlusToMode {
     
     properties.forEach(property => {
       const input = {
-        id: property.prov$specializationOf?.['@id'], // This should preserve the original ID
         name: property.name
       };
+
+      // Try different ways to extract the property ID
+      if (property.prov$specializationOf && property.prov$specializationOf['@id']) {
+        input.id = property.prov$specializationOf['@id'];
+      } else if (property['prov:specializationOf'] && property['prov:specializationOf']['@id']) {
+        input.id = property['prov:specializationOf']['@id'];
+      }
       
       // Add description/help text
       if (property['rdfs:comment']) {
@@ -236,12 +296,14 @@ class SOSSPlusToMode {
             
             // Special handling for TextArea vs Text
             if (schemaType === 'Text') {
-              // Look for clues in property name, description, or help text to determine if this is a TextArea
-              // Example: longer descriptions usually use TextArea
-              if (
-                (input.help && input.help.length > 100) || // Long help text
-                ['description', 'abstract', 'notes', 'details', 'comment'].some(term => input.name.toLowerCase().includes(term)) // Fields that typically use TextArea
-              ) {
+              // Check UI hints first
+              if (this.isTextArea(className, input.name)) {
+                return 'TextArea';
+              }
+              
+              // Otherwise use heuristics
+              const textAreaFields = ['description', 'abstract', 'notes', 'details', 'comment'];
+              if (textAreaFields.includes(input.name) || (input.help && input.help.length > 100)) {
                 return 'TextArea';
               } else {
                 return 'Text';
@@ -324,11 +386,13 @@ class SOSSPlusToMode {
         const termSetId = property['schema:rangeIncludes']['@id'];
         const termSet = this.crate.getEntity(termSetId);
         
-        if (termSet && termSet['@type'] === 'schema:DefinedTermSet' && termSet.hasDefinedTerm) {
+        if ((termSet && (termSet['@type'] === 'schema:DefinedTermSet' || termSet['@type'] === 'DefinedTermSet')) ||
+            (typeof termSetId === 'string' && termSetId.includes('DefinedTermSet'))) {
+          
           // Get all the terms in this set
-          const termRefs = Array.isArray(termSet.hasDefinedTerm) ? 
-                          termSet.hasDefinedTerm : 
-                          [termSet.hasDefinedTerm];
+          const termRefs = termSet && termSet.hasDefinedTerm ? 
+                         (Array.isArray(termSet.hasDefinedTerm) ? termSet.hasDefinedTerm : [termSet.hasDefinedTerm]) : 
+                         [];
           
           input.values = termRefs.map(termRef => {
             const termEntity = this.crate.getEntity(termRef['@id']);
@@ -344,25 +408,64 @@ class SOSSPlusToMode {
             return null;
           }).filter(v => v !== null);
           
+          // Try to get values from UI hints if we couldn't find them in the crate
+          if ((!input.values || input.values.length === 0) && 
+              this.uiHints && this.uiHints.classes && this.uiHints.classes[className]) {
+            
+            const originalInput = this.uiHints.classes[className].inputs.find(i => i.name === input.name);
+            if (originalInput && originalInput.values) {
+              input.values = originalInput.values;
+              console.log(`Restored ${input.values.length} predefined values for ${input.name} from UI hints`);
+            }
+          }
+          
           if (input.values && input.values.length > 0) {
             // It's a SelectObject since it references predefined values
             input.type = ['SelectObject'];
           }
         }
       }
+
+      // Check if we have any lookup information for this property
+      if (this.uiHints && this.uiHints['ui-hints'] && this.uiHints['ui-hints'].lookups) {
+        // If the property type is a class that matches a lookup name
+        const typeName = Array.isArray(input.type) ? input.type[0] : input.type;
+        if (typeName && this.uiHints['ui-hints'].lookups[typeName]) {
+          // Restore the lookup reference
+          console.log(`Found lookup information for ${input.name} (${typeName})`);
+        }
+      }
       
       classObject.inputs.push(input);
     });
+
+    // Check UI hints for any missing inputs that should be included
+    if (this.uiHints && this.uiHints.classes && this.uiHints.classes[className]) {
+      const originalInputs = this.uiHints.classes[className].inputs || [];
+      
+      // Find inputs that are in the original but not in our reconstructed inputs
+      const reconstructedInputNames = new Set(classObject.inputs.map(input => input.name));
+      
+      originalInputs.forEach(originalInput => {
+        if (!reconstructedInputNames.has(originalInput.name)) {
+          console.log(`Restoring missing input ${originalInput.name} for class ${className} from UI hints`);
+          classObject.inputs.push(originalInput);
+        }
+      });
+    }
   }
 
   /**
-   * Extract inputs (properties) for a class
-   * @param {string} className - Name of the class
-   * @param {object} classObject - Class object to add inputs to
-   * @deprecated Use extractInputsFromProperties instead
+   * Extract lookups from UI hints
    */
-  extractInputs(className, classObject) {
-    console.log(`Legacy method extractInputs called for ${className} - this shouldn't happen`);
+  extractLookups() {
+    if (!this.uiHints || !this.uiHints['ui-hints'] || !this.uiHints['ui-hints'].lookups) {
+      return;
+    }
+    
+    console.log("Extracting lookups from UI hints");
+    this.mode.lookups = { ...this.uiHints['ui-hints'].lookups };
+    console.log(`Restored ${Object.keys(this.mode.lookups).length} lookups from UI hints`);
   }
 
   /**
@@ -375,9 +478,15 @@ class SOSSPlusToMode {
       // Load the RO-Crate
       this.loadCrate();
       
+      // Load UI hints if available
+      this.loadUIHints();
+      
       // Extract metadata and classes
       this.extractMetadata();
       this.extractClasses();
+      
+      // Extract lookups from UI hints
+      this.extractLookups();
       
       // Write the mode file
       await fs.writeJSON(this.outputPath, this.mode, { spaces: 2 });
@@ -400,11 +509,12 @@ async function main() {
     
     const socratePath = argv.sossplusCrate;
     const outputPath = argv.outputFile;
+    const uiHintsPath = argv.uiHintsFile;
     
     console.log(`Converting SOSSplus RO-Crate: ${socratePath}`);
     console.log(`Output mode file: ${outputPath}`);
     
-    const converter = new SOSSPlusToMode(socratePath, outputPath);
+    const converter = new SOSSPlusToMode(socratePath, outputPath, uiHintsPath);
     await converter.convert();
     
     console.log("Conversion completed successfully");

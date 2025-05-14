@@ -7,7 +7,7 @@ const assert = require('assert');
  * Tests for round-tripping of mode files
  * 
  * This script:
- * 1. Finds all mode files in test_data/modes subdirectorieur
+ * 1. Finds all mode files in test_data/modes subdirectories
  * 2. Converts each to an RO-Crate using mode-to-sossplus.js
  * 3. Attempts to convert the RO-Crate back to a mode file
  * 4. Compares the classes section of the original and recreated mode files
@@ -140,6 +140,10 @@ describe("Mode file round-trip tests", function () {
           
           console.log(`Successfully created RO-Crate at ${socratePath}`);
           
+          // Check that the UI hints file was created
+          const uiHintsPath = path.join(socratePath, '..', 'mode-with-ui-hints.json');
+          assert.ok(fs.existsSync(uiHintsPath), `UI hints file should exist at ${uiHintsPath}`);
+          
           // Step 2: Create the reverse converter
           const reverseOutputPath = path.join(outputDir, 'reconstructed-mode.json');
           console.log(`Converting RO-Crate back to mode: ${socratePath} -> ${reverseOutputPath}`);
@@ -147,7 +151,7 @@ describe("Mode file round-trip tests", function () {
           const socrateCrateFile = path.join(socratePath, 'ro-crate-metadata.json');
           assert.ok(fs.existsSync(socrateCrateFile), `RO-Crate metadata file should exist at ${socrateCrateFile}`);
           
-          execSync(`node ${path.join(__dirname, '..', 'sossplus-to-mode.js')} -s ${socrateCrateFile} -o ${reverseOutputPath}`, { 
+          execSync(`node ${path.join(__dirname, '..', 'sossplus-to-mode.js')} -s ${socrateCrateFile} -o ${reverseOutputPath} -h ${uiHintsPath}`, { 
             stdio: 'inherit' // Show output directly for debugging
           });
           
@@ -216,9 +220,9 @@ describe("Mode file round-trip tests", function () {
                 } else {
                   for (let i = 0; i < originalTypes.length; i++) {
                     if (originalTypes[i] !== reconstructedTypes[i]) {
-                      // Special check for Text vs TextArea
+                      // Special check for Text vs TextArea - we expect this to work with UI hints now
                       if ((originalTypes[i] === 'TextArea' && reconstructedTypes[i] === 'Text')) {
-                        typeMappingIssues.push(`Property ${originalInput.name} in class ${className}: TextArea type in original was mapped to Text in reconstructed`);
+                        failedProperties.push(`Property ${originalInput.name} in class ${className} has different type: original=TextArea, reconstructed=Text (should be preserved via UI hints)`);
                       } else {
                         failedProperties.push(`Property ${originalInput.name} in class ${className} has different type: original=${originalTypes[i]}, reconstructed=${reconstructedTypes[i]}`);
                       }
@@ -251,6 +255,26 @@ describe("Mode file round-trip tests", function () {
             });
           });
           
+          // Check lookups
+          if (originalMode.lookups && !reconstructedMode.lookups) {
+            failedProperties.push("Original mode has lookups but reconstructed mode doesn't");
+          } else if (!originalMode.lookups && reconstructedMode.lookups) {
+            failedProperties.push("Reconstructed mode has lookups but original mode doesn't");
+          } else if (originalMode.lookups && reconstructedMode.lookups) {
+            const originalLookupKeys = Object.keys(originalMode.lookups);
+            const reconstructedLookupKeys = Object.keys(reconstructedMode.lookups);
+            
+            if (originalLookupKeys.length !== reconstructedLookupKeys.length) {
+              failedProperties.push(`Original mode has ${originalLookupKeys.length} lookups but reconstructed has ${reconstructedLookupKeys.length}`);
+            }
+            
+            originalLookupKeys.forEach(lookupKey => {
+              if (!reconstructedMode.lookups[lookupKey]) {
+                failedProperties.push(`Lookup ${lookupKey} is missing from reconstructed mode`);
+              }
+            });
+          }
+          
           // Report on property issues
           if (failedProperties.length > 0) {
             console.error('The following properties were not correctly round-tripped:');
@@ -259,18 +283,6 @@ describe("Mode file round-trip tests", function () {
             fs.writeFileSync(
               path.join(outputDir, 'property-issues.txt'), 
               failedProperties.join('\n'), 
-              'utf8'
-            );
-          }
-          
-          // Report type mapping issues separately (these are expected failures for now)
-          if (typeMappingIssues.length > 0) {
-            console.warn('The following type mappings need to be addressed:');
-            typeMappingIssues.forEach(issue => console.warn(`- ${issue}`));
-            
-            fs.writeFileSync(
-              path.join(outputDir, 'type-mapping-issues.txt'), 
-              typeMappingIssues.join('\n'), 
               'utf8'
             );
           }
