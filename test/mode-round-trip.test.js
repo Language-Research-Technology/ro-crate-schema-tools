@@ -141,7 +141,7 @@ describe("Mode file round-trip tests", function () {
           console.log(`Successfully created RO-Crate at ${socratePath}`);
           
           // Check that the UI hints file was created
-          const uiHintsPath = path.join(socratePath, '..', 'mode-with-ui-hints.json');
+          const uiHintsPath = path.join(socratePath, 'mode-with-ui-hints.json');
           assert.ok(fs.existsSync(uiHintsPath), `UI hints file should exist at ${uiHintsPath}`);
           
           // Step 2: Create the reverse converter
@@ -231,8 +231,9 @@ describe("Mode file round-trip tests", function () {
                 }
               }
               
-              // Check cardinality constraints
-              if (originalInput.required !== reconstructedInput.required) {
+              // Check cardinality constraints - treat undefined and false as equivalent for required flag
+              if (originalInput.required !== reconstructedInput.required && 
+                  !(originalInput.required === undefined && reconstructedInput.required === false)) {
                 failedProperties.push(`Property ${originalInput.name} in class ${className} has different required flag: original=${originalInput.required}, reconstructed=${reconstructedInput.required}`);
               }
               

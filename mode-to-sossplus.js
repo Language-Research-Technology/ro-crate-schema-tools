@@ -120,6 +120,7 @@ class ModeConverter {
     // Add a ui-hints section
     modeWithHints['ui-hints'] = {
       textAreas: {},
+      textFields: {},  // Add this to explicitly track Text fields
       lookups: {}
     };
     
@@ -128,12 +129,23 @@ class ModeConverter {
       Object.entries(modeWithHints.classes).forEach(([className, classData]) => {
         if (classData.inputs) {
           classData.inputs.forEach(input => {
+            // Handle field types - check both array and string types
+            const types = Array.isArray(input.type) ? input.type : [input.type];
+            
             // Store TextArea hints
-            if (input.type && input.type.includes('TextArea')) {
+            if (types.includes('TextArea')) {
               if (!modeWithHints['ui-hints'].textAreas[className]) {
                 modeWithHints['ui-hints'].textAreas[className] = {};
               }
               modeWithHints['ui-hints'].textAreas[className][input.name] = true;
+            }
+            
+            // Explicitly store Text fields to prevent them from being converted to TextArea
+            if (types.includes('Text')) {
+              if (!modeWithHints['ui-hints'].textFields[className]) {
+                modeWithHints['ui-hints'].textFields[className] = {};
+              }
+              modeWithHints['ui-hints'].textFields[className][input.name] = true;
             }
           });
         }

@@ -115,11 +115,33 @@ class SOSSPlusToMode {
    * @returns {boolean} - True if the property should be a TextArea
    */
   isTextArea(className, propertyName) {
-    if (!this.uiHints || !this.uiHints['ui-hints'] || !this.uiHints['ui-hints'].textAreas) {
+    if (!this.uiHints || !this.uiHints['ui-hints']) {
       return false;
     }
     
-    return this.uiHints['ui-hints'].textAreas[className]?.[propertyName] === true;
+    // First check if it's explicitly defined as a TextArea in UI hints
+    if (this.uiHints['ui-hints'].textAreas && 
+        this.uiHints['ui-hints'].textAreas[className]?.[propertyName] === true) {
+      return true;
+    }
+    // If no explicit hint is found, use heuristics
+    return false;
+  }
+  
+  /**
+   * Check if a property should be a Text field based on UI hints
+   * @param {string} className - The class name
+   * @param {string} propertyName - The property name
+   * @returns {boolean} - True if the property should be a Text field
+   */
+  isTextField(className, propertyName) {
+    if (!this.uiHints || !this.uiHints['ui-hints']) {
+      return false;
+    }
+    
+    // Check if it's explicitly defined as a Text field in UI hints
+    return this.uiHints['ui-hints'].textFields && 
+           this.uiHints['ui-hints'].textFields[className]?.[propertyName] === true;
   }
 
   /**
@@ -269,16 +291,34 @@ class SOSSPlusToMode {
         input.help = property['rdfs:comment'];
       }
 
-      // Set cardinality constraints
+      // Set cardinality constraints - explicitly set required to false if not required
       if (property['sh:minCount'] === 1) {
         input.required = true;
+      } else {
+        // If minCount is not 1, it's not required
+        input.required = false;
       }
       
-      if (property['sh:maxCount'] === 1) {
-        input.multiple = false;
+      // Handle multiple flag - check UI hints first to preserve original values
+      if (this.uiHints && this.uiHints.classes && this.uiHints.classes[className]) {
+        const originalInput = this.uiHints.classes[className].inputs?.find(i => i.name === input.name);
+        if (originalInput && originalInput.multiple !== undefined) {
+          // Preserve the original multiple flag if it exists
+          input.multiple = originalInput.multiple;
+        } else if (property['sh:maxCount'] === 1) {
+          input.multiple = false;
+        } else if (property['sh:maxCount'] !== undefined && property['sh:maxCount'] !== 1) {
+          input.multiple = true;
+        }
+        // Otherwise leave multiple undefined
       } else {
-        // If maxCount is not 1, it's multiple
-        input.multiple = true;
+        // No UI hints available, use standard logic
+        if (property['sh:maxCount'] === 1) {
+          input.multiple = false;
+        } else if (property['sh:maxCount'] !== undefined && property['sh:maxCount'] !== 1) {
+          input.multiple = true;
+        }
+        // Otherwise leave multiple undefined
       }
       
       // Add type based on rangeIncludes
@@ -296,12 +336,17 @@ class SOSSPlusToMode {
             
             // Special handling for TextArea vs Text
             if (schemaType === 'Text') {
-              // Check UI hints first
+              // First check UI hints
               if (this.isTextArea(className, input.name)) {
                 return 'TextArea';
               }
               
-              // Otherwise use heuristics
+              // Then check if it's explicitly defined as a Text field
+              if (this.isTextField(className, input.name)) {
+                return 'Text';  // Explicitly keep it as Text if defined in UI hints
+              }
+              
+              // Otherwise use standard heuristics for common text fields
               const textAreaFields = ['description', 'abstract', 'notes', 'details', 'comment'];
               if (textAreaFields.includes(input.name) || (input.help && input.help.length > 100)) {
                 return 'TextArea';
