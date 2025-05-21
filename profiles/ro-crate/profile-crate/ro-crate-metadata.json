@@ -91,7 +91,7 @@
       "domainIncludes": {
         "@id": "#Root_Data_Entity"
       },
-      "rdfs:comment": "The name of this Schema.",
+      "rdfs:comment": "SHOULD identify the dataset to humans well enough to disambiguate it from other RO-Crates",
       "rangeIncludes": {
         "@id": "Text"
       },
@@ -109,7 +109,7 @@
       "domainIncludes": {
         "@id": "#Root_Data_Entity"
       },
-      "rdfs:comment": "An abstract of the collection. Include as much detail as possible about the motivation and use of the collection.",
+      "rdfs:comment": "(In addition to the name) SHOULD further elaborate on the name to provide a summary of the context in which the dataset is important.",
       "rangeIncludes": {
         "@id": "Text"
       },
@@ -126,7 +126,7 @@
       "domainIncludes": {
         "@id": "#Root_Data_Entity"
       },
-      "rdfs:comment": "A date that this collection was published. This should be the date that the collection was first made available eg by being put online or into an access controlled system.",
+      "rdfs:comment": "MUST be a string in ISO 8601 date format and SHOULD be specified to at least the precision of a day, MAY be a timestamp down to the millisecond.",
       "rangeIncludes": [
         {
           "@id": "schema:Date"
@@ -146,7 +146,7 @@
       "domainIncludes": {
         "@id": "#Root_Data_Entity"
       },
-      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
+      "rdfs:comment": "SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used",
       "rangeIncludes": [
         {
           "@id": "#class_CreativeWork"

@@ -12,3 +12,7 @@ ${rules.Dataset}
 ${rules.allDefinedTermSets}
 
 ${rules.all}
+
+## Provenance
+
+${rules.provenance}

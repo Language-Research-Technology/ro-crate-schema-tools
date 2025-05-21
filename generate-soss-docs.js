@@ -326,6 +326,18 @@ try {
   rules.RepositoryCollection = rules['#class_RepositoryCollection'] || '';
   rules.RepositoryObject = rules['#class_RepositoryObject'] || '';
   
+  // Add provenance information
+  const repoBase = 'https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main';
+  const gitBranch = process.env.GIT_BRANCH || 'main'; // Default to main if branch not specified
+  const repoUrl = `https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/${gitBranch}`;
+  const scriptPath = path.relative(__dirname, path.resolve(__dirname, 'generate-soss-docs.js'));
+  const templateRelPath = path.relative(__dirname, templatePath);
+  const profileRelPath = path.relative(__dirname, profilePath);
+  
+  rules.provenance = `This document was compiled using [generate-soss-docs.js](${repoUrl}/${scriptPath}), ` +
+                     `based on [${templateRelPath}](${repoUrl}/${templateRelPath}) ` +
+                     `using a SoSS+ Schema defined in [${profileRelPath}](${repoUrl}/${profileRelPath}).`;
+
   // Read the template file
   console.log(`Reading template from: ${templatePath}`);
   const template = fs.readFileSync(templatePath, 'utf8');

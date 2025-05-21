@@ -29,8 +29,8 @@ Specialization of: http://schema.org/CreativeWork
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_RO_Crate_Metadata_Descriptor_unnamed_c84by"></a>@id | Yes | The RO-Crate Metadata  | [Root Data Entity](#_Root_Data_Entity) | ro-crate-metadata.json |
-| <a id="_RO_Crate_Metadata_Descriptor_unnamed_nuzyc"></a>about | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. I a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Enitty with different @type arrays or `@conformsTo` references (or other specializations). In this example there is a single reference. | [Root Data Entity](#_Root_Data_Entity) |  |
+| <a id="_RO_Crate_Metadata_Descriptor_unnamed_s0dhc"></a>@id | Yes | The RO-Crate Metadata  | [Root Data Entity](#_Root_Data_Entity) | ro-crate-metadata.json |
+| <a id="_RO_Crate_Metadata_Descriptor_unnamed_o19xu"></a>about | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. I a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Enitty with different @type arrays or `@conformsTo` references (or other specializations). In this example there is a single reference. | [Root Data Entity](#_Root_Data_Entity) |  |
 
 ### <a id="_Root_Data_Entity"></a>Root Data Entity
 
@@ -40,9 +40,13 @@ Specialization of: http://schema.org/Dataset
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_Root_Data_Entity_unnamed_nm29f"></a>datePublished | Yes | A date that this collection was published. This should be the date that the collection was first made available eg by being put online or into an access controlled system. | schema:Date |  |
-| <a id="_Root_Data_Entity_unnamed_3alts"></a>description | Yes | An abstract of the collection. Include as much detail as possible about the motivation and use of the collection. | Text |  |
-| <a id="_Root_Data_Entity_unnamed_z3p8n"></a>license | Yes | A license document that applies to this content, typically indicated by URL. | #class_CreativeWork, schema:URL, schema:Text |  |
-| <a id="_Root_Data_Entity_unnamed_r98kq"></a>name | Yes | The name of this Schema. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_mhkjk"></a>datePublished | Yes | MUST be a string in ISO 8601 date format and SHOULD be specified to at least the precision of a day, MAY be a timestamp down to the millisecond. | schema:Date |  |
+| <a id="_Root_Data_Entity_unnamed_hxj6n"></a>description | Yes | (In addition to the name) SHOULD further elaborate on the name to provide a summary of the context in which the dataset is important. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_h0mee"></a>license | Yes | SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used | #class_CreativeWork, schema:URL, schema:Text |  |
+| <a id="_Root_Data_Entity_unnamed_jtezx"></a>name | Yes | SHOULD identify the dataset to humans well enough to disambiguate it from other RO-Crates | Text |  |
 
 
+
+## Provenance
+
+This document was compiled using [generate-soss-docs.js](https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/generate-soss-docs.js), based on [profiles/ro-crate/profile-text.md](https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/ro-crate/profile-text.md) using a SoSS+ Schema defined in [profiles/ro-crate/profile-crate/ro-crate-metadata.json](https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/ro-crate/profile-crate/ro-crate-metadata.json).
