@@ -146,7 +146,7 @@ This is accomplished with a (proposed, experimental) RO-Crate Profile property `
       "rdfs:label": "citation",
       "schema:domainIncludes": [
         {
-          "@id": "#class_Root_Data_Entity"
+          "@id": "#Root_Data_entity"
         }
       ],
       "schema:rangeIncludes": [
@@ -165,28 +165,7 @@ This is accomplished with a (proposed, experimental) RO-Crate Profile property `
       "sh:minCount": 1,
       "sh:maxCount": 1,
 },
-{
-      "@id": "#Root_Data_Entity.about",
-      "@type": "rdf:Property",
-      "prov:specializationOf" : {"@id": "https://schema.org/about"},
-      "decription": "This is part of the mechamism for defining RO-Crates",
-      "name": "about",
-      "schema:domainIncludes": [
-        {
-          "@id": "#ro-crate-metadata.json"
-        }
-      ]
-       "sh:minCount": 1,
-       "sh:maxCount": 1
-    }
-{
-      "@id": "#RO-Crate_Metadata_Descriptor", 
-      "@type": "rdfs:Class",
-      "name": "RO-Crate Metadadata",
-      "prov:specializationOf" : {"@id": "https://schema.org/CreativeWork"},
-      "rdfs:comment": "The Root Data Entity for an RO-Crate that conforms to this profile.",
-      "rdfs:label": "Root_Data_Entity"  <---     
-}
+
 
 ```
 
@@ -216,24 +195,26 @@ It assumes that software is used that can find entities by their ID and calculat
 
 The above is saying that the "  RO-Crate Metadata Descriptor is in a class of its own". This *Soss+ Specialized Class* describes a single  `CreativeWork` entity which must occur once within the RO-Crate graph.\ with two SoSS+ Specialized Properties.
 
-The below example introduces another convention which illustrates how a  `SoSS+ Specialized Property` may have a fixed, mandatory value - via the `schema:value` keyword. The SoSS+ 
+The below example introduces two more conventions which illustrate how a  `SoSS+ Specialized Property` may have a fixed, mandatory value - via the `schema:value` keyword. 
+
+TODO: Discuss with RO team - JSON-LD keys `@` don't have URIs -- should we define them in our vocab so we can refer to them? I have taken this route below.
 
 ```
 {
       "@id": "#RO-Crate_Metadata_Descriptor.id",
       "@type": "rdf:Property",
-      "rdfs:label" : "@id",
-      "value": "ro-crate-metadata.json",
+      "prov:specializationOf": {"@id": "http://w3id.org/ro-terms/JSON-LD-id"},
+      "schema:value": "ro-crate-metadata.json",
       "description": "The RO-Crate Metadata ",
       "name": "about",
       "domainIncludes": [
         {
           "@id": "#RO-Crate_Metadata_Descriptor"
         }
-      ]
-      "rangeIncludes": {"@id": "#Root_Data_Entity"}
-       "sh:minCount": 1,
-       "sh:maxCount": 1
+      ],
+      "rangeIncludes": {"@id": "#Root_Data_Entity"},
+      "sh:minCount": 1,
+      "sh:maxCount": 1
 }
 ```
 

@@ -42,6 +42,21 @@
       "sh:maxCount": 1
     },
     {
+        "@id": "#RO-Crate_Metadata_Descriptor.id",
+        "@type": "rdf:Property",
+        "value": "ro-crate-metadata.json",
+        "description": "The RO-Crate Metadata ",
+        "rdfs:label": "@id",
+        "domainIncludes": [
+          {
+            "@id": "#RO-Crate_Metadata_Descriptor"
+          }
+        ],
+        "rangeIncludes": {"@id": "#Root_Data_Entity"},
+        "sh:minCount": 1,
+        "sh:maxCount": 1
+   },
+    {
       "@id": "#RO-Crate_Metadata_Descriptor.about",
       "@type": "rdf:Property",
       "prov:specializationOf": { "@id": "http://schema.org/about" },
