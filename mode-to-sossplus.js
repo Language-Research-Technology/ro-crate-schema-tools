@@ -37,6 +37,11 @@ const argv = yargs(process.argv.slice(2))
     type: "string",
     default: "./output/mode-sossplus"
   })
+  .option("p", {
+    alias: "profile-crate",
+    describe: "Output directory for the profile-crate (e.g., profiles/ldac/profile-crate)",
+    type: "string"
+  })
   .option("n", {
     alias: "namespace",
     describe: "Namespace for the generated entities",
@@ -177,6 +182,7 @@ class ModeConverter {
     // Add metadata based on the mode file
     const metadata = this.modeData.metadata || {};
     
+    // Set root dataset properties
     this.crate.rootDataset.name = `${metadata.name || "Converted Mode"} Schema`;
     this.crate.rootDataset.description = 
       `Schema derived from ${metadata.name || "mode file"}: ${metadata.description || ""}`;
@@ -201,6 +207,15 @@ class ModeConverter {
       "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md" 
     }];
     console.log("Added conformsTo reference to SOSSplus profile");
+    
+    // Add RO-Crate Metadata Descriptor early to ensure it appears at top of @graph
+    this.crate.addEntity({
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "about": { "@id": "./" }
+    });
+    console.log("Added RO-Crate Metadata Descriptor at top level");
   }
 
   /**
@@ -257,7 +272,7 @@ class ModeConverter {
   processProperty(className, inputData) {
     console.log(`Processing property: ${inputData.name} for class ${className}`);
     
-    const propertyId = inputData.id;
+    const propertyId = inputData.id || `${this.namespace}${inputData.name}`;
     const propertyName = inputData.name;
     
     // Create a unique key to check for existing properties
@@ -269,12 +284,26 @@ class ModeConverter {
       console.log(`Found existing property: ${propertyName} - reusing and adding domain`);
       
       // Add this class to the domain of the existing property
-      if (!existingProperty["schema:domainIncludes"]) {
-        existingProperty["schema:domainIncludes"] = [];
+      if (!existingProperty["domainIncludes"]) {
+        existingProperty["domainIncludes"] = [];
+      } else if (!Array.isArray(existingProperty["domainIncludes"])) {
+        // Convert to array if it's not already
+        existingProperty["domainIncludes"] = [existingProperty["domainIncludes"]];
       }
       
-      // Add the new class to the domain
-      existingProperty["schema:domainIncludes"].push({ "@id": `#class_${className}` });
+      // Add the new class to the domain if not already present
+      const domainClassId = `#class_${className}`;
+      const alreadyInDomain = existingProperty["domainIncludes"].some(domain => 
+        domain["@id"] === domainClassId
+      );
+      
+      if (!alreadyInDomain) {
+        existingProperty["domainIncludes"].push({ "@id": domainClassId });
+        
+        // Update the entity in the crate to ensure changes are saved
+        this.crate.addEntity(existingProperty);
+        console.log(`Updated domain for property ${propertyName} to include ${className}`);
+      }
       
       return existingProperty;
     }
@@ -286,7 +315,7 @@ class ModeConverter {
       "rdfs:label": propertyName,
       "name": propertyName,
       "prov:specializationOf": { "@id": propertyId },
-      "schema:domainIncludes": [
+      "domainIncludes": [
         { "@id": `#class_${className}` }
       ]
     };
@@ -323,7 +352,7 @@ class ModeConverter {
         // Create the DefinedTermSet if not already exists
         const termSetEntity = {
           "@id": definedTermSetId,
-          "@type": "schema:DefinedTermSet",
+          "@type": "DefinedTermSet",
           "name": definedTermSetId.split(':').pop(),
           "description": `Set of defined terms for ${propertyName}`
         };
@@ -353,14 +382,14 @@ class ModeConverter {
         console.log(`Added DefinedTermSet: ${definedTermSetId} for property ${propertyName}`);
         
         // Link the property to the DefinedTermSet
-        propertyEntity["schema:rangeIncludes"] = { "@id": definedTermSetId };
+        propertyEntity["rangeIncludes"] = { "@id": definedTermSetId };
       } else {
         // Handle as a regular ItemList
         // Create an ItemList to hold the values
         const itemListId = `#itemlist_${propertyName}_${className}`;
         const itemList = {
           "@id": itemListId,
-          "@type": "schema:ItemList",
+          "@type": "ItemList",
           "name": `Values for ${propertyName}`,
           "description": `Predefined values for the ${propertyName} property`,
           "itemListElement": []
@@ -388,30 +417,33 @@ class ModeConverter {
         console.log(`Added ItemList: ${itemListId} for property ${propertyName}`);
         
         // Link the property to the ItemList
-        propertyEntity["schema:itemListElement"] = { "@id": itemListId };
+        propertyEntity["itemListElement"] = { "@id": itemListId };
         
         // Set the range to the ItemList
-        propertyEntity["schema:rangeIncludes"] = { "@id": itemListId };
+        propertyEntity["rangeIncludes"] = { "@id": itemListId };
       }
     } 
     // Add range types only if no values were defined
     else if (inputData.type && inputData.type.length > 0) {
-      propertyEntity["schema:rangeIncludes"] = inputData.type.map(type => {
+      // Handle both array and non-array type specifications
+      const types = Array.isArray(inputData.type) ? inputData.type : [inputData.type];
+      
+      propertyEntity["rangeIncludes"] = types.map(type => {
         // Handle primitive types and class references
         if (["Text", "TextArea", "URL", "Date", "DateTime", "Boolean", "Number", "Select", "SelectObject"].includes(type)) {
           // Map UI types to schema types
           const typeMap = {
-            "Text": "schema:Text",
-            "TextArea": "schema:Text",
-            "URL": "schema:URL",
-            "Date": "schema:Date",
-            "DateTime": "schema:DateTime",
-            "Boolean": "schema:Boolean",
-            "Number": "schema:Number",
-            "Select": "schema:Text",
-            "SelectObject": "schema:Thing"
+            "Text": "Text",
+            "TextArea": "Text",
+            "URL": "URL",
+            "Date": "Date",
+            "DateTime": "DateTime",
+            "Boolean": "Boolean",
+            "Number": "Number",
+            "Select": "Text",
+            "SelectObject": "Thing"
           };
-          return { "@id": typeMap[type] || `schema:${type}` };
+          return { "@id": typeMap[type] || `${type}` };
         } else {
           // This is a reference to another class
           return { "@id": `#class_${type}` };
@@ -464,7 +496,7 @@ class ModeConverter {
         "@type": "rdfs:Class",
         "rdfs:label": `${rootClassName}`,
         "name": `${rootClassName}`,
-        "prov:specializationOf": { "@id": `schema:${rootClassName}` },
+        "prov:specializationOf": { "@id": `${rootClassName}` },
         "rdfs:comment": rootEntity.description || `Root Data Entity of type ${rootClassName}`
       };
       
@@ -508,12 +540,12 @@ class ModeConverter {
               "@type": "rdf:Property",
               "rdfs:label": field,
               "name": field,
-              "prov:specializationOf": { "@id": `schema:${field}` },
-              "schema:domainIncludes": [
+              "prov:specializationOf": { "@id": `${field}` },
+              "domainIncludes": [
                 { "@id": `#class_${lookupName}` }
               ],
-              "schema:rangeIncludes": [
-                { "@id": "schema:Text" }
+              "rangeIncludes": [
+                { "@id": "Text" }
               ],
               "rdfs:comment": `Field ${field} for ${lookupName} lookup`
             };
@@ -524,6 +556,236 @@ class ModeConverter {
         });
       }
     }
+  }
+
+  /**
+   * Add RO-Crate Metadata Descriptor class and properties to the SOSS+ RO-Crate
+   * These elements should always be included in generated SOSS+ crates
+   */
+  addROCrateMetadataDescriptor() {
+    console.log("Adding RO-Crate Metadata Descriptor class and properties");
+    
+    // Add RO-Crate Metadata Descriptor Class
+    const metadataDescriptorClass = {
+      "@id": "#RO-Crate_Metadata_Descriptor",
+      "@type": "rdfs:Class",
+      "name": "RO-Crate Metadata Descriptor",
+      "prov:specializationOf": { "@id": "http://schema.org/CreativeWork" },
+      "description": "An RO-Crate @graph must contain an entity of Type @CreativeWork which is known as the RO-Crate Metadata descriptor.",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    };
+    this.crate.addEntity(metadataDescriptorClass);
+    console.log("Added RO-Crate Metadata Descriptor class");
+    
+    // Add RO-Crate Metadata Descriptor ID property
+    const metadataDescriptorIdProperty = {
+      "@id": "#RO-Crate_Metadata_Descriptor.id",
+      "@type": "rdf:Property",
+      "value": "ro-crate-metadata.json",
+      "description": "The RO-Crate Metadata file identifier",
+      "rdfs:label": "@id",
+      "domainIncludes": [
+        {
+          "@id": "#RO-Crate_Metadata_Descriptor"
+        }
+      ],
+      "rangeIncludes": { "@id": "#Root_Data_Entity" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    };
+    this.crate.addEntity(metadataDescriptorIdProperty);
+    console.log("Added RO-Crate Metadata Descriptor ID property");
+    
+    // Add RO-Crate Metadata Descriptor 'about' property
+    const metadataDescriptorAboutProperty = {
+      "@id": "#RO-Crate_Metadata_Descriptor.about",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://schema.org/about" },
+      "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity. In a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Entity with different @type arrays or `@conformsTo` references (or other specializations).",
+      "name": "about",
+      "domainIncludes": [
+        {
+          "@id": "#RO-Crate_Metadata_Descriptor"
+        }
+      ],
+      "rangeIncludes": { "@id": "#Root_Data_Entity" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    };
+    this.crate.addEntity(metadataDescriptorAboutProperty);
+    console.log("Added RO-Crate Metadata Descriptor about property");
+    
+    // Add Root Data Entity class that matches what's in the mode file
+    this.addRootDataEntityClass();
+  }
+
+  /**
+   * Add Root Data Entity class based on the mode file
+   */
+  addRootDataEntityClass() {
+    console.log("Adding Root Data Entity class from mode file");
+    
+    // Get the root entity type(s) from the mode file
+    const rootDataEntityTypes = [];
+    if (this.modeData.rootDataset && this.modeData.rootDataset.type) {
+      if (Array.isArray(this.modeData.rootDataset.type)) {
+        rootDataEntityTypes.push(...this.modeData.rootDataset.type);
+      } else {
+        rootDataEntityTypes.push(this.modeData.rootDataset.type);
+      }
+    } else if (this.modeData.rootDataEntity) {
+      const rootEntity = this.modeData.rootDataEntity;
+      if (Array.isArray(rootEntity)) {
+        rootEntity.forEach(entity => {
+          if (entity.type) {
+            if (Array.isArray(entity.type)) {
+              rootDataEntityTypes.push(...entity.type);
+            } else {
+              rootDataEntityTypes.push(entity.type);
+            }
+          }
+        });
+      } else if (rootEntity.type) {
+        if (Array.isArray(rootEntity.type)) {
+          rootDataEntityTypes.push(...rootEntity.type);
+        } else {
+          rootDataEntityTypes.push(rootEntity.type);
+        }
+      }
+    }
+    
+    // Fallback to Dataset if no type is specified
+    if (rootDataEntityTypes.length === 0) {
+      rootDataEntityTypes.push("Dataset");
+    }
+    
+    console.log(`Root Data Entity types from mode file: ${rootDataEntityTypes.join(', ')}`);
+    
+    // Create the Root Data Entity class
+    const rootDataEntityClass = {
+      "@id": "#Root_Data_Entity",
+      "@type": "rdfs:Class",
+      "description": `The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor. In this profile, it is a ${rootDataEntityTypes.join(' and ')}.`,
+      "name": "Root Data Entity",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    };
+    
+    // Create proper rdfs:subClassOf relationships for all specified types
+    if (rootDataEntityTypes.length > 0) {
+      rootDataEntityClass["prov:specializationOf"] = rootDataEntityTypes.map(type => {
+        const uri = this.crate.resolveTerm(type) || `http://schema.org/${type}`;
+        return { "@id": uri };
+      });
+    }
+    
+    this.crate.addEntity(rootDataEntityClass);
+    console.log(`Added Root Data Entity class with subclass relationships to: ${rootDataEntityTypes.join(', ')}`);
+    
+    // Now add the required properties for the Root Data Entity
+    this.addRootDataEntityProperties(rootDataEntityTypes);
+  }
+
+  /**
+   * Add common required properties for Root Data Entity
+   */
+  addRootDataEntityProperties(rootDataEntityTypes) {
+    console.log("Adding common properties for Root Data Entity");
+    
+    // Add name property
+    const nameProperty = {
+      "@id": "#prop_name_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "The name of this data collection.",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1
+    };
+    this.crate.addEntity(nameProperty);
+    console.log("Added name property for Root Data Entity");
+    
+    // Add description property
+    const descriptionProperty = {
+      "@id": "#prop_description_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "An abstract of the collection. Include as much detail as possible about the motivation and use of the collection.",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1
+    };
+    this.crate.addEntity(descriptionProperty);
+    console.log("Added description property for Root Data Entity");
+    
+    // Add datePublished property
+    const datePublishedProperty = {
+      "@id": "#prop_datePublished_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/datePublished"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "A date that this collection was published. This should be the date that the collection was first made available.",
+      "rangeIncludes": [
+        {
+          "@id": "Date"
+        }
+      ],
+      "sh:minCount": 1
+    };
+    this.crate.addEntity(datePublishedProperty);
+    console.log("Added datePublished property for Root Data Entity");
+    
+    // Add license property
+    const licenseProperty = {
+      "@id": "#prop_license_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/license"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "URL"
+        },
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:minCount": 1
+    };
+    this.crate.addEntity(licenseProperty);
+    console.log("Added license property for Root Data Entity");
   }
 
   /**
@@ -538,6 +800,11 @@ class ModeConverter {
       
       // Initialize the RO-Crate
       this.initializeCrate();
+      
+      // Add RO-Crate Metadata Descriptor and Root Data Entity classes first
+      // to ensure they appear at the top of the generated file
+      this.addROCrateMetadataDescriptor();
+      console.log("Added RO-Crate Metadata Descriptor and Root Data Entity at the start of the file");
       
       // Process the classes
       const classes = this.modeData.classes;
@@ -586,12 +853,25 @@ async function main() {
     const modePath = argv.modeFile;
     const outputDir = argv.outputDir;
     const namespace = argv.namespace;
+    const profileCrateDir = argv.profileCrate;
     
     console.log(`Converting mode file: ${modePath}`);
     console.log(`Output directory: ${outputDir}`);
+    if (profileCrateDir) {
+      console.log(`Profile-crate directory: ${profileCrateDir}`);
+    }
     
     const converter = new ModeConverter(modePath, outputDir, namespace);
-    await converter.convert();
+    const crate = await converter.convert();
+    
+    // If profile-crate directory is specified, copy the output there too
+    if (profileCrateDir) {
+      console.log(`Writing profile to profile-crate directory: ${profileCrateDir}`);
+      const profileCratePath = path.join(profileCrateDir, 'ro-crate-metadata.json');
+      fs.ensureDirSync(profileCrateDir);
+      fs.writeJSONSync(profileCratePath, crate.toJSON(), { spaces: 2 });
+      console.log(`Profile written to: ${profileCratePath}`);
+    }
     
     console.log("Conversion completed successfully");
   } catch (error) {

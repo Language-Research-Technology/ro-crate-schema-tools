@@ -396,6 +396,3 @@ Here are two defined terms which are part of a DefinedTermSet (NOTE: as this was
 
 
 ```
-
-
-
