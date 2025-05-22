@@ -270,7 +270,9 @@ try {
         const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
         const normalizedPropName = normalizeName(propName);
         const anchorId = `${normalizedClassName}_${normalizedPropName}`;
-        
+        // Make a link to the 'main' definition of the property
+        const propBaseId = prop?.["prov:specializationOf"]?.[0]?.['@id'];
+        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${propBaseId})` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
         
@@ -306,7 +308,7 @@ try {
         // Get fixed value if specified
         const fixedValue = prop['schema:value'] || prop['value'] || '';
         
-        classSummary += `| <a id="${anchorId}"></a>${propName} | ${isRequired} | ${propDesc} | ${rangeLinks} | ${fixedValue} |\n`;
+        classSummary += `| <a id="${anchorId}"></a>${propName}${link} | ${isRequired} | ${propDesc} | ${rangeLinks} | ${fixedValue} |\n`;
       });
     } else {
       classSummary += `*No properties defined for this class*\n\n`;
@@ -327,8 +329,24 @@ try {
   rules.RepositoryObject = rules['#class_RepositoryObject'] || '';
   
   // Add provenance information
-  const repoBase = 'https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main';
-  const gitBranch = process.env.GIT_BRANCH || 'main'; // Default to main if branch not specified
+  // Get the current Git branch by running git command
+  let gitBranch = 'main'; // Default to main
+  try {
+    const { execSync } = require('child_process');
+    const gitCommand = 'git rev-parse --abbrev-ref HEAD';
+    gitBranch = execSync(gitCommand, { cwd: __dirname, encoding: 'utf8' }).trim();
+    // Handle detached HEAD state
+    if (gitBranch === 'HEAD') {
+      // Try to get the branch from CI environment variables
+      gitBranch = process.env.GITHUB_REF_NAME || 
+                  process.env.CI_COMMIT_REF_NAME || 
+                  process.env.BRANCH_NAME || 
+                  'main';
+    }
+  } catch (error) {
+    console.warn(`Warning: Could not determine Git branch: ${error.message}`);
+  }
+
   const repoUrl = `https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/${gitBranch}`;
   const scriptPath = path.relative(__dirname, path.resolve(__dirname, 'generate-soss-docs.js'));
   const templateRelPath = path.relative(__dirname, templatePath);
