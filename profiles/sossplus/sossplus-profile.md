@@ -11,6 +11,10 @@ There is no standard RO-Crate way to specify the rules in an RO-Crate profile ap
 
 The aim of the new experimental *SoSS+*  profile  will be to:
 - If possible, provide a single-source declarative approach for: validators, editing applications and documentation tool chains. That is a the profile should be able to be used to configure an editor such as Crate-O, validate RO-Crate Metadata Documents and to generate the syntactic summary for a profile document.
+  - Examples so far:
+     - A simple, incomplete RO-Crate [SoSS+ Schema](../ro-crate/profile-crate/ro-crate-metadata.json) which covers the *RO-Crate Metadata Descriptor* and the *Root Data Entity* (minus conforms to ATM cos I have not had time) and a [human readable version](../ro-crate/profile-crate/profile-documentation.md) of it. NOTE: the documentation link has details at the bottom that link to the script that created it. There is also a start on a validation engine for SoSS+ in Javascript see the tests `npx mocha test/soss-validator.test.js -g basic`
+     - An attempt at expressing the *Language Data Commons Profile* <http://w3id.org/ldac/profile>. The profile, generated from a [Crate-O mode file](../ldac/comprehensive-ldac-mode.json) (a tree-shaped JSON file used to configure the Crate-O editor and for validation) is [here](../ldac/profile-crate/ro-crate-metadata.json), and the generated profile doc (with some bugs) is [here](../ldac/profile-crate/ro-crate-metadata.json).
+
 - Add as little as possible to the existing Schema.org Style Schema components Class & Property we already adopted
 - Allow for "schemas" that represent constraints/opportunities for combining entities in an RO-Crate so it has profile conformance
 - Use standard properties eg from SHACL or OWL wherever possible (There is an (undocumented???) reason that Schema.org did not adopt Owls properties for the range and domain of a class -- they are not simply statements of relationships in a schema they are 'infectious' -- ie if this property points to something then that means it has a particular type -- TODO more research on this.)
@@ -32,7 +36,7 @@ The aim of the new experimental *SoSS+*  profile  will be to:
 NOTE: If you are a profile or RO-Crate tool developer and you have specific requirements for things you would like to be able to express then please comment here or raise an issue on this repo.
 # Implementation approach
 
-This work is intended to follow the spirit of RO-Crate design and be something that is easy to implement, possible to code by hand if necessary and which does not depend on RDF-implementations which can be complex and daunting and may not be available in all languages. Here are a couple of quotes from our article [Packaging research artefacts with RO-Crate](https://journals.sagepub.com/doi/10.3233/DS-210053)
+This work is intended to follow the spirit of RO-Crate design and be something that is easy to implement, possible to code by hand if necessary and which does not depend on RDF-implementations which can be complex to understand and adopt and may not be available in all languages. Here are a couple of quotes from our article [Packaging research artefacts with RO-Crate](https://journals.sagepub.com/doi/10.3233/DS-210053)
 
 > ### 2.3. Technical implementation of the RO-Crate model
 > The RO-Crate conceptual model has been realised using JSON-LD and Schema.org in a prescriptive form as discussed in Section 2.2. The technical choices were made to cater for simplicity from a developer perspective (as introduced in Section 2.1). JSON-LD [112] provides a way to express Linked Data as a JSON structure, where a context provides mapping to RDF properties and classes. While JSON-LD cannot map arbitrary JSON structures to RDF, we found that it does lower the barrier compared to other RDF syntaxes, as the JSON syntax nowadays is a common and popular format for data exchange on the Web. However, JSON-LD alone has too many degrees of freedom and hidden complexities for software developers to reliably produce and consume without specialised expertise or large RDF software frameworks. A large part of the RO-Crate specification is therefore dedicated to describing the acceptable subset of JSON structures.
@@ -45,14 +49,14 @@ This work is intended to follow the spirit of RO-Crate design and be something t
 There are a number of related projects going on to solve this issue taking various approaches; all of which may, of course be useful to some groups
 
 - A couple of groups worked on using LinkML to express schemas - this was promising but appears to have failed as an approach at this stage
-- RO-Crate Validator https://github.com/crs4/rocrate-validator based on hand-compiled SHACL shapes for a number of profiles. This approach is still a work in progress and it looks like all the Shacl must be hand-written
-- Michael Milton is working on another SHACL based proposal which is more aligned with RO-Crate practice in that the proposed rules are crate-compatible: https://github.com/WEHI-SODA-Hub/RoCrateProfileProposal 
-- This proposal https://github.com/crs4/rocrate-validator covers some of the same ground -- see the discussion on this issue for more context about its status
+- RO-Crate Validator https://github.com/crs4/rocrate-validator based on hand-compiled SHACL shapes for a number of profiles. This approach is still a work in progress and it looks like all the SHACL must be hand-written and is independent of the profile text and validation (could be wrong on this)
+- Michael Milton is working on another SHACL based proposal which is more aligned with RO-Crate practice in that the proposed rules are crate-compatible: https://github.com/WEHI-SODA-Hub/RoCrateProfileProposal  -- examples from this work look VERY similar in structure to some of the SoSS plus but use SHACL terms. If we were to adopt and approach like this it would only be a subset of SHACL that was included in an RO-Crate profile language drawing the line on what is and is not supported, and reasonable for for projects to implement in non SHACL environments would be crucial.
+- This proposal https://github.com/crs4/rocrate-validator covers some of the same ground -- see the discussion on [this issue](https://github.com/ResearchObject/ro-crate/issues/399) for more context about its status
 
 # Explainer: From SoSS to SoSS+ with examples
 
 
-Schema.org describes its "Schema" using Rx`DF Properties (rdf:Property) and RDF Schema Classes (rdfs:Class), the conventions are described in the Schema.org [Data Model](https://schema.org/docs/datamodel.html). We will refer to this approach a *Schema.org Style Schema* - a SoSS for short. This section of the SoSS+ profile explains step by step the SoSS+ approach, starting from the simple SoSS approach.
+Schema.org describes its "Schema" using RDF Properties (rdf:Property) and RDF Schema Classes (rdfs:Class), the conventions are described in the Schema.org [Data Model](https://schema.org/docs/datamodel.html). We will refer to this approach a *Schema.org Style Schema* - a SoSS for short. This section of the SoSS+ profile explains step by step the SoSS+ approach, starting from the simple SoSS approach.
 
 
 TODO: Expand on "Not all RDF Classes and properties are readily available in the SoSS format". In this profile we will use Schema to refer to all the ontology-like things.
