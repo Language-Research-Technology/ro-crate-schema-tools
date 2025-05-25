@@ -81,7 +81,7 @@
       "sh:maxCount": 1
     },
     {
-      "@id": "#prop_name_Dataset",
+      "@id": "http://schema.org/name",
       "@type": "rdf:Property",
       "rdfs:label": "name",
       "name": "name",

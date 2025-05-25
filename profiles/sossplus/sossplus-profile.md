@@ -1,12 +1,58 @@
 # RO-Crate Profile SoSS+ (experimental) for Schema.org style schemas plus additional features for validation
 
+This is a work in progress draft implementing the ideas in [Issue 14 in this repository](https://github.com/Language-Research-Technology/ro-crate-schema-tools/issues/14).
 
 
+## Background
+
+There is no standard RO-Crate way to specify the rules in an RO-Crate profile apart from the inclusion of Schema.org Style Schema definitions (rdf:Property with range and domain and rdfs:Class) and these are not sufficient for implementing profile validation or for driving an editor like Crate-O. This work is an exploration of whether this existing approach used in RO-Crate for extending RO-Crate semantics at the crate level could be extended.
+
+## Aims
+
+The aim of the new experimental *SoSS+*  profile  will be to:
+- If possible, provide a single-source declarative approach for: validators, editing applications and documentation tool chains. That is a the profile should be able to be used to configure an editor such as Crate-O, validate RO-Crate Metadata Documents and to generate the syntactic summary for a profile document.
+- Add as little as possible to the existing Schema.org Style Schema components Class & Property we already adopted
+- Allow for "schemas" that represent constraints/opportunities for combining entities in an RO-Crate so it has profile conformance
+- Use standard properties eg from SHACL or OWL wherever possible (There is an (undocumented???) reason that Schema.org did not adopt Owls properties for the range and domain of a class -- they are not simply statements of relationships in a schema they are 'infectious' -- ie if this property points to something then that means it has a particular type -- TODO more research on this.)
+-  Align with the RO-Crate implementation approach of keeping things simple for programmers and avoid *requiring* direct use of complex RDF tools
+
+- Add the following features to the SoSS approach:
+  -  Minimum and maximum numbers of properties expected on an instance of a Class (I (@ptsefton) think this is the most often cited limitation)
+  - Custom property definitions per context (domain) - allow a variant description (and min/max occurrences) by having local property definitions specialized to a particular context. Eg a property like `schema:name` which can be use just about anywhere can be specialized to say #name-Person_speaker and have a very specific range which maybe one Virtual Class 
+  - A convention for representing the RO-Crate Root Data Entity
+  - Deal with compound types in two ways:
+     - Multiple @type values on an entity as per RO-Crate, in which case editors and validators *SoSS+*
+     - "Virtual Classes" to be defined in a profile by creating a local identifier eg in the worfklow run crate which have multiple types.
+  - Constraints such as this from [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) "Array MUST reference a CreativeWork entity with an @id URI that is consistent with the versioned Permalink of this document, and SHOULD also reference versioned permalinks for [Process Run Crate](https://w3id.org/ro/wfrun/process/0.5) and [Workflow RO-Crate](https://w3id.org/workflowhub/workflow-ro-crate/1.0)." (NOTE: Having SHOULD in specifications for machine validation leaves room for variation that can't be relied on in various uses cases -- need to establish why teams have taken this approach instead of mandating the structure they *need* and making optional things possible).
+- Provide some guidance to RO-Crate adopters on how to work with linked data, design and document useful profiles
+
+- Demonstrate prototype implementations that interoperate with existing tools and profiles including the Crate-O editor, it's mode files, the use of these mode files for validation and an existing tool that creates human-readable profile documents from text and mode files.
+
+
+NOTE: If you are a profile or RO-Crate tool developer and you have specific requirements for things you would like to be able to express then please comment here or raise an issue on this repo.
+# Implementation approach
+
+This work is intended to follow the spirit of RO-Crate design and be something that is easy to implement, possible to code by hand if necessary and which does not depend on RDF-implementations which can be complex and daunting and may not be available in all languages. Here are a couple of quotes from our article [Packaging research artefacts with RO-Crate](https://journals.sagepub.com/doi/10.3233/DS-210053)
+
+> ### 2.3. Technical implementation of the RO-Crate model
+> The RO-Crate conceptual model has been realised using JSON-LD and Schema.org in a prescriptive form as discussed in Section 2.2. The technical choices were made to cater for simplicity from a developer perspective (as introduced in Section 2.1). JSON-LD [112] provides a way to express Linked Data as a JSON structure, where a context provides mapping to RDF properties and classes. While JSON-LD cannot map arbitrary JSON structures to RDF, we found that it does lower the barrier compared to other RDF syntaxes, as the JSON syntax nowadays is a common and popular format for data exchange on the Web. However, JSON-LD alone has too many degrees of freedom and hidden complexities for software developers to reliably produce and consume without specialised expertise or large RDF software frameworks. A large part of the RO-Crate specification is therefore dedicated to describing the acceptable subset of JSON structures.
+
+
+> A core norm of RO-Crate is that of simplicity, which sets the scene for how we guide developers to structure metadata with RO-Crate. We focus mainly on documenting simple approaches to the most common use cases, such as authors having an affiliation. This norm also influences our take on developer friendliness; for instance, we are using the Web-native JSON format, allowing only a few of JSON-LD’s flexible Linked Data features. Moreover, the RO-Crate documentation is largely built up by examples showcasing best practices, rather than rigorous specifications. We build on existing Web standards that themselves are defined rigorously, which we utilise “just enough” in order to benefit from the advantages of Linked Data (e.g., extensions by namespaced vocabularies), without imposing too many developer choices or uncertainties (e.g., having to choose between the many RDF syntaxes).
+
+# Related work
+
+There are a number of related projects going on to solve this issue taking various approaches; all of which may, of course be useful to some groups
+
+- A couple of groups worked on using LinkML to express schemas - this was promising but appears to have failed as an approach at this stage
+- RO-Crate Validator https://github.com/crs4/rocrate-validator based on hand-compiled SHACL shapes for a number of profiles. This approach is still a work in progress and it looks like all the Shacl must be hand-written
+- Michael Milton is working on another SHACL based proposal which is more aligned with RO-Crate practice in that the proposed rules are crate-compatible: https://github.com/WEHI-SODA-Hub/RoCrateProfileProposal 
+- This proposal https://github.com/crs4/rocrate-validator covers some of the same ground -- see the discussion on this issue for more context about its status
 
 # Explainer: From SoSS to SoSS+ with examples
 
 
-Schema.org describes its "Schema" using RDF Properties (rdf:Property) and RDF Schema Classes (rdfs:Class). We will refer to this a *Schema.org Style Schema* - a SoSS for short. This section of the SoSS+ profile explains step by step the SoSS+ approach, starting from the simple SoSS approach.
+Schema.org describes its "Schema" using Rx`DF Properties (rdf:Property) and RDF Schema Classes (rdfs:Class), the conventions are described in the Schema.org [Data Model](https://schema.org/docs/datamodel.html). We will refer to this approach a *Schema.org Style Schema* - a SoSS for short. This section of the SoSS+ profile explains step by step the SoSS+ approach, starting from the simple SoSS approach.
 
 
 TODO: Expand on "Not all RDF Classes and properties are readily available in the SoSS format". In this profile we will use Schema to refer to all the ontology-like things.
@@ -108,9 +154,11 @@ To use this property, `author` in an RO-Crate profile a more tightly constrained
 
 There are a couple of refinements in *SoSS+* that build on the basic SoSS approach.
 
-- The use of *SoSS+ Specialized Properties* and *SoSS+ Specialized Classes* with local IDs (TODO: Define these in terminology section). The IDs chosen here have names following a convention conventions (this is not part of the profile semantics). The property `#prop_authorOfScholarlyWork` defined above is a profile-specific version the Schema property *in a particular context of use*. Note that there may be more than one local definition of these specialized properties in a profile.
+- The use of OPTIONAL *SoSS+ Specialized Properties* and *SoSS+ Specialized Classes* with local IDs (TODO: Define these in terminology section). The IDs chosen here have names following a convention conventions (this is not part of the profile semantics). The property `#prop_authorOfScholarlyWork` defined above is a profile-specific version the Schema property *in a particular context of use*. Note that there may be more than one local definition of base class or property. (Base class definitons as show above MAY be included in a profile if specialization is not required)
 - The use of `prov:specializationOf` to show that a rdf:Property (or an rdfs:Class as we will show below) is related to the a schema.org or other definition and is some sense a refinement of that class. Note that no class or property inheritance is implied it is *not* expected that this property definition inherits the range or domain of the general one.
 - `sh:minCount` (from the SHACL spec) says that there must be at least on 'Author prop'
+
+
 
 The above property example implies two more specialized Classes, shown below
 
@@ -197,25 +245,23 @@ The above is saying that the "  RO-Crate Metadata Descriptor is in a class of it
 
 The below example introduces two more conventions which illustrate how a  `SoSS+ Specialized Property` may have a fixed, mandatory value - via the `schema:value` keyword. 
 
-TODO: Discuss with RO team - JSON-LD keys `@` don't have URIs -- should we define them in our vocab so we can refer to them? I have taken this route below.
 
 ```
-{
-      "@id": "#RO-Crate_Metadata_Descriptor.id",
-      "@type": "rdf:Property",
-      "prov:specializationOf": {"@id": "http://w3id.org/ro-terms/JSON-LD-id"},
-      "schema:value": "ro-crate-metadata.json",
-      "description": "The RO-Crate Metadata ",
-      "name": "about",
-      "domainIncludes": [
-        {
-          "@id": "#RO-Crate_Metadata_Descriptor"
-        }
-      ],
-      "rangeIncludes": {"@id": "#Root_Data_Entity"},
-      "sh:minCount": 1,
-      "sh:maxCount": 1
-}
+  {
+        "@id": "#RO-Crate_Metadata_Descriptor.id",
+        "@type": "rdf:Property",
+        "value": "ro-crate-metadata.json",
+        "description": "The RO-Crate Metadata ",
+        "rdfs:label": "@id",
+        "domainIncludes": [
+          {
+            "@id": "#RO-Crate_Metadata_Descriptor"
+          }
+        ],
+        "rangeIncludes": {"@id": "#Root_Data_Entity"},
+        "sh:minCount": 1,
+        "sh:maxCount": 1
+   },
 ```
 
 
