@@ -230,19 +230,15 @@ Note: in a typical profile these definitions for the RO-Crate Metadata Descripto
 It assumes that software is used that can find entities by their ID and calculate the JSON-LD @reverse properties for an entity. Eg the software can add a @reverse property to the example above to find items that reference. Represented as JSON-LD this look like
 ```
 {
-      "@id": "#RO-Crate_Metadata_Descriptor", 
+      "@id": "#RO-Crate_Metadata_Descriptor",
       "@type": "rdfs:Class",
-      "name": "RO-Crate Metadadata Description",
-      "prov:specializationOf" : {"@id": "https://schema.org/CreativeWork"},
+      "name": "RO-Crate Metadadata Descriptor",
+      "prov:specializationOf": { "@id": "http://schema.org/CreativeWork" },
       "Description": "An RO-Crate @graph must contain an entity of Type @CreativeWork which is known as the RO-Crate Metadata descriptor.",
-      "@reverse" : {
-        "domainIncludes": {"@id": "#RO-Crate_Metadata_Descriptor.about"},
-        "domainIncludes": {"@id": "#RO-Crate_Metadata_Descriptor.id"}
-      } 
       "sh:minCount": 1,
-      "sh:maxCount": 1,
-     
-}
+      "sh:maxCount": 1
+    },
+ 
 ```
 
 The above is saying that the "  RO-Crate Metadata Descriptor is in a class of its own". This *Soss+ Specialized Class* describes a single  `CreativeWork` entity which must occur once within the RO-Crate graph.\ with two SoSS+ Specialized Properties.
@@ -251,7 +247,7 @@ The below example introduces two more conventions which illustrate how a  `SoSS+
 
 
 ```
-  {
+    {
         "@id": "#RO-Crate_Metadata_Descriptor.id",
         "@type": "rdf:Property",
         "value": "ro-crate-metadata.json",
@@ -266,6 +262,7 @@ The below example introduces two more conventions which illustrate how a  `SoSS+
         "sh:minCount": 1,
         "sh:maxCount": 1
    },
+   
 ```
 
 
@@ -273,21 +270,21 @@ The below example introduces two more conventions which illustrate how a  `SoSS+
 
 
 ```
-{
-      "@id": "#ro-crate-metadata.json.about",
+ {
+      "@id": "#RO-Crate_Metadata_Descriptor.about",
       "@type": "rdf:Property",
-      "prov:specializationOf" : {"@id": "https://schema.org/about"},
+      "prov:specializationOf": { "@id": "http://schema.org/about" },
       "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity. I a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Enitty with different @type arrays or `@conformsTo` references (or other specializations). In this example there is a single reference.",
       "name": "about",
       "domainIncludes": [
         {
-          "@id": "#ro-crate-metadata.json"
+          "@id": "#RO-Crate_Metadata_Descriptor"
         }
-      ]
-      "rangeIncludes": {"@id": "#Root_Data_Entity"}
-       "sh:minCount": 1,
-       "sh:maxCount": 1
-},
+      ],
+      "rangeIncludes": { "@id": "#Root_Data_Entity" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
 
 {
       "@id": "#Root_Data_Entity", 
