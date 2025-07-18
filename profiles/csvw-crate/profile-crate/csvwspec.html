@@ -1,0 +1,1026 @@
+<tbody><tr><td class="bold">aboutUrl</td>
+          <td resource="csvw:aboutUrl" typeof="rdf:Property">
+            <em property="rdfs:label">about URL</em>
+            <p property="rdfs:comment">A URI template property that <em class="rfc2119" title="MAY">MAY</em> be used to indicate what a cell contains information about.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:uriTemplate">csvw:uriTemplate</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">base</td>
+          <td resource="csvw:base" typeof="rdf:Property">
+            <em property="rdfs:label">base</em>
+            <p property="rdfs:comment">An atomic property that contains a single string: a term defined in the default context representing a built-in datatype URL, as listed above.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">columnReference</td>
+          <td resource="csvw:columnReference" typeof="rdf:Property">
+            <em property="rdfs:label">column reference</em>
+            <p property="rdfs:comment">A column reference property that holds either a single reference to a column description object within this schema, or an array of references. These form the referencing columns for the foreign key definition.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:ForeignKey">csvw:ForeignKey</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableReference">csvw:TableReference</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">column</td>
+          <td resource="csvw:column" typeof="rdf:Property">
+            <em property="rdfs:label">column</em>
+            <p property="rdfs:comment">An array property of column descriptions as described in section 5.6 Columns.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Column">csvw:Column</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Schema">csvw:Schema</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">commentPrefix</td>
+          <td resource="csvw:commentPrefix" typeof="rdf:Property">
+            <em property="rdfs:label">comment prefix</em>
+            <p property="rdfs:comment">An atomic property that sets the comment prefix flag to the single provided value, which <em class="rfc2119" title="MUST">MUST</em> be a string.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">datatype</td>
+          <td resource="csvw:datatype" typeof="rdf:Property">
+            <em property="rdfs:label">datatype</em>
+            <p property="rdfs:comment">An object property that contains either a single string that is the main datatype of the values of the cell or a datatype description object. If the value of this property is a string, it <em class="rfc2119" title="MUST">MUST</em> be one of the built-in datatypes defined in section 5.11.1 Built-in Datatypes or an absolute URL; if it is an object then it describes a more specialised datatype.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Datatype">csvw:Datatype</span>
+                        <span property="owl:unionOf" inlist="true" resource="xsd:string">xsd:string</span>
+                      </dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">decimalChar</td>
+          <td resource="csvw:decimalChar" typeof="rdf:Property">
+            <em property="rdfs:label">decimal character</em>
+            <p property="rdfs:comment">A string whose value is used to represent a decimal point within the number.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:NumericFormat">csvw:NumericFormat</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">default</td>
+          <td resource="csvw:default" typeof="rdf:Property">
+            <em property="rdfs:label">default</em>
+            <p property="rdfs:comment">An atomic property holding a single string that is used to create a default value for the cell in cases where the original string value is an empty string.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">describes</td>
+          <td resource="csvw:describes" typeof="rdf:Property">
+            <em property="rdfs:label">describes</em>
+            <p property="rdfs:comment">From IANA describes: The relationship A 'describes' B asserts that resource A provides a description of resource B. There are no constraints on the format or representation of either A or B, neither are there any further constraints on either resource.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Row">csvw:Row</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">delimiter</td>
+          <td resource="csvw:delimiter" typeof="rdf:Property">
+            <em property="rdfs:label">delimiter</em>
+            <p property="rdfs:comment">An atomic property that sets the delimiter flag to the single provided value, which <em class="rfc2119" title="MUST">MUST</em> be a string.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">dialect</td>
+          <td resource="csvw:dialect" typeof="rdf:Property">
+            <em property="rdfs:label">dialect</em>
+            <p property="rdfs:comment">An object property that provides a single dialect description. If provided, dialect provides hints to processors about how to parse the referenced files to create tabular data models for the tables in the group.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Dialect">csvw:Dialect</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">doubleQuote</td>
+          <td resource="csvw:doubleQuote" typeof="rdf:Property">
+            <em property="rdfs:label">double quote</em>
+            <p property="rdfs:comment">A boolean atomic property that, if `true`, sets the escape character flag to `"`.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">encoding</td>
+          <td resource="csvw:encoding" typeof="rdf:Property">
+            <em property="rdfs:label">encoding</em>
+            <p property="rdfs:comment">An atomic property that sets the encoding flag to the single provided string value, which <em class="rfc2119" title="MUST">MUST</em> be a defined in [<cite><a class="bibref" href="#bib-encoding">encoding</a></cite>]. The default is "utf-8".</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">foreignKey</td>
+          <td resource="csvw:foreignKey" typeof="rdf:Property">
+            <em property="rdfs:label">foreign key</em>
+            <p property="rdfs:comment">For a Table: a list of foreign keys on the table.
+
+For a Schema: an array property of foreign key definitions that define how the values from specified columns within this table link to rows within this table or other tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:ForeignKey">csvw:ForeignKey</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">format</td>
+          <td resource="csvw:format" typeof="rdf:Property">
+            <em property="rdfs:label">format</em>
+            <p property="rdfs:comment">An atomic property that contains either a single string or an object that defines the format of a value of this type, used when parsing a string value as described in Parsing Cells in [<cite><a class="bibref" href="#bib-tabular-data-model">tabular-data-model</a></cite>].</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">groupChar</td>
+          <td resource="csvw:groupChar" typeof="rdf:Property">
+            <em property="rdfs:label">group character</em>
+            <p property="rdfs:comment">A string whose value is used to group digits within the number.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:NumericFormat">csvw:NumericFormat</span>
+                        <span property="owl:unionOf" inlist="true" resource="xsd:string">xsd:string</span>
+                      </dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:NumericFormat">csvw:NumericFormat</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">header</td>
+          <td resource="csvw:header" typeof="rdf:Property">
+            <em property="rdfs:label">header</em>
+            <p property="rdfs:comment">A boolean atomic property that, if `true`, sets the header row count flag to `1`, and if `false` to `0`, unless headerRowCount is provided, in which case the value provided for the header property is ignored.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">headerRowCount</td>
+          <td resource="csvw:headerRowCount" typeof="rdf:Property">
+            <em property="rdfs:label">header row count</em>
+            <p property="rdfs:comment">An numeric atomic property that sets the header row count flag to the single provided value, which must be a non-negative integer.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">lang</td>
+          <td resource="csvw:lang" typeof="rdf:Property">
+            <em property="rdfs:label">language</em>
+            <p property="rdfs:comment">An atomic property giving a single string language code as defined by [<cite><a class="bibref" href="#bib-bcp47">BCP47</a></cite>].</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">length</td>
+          <td resource="csvw:length" typeof="rdf:Property">
+            <em property="rdfs:label">length</em>
+            <p property="rdfs:comment">The exact length of the value of the cell.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">lineTerminators</td>
+          <td resource="csvw:lineTerminators" typeof="rdf:Property">
+            <em property="rdfs:label">line terminators</em>
+            <p property="rdfs:comment">An atomic property that sets the line terminators flag to either an array containing the single provided string value, or the provided array.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">maxExclusive</td>
+          <td resource="csvw:maxExclusive" typeof="rdf:Property">
+            <em property="rdfs:label">max exclusive</em>
+            <p property="rdfs:comment">An atomic property that contains a single number that is the maximum valid value (exclusive).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">maxInclusive</td>
+          <td resource="csvw:maxInclusive" typeof="rdf:Property">
+            <em property="rdfs:label">max inclusive</em>
+            <p property="rdfs:comment">An atomic property that contains a single number that is the maximum valid value (inclusive).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">maxLength</td>
+          <td resource="csvw:maxLength" typeof="rdf:Property">
+            <em property="rdfs:label">max length</em>
+            <p property="rdfs:comment">A numeric atomic property that contains a single integer that is the maximum length of the value.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">minExclusive</td>
+          <td resource="csvw:minExclusive" typeof="rdf:Property">
+            <em property="rdfs:label">min exclusive</em>
+            <p property="rdfs:comment">An atomic property that contains a single number that is the minimum valid value (exclusive).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">minInclusive</td>
+          <td resource="csvw:minInclusive" typeof="rdf:Property">
+            <em property="rdfs:label">min inclusive</em>
+            <p property="rdfs:comment">An atomic property that contains a single number that is the minimum valid value (inclusive).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">minLength</td>
+          <td resource="csvw:minLength" typeof="rdf:Property">
+            <em property="rdfs:label">min length</em>
+            <p property="rdfs:comment">An atomic property that contains a single integer that is the minimum length of the value.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Datatype">csvw:Datatype</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">name</td>
+          <td resource="csvw:name" typeof="rdf:Property">
+            <em property="rdfs:label">name</em>
+            <p property="rdfs:comment">An atomic property that gives a single canonical name for the column. The value of this property becomes the name annotation for the described column.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Column">csvw:Column</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">note</td>
+          <td resource="csvw:note" typeof="rdf:Property">
+            <em property="rdfs:label">note</em>
+            <p property="rdfs:comment">An array property that provides an array of objects representing arbitrary annotations on the annotated tabular data model.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">null</td>
+          <td resource="csvw:null" typeof="rdf:Property">
+            <em property="rdfs:label">null</em>
+            <p property="rdfs:comment">An atomic property giving the string or strings used for null values within the data. If the string value of the cell is equal to any one of these values, the cell value is `null`.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">ordered</td>
+          <td resource="csvw:ordered" typeof="rdf:Property">
+            <em property="rdfs:label">ordered</em>
+            <p property="rdfs:comment">A boolean atomic property taking a single value which indicates whether a list that is the value of the cell is ordered (if `true`) or unordered (if `false`).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">pattern</td>
+          <td resource="csvw:pattern" typeof="rdf:Property">
+            <em property="rdfs:label">pattern</em>
+            <p property="rdfs:comment">A regular expression string, in the syntax and interpreted as defined by [<cite><a class="bibref" href="#bib-ecmascript">ECMASCRIPT</a></cite>].</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:NumericFormat">csvw:NumericFormat</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">primaryKey</td>
+          <td resource="csvw:primaryKey" typeof="rdf:Property">
+            <em property="rdfs:label">primary key</em>
+            <p property="rdfs:comment">For Schema: A column reference property that holds either a single reference to a column description object or an array of references.
+
+For Row: a possibly empty list of cells whose values together provide a unique identifier for this row. This is similar to the name of a column.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Row">csvw:Row</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">propertyUrl</td>
+          <td resource="csvw:propertyUrl" typeof="rdf:Property">
+            <em property="rdfs:label">property URL</em>
+            <p property="rdfs:comment">An URI template property that <em class="rfc2119" title="MAY">MAY</em> be used to create a URI for a property if the table is mapped to another format. </p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:uriTemplate">csvw:uriTemplate</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">quoteChar</td>
+          <td resource="csvw:quoteChar" typeof="rdf:Property">
+            <em property="rdfs:label">quote char</em>
+            <p property="rdfs:comment">An atomic property that sets the quote character flag to the single provided value, which must be a string or `null`.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</td>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">reference</td>
+          <td resource="csvw:reference" typeof="rdf:Property">
+            <em property="rdfs:label">reference</em>
+            <p property="rdfs:comment">An object property that identifies a **referenced table** and a set of **referenced columns** within that table.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:TableReference">csvw:TableReference</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:ForeignKey">csvw:ForeignKey</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">referencedRow</td>
+          <td resource="csvw:referencedRow" typeof="rdf:Property">
+            <em property="rdfs:label">referenced rows</em>
+            <p property="rdfs:comment">A possibly empty list of pairs of a foreign key and a row in a table within the same group of tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Row">csvw:Row</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">required</td>
+          <td resource="csvw:required" typeof="rdf:Property">
+            <em property="rdfs:label">required</em>
+            <p property="rdfs:comment">A boolean atomic property taking a single value which indicates whether the cell must have a non-null value. The default is `false`. </p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">resource</td>
+          <td resource="csvw:resource" typeof="rdf:Property">
+            <em property="rdfs:label">resource</em>
+            <p property="rdfs:comment">A link property holding a URL that is the identifier for a specific table that is being referenced.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:TableReference">csvw:TableReference</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">row</td>
+          <td resource="csvw:row" typeof="rdf:Property">
+            <em property="rdfs:label">row</em>
+            <p property="rdfs:comment">Relates a Table to each Row output.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:subPropertyOf</dt>
+                      <dd property="rdfs:subPropertyOf" resource="rdfs:member">rdfs:member</dd>
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Row">csvw:Row</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Table">csvw:Table</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">rowTitle</td>
+          <td resource="csvw:rowTitle" typeof="rdf:Property">
+            <em property="rdfs:label">row titles</em>
+            <p property="rdfs:comment">A column reference property that holds either a single reference to a column description object or an array of references.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Schema">csvw:Schema</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">rownum</td>
+          <td resource="csvw:rownum" typeof="rdf:Property">
+            <em property="rdfs:label">row number</em>
+            <p property="rdfs:comment">The position of the row amongst the rows of the Annotated Tabl, starting from 1</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:integer">xsd:integer</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">scriptFormat</td>
+          <td resource="csvw:scriptFormat" typeof="rdf:Property">
+            <em property="rdfs:label">script format</em>
+            <p property="rdfs:comment">A link property giving the single URL for the format that is used by the script or template.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Transformation">csvw:Transformation</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">schemaReference</td>
+          <td resource="csvw:schemaReference" typeof="rdf:Property">
+            <em property="rdfs:label">schema reference</em>
+            <p property="rdfs:comment">A link property holding a URL that is the identifier for a schema that is being referenced.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:TableReference">csvw:TableReference</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">separator</td>
+          <td resource="csvw:separator" typeof="rdf:Property">
+            <em property="rdfs:label">separator</em>
+            <p property="rdfs:comment">An atomic property that <em class="rfc2119" title="MUST">MUST</em> have a single string value that is the character used to separate items in the string value of the cell.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">skipBlankRows</td>
+          <td resource="csvw:skipBlankRows" typeof="rdf:Property">
+            <em property="rdfs:label">skip blank rows</em>
+            <p property="rdfs:comment">An boolean atomic property that sets the `skip blank rows` flag to the single provided boolean value.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">skipColumns</td>
+          <td resource="csvw:skipColumns" typeof="rdf:Property">
+            <em property="rdfs:label">skip columns</em>
+            <p property="rdfs:comment">An numeric atomic property that sets the `skip columns` flag to the single provided numeric value, which <em class="rfc2119" title="MUST">MUST</em> be a non-negative integer.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">skipInitialSpace</td>
+          <td resource="csvw:skipInitialSpace" typeof="rdf:Property">
+            <em property="rdfs:label">skip initial space</em>
+            <p property="rdfs:comment">A boolean atomic property that, if `true`, sets the trim flag to "start". If `false`, to `false`.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">skipRows</td>
+          <td resource="csvw:skipRows" typeof="rdf:Property">
+            <em property="rdfs:label">skip rows</em>
+            <p property="rdfs:comment">An numeric atomic property that sets the `skip rows` flag to the single provided numeric value, which <em class="rfc2119" title="MUST">MUST</em> be a non-negative integer.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:nonNegativeInteger">xsd:nonNegativeInteger</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">source</td>
+          <td resource="csvw:source" typeof="rdf:Property">
+            <em property="rdfs:label">source</em>
+            <p property="rdfs:comment">A single string atomic property that provides, if specified, the format to which the tabular data should be transformed prior to the transformation using the script or template.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:string">xsd:string</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Transformation">csvw:Transformation</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">suppressOutput</td>
+          <td resource="csvw:suppressOutput" typeof="rdf:Property">
+            <em property="rdfs:label">suppress output</em>
+            <p property="rdfs:comment">A boolean atomic property. If `true`, suppresses any output that would be generated when converting a table or cells within a column.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</td>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">table</td>
+          <td resource="csvw:table" typeof="rdf:Property">
+            <em property="rdfs:label">table</em>
+            <p property="rdfs:comment">Relates an Table group to annotated tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:subPropertyOf</dt>
+                      <dd property="rdfs:subPropertyOf" resource="rdfs:member">rdfs:member</dd>
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Table">csvw:Table</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:TableGroup">csvw:TableGroup</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">tableDirection</td>
+          <td resource="csvw:tableDirection" typeof="rdf:Property">
+            <em property="rdfs:label">table direction</em>
+            <p property="rdfs:comment">One of `rtl`, `ltr` or `auto`. Indicates whether the tables in the group should be displayed with the first column on the right, on the left, or based on the first character in the table that has a specific direction.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Direction">csvw:Direction</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">tableSchema</td>
+          <td resource="csvw:tableSchema" typeof="rdf:Property">
+            <em property="rdfs:label">table schema</em>
+            <p property="rdfs:comment">An object property that provides a single schema description as described in section 5.5 Schemas, used as the default for all the tables in the group</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Schema">csvw:Schema</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">targetFormat</td>
+          <td resource="csvw:targetFormat" typeof="rdf:Property">
+            <em property="rdfs:label">target format</em>
+            <p property="rdfs:comment">A link property giving the single URL for the format that will be created through the transformation.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Transformation">csvw:Transformation</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">transformations</td>
+          <td resource="csvw:transformations" typeof="rdf:Property">
+            <em property="rdfs:label">transformations</em>
+            <p property="rdfs:comment">An array property of transformation definitions that provide mechanisms to transform the tabular data into other formats.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Transformation">csvw:Transformation</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">textDirection</td>
+          <td resource="csvw:textDirection" typeof="rdf:Property">
+            <em property="rdfs:label">text direction</em>
+            <p property="rdfs:comment">An atomic property that must have a single value that is one of `rtl` or `ltr` (the default).</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:Direction">csvw:Direction</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">title</td>
+          <td resource="csvw:title" typeof="rdf:Property">
+            <em property="rdfs:label">title</em>
+            <p property="rdfs:comment">For a Transformation A natural language property that describes the format that will be generated from the transformation.
+
+For a Column: A natural language property that provides possible alternative names for the column.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Transformation">csvw:Transformation</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Row">csvw:Row</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">trim</td>
+          <td resource="csvw:trim" typeof="rdf:Property">
+            <em property="rdfs:label">trim</em>
+            <p property="rdfs:comment">An atomic property that, if the boolean `true`, sets the trim flag to `true` and if the boolean `false` to `false`. If the value provided is a string, sets the trim flag to the provided value, which must be one of "true", "false", "start" or "end".</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Dialect">csvw:Dialect</dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">url</td>
+          <td resource="csvw:url" typeof="rdf:Property">
+            <em property="rdfs:label">url</em>
+            <p property="rdfs:comment">For a Table: This link property gives the single URL of the CSV file that the table is held in, relative to the location of the metadata document.
+
+For a Transformation: A link property giving the single URL of the file that the script or template is held in, relative to the location of the metadata document.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Transformation">csvw:Transformation</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">valueUrl</td>
+          <td resource="csvw:valueUrl" typeof="rdf:Property">
+            <em property="rdfs:label">valueUrl</em>
+            <p property="rdfs:comment">An URI template property that is used to map the values of cells into URLs.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="csvw:uriTemplate">csvw:uriTemplate</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="_:">
+                        Union of
+                        <span property="owl:unionOf" inlist="true" resource="csvw:TableGroup">csvw:TableGroup</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Table">csvw:Table</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Schema">csvw:Schema</span>
+                        <span property="owl:unionOf" inlist="true" resource="csvw:Column">csvw:Column</span>
+                      </dd>
+              </dl>
+          </td>
+        </tr>
+        <tr><td class="bold">virtual</td>
+          <td resource="csvw:virtual" typeof="rdf:Property">
+            <em property="rdfs:label">virtual</em>
+            <p property="rdfs:comment">A boolean atomic property taking a single value which indicates whether the column is a virtual column not present in the original source</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+              <dl class="terms">
+                  <dt>rdfs:range</dt>
+                      <dd property="rdfs:range" resource="xsd:boolean">xsd:boolean</dd>
+                  <dt>rdfs:domain</dt>
+                      <dd property="rdfs:domain" resource="csvw:Column">csvw:Column</dd>
+              </dl>
+          </td>
+        </tr>
+      </tbody>
+
+
+
+      <td class="bold">Cell</td>
+          <td resource="csvw:Cell" typeof="rdfs:Class">
+            <em property="rdfs:label">Cell</em>
+            <p property="rdfs:comment">A Cell represents a cell at the intersection of a Row and a Column within a Table.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Column</td>
+          <td resource="csvw:Column" typeof="rdfs:Class">
+            <em property="rdfs:label">Column Description</em>
+            <p property="rdfs:comment">A Column represents a vertical arrangement of Cells within a Table.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Datatype</td>
+          <td resource="csvw:Datatype" typeof="rdfs:Class">
+            <em property="rdfs:label">Datatype</em>
+            <p property="rdfs:comment">Describes facets of a datatype.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Dialect</td>
+          <td resource="csvw:Dialect" typeof="rdfs:Class">
+            <em property="rdfs:label">Dialect Description</em>
+            <p property="rdfs:comment">A Dialect Description provides hints to parsers about how to parse a linked file.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Direction</td>
+          <td resource="csvw:Direction" typeof="rdfs:Class">
+            <em property="rdfs:label">Direction</em>
+            <p property="rdfs:comment">The class of table/text directions.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">ForeignKey</td>
+          <td resource="csvw:ForeignKey" typeof="rdfs:Class">
+            <em property="rdfs:label">Foreign Key Definition</em>
+            <p property="rdfs:comment">Describes relationships between Columns in one or more Tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">NumericFormat</td>
+          <td resource="csvw:NumericFormat" typeof="rdfs:Class">
+            <em property="rdfs:label">Numeric Format</em>
+            <p property="rdfs:comment">If the datatype is a numeric type, the format property indicates the expected format for that number. Its value must be either a single string or an object with one or more properties.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Row</td>
+          <td resource="csvw:Row" typeof="rdfs:Class">
+            <em property="rdfs:label">Row</em>
+            <p property="rdfs:comment">A Row represents a horizontal arrangement of cells within a Table.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Schema</td>
+          <td resource="csvw:Schema" typeof="rdfs:Class">
+            <em property="rdfs:label">Schema</em>
+            <p property="rdfs:comment">A Schema is a definition of a tabular format that may be common to multiple tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Table</td>
+          <td resource="csvw:Table" typeof="rdfs:Class">
+            <em property="rdfs:label">Annotated Table</em>
+            <p property="rdfs:comment">An annotated table is a table that is annotated with additional metadata.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">TableGroup</td>
+          <td resource="csvw:TableGroup" typeof="rdfs:Class">
+            <em property="rdfs:label">Group of Tables</em>
+            <p property="rdfs:comment">A Group of Tables comprises a set of Annotated Tables and a set of annotations that relate to those Tables.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">TableReference</td>
+          <td resource="csvw:TableReference" typeof="rdfs:Class">
+            <em property="rdfs:label">Table Reference</em>
+            <p property="rdfs:comment">An object property that identifies a referenced table and a set of referenced columns within that table.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+        <tr><td class="bold">Transformation</td>
+          <td resource="csvw:Transformation" typeof="rdfs:Class">
+            <em property="rdfs:label">Transformation Definition</em>
+            <p property="rdfs:comment">A Transformation Definition is a definition of how tabular data can be transformed into another format.</p>
+            <span property="rdfs:isDefinedBy" resource="csvw:"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>

@@ -91,6 +91,10 @@ A conformant RO-Crate:
   * description
   * datePublished
   * license
+  * dct:rightsHolder
+  * author
+  * accountablePerson
+  * publisher
 
 
 ![](media/structure.svg)
@@ -183,14 +187,14 @@ Specialization of: http://pcdm.org/models#Collection
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryCollection_unnamed_ogfr7"></a>inLanguage | Yes | The language in which the resource is written. | #class_Language |  |
-| <a id="_class_RepositoryCollection_unnamed_52lc4"></a>conformsTo | No | A link to the language data commons RO-Crate profile for collections. | #itemlist_conformsTo_RepositoryCollection |  |
-| <a id="_class_RepositoryCollection_unnamed_y6s96"></a>contentLocation | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
-| <a id="_class_RepositoryCollection_unnamed_vbe3j"></a>dateCreated | No | The (earliest) date the data in this dataset were created. | Date |  |
-| <a id="_class_RepositoryCollection_unnamed_5n8ko"></a>holdingArchive | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
-| <a id="_class_RepositoryCollection_unnamed_ogwqb"></a>ldac:dateFreeText | No | Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_dzzqh"></a>ldac:itemLocation | No | Current location of the item, e.g. where a set of audio tapes are stored. | [Place](#_class_Place), [Organization](#_class_Organization) |  |
-| <a id="_class_RepositoryCollection_unnamed_r2qp0"></a>ldac:subjectLanguage | No | The languages that the materials in the collection are about (not the language that it is in). | #class_Language |  |
+| <a id="_class_RepositoryCollection_unnamed_iikjm"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | [Language](#_class_Language) |  |
+| <a id="_class_RepositoryCollection_unnamed_6d5mj"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the language data commons RO-Crate profile for collections. | #itemlist_conformsTo_RepositoryCollection |  |
+| <a id="_class_RepositoryCollection_unnamed_eij5r"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
+| <a id="_class_RepositoryCollection_unnamed_30wpo"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
+| <a id="_class_RepositoryCollection_unnamed_qq035"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
+| <a id="_class_RepositoryCollection_unnamed_mrs9b"></a>ldac:dateFreeText[?](https://w3id.org/ldac/terms#dateFreeText) | No | Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date. | Text |  |
+| <a id="_class_RepositoryCollection_unnamed_huqad"></a>ldac:itemLocation[?](https://w3id.org/ldac/terms#itemLocation) | No | Current location of the item, e.g. where a set of audio tapes are stored. | [Place](#_class_Place), [Organization](#_class_Organization) |  |
+| <a id="_class_RepositoryCollection_unnamed_k5xiz"></a>ldac:subjectLanguage[?](https://w3id.org/ldac/terms#subjectLanguage) | No | The languages that the materials in the collection are about (not the language that it is in). | [Language](#_class_Language) |  |
 
 
 
@@ -248,15 +252,15 @@ Specialization of: http://pcdm.org/models#Object
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryObject_unnamed_326ks"></a>conformsTo | No | A link to the language data commons RO-Crate profile for collections. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_z0ksu"></a>creator | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
-| <a id="_class_RepositoryObject_unnamed_5lxzj"></a>dateCreated | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_ttbop"></a>description | No | A description of the item. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_anhiw"></a>identifier | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
+| <a id="_class_RepositoryObject_unnamed_330x9"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the language data commons RO-Crate profile for collections. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_ih1ib"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
+| <a id="_class_RepositoryObject_unnamed_bwisq"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_u79e2"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_1b86x"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
          | #class_PropertyValue, Text, URL |  |
-| <a id="_class_RepositoryObject_unnamed_8q7lm"></a>ldac:hasAnnotation | No | This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis. | #class_Annotation |  |
-| <a id="_class_RepositoryObject_unnamed_3xipj"></a>license | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
-| <a id="_class_RepositoryObject_unnamed_q5rvq"></a>temporalCoverage | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
+| <a id="_class_RepositoryObject_unnamed_mi8on"></a>ldac:hasAnnotation[?](https://w3id.org/ldac/terms#hasAnnotation) | No | This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis. | #class_Annotation |  |
+| <a id="_class_RepositoryObject_unnamed_9r2pk"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="_class_RepositoryObject_unnamed_rzy26"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
       the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.
       Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
 
@@ -562,21 +566,72 @@ Specialization of: http://schema.org/CreativeWork
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_RO_Crate_Metadata_Descriptor_unnamed_jrs3v"></a>@id | Yes | The RO-Crate Metadata file identifier | [Root Data Entity](#_Root_Data_Entity) | ro-crate-metadata.json |
-| <a id="_RO_Crate_Metadata_Descriptor_unnamed_hby3g"></a>about | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. In a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Entity with different @type arrays or `@conformsTo` references (or other specializations). | [Root Data Entity](#_Root_Data_Entity) |  |
+| <a id="_RO_Crate_Metadata_Descriptor_unnamed_p4nmn"></a>@id | Yes | The RO-Crate Metadata file identifier | [Dataset](#_Root_Data_Entity) | ro-crate-metadata.json |
+| <a id="_RO_Crate_Metadata_Descriptor_unnamed_28q29"></a>about[?](http://schema.org/about) | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. In a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Entity with different @type arrays or `@conformsTo` references (or other specializations). | [Dataset](#_Root_Data_Entity) |  |
 
-### <a id="_Root_Data_Entity"></a>Root Data Entity
+### <a id="_Root_Data_Entity"></a>Dataset
 
-The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor. In this profile, it is a Dataset and RepositoryCollection.
+
 
 Specialization of: http://schema.org/Dataset, http://pcdm.org/models#Collection
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_Root_Data_Entity_unnamed_29ps0"></a>datePublished | Yes | A date that this collection was published. This should be the date that the collection was first made available. | Date |  |
-| <a id="_Root_Data_Entity_unnamed_x4fzb"></a>description | Yes | An abstract of the collection. Include as much detail as possible about the motivation and use of the collection. | Text |  |
-| <a id="_Root_Data_Entity_unnamed_qd7yr"></a>license | Yes | A license document that applies to this content, typically indicated by URL. | [CreativeWork](#_class_CreativeWork), URL, Text |  |
-| <a id="_Root_Data_Entity_unnamed_pgeji"></a>name | Yes | The name of this data collection. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_u1e66"></a>accountablePerson[?](http://schema.org/accountablePerson) | Yes | The person or organisation who is the data steward for this resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_tvrlo"></a>author[?](http://schema.org/author) | Yes | The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_9x3ef"></a>datePublished[?](http://schema.org/datePublished) | Yes | A date that this collection was published. This should be the date that the collection was first made available. | Date |  |
+| <a id="_Root_Data_Entity_unnamed_v6ssw"></a>dct:rightsHolder[?](http://purl.org/dc/terms/rightsHolder) | Yes | The person or organisation owning or managing rights over the resource. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_3zyzj"></a>description[?](http://schema.org/description) | Yes | An abstract of the collection. Include as much detail as possible about the motivation and use of the collection. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_csneo"></a>license[?](http://schema.org/license) | Yes | A license document that applies to this content, typically indicated by URL. | [CreativeWork](#_class_CreativeWork), URL, Text |  |
+| <a id="_Root_Data_Entity_unnamed_gsxao"></a>name[?](http://schema.org/name) | Yes | The name of this data collection. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_zqo4q"></a>publisher[?](http://schema.org/publisher) | Yes | The organisation responsible for releasing this dataset. | [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_yilm1"></a>citation[?](http://schema.org/citation) | No | Associated publications. | [CreativeWork](#_class_CreativeWork) |  |
+| <a id="_Root_Data_Entity_unnamed_b95oa"></a>creditText[?](http://schema.org/creditText) | No | A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_nsaj9"></a>funder[?](http://schema.org/funder) | No | The organisation(s) responsible for funding the creation or collection of this dataset. | [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_t11st"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | [CreativeWork](#_class_CreativeWork), [File](#_class_File), [Dataset](#_Root_Data_Entity) |  |
+| <a id="_Root_Data_Entity_unnamed_7nbti"></a>isAccessibleForFree[?](http://schema.org/isAccessibleForFree) | No | This is available under an Open Access license. | Boolean |  |
+| <a id="_Root_Data_Entity_unnamed_p8ksr"></a>isBasedOn[?](http://schema.org/isBasedOn) | No | Link to or description of an original resource. | Text, URL, [CreativeWork](#_class_CreativeWork), [Dataset](#_Root_Data_Entity), [File](#_class_File) |  |
+| <a id="_Root_Data_Entity_unnamed_0uz3s"></a>isPartOf[?](http://schema.org/isPartOf) | No | An item or CreativeWork that this item, or CreativeWork (in some sense), is part of. | URL, [CreativeWork](#_class_CreativeWork) |  |
+| <a id="_Root_Data_Entity_unnamed_2vc4d"></a>ldac:annotator[?](https://w3id.org/ldac/terms#annotator) | No | The participant produced an annotation of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_d96ed"></a>ldac:compiler[?](https://w3id.org/ldac/terms#compiler) | No | The participant is responsible for collecting the sub-parts of the resource together. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_u56kk"></a>ldac:consultant[?](https://w3id.org/ldac/terms#consultant) | No | The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_84wev"></a>ldac:dataInputter[?](https://w3id.org/ldac/terms#dataInputter) | No | The participant responsible for entering, re-typing, and/or structuring the data contained in the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_py2w1"></a>ldac:depositor[?](https://w3id.org/ldac/terms#depositor) | No | The participant responsible for depositing the resource in an archive. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_k2jsl"></a>ldac:developer[?](https://w3id.org/ldac/terms#developer) | No | The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_gai25"></a>ldac:doi[?](https://w3id.org/ldac/terms#doi) | No | A Digital Object Identifier, e.g. https://doi.org/10.1000/182. | Text |  |
+| <a id="_Root_Data_Entity_unnamed_easgl"></a>ldac:editor[?](https://w3id.org/ldac/terms#editor) | No | The participant reviewed, corrected, and/or tested the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_gk5gw"></a>ldac:hasCollectionProtocol[?](https://w3id.org/ldac/terms#hasCollectionProtocol) | No | A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection. | [ldac:CollectionProtocol](#_class_ldac_CollectionProtocol) |  |
+| <a id="_Root_Data_Entity_unnamed_l1sj6"></a>ldac:illustrator[?](https://w3id.org/ldac/terms#illustrator) | No | The participant contributed drawings or other illustrations to the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_2gpm9"></a>ldac:interpreter[?](https://w3id.org/ldac/terms#interpreter) | No | The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_y09mf"></a>ldac:interviewee[?](https://w3id.org/ldac/terms#interviewee) | No | The participant was a respondent in an interview. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_xlff9"></a>ldac:interviewer[?](https://w3id.org/ldac/terms#interviewer) | No | The participant conducted an interview that forms part of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_l80lw"></a>ldac:participant[?](https://w3id.org/ldac/terms#participant) | No | The participant was present during the creation of the resource, but did not contribute substantially to its content. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_czkfh"></a>ldac:performer[?](https://w3id.org/ldac/terms#performer) | No | The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_a0elq"></a>ldac:photographer[?](https://w3id.org/ldac/terms#photographer) | No | The participant took the photograph, or shot the film, that appears in or constitutes the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_z0kv7"></a>ldac:recorder[?](https://w3id.org/ldac/terms#recorder) | No | The participant operated the recording machinery used to create the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_pgghm"></a>ldac:researcher[?](https://w3id.org/ldac/terms#researcher) | No | The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_lfvb8"></a>ldac:researchParticipant[?](https://w3id.org/ldac/terms#researchParticipant) | No | The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_4pwdk"></a>ldac:responder[?](https://w3id.org/ldac/terms#responder) | No | The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_aqk7u"></a>ldac:signer[?](https://w3id.org/ldac/terms#signer) | No | The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording). | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_w963f"></a>ldac:singer[?](https://w3id.org/ldac/terms#singer) | No | The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_i2r19"></a>ldac:speaker[?](https://w3id.org/ldac/terms#speaker) | No | The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording). | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_ab2w1"></a>ldac:sponsor[?](https://w3id.org/ldac/terms#sponsor) | No | The participant contributed financial support to the creation of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_52r2p"></a>ldac:transcriber[?](https://w3id.org/ldac/terms#transcriber) | No | The participant produced a transcription of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_kd5lg"></a>ldac:translator[?](https://w3id.org/ldac/terms#translator) | No | The participant produced a translation of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_Root_Data_Entity_unnamed_a2gz0"></a>pcdm:hasMember[?](http://pcdm.org/models#hasMember) | No | The sub-collections, if any, associated with this collection. | [RepositoryCollection](#_class_RepositoryCollection), [RepositoryObject](#_class_RepositoryObject) |  |
+| <a id="_Root_Data_Entity_unnamed_5pm7y"></a>pcdm:memberOf[?](http://pcdm.org/models#memberOf) | No | Links from a Repository Object or Collection to a containing Repository Object or Collection. | [RepositoryCollection](#_class_RepositoryCollection) |  |
+| <a id="_Root_Data_Entity_unnamed_h94y5"></a>spatialCoverage[?](http://schema.org/spatialCoverage) | No | The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape. | [Place](#_class_Place) |  |
+| <a id="_Root_Data_Entity_unnamed_n583q"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level. | DateTime, Text |  |
+| <a id="_Root_Data_Entity_unnamed_e4ah4"></a>usageInfo[?](http://schema.org/usageInfo) | No | Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'. | Text |  |
+
+### <a id="_class_Language"></a>Language
+
+TODO: Language description
+
+Specialization of: http://schema.org/Language
+
+*No properties defined for this class*
+
 
 ### <a id="_class_CreativeWork"></a>CreativeWork
 
@@ -586,73 +641,21 @@ Specialization of: http://schema.org/CreativeWork
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_CreativeWork_unnamed_nzfun"></a>author | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_CreativeWork_unnamed_9dn97"></a>isbn | No | The ISBN for this work, if applicable. | Text |  |
-| <a id="_class_CreativeWork_unnamed_3wpmh"></a>issn | No | The ISSN for this publication. | Text |  |
-| <a id="_class_CreativeWork_unnamed_aj2jw"></a>ldac:annotationType | No | The type of an Annotation resource. | [AnnotationTypeTerms](#termset_ldac:AnnotationTypeTerms) |  |
-| <a id="_class_CreativeWork_unnamed_scdy1"></a>ldac:channels | No | The number of audio channels this resource contains (e.g. 1, 2, 5.1). | Text |  |
-| <a id="_class_CreativeWork_unnamed_w7bph"></a>ldac:communicationMode | No | The mode (spoken, written, signed etc.) of this resource. There may be more than one value for this property. | [CommunicationModeTerms](#termset_ldac:CommunicationModeTerms) |  |
-| <a id="_class_CreativeWork_unnamed_sbk3p"></a>ldac:indexableText | No | One or more target File(s) that together contain the full text of an item – each file should indicate its language. | #class_MediaObject |  |
-| <a id="_class_CreativeWork_unnamed_l9qi1"></a>ldac:isDeIdentified | No | The data in this item has had potentially identifying information removed, which may include replacing names with pseudonyms. | Boolean |  |
-| <a id="_class_CreativeWork_unnamed_fqrui"></a>ldac:linguisticGenre | No | A linguistic classification of the genre of this resource. | [LinguisticGenreTerms](#termset_ldac:LinguisticGenreTerms) |  |
-| <a id="_class_CreativeWork_unnamed_t8ots"></a>ldac:material | No | Description of the original media, e.g. audio cassette tapes, participant questionnaires, field notes. | Text |  |
-| <a id="_class_CreativeWork_unnamed_muv0s"></a>ldac:openAccessIndex | No | One or more public index types allowed by a license, e.g. FullText indexing may be allowed for discovery even when an item is not. | [IndexTypes](#termset_ldac:IndexTypes) |  |
-| <a id="_class_CreativeWork_unnamed_2w0cj"></a>ldac:register | No | The type of register (any of the varieties of a language that a speaker uses in a particular social context [Merriam-Webster]) of the contents of a language resource. | Text |  |
-| <a id="_class_CreativeWork_unnamed_z6h6i"></a>ldac:writtenLanguageFormat | No | The format of the resource resulting from the way the text was produced (handwritten, typeset, typewritten). | [WrittenLanguageTypeTerms](#termset_ldac:WrittenLanguageTypeTerms) |  |
-| <a id="_class_CreativeWork_unnamed_zwuyt"></a>publisher | No | The organisation that published this work. | Text, [Organization](#_class_Organization) |  |
-| <a id="_class_CreativeWork_unnamed_p5np6"></a>recipient | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
-
-### <a id="_class_Dataset"></a>Dataset
-
-
-
-Specialization of: http://schema.org/Dataset
-
-| Property | Required | Description | Range | Value |
-| -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_Dataset_unnamed_6tt7l"></a>accountablePerson | Yes | The person or organisation who is the data steward for this resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_wr15p"></a>author | Yes | The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_n7nbs"></a>dct:rightsHolder | Yes | The person or organisation owning or managing rights over the resource. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_j30y0"></a>publisher | Yes | The organisation responsible for releasing this dataset. | [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_rxfg1"></a>citation | No | Associated publications. | [CreativeWork](#_class_CreativeWork) |  |
-| <a id="_class_Dataset_unnamed_rw25k"></a>creditText | No | A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'. | Text |  |
-| <a id="_class_Dataset_unnamed_huj9w"></a>funder | No | The organisation(s) responsible for funding the creation or collection of this dataset. | [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_b1tpi"></a>hasPart | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | [CreativeWork](#_class_CreativeWork), [File](#_class_File), [Dataset](#_class_Dataset) |  |
-| <a id="_class_Dataset_unnamed_u8xo3"></a>isAccessibleForFree | No | This is available under an Open Access license. | Boolean |  |
-| <a id="_class_Dataset_unnamed_7dzsj"></a>isBasedOn | No | Link to or description of an original resource. | Text, URL, [CreativeWork](#_class_CreativeWork), [Dataset](#_class_Dataset), [File](#_class_File) |  |
-| <a id="_class_Dataset_unnamed_njn8o"></a>isPartOf | No | An item or CreativeWork that this item, or CreativeWork (in some sense), is part of. | URL, [CreativeWork](#_class_CreativeWork) |  |
-| <a id="_class_Dataset_unnamed_4rncn"></a>ldac:annotationOf | No | This resource contains some kind of description that adds information to the resource it references. | #class_PrimaryMaterial |  |
-| <a id="_class_Dataset_unnamed_5x2ad"></a>ldac:annotator | No | The participant produced an annotation of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_lf9lh"></a>ldac:compiler | No | The participant is responsible for collecting the sub-parts of the resource together. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_616dd"></a>ldac:consultant | No | The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_u3i2n"></a>ldac:dataInputter | No | The participant responsible for entering, re-typing, and/or structuring the data contained in the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_qbbm6"></a>ldac:depositor | No | The participant responsible for depositing the resource in an archive. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_s1ra4"></a>ldac:developer | No | The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_k7u9a"></a>ldac:doi | No | A Digital Object Identifier, e.g. https://doi.org/10.1000/182. | Text |  |
-| <a id="_class_Dataset_unnamed_897e4"></a>ldac:editor | No | The participant reviewed, corrected, and/or tested the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_2tzqm"></a>ldac:hasCollectionProtocol | No | A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection. | [ldac:CollectionProtocol](#_class_ldac_CollectionProtocol) |  |
-| <a id="_class_Dataset_unnamed_qt2mz"></a>ldac:illustrator | No | The participant contributed drawings or other illustrations to the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_x358z"></a>ldac:interpreter | No | The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_k63uj"></a>ldac:interviewee | No | The participant was a respondent in an interview. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_lyn2h"></a>ldac:interviewer | No | The participant conducted an interview that forms part of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_2qrbk"></a>ldac:participant | No | The participant was present during the creation of the resource, but did not contribute substantially to its content. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_v8nz7"></a>ldac:performer | No | The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_91lhu"></a>ldac:photographer | No | The participant took the photograph, or shot the film, that appears in or constitutes the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_m66iq"></a>ldac:recorder | No | The participant operated the recording machinery used to create the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_kne8w"></a>ldac:researcher | No | The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_fw6pa"></a>ldac:researchParticipant | No | The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_phx3e"></a>ldac:responder | No | The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_e8rpn"></a>ldac:signer | No | The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording). | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_ez3i5"></a>ldac:singer | No | The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_j73ea"></a>ldac:speaker | No | The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording). | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_oieaa"></a>ldac:sponsor | No | The participant contributed financial support to the creation of the resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_t6007"></a>ldac:transcriber | No | The participant produced a transcription of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_e2y50"></a>ldac:translator | No | The participant produced a translation of this or a related resource. | [Person](#_class_Person), [Organization](#_class_Organization) |  |
-| <a id="_class_Dataset_unnamed_bd673"></a>pcdm:hasMember | No | The sub-collections, if any, associated with this collection. | [RepositoryCollection](#_class_RepositoryCollection), [RepositoryObject](#_class_RepositoryObject) |  |
-| <a id="_class_Dataset_unnamed_dmogi"></a>pcdm:memberOf | No | Links from a Repository Object or Collection to a containing Repository Object or Collection. | [RepositoryCollection](#_class_RepositoryCollection) |  |
-| <a id="_class_Dataset_unnamed_r7evt"></a>spatialCoverage | No | The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape. | [Place](#_class_Place) |  |
-| <a id="_class_Dataset_unnamed_coqs1"></a>temporalCoverage | No | The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level. | DateTime, Text |  |
-| <a id="_class_Dataset_unnamed_iipxl"></a>usageInfo | No | Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'. | Text |  |
+| <a id="_class_CreativeWork_unnamed_q0bnq"></a>author[?](http://schema.org/author) | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
+| <a id="_class_CreativeWork_unnamed_4gn9z"></a>isbn[?](http://schema.org/isbn) | No | The ISBN for this work, if applicable. | Text |  |
+| <a id="_class_CreativeWork_unnamed_pquw8"></a>issn[?](http://schema.org/issn) | No | The ISSN for this publication. | Text |  |
+| <a id="_class_CreativeWork_unnamed_vl8lz"></a>ldac:annotationType[?](https://w3id.org/ldac/terms#annotationType) | No | The type of an Annotation resource. | [AnnotationTypeTerms](#termset_ldac:AnnotationTypeTerms) |  |
+| <a id="_class_CreativeWork_unnamed_kdlmv"></a>ldac:channels[?](https://w3id.org/ldac/terms#channels) | No | The number of audio channels this resource contains (e.g. 1, 2, 5.1). | Text |  |
+| <a id="_class_CreativeWork_unnamed_aednv"></a>ldac:communicationMode[?](https://w3id.org/ldac/terms#communicationMode) | No | The mode (spoken, written, signed etc.) of this resource. There may be more than one value for this property. | [CommunicationModeTerms](#termset_ldac:CommunicationModeTerms) |  |
+| <a id="_class_CreativeWork_unnamed_kwlty"></a>ldac:indexableText[?](https://w3id.org/ldac/terms#indexableText) | No | One or more target File(s) that together contain the full text of an item – each file should indicate its language. | #class_MediaObject |  |
+| <a id="_class_CreativeWork_unnamed_1wyud"></a>ldac:isDeIdentified[?](https://w3id.org/ldac/terms#isDeIdentified) | No | The data in this item has had potentially identifying information removed, which may include replacing names with pseudonyms. | Boolean |  |
+| <a id="_class_CreativeWork_unnamed_yyz4r"></a>ldac:linguisticGenre[?](https://w3id.org/ldac/terms#linguisticGenre) | No | A linguistic classification of the genre of this resource. | [LinguisticGenreTerms](#termset_ldac:LinguisticGenreTerms) |  |
+| <a id="_class_CreativeWork_unnamed_lolxx"></a>ldac:material[?](https://w3id.org/ldac/terms#material) | No | Description of the original media, e.g. audio cassette tapes, participant questionnaires, field notes. | Text |  |
+| <a id="_class_CreativeWork_unnamed_zk6js"></a>ldac:openAccessIndex[?](https://w3id.org/ldac/terms#openAccessIndex) | No | One or more public index types allowed by a license, e.g. FullText indexing may be allowed for discovery even when an item is not. | [IndexTypes](#termset_ldac:IndexTypes) |  |
+| <a id="_class_CreativeWork_unnamed_vk9k7"></a>ldac:register[?](https://w3id.org/ldac/terms#register) | No | The type of register (any of the varieties of a language that a speaker uses in a particular social context [Merriam-Webster]) of the contents of a language resource. | Text |  |
+| <a id="_class_CreativeWork_unnamed_s8f0w"></a>ldac:writtenLanguageFormat[?](https://w3id.org/ldac/terms#writtenLanguageFormat) | No | The format of the resource resulting from the way the text was produced (handwritten, typeset, typewritten). | [WrittenLanguageTypeTerms](#termset_ldac:WrittenLanguageTypeTerms) |  |
+| <a id="_class_CreativeWork_unnamed_oh6cy"></a>publisher[?](http://schema.org/publisher) | No | The organisation that published this work. | Text, [Organization](#_class_Organization) |  |
+| <a id="_class_CreativeWork_unnamed_sinif"></a>recipient[?](http://schema.org/recipient) | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, [Person](#_class_Person), [Organization](#_class_Organization) |  |
 
 ### <a id="_class_Person"></a>Person
 
@@ -662,8 +665,8 @@ Specialization of: http://schema.org/Person
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_Person_unnamed_1uncp"></a>affiliation | No | The organisation that this person is affiliated with. For example, a university or school. | [Organization](#_class_Organization) |  |
-| <a id="_class_Person_unnamed_56o2g"></a>ldac:age | No | The age of a person. If an age is specified, a specializationOf pointing to a 'canonical' ageless version of that Person can also be included. | Text |  |
+| <a id="_class_Person_unnamed_htast"></a>affiliation[?](http://schema.org/affiliation) | No | The organisation that this person is affiliated with. For example, a university or school. | [Organization](#_class_Organization) |  |
+| <a id="_class_Person_unnamed_k8gvx"></a>ldac:age[?](https://w3id.org/ldac/terms#age) | No | The age of a person. If an age is specified, a specializationOf pointing to a 'canonical' ageless version of that Person can also be included. | Text |  |
 
 ### <a id="_class_Organization"></a>Organization
 
@@ -673,7 +676,7 @@ Specialization of: http://schema.org/Organization
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_Organization_unnamed_2z5do"></a>location | No | A location for the organisation, e.g. a city for a publisher. | Text |  |
+| <a id="_class_Organization_unnamed_g8amj"></a>location[?](http://schema.org/location) | No | A location for the organisation, e.g. a city for a publisher. | Text |  |
 
 ### <a id="_class_File"></a>File
 
@@ -683,12 +686,12 @@ Specialization of: http://schema.org/MediaObject
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_File_unnamed_t8miu"></a>contentSize | No | File size in (mega/kilo)bytes. | Text |  |
-| <a id="_class_File_unnamed_lr2oa"></a>encodingFormat | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
-| <a id="_class_File_unnamed_g9nqp"></a>hasPart | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | [CreativeWork](#_class_CreativeWork), [File](#_class_File) |  |
-| <a id="_class_File_unnamed_6t9zp"></a>ldac:derivationOf | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
-| <a id="_class_File_unnamed_fx6k2"></a>ldac:hasDerivation | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
-| <a id="_class_File_unnamed_18i5b"></a>ldac:materialType | No | Indicates whether the material in a file is the original (primary) source or is derived from it or describes it via annotation. | [MaterialTypes](#termset_ldac:MaterialTypes) |  |
+| <a id="_class_File_unnamed_fr4si"></a>contentSize[?](http://schema.org/contentSize) | No | File size in (mega/kilo)bytes. | Text |  |
+| <a id="_class_File_unnamed_n5xdw"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
+| <a id="_class_File_unnamed_cw0iz"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | [CreativeWork](#_class_CreativeWork), [File](#_class_File) |  |
+| <a id="_class_File_unnamed_54b7z"></a>ldac:derivationOf[?](https://w3id.org/ldac/terms#derivationOf) | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
+| <a id="_class_File_unnamed_csuf2"></a>ldac:hasDerivation[?](https://w3id.org/ldac/terms#hasDerivation) | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
+| <a id="_class_File_unnamed_9hiun"></a>ldac:materialType[?](https://w3id.org/ldac/terms#materialType) | No | Indicates whether the material in a file is the original (primary) source or is derived from it or describes it via annotation. | [MaterialTypes](#termset_ldac:MaterialTypes) |  |
 
 ### <a id="_class_Place"></a>Place
 
@@ -698,8 +701,8 @@ Specialization of: http://schema.org/Place
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_Place_unnamed_nd4q2"></a>address | No | The physical address of the place. | Text |  |
-| <a id="_class_Place_unnamed_202e9"></a>geo | No | The geographic coordinates of the place. | [Geometry](#_class_Geometry) |  |
+| <a id="_class_Place_unnamed_l17qr"></a>address[?](http://schema.org/address) | No | The physical address of the place. | Text |  |
+| <a id="_class_Place_unnamed_pkyuv"></a>geo[?](http://schema.org/geo) | No | The geographic coordinates of the place. | [Geometry](#_class_Geometry) |  |
 
 ### <a id="_class_ldac_CollectionProtocol"></a>ldac:CollectionProtocol
 
@@ -709,7 +712,7 @@ Specialization of: https://w3id.org/ldac/terms#CollectionProtocol
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_ldac_CollectionProtocol_unnamed_l50iu"></a>ldac:collectionProtocolType | No | A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection. | [CollectionProtocolTypeTerms](#termset_ldac:CollectionProtocolTypeTerms) |  |
+| <a id="_class_ldac_CollectionProtocol_unnamed_d5y5o"></a>ldac:collectionProtocolType[?](https://w3id.org/ldac/terms#collectionProtocolType) | No | A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection. | [CollectionProtocolTypeTerms](#termset_ldac:CollectionProtocolTypeTerms) |  |
 
 ### <a id="_class_RepositoryCollection"></a>RepositoryCollection
 
@@ -719,14 +722,14 @@ Specialization of: http://pcdm.org/models#Collection
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryCollection_unnamed_ogfr7"></a>inLanguage | Yes | The language in which the resource is written. | #class_Language |  |
-| <a id="_class_RepositoryCollection_unnamed_52lc4"></a>conformsTo | No | A link to the language data commons RO-Crate profile for collections. | #itemlist_conformsTo_RepositoryCollection |  |
-| <a id="_class_RepositoryCollection_unnamed_y6s96"></a>contentLocation | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
-| <a id="_class_RepositoryCollection_unnamed_vbe3j"></a>dateCreated | No | The (earliest) date the data in this dataset were created. | Date |  |
-| <a id="_class_RepositoryCollection_unnamed_5n8ko"></a>holdingArchive | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
-| <a id="_class_RepositoryCollection_unnamed_ogwqb"></a>ldac:dateFreeText | No | Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_dzzqh"></a>ldac:itemLocation | No | Current location of the item, e.g. where a set of audio tapes are stored. | [Place](#_class_Place), [Organization](#_class_Organization) |  |
-| <a id="_class_RepositoryCollection_unnamed_r2qp0"></a>ldac:subjectLanguage | No | The languages that the materials in the collection are about (not the language that it is in). | #class_Language |  |
+| <a id="_class_RepositoryCollection_unnamed_iikjm"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | [Language](#_class_Language) |  |
+| <a id="_class_RepositoryCollection_unnamed_6d5mj"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the language data commons RO-Crate profile for collections. | #itemlist_conformsTo_RepositoryCollection |  |
+| <a id="_class_RepositoryCollection_unnamed_eij5r"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
+| <a id="_class_RepositoryCollection_unnamed_30wpo"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
+| <a id="_class_RepositoryCollection_unnamed_qq035"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
+| <a id="_class_RepositoryCollection_unnamed_mrs9b"></a>ldac:dateFreeText[?](https://w3id.org/ldac/terms#dateFreeText) | No | Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date. | Text |  |
+| <a id="_class_RepositoryCollection_unnamed_huqad"></a>ldac:itemLocation[?](https://w3id.org/ldac/terms#itemLocation) | No | Current location of the item, e.g. where a set of audio tapes are stored. | [Place](#_class_Place), [Organization](#_class_Organization) |  |
+| <a id="_class_RepositoryCollection_unnamed_k5xiz"></a>ldac:subjectLanguage[?](https://w3id.org/ldac/terms#subjectLanguage) | No | The languages that the materials in the collection are about (not the language that it is in). | [Language](#_class_Language) |  |
 
 ### <a id="_class_RepositoryObject"></a>RepositoryObject
 
@@ -736,15 +739,15 @@ Specialization of: http://pcdm.org/models#Object
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryObject_unnamed_326ks"></a>conformsTo | No | A link to the language data commons RO-Crate profile for collections. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_z0ksu"></a>creator | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
-| <a id="_class_RepositoryObject_unnamed_5lxzj"></a>dateCreated | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_ttbop"></a>description | No | A description of the item. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_anhiw"></a>identifier | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
+| <a id="_class_RepositoryObject_unnamed_330x9"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the language data commons RO-Crate profile for collections. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_ih1ib"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
+| <a id="_class_RepositoryObject_unnamed_bwisq"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_u79e2"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_1b86x"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
          | #class_PropertyValue, Text, URL |  |
-| <a id="_class_RepositoryObject_unnamed_8q7lm"></a>ldac:hasAnnotation | No | This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis. | #class_Annotation |  |
-| <a id="_class_RepositoryObject_unnamed_3xipj"></a>license | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
-| <a id="_class_RepositoryObject_unnamed_q5rvq"></a>temporalCoverage | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
+| <a id="_class_RepositoryObject_unnamed_mi8on"></a>ldac:hasAnnotation[?](https://w3id.org/ldac/terms#hasAnnotation) | No | This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis. | #class_Annotation |  |
+| <a id="_class_RepositoryObject_unnamed_9r2pk"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="_class_RepositoryObject_unnamed_rzy26"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
       the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.
       Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
 
@@ -758,7 +761,7 @@ Specialization of: http://www.opengis.net/ont/geosparql#Geometry
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_Geometry_unnamed_hxplm"></a>geosparql:asWKT | No | The WKT serialisation of the geometry. | Text |  |
+| <a id="_class_Geometry_unnamed_b90zl"></a>geosparql:asWKT[?](http://www.opengis.net/ont/geosparql#asWKT) | No | The WKT serialisation of the geometry. | Text |  |
 
 ### <a id="_class_CollectionEvent"></a>CollectionEvent
 
@@ -768,7 +771,7 @@ Specialization of: https://w3id.org/ldac/terms#CollectionEvent
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_CollectionEvent_unnamed_qkwo8"></a>ldac:collectionEventType | No | A kind of CollectionEvent characterised by some specific procedures, e.g. a psycholinguistic experiment. | [CollectionEventTypeTerms](#termset_ldac:CollectionEventTypeTerms) |  |
+| <a id="_class_CollectionEvent_unnamed_w1fmw"></a>ldac:collectionEventType[?](https://w3id.org/ldac/terms#collectionEventType) | No | A kind of CollectionEvent characterised by some specific procedures, e.g. a psycholinguistic experiment. | [CollectionEventTypeTerms](#termset_ldac:CollectionEventTypeTerms) |  |
 
 ### <a id="_class_DataLicense"></a>DataLicense
 
@@ -778,7 +781,7 @@ Specialization of: https://w3id.org/ldac/terms#DataLicense
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_DataLicense_unnamed_ybka3"></a>ldac:reviewDate | No | The date that this license should be reviewed. | Text |  |
+| <a id="_class_DataLicense_unnamed_x9vyn"></a>ldac:reviewDate[?](https://w3id.org/ldac/terms#reviewDate) | No | The date that this license should be reviewed. | Text |  |
 
 ### <a id="_class_DataDepositLicense"></a>DataDepositLicense
 
@@ -797,9 +800,9 @@ Specialization of: https://w3id.org/ldac/terms#DataReuseLicense
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_DataReuseLicense_unnamed_8ltfr"></a>ldac:access | No | Whether this is an open or restricted access license. | [AccessTypes](#termset_ldac:AccessTypes) |  |
-| <a id="_class_DataReuseLicense_unnamed_dbwaz"></a>ldac:accessControlList | No | When a license has an authorizationWorkflow property with a value of the DefinedTerm AccessControlList this property has a URI value that points to a list of userIDs. | URL |  |
-| <a id="_class_DataReuseLicense_unnamed_do7xh"></a>ldac:authorizationWorkflow | No | By what process a user is granted authorization to a license. | [AuthorizationWorkflows](#termset_ldac:AuthorizationWorkflows) |  |
+| <a id="_class_DataReuseLicense_unnamed_hd9v2"></a>ldac:access[?](https://w3id.org/ldac/terms#access) | No | Whether this is an open or restricted access license. | [AccessTypes](#termset_ldac:AccessTypes) |  |
+| <a id="_class_DataReuseLicense_unnamed_n6adc"></a>ldac:accessControlList[?](https://w3id.org/ldac/terms#accessControlList) | No | When a license has an authorizationWorkflow property with a value of the DefinedTerm AccessControlList this property has a URI value that points to a list of userIDs. | URL |  |
+| <a id="_class_DataReuseLicense_unnamed_6s9p1"></a>ldac:authorizationWorkflow[?](https://w3id.org/ldac/terms#authorizationWorkflow) | No | By what process a user is granted authorization to a license. | [AuthorizationWorkflows](#termset_ldac:AuthorizationWorkflows) |  |
 
 ### <a id="_class_dct_Collection"></a>dct:Collection
 

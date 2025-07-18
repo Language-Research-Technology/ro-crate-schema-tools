@@ -1,0 +1,916 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context",
+    {
+      "@vocab": "http://schema.org/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "CSV For the web RO-Crate Profile",
+      "description": "This is a profile of RO-Crate for the CSV For the Web sepcification, for packaging tabular datasets as the main payload of an RO-Crate.",
+      "author": {
+        "@id": "https://orcid.org/0000-0002-3545-944X"
+      },
+      "license": "GPL-3.0",
+      "conformsTo": {
+        "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
+      }
+    },
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-3545-944X",
+      "@type": "Person",
+      "name": "Peter (PT) Sefton"
+    },
+    
+    {
+      "@id": "#Root_Data_Entity",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://schema.org/Dataset" },
+      "description": "The main entity that is use to package tabular data, conforming to the CSV for the Web specification.",
+      "name": "CSVW Dataset ",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+        {
+      "@id": "#Class_Dataset",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://schema.org/Dataset" },
+      "description": "A directory which is part of the RO-Crate which warrants its own description",
+      "name": "File Directory",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Root_Data_Entity_name",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "SHOULD identify the root data entity (dataset) to humans well enough to disambiguate it from other RO-Crates",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+   
+    {
+      "@id": "#prop_description_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "(In addition to the name) SHOULD further elaborate on the name to provide a summary of the context in which the dataset is important.",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_datePublised_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/datePubished"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "MUST be a string in ISO 8601 date format and SHOULD be specified to at least the precision of a day, MAY be a timestamp down to the millisecond.",
+      "rangeIncludes": [
+        {
+          "@id": "schema:Date"
+        }
+      ],
+      "sh:minCount": 1
+    },
+
+    {
+      "@id": "#prop_hasPart_Table",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/hasPart"
+      },
+      "domainIncludes": [{"@id": "#Root_Data_Entity"}],
+  
+      "rdfs:comment": "A 'CSVW Table File' must be included in the RO-Crate via a hasPart relationship. This is the main payload of the RO-Crate.",
+      "rangeIncludes": [
+        {
+          "@id": "#classTableFile"
+        }
+      ],
+      "sh:minCount": 1
+    },
+
+    {
+      "@id": "#prop_license_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/license"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "schema:URL"
+        },
+        {
+          "@id": "schema:Text"
+        }
+      ],
+      "sh:minCount": 1
+    },
+     {
+      "@id": "#classTableFile",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": [{ "@id": "http://schema.org/MediaObject"}, { "@id": "http://www.w3.org/ns/csvw#Table" }],
+      "description": "A table containing tabular data, which is a CSV file or similar.",
+      "name": "CSVW Table File",
+      "sh:minCount": 1
+    },
+ 
+    {
+      "@id": "#Class_Cell",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Cell" },
+      "description": "A Cell represents a cell at the intersection of a Row and a Column within a Table.",
+      "name": "Cell"
+    },
+    {
+      "@id": "#Class_Column",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Column" },
+      "description": "A Column represents a vertical arrangement of Cells within a Table.",
+      "name": "Column Description"
+    },
+    {
+      "@id": "#Class_Datatype",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Datatype" },
+      "description": "Describes facets of a datatype.",
+      "name": "Datatype"
+    },
+    {
+      "@id": "#Class_Dialect",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Dialect" },
+      "description": "A Dialect Description provides hints to parsers about how to parse a linked file.",
+      "name": "Dialect Description"
+    },
+    {
+      "@id": "#Class_Direction",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Direction" },
+      "description": "The class of table/text directions.",
+      "name": "Direction"
+    },
+    {
+      "@id": "#Class_ForeignKey",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#ForeignKey" },
+      "description": "Describes relationships between Columns in one or more Tables.",
+      "name": "Foreign Key Definition"
+    },
+    {
+      "@id": "#Class_NumericFormat",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#NumericFormat" },
+      "description": "If the datatype is a numeric type, the format property indicates the expected format for that number. Its value must be either a single string or an object with one or more properties.",
+      "name": "Numeric Format"
+    },
+    {
+      "@id": "#Class_Row",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Row" },
+      "description": "A Row represents a horizontal arrangement of cells within a Table.",
+      "name": "Row"
+    },
+    {
+      "@id": "#Class_Schema",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Schema" },
+      "description": "A Schema is a definition of a tabular format that may be common to multiple tables.",
+      "name": "Schema"
+    },
+    {
+      "@id": "#Class_Table",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Table" },
+      "description": "An annotated table is a table that is annotated with additional metadata.",
+      "name": "Annotated Table"
+    },
+    {
+      "@id": "#Class_TableGroup",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#TableGroup" },
+      "description": "A Group of Tables comprises a set of Annotated Tables and a set of annotations that relate to those Tables.",
+      "name": "Group of Tables"
+    },
+    {
+      "@id": "#Class_TableReference",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#TableReference" },
+      "description": "An object property that identifies a referenced table and a set of referenced columns within that table.",
+      "name": "Table Reference"
+    },
+    {
+      "@id": "#Class_Transformation",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Transformation" },
+      "description": "A Transformation Definition is a definition of how tabular data can be transformed into another format.",
+      "name": "Transformation Definition"
+    },
+    {
+      "@id": "#Property_aboutUrl",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#aboutUrl" },
+      "description": "A URI template property that MAY be used to indicate what a cell contains information about.",
+      "name": "about URL",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_uriTemplate" }
+    },
+    {
+      "@id": "#Property_base",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#base" },
+      "description": "An atomic property that contains a single string: a term defined in the default context representing a built-in datatype URL, as listed above.",
+      "name": "base",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_columnReference",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#columnReference" },
+      "description": "A column reference property that holds either a single reference to a column description object within this schema, or an array of references. These form the referencing columns for the foreign key definition.",
+      "name": "column reference",
+      "domainIncludes": [
+        { "@id": "#Class_ForeignKey" },
+        { "@id": "#Class_TableReference" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_column",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#column" },
+      "description": "An array property of column descriptions as described in section 5.6 Columns.",
+      "name": "column",
+      "domainIncludes": [{ "@id": "#Class_Schema" }],
+      "rangeIncludes": { "@id": "#Class_Column" }
+    },
+    {
+      "@id": "#Property_commentPrefix",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#commentPrefix" },
+      "description": "An atomic property that sets the comment prefix flag to the single provided value, which MUST be a string.",
+      "name": "comment prefix",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_datatype",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#datatype" },
+      "description": "An object property that contains either a single string that is the main datatype of the values of the cell or a datatype description object. If the value of this property is a string, it MUST be one of the built-in datatypes defined in section 5.11.1 Built-in Datatypes or an absolute URL; if it is an object then it describes a more specialised datatype.",
+      "name": "datatype",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": [
+        { "@id": "#Class_Datatype" },
+        { "@id": "Text" }
+      ]
+    },
+    {
+      "@id": "#Property_decimalChar",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#decimalChar" },
+      "description": "A string whose value is used to represent a decimal point within the number.",
+      "name": "decimal character",
+      "domainIncludes": [{ "@id": "#Class_NumericFormat" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_default",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#default" },
+      "description": "An atomic property holding a single string that is used to create a default value for the cell in cases where the original string value is an empty string.",
+      "name": "default",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_describes",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#describes" },
+      "description": "From IANA describes: The relationship A 'describes' B asserts that resource A provides a description of resource B. There are no constraints on the format or representation of either A or B, neither are there any further constraints on either resource.",
+      "name": "describes",
+      "domainIncludes": [{ "@id": "#Class_Row" }]
+    },
+    {
+      "@id": "#Property_delimiter",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#delimiter" },
+      "description": "An atomic property that sets the delimiter flag to the single provided value, which MUST be a string.",
+      "name": "delimiter",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_dialect",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#dialect" },
+      "description": "An object property that provides a single dialect description. If provided, dialect provides hints to processors about how to parse the referenced files to create tabular data models for the tables in the group.",
+      "name": "dialect",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" }
+      ],
+      "rangeIncludes": { "@id": "#Class_Dialect" }
+    },
+    {
+      "@id": "#Property_doubleQuote",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#doubleQuote" },
+      "description": "A boolean atomic property that, if `true`, sets the escape character flag to `\"`.",
+      "name": "double quote",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_encoding",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#encoding" },
+      "description": "An atomic property that sets the encoding flag to the single provided string value, which MUST be defined in encoding. The default is \"utf-8\".",
+      "name": "encoding",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_foreignKey",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#foreignKey" },
+      "description": "For a Table: a list of foreign keys on the table. For a Schema: an array property of foreign key definitions that define how the values from specified columns within this table link to rows within this table or other tables.",
+      "name": "foreign key",
+      "domainIncludes": [
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" }
+      ],
+      "rangeIncludes": { "@id": "#Class_ForeignKey" }
+    },
+    {
+      "@id": "#Property_format",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#format" },
+      "description": "An atomic property that contains either a single string or an object that defines the format of a value of this type, used when parsing a string value.",
+      "name": "format",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_groupChar",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#groupChar" },
+      "description": "A string whose value is used to group digits within the number.",
+      "name": "group character",
+      "domainIncludes": [{ "@id": "#Class_NumericFormat" }],
+      "rangeIncludes": [
+        { "@id": "#Class_NumericFormat" },
+        { "@id": "Text" }
+      ]
+    },
+    {
+      "@id": "#Property_header",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#header" },
+      "description": "A boolean atomic property that, if `true`, sets the header row count flag to `1`, and if `false` to `0`, unless headerRowCount is provided, in which case the value provided for the header property is ignored.",
+      "name": "header",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_headerRowCount",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#headerRowCount" },
+      "description": "An numeric atomic property that sets the header row count flag to the single provided value, which must be a non-negative integer.",
+      "name": "header row count",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_lang",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#lang" },
+      "description": "An atomic property giving a single string language code as defined by BCP47.",
+      "name": "language",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_length",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#length" },
+      "description": "The exact length of the value of the cell.",
+      "name": "length",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_lineTerminators",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#lineTerminators" },
+      "description": "An atomic property that sets the line terminators flag to either an array containing the single provided string value, or the provided array.",
+      "name": "line terminators",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_maxExclusive",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#maxExclusive" },
+      "description": "An atomic property that contains a single number that is the maximum valid value (exclusive).",
+      "name": "max exclusive",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#integer" }
+    },
+    {
+      "@id": "#Property_maxInclusive",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#maxInclusive" },
+      "description": "An atomic property that contains a single number that is the maximum valid value (inclusive).",
+      "name": "max inclusive",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#integer" }
+    },
+    {
+      "@id": "#Property_maxLength",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#maxLength" },
+      "description": "A numeric atomic property that contains a single integer that is the maximum length of the value.",
+      "name": "max length",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_minExclusive",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#minExclusive" },
+      "description": "An atomic property that contains a single number that is the minimum valid value (exclusive).",
+      "name": "min exclusive",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#integer" }
+    },
+    {
+      "@id": "#Property_minInclusive",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#minInclusive" },
+      "description": "An atomic property that contains a single number that is the minimum valid value (inclusive).",
+      "name": "min inclusive",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#integer" }
+    },
+    {
+      "@id": "#Property_minLength",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#minLength" },
+      "description": "An atomic property that contains a single integer that is the minimum length of the value.",
+      "name": "min length",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_name",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#name" },
+      "description": "An atomic property that gives a single canonical name for the column. The value of this property becomes the name annotation for the described column.",
+      "name": "name",
+      "domainIncludes": [{ "@id": "#Class_Column" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_note",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#note" },
+      "description": "An array property that provides an array of objects representing arbitrary annotations on the annotated tabular data model.",
+      "name": "note",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" }
+      ]
+    },
+    {
+      "@id": "#Property_null",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#null" },
+      "description": "An atomic property giving the string or strings used for null values within the data. If the string value of the cell is equal to any one of these values, the cell value is `null`.",
+      "name": "null",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_ordered",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#ordered" },
+      "description": "A boolean atomic property taking a single value which indicates whether a list that is the value of the cell is ordered (if `true`) or unordered (if `false`).",
+      "name": "ordered",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_pattern",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#pattern" },
+      "description": "A regular expression string, in the syntax and interpreted as defined by ECMASCRIPT.",
+      "name": "pattern",
+      "domainIncludes": [{ "@id": "#Class_NumericFormat" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_primaryKey",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#primaryKey" },
+      "description": "For Schema: A column reference property that holds either a single reference to a column description object or an array of references. For Row: a possibly empty list of cells whose values together provide a unique identifier for this row. This is similar to the name of a column.",
+      "name": "primary key",
+      "domainIncludes": [
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Row" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_propertyUrl",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#propertyUrl" },
+      "description": "An URI template property that MAY be used to create a URI for a property if the table is mapped to another format.",
+      "name": "property URL",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_uriTemplate" }
+    },
+    {
+      "@id": "#Property_quoteChar",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#quoteChar" },
+      "description": "An atomic property that sets the quote character flag to the single provided value, which must be a string or `null`.",
+      "name": "quote char",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_reference",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#reference" },
+      "description": "An object property that identifies a **referenced table** and a set of **referenced columns** within that table.",
+      "name": "reference",
+      "domainIncludes": [{ "@id": "#Class_ForeignKey" }],
+      "rangeIncludes": { "@id": "#Class_TableReference" }
+    },
+    {
+      "@id": "#Property_referencedRow",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#referencedRow" },
+      "description": "A possibly empty list of pairs of a foreign key and a row in a table within the same group of tables.",
+      "name": "referenced rows",
+      "domainIncludes": [{ "@id": "#Class_Row" }]
+    },
+    {
+      "@id": "#Property_required",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#required" },
+      "description": "A boolean atomic property taking a single value which indicates whether the cell must have a non-null value. The default is `false`.",
+      "name": "required",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_resource",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#resource" },
+      "description": "A link property holding a URL that is the identifier for a specific table that is being referenced.",
+      "name": "resource",
+      "domainIncludes": [{ "@id": "#Class_TableReference" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#anyURI" }
+    },
+    {
+      "@id": "#Property_row",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#row" },
+      "description": "Relates a Table to each Row output.",
+      "name": "row",
+      "domainIncludes": [{ "@id": "#Class_Table" }],
+      "rangeIncludes": { "@id": "#Class_Row" }
+    },
+    {
+      "@id": "#Property_rowTitle",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#rowTitle" },
+      "description": "A column reference property that holds either a single reference to a column description object or an array of references.",
+      "name": "row titles",
+      "domainIncludes": [{ "@id": "#Class_Schema" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_rownum",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#rownum" },
+      "description": "The position of the row amongst the rows of the Annotated Table, starting from 1",
+      "name": "row number",
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#integer" }
+    },
+    {
+      "@id": "#Property_scriptFormat",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#scriptFormat" },
+      "description": "A link property giving the single URL for the format that is used by the script or template.",
+      "name": "script format",
+      "domainIncludes": [{ "@id": "#Class_Transformation" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#anyURI" }
+    },
+    {
+      "@id": "#Property_schemaReference",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#schemaReference" },
+      "description": "A link property holding a URL that is the identifier for a schema that is being referenced.",
+      "name": "schema reference",
+      "domainIncludes": [{ "@id": "#Class_TableReference" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#anyURI" }
+    },
+    {
+      "@id": "#Property_separator",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#separator" },
+      "description": "An atomic property that MUST have a single string value that is the character used to separate items in the string value of the cell.",
+      "name": "separator",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_skipBlankRows",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#skipBlankRows" },
+      "description": "An boolean atomic property that sets the `skip blank rows` flag to the single provided boolean value.",
+      "name": "skip blank rows",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_skipColumns",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#skipColumns" },
+      "description": "An numeric atomic property that sets the `skip columns` flag to the single provided numeric value, which MUST be a non-negative integer.",
+      "name": "skip columns",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_skipInitialSpace",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#skipInitialSpace" },
+      "description": "A boolean atomic property that, if `true`, sets the trim flag to \"start\". If `false`, to `false`.",
+      "name": "skip initial space",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_skipRows",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#skipRows" },
+      "description": "An numeric atomic property that sets the `skip rows` flag to the single provided numeric value, which MUST be a non-negative integer.",
+      "name": "skip rows",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger" }
+    },
+    {
+      "@id": "#Property_source",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#source" },
+      "description": "A single string atomic property that provides, if specified, the format to which the tabular data should be transformed prior to the transformation using the script or template.",
+      "name": "source",
+      "domainIncludes": [{ "@id": "#Class_Transformation" }],
+      "rangeIncludes": { "@id": "Text" }
+    },
+    {
+      "@id": "#Property_suppressOutput",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#suppressOutput" },
+      "description": "A boolean atomic property. If `true`, suppresses any output that would be generated when converting a table or cells within a column.",
+      "name": "suppress output",
+      "domainIncludes": [
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_table",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#table" },
+      "description": "Relates an Table group to annotated tables.",
+      "name": "table",
+      "domainIncludes": [{ "@id": "#Class_TableGroup" }],
+      "rangeIncludes": { "@id": "#Class_Table" }
+    },
+    {
+      "@id": "#Property_tableDirection",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#tableDirection" },
+      "description": "One of `rtl`, `ltr` or `auto`. Indicates whether the tables in the group should be displayed with the first column on the right, on the left, or based on the first character in the table that has a specific direction.",
+      "name": "table direction",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" }
+      ],
+      "rangeIncludes": { "@id": "#Class_Direction" }
+    },
+    {
+      "@id": "#Property_tableSchema",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#tableSchema" },
+      "description": "An object property that provides a single schema description as described in section 5.5 Schemas, used as the default for all the tables in the group",
+      "name": "table schema",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" }
+      ],
+      "rangeIncludes": { "@id": "#Class_Schema" }
+    },
+    {
+      "@id": "#Property_targetFormat",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#targetFormat" },
+      "description": "A link property giving the single URL for the format that will be created through the transformation.",
+      "name": "target format",
+      "domainIncludes": [{ "@id": "#Class_Transformation" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#anyURI" }
+    },
+    {
+      "@id": "#Property_transformations",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#transformations" },
+      "description": "An array property of transformation definitions that provide mechanisms to transform the tabular data into other formats.",
+      "name": "transformations",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_Transformation" }
+    },
+    {
+      "@id": "#Property_textDirection",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#textDirection" },
+      "description": "An atomic property that must have a single value that is one of `rtl` or `ltr` (the default).",
+      "name": "text direction",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_Direction" }
+    },
+    {
+      "@id": "#Property_title",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#title" },
+      "description": "For a Transformation: A natural language property that describes the format that will be generated from the transformation. For a Column: A natural language property that provides possible alternative names for the column.",
+      "name": "title",
+      "domainIncludes": [
+        { "@id": "#Class_Transformation" },
+        { "@id": "#Class_Column" },
+        { "@id": "#Class_Row" }
+      ]
+    },
+    {
+      "@id": "#Property_trim",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#trim" },
+      "description": "An atomic property that, if the boolean `true`, sets the trim flag to `true` and if the boolean `false` to `false`. If the value provided is a string, sets the trim flag to the provided value, which must be one of \"true\", \"false\", \"start\" or \"end\".",
+      "name": "trim",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Property_url",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#url" },
+      "description": "For a Table: This link property gives the single URL of the CSV file that the table is held in, relative to the location of the metadata document. For a Transformation: A link property giving the single URL of the file that the script or template is held in, relative to the location of the metadata document.",
+      "name": "url",
+      "domainIncludes": [
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Transformation" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#anyURI" }
+    },
+    {
+      "@id": "#Property_valueUrl",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#valueUrl" },
+      "description": "An URI template property that is used to map the values of cells into URLs.",
+      "name": "valueUrl",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_uriTemplate" }
+    },
+    {
+      "@id": "#Property_virtual",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#virtual" },
+      "description": "A boolean atomic property taking a single value which indicates whether the column is a virtual column not present in the original source",
+      "name": "virtual",
+      "domainIncludes": [{ "@id": "#Class_Column" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" }
+    },
+    {
+      "@id": "#Class_uriTemplate",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#uriTemplate" },
+      "description": "A URI template as defined in RFC6570.",
+      "name": "URI Template"
+    }
+  
+
+  
+
+  ]
+}

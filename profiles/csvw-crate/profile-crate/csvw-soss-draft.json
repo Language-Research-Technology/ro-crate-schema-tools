@@ -1,0 +1,156 @@
+{
+      "@id": "#Class_Cell",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Cell" },
+      "description": "A Cell represents a cell at the intersection of a Row and a Column within a Table.",
+      "name": "Cell"
+    },
+    {
+      "@id": "#Class_Column",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Column" },
+      "description": "A Column represents a vertical arrangement of Cells within a Table.",
+      "name": "Column Description"
+    },
+    {
+      "@id": "#Class_Datatype",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Datatype" },
+      "description": "Describes facets of a datatype.",
+      "name": "Datatype"
+    },
+    {
+      "@id": "#Class_Dialect",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Dialect" },
+      "description": "A Dialect Description provides hints to parsers about how to parse a linked file.",
+      "name": "Dialect Description"
+    },
+    {
+      "@id": "#Class_Direction",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Direction" },
+      "description": "The class of table/text directions.",
+      "name": "Direction"
+    },
+    {
+      "@id": "#Class_TableGroup",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#TableGroup" },
+      "description": "A Group of Tables comprises a set of Annotated Tables and a set of annotations that relate to those Tables.",
+      "name": "Group of Tables"
+    },
+    {
+      "@id": "#Property_aboutUrl",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#aboutUrl" },
+      "description": "A URI template property that MAY be used to indicate what a cell contains information about.",
+      "name": "about URL",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "#Class_uriTemplate" }
+    },
+    {
+      "@id": "#Property_base",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#base" },
+      "description": "An atomic property that contains a single string: a term defined in the default context representing a built-in datatype URL, as listed above.",
+      "name": "base",
+      "domainIncludes": [{ "@id": "#Class_Datatype" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+    },
+    {
+      "@id": "#Property_columnReference",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#columnReference" },
+      "description": "A column reference property that holds either a single reference to a column description object within this schema, or an array of references. These form the referencing columns for the foreign key definition.",
+      "name": "column reference",
+      "domainIncludes": [
+        { "@id": "#Class_ForeignKey" },
+        { "@id": "#Class_TableReference" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+    },
+    {
+      "@id": "#Property_column",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#column" },
+      "description": "An array property of column descriptions as described in section 5.6 Columns.",
+      "name": "column",
+      "domainIncludes": [{ "@id": "#Class_Schema" }],
+      "rangeIncludes": { "@id": "#Class_Column" }
+    },
+    {
+      "@id": "#Property_commentPrefix",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#commentPrefix" },
+      "description": "An atomic property that sets the comment prefix flag to the single provided value, which MUST be a string.",
+      "name": "comment prefix",
+      "domainIncludes": [{ "@id": "#Class_Dialect" }],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+    },
+    {
+      "@id": "#Property_datatype",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#datatype" },
+      "description": "An object property that contains either a single string that is the main datatype of the values of the cell or a datatype description object. If the value of this property is a string, it MUST be one of the built-in datatypes defined in section 5.11.1 Built-in Datatypes or an absolute URL; if it is an object then it describes a more specialised datatype.",
+      "name": "datatype",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": [
+        { "@id": "#Class_Datatype" },
+        { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+      ]
+    },
+    {
+      "@id": "#Property_required",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#required" },
+      "description": "A boolean atomic property taking a single value which indicates whether the cell must have a non-null value. The default is `false`.",
+      "name": "required",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#boolean" },
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Property_null",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#null" },
+      "description": "An atomic property giving the string or strings used for null values within the data. If the string value of the cell is equal to any one of these values, the cell value is `null`.",
+      "name": "null",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+    },
+    {
+      "@id": "#Property_separator",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#separator" },
+      "description": "An atomic property that MUST have a single string value that is the character used to separate items in the string value of the cell.",
+      "name": "separator",
+      "domainIncludes": [
+        { "@id": "#Class_TableGroup" },
+        { "@id": "#Class_Table" },
+        { "@id": "#Class_Schema" },
+        { "@id": "#Class_Column" }
+      ],
+      "rangeIncludes": { "@id": "http://www.w3.org/2001/XMLSchema#string" }
+    }
