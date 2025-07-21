@@ -94,3 +94,19 @@ The generated SOSS+ profile includes:
 - The script will detect if a property is already defined and reuse it across multiple classes
 - Class hierarchies are preserved through rdfs:subClassOf relationships
 - Property ranges are properly mapped from Mode file types to schema.org types
+
+## Generate Markdown Version of the Profile
+
+To generate or update the `profile-documentation.md`, first add your profile to the Makefile in the following format:
+
+```
+ldac-profile:
+	@echo "Building ldac-profile..."
+	node generate-soss-docs.js profiles/ldac/profile-crate/ro-crate-metadata.json profiles/ldac/profile-text.md profiles/ldac/profile-crate/profile-documentation.md
+	@echo "ldac-profile built successfully."
+```
+Then run:
+
+```
+make ldac-profile
+```

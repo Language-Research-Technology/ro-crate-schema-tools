@@ -1,0 +1,1153 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context",
+    {
+      "@vocab": "http://schema.org/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Collection Mode Schema",
+      "description": "Schema derived from Collection Mode: Implements the basic RO-Crate elements found in the specification for the top-level, objects and files.",
+      "author": [
+        {
+          "@id": "#author"
+        }
+      ],
+      "license": "GPL-3.0",
+      "conformsTo": [
+        {
+          "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
+        }
+      ]
+    },
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "#author",
+      "@type": "Organization",
+      "name": "University of Queensland"
+    },
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor",
+      "@type": "rdfs:Class",
+      "name": "RO-Crate Metadata Descriptor",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/CreativeWork"
+      },
+      "description": "An RO-Crate @graph must contain an entity of Type @CreativeWork which is known as the RO-Crate Metadata descriptor.",
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor.id",
+      "@type": "rdf:Property",
+      "value": "ro-crate-metadata.json",
+      "description": "The RO-Crate Metadata file identifier",
+      "rdfs:label": "@id",
+      "domainIncludes": [
+        {
+          "@id": "#RO-Crate_Metadata_Descriptor"
+        }
+      ],
+      "rangeIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Root_Data_Entity",
+      "@type": "rdfs:Class",
+      "description": "The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor. In this profile, it is a Dataset and RepositoryCollection.",
+      "name": "Root Data Entity",
+      "sh:minCount": 1,
+      "sh:maxCount": 1,
+      "prov:specializationOf": [
+        {
+          "@id": "http://schema.org/Dataset"
+        },
+        {
+          "@id": "http://pcdm.org/models#Collection"
+        }
+      ]
+    },
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor.about",
+      "@type": "rdf:Property",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/about"
+      },
+      "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity. In a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Entity with different @type arrays or `@conformsTo` references (or other specializations).",
+      "name": "about",
+      "domainIncludes": [
+        {
+          "@id": "#RO-Crate_Metadata_Descriptor"
+        }
+      ],
+      "rangeIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_name_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "name",
+      "name": "name",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/name"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "The name of this data collection.",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_description_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "An abstract of the collection. Include as much detail as possible about the motivation and use of the collection.",
+      "rangeIncludes": {
+        "@id": "Text"
+      },
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_datePublished_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "datePublished",
+      "name": "datePublished",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/datePublished"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "A date that this collection was published. This should be the date that the collection was first made available.",
+      "rangeIncludes": [
+        {
+          "@id": "Date"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_license_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/license"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "URL"
+        },
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#class_CreativeWork",
+      "@type": "rdfs:Class",
+      "rdfs:label": "CreativeWork",
+      "name": "CreativeWork",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/CreativeWork"
+      }
+    },
+    {
+      "@id": "#class_Dataset",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Dataset",
+      "name": "Dataset",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Dataset"
+      }
+    },
+    {
+      "@id": "#prop_isAccessibleForFree_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "isAccessibleForFree",
+      "name": "isAccessibleForFree",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/isAccessibleForFree"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "This is available under an Open Access license.",
+      "rangeIncludes": [
+        {
+          "@id": "Boolean"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_dct:rightsHolder_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "dct:rightsHolder",
+      "name": "dct:rightsHolder",
+      "prov:specializationOf": {
+        "@id": "http://purl.org/dc/terms/rightsHolder"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The person or organisation owning or managing rights over the resource.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_Person",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Person",
+      "name": "Person",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Person"
+      }
+    },
+    {
+      "@id": "#class_Organization",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Organization",
+      "name": "Organization",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Organization"
+      }
+    },
+    {
+      "@id": "#prop_isBasedOn_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "isBasedOn",
+      "name": "isBasedOn",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/isBasedOn"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "Link to or description of an original resource.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "URL"
+        },
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "#class_Dataset"
+        },
+        {
+          "@id": "#class_File"
+        }
+      ]
+    },
+    {
+      "@id": "#class_File",
+      "@type": "rdfs:Class",
+      "rdfs:label": "File",
+      "name": "File",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/MediaObject"
+      }
+    },
+    {
+      "@id": "#prop_creditText_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "creditText",
+      "name": "creditText",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/creditText"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_usageInfo_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "usageInfo",
+      "name": "usageInfo",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/usageInfo"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_author_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "author",
+      "name": "author",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/author"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_accountablePerson_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "accountablePerson",
+      "name": "accountablePerson",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/accountablePerson"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The person or organisation who is the data steward for this resource.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_publisher_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "publisher",
+      "name": "publisher",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/publisher"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The organisation responsible for releasing this dataset.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_funder_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "funder",
+      "name": "funder",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/funder"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The organisation(s) responsible for funding the creation or collection of this dataset.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Organization"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_citation_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "citation",
+      "name": "citation",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/citation"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "Associated publications.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_temporalCoverage_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "temporalCoverage",
+      "name": "temporalCoverage",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/temporalCoverage"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level.",
+      "rangeIncludes": [
+        {
+          "@id": "DateTime"
+        },
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_spatialCoverage_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "spatialCoverage",
+      "name": "spatialCoverage",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/spatialCoverage"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Place"
+        }
+      ]
+    },
+    {
+      "@id": "#class_Place",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Place",
+      "name": "Place",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Place"
+      }
+    },
+    {
+      "@id": "#prop_pcdm:hasMember_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "pcdm:hasMember",
+      "name": "pcdm:hasMember",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#hasMember"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "The sub-collections, if any, associated with this collection.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        },
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ]
+    },
+    {
+      "@id": "#class_RepositoryCollection",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RepositoryCollection",
+      "name": "RepositoryCollection",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Collection"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "#class_RepositoryObject",
+      "@type": "rdfs:Class",
+      "rdfs:label": "RepositoryObject",
+      "name": "RepositoryObject",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#Object"
+      }
+    },
+    {
+      "@id": "#prop_hasPart_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/hasPart"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "An item or CreativeWork that is part of this item, or CreativeWork (in some sense).",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "#class_File"
+        },
+        {
+          "@id": "#class_Dataset"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_isPartOf_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "isPartOf",
+      "name": "isPartOf",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/isPartOf"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "An item or CreativeWork that this item, or CreativeWork (in some sense), is part of.",
+      "rangeIncludes": [
+        {
+          "@id": "URL"
+        },
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_pcdm:memberOf_Dataset",
+      "@type": "rdf:Property",
+      "rdfs:label": "pcdm:memberOf",
+      "name": "pcdm:memberOf",
+      "prov:specializationOf": {
+        "@id": "http://pcdm.org/models#memberOf"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset"
+        }
+      ],
+      "rdfs:comment": "Links from a Repository Object or Collection to a containing Repository Object or Collection.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_contentLocation_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "contentLocation",
+      "name": "contentLocation",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/contentLocation"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ],
+      "rdfs:comment": "The location depicted or described in the content. For example, the location in a photograph or painting.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Place"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_conformsTo_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "conformsTo",
+      "name": "conformsTo",
+      "prov:specializationOf": {
+        "@id": "http://purl.org/dc/terms/conformsTo"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ],
+      "rdfs:comment": "A link to the RO-Crate profile for collections.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_inLanguage_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "inLanguage",
+      "name": "inLanguage",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/inLanguage"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ],
+      "rdfs:comment": "The language in which the resource is written.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:minCount": 1
+    },
+    {
+      "@id": "#prop_dateCreated_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "dateCreated",
+      "name": "dateCreated",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/dateCreated"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ],
+      "rdfs:comment": "The (earliest) date the data in this dataset were created.",
+      "rangeIncludes": [
+        {
+          "@id": "Date"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_holdingArchive_RepositoryCollection",
+      "@type": "rdf:Property",
+      "rdfs:label": "holdingArchive",
+      "name": "holdingArchive",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/holdingArchive"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryCollection"
+        }
+      ],
+      "rdfs:comment": "Organisation where the original of this work or collection is housed.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Organization"
+        },
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_creator_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "creator",
+      "name": "creator",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/creator"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Person"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_description_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "description",
+      "name": "description",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/description"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "A description of the item.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_temporalCoverage_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "temporalCoverage",
+      "name": "temporalCoverage",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/temporalCoverage"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In\n      the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written \"2011/2012\"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.\n      Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via \"1939/1945\".\n\nOpen-ended date ranges can be written with \"..\" in place of the end date. For example, \"2015-11/..\" indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_dateCreated_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "dateCreated",
+      "name": "dateCreated",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/dateCreated"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "The date on which the CreativeWork was created or the item was added to a DataFeed.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_license_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "license",
+      "name": "license",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/license"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_OrganizationReuseLicense"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_identifier_RepositoryObject",
+      "@type": "rdf:Property",
+      "rdfs:label": "identifier",
+      "name": "identifier",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/identifier"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_RepositoryObject"
+        }
+      ],
+      "rdfs:comment": "The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.\n        ",
+      "rangeIncludes": [
+        {
+          "@id": "#class_PropertyValue"
+        },
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "URL"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_author_CreativeWork",
+      "@type": "rdf:Property",
+      "rdfs:label": "author",
+      "name": "author",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/author"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ],
+      "rdfs:comment": "The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_isbn_CreativeWork",
+      "@type": "rdf:Property",
+      "rdfs:label": "isbn",
+      "name": "isbn",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/isbn"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ],
+      "rdfs:comment": "The ISBN for this work, if applicable.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_issn_CreativeWork",
+      "@type": "rdf:Property",
+      "rdfs:label": "issn",
+      "name": "issn",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/issn"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ],
+      "rdfs:comment": "The ISSN for this publication.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_publisher_CreativeWork",
+      "@type": "rdf:Property",
+      "rdfs:label": "publisher",
+      "name": "publisher",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/publisher"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ],
+      "rdfs:comment": "The organisation that published this work.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_recipient_CreativeWork",
+      "@type": "rdf:Property",
+      "rdfs:label": "recipient",
+      "name": "recipient",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/recipient"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        }
+      ],
+      "rdfs:comment": "The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "#class_Person"
+        },
+        {
+          "@id": "#class_Organization"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_address_Place",
+      "@type": "rdf:Property",
+      "rdfs:label": "address",
+      "name": "address",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/address"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Place"
+        }
+      ],
+      "rdfs:comment": "The physical address of the place.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_geo_Place",
+      "@type": "rdf:Property",
+      "rdfs:label": "geo",
+      "name": "geo",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/geo"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Place"
+        }
+      ],
+      "rdfs:comment": "The geographic coordinates of the place.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Geometry"
+        }
+      ]
+    },
+    {
+      "@id": "#class_Geometry",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Geometry",
+      "name": "Geometry",
+      "prov:specializationOf": {
+        "@id": "http://www.opengis.net/ont/geosparql#Geometry"
+      }
+    },
+    {
+      "@id": "#prop_geosparql:asWKT_Geometry",
+      "@type": "rdf:Property",
+      "rdfs:label": "geosparql:asWKT",
+      "name": "geosparql:asWKT",
+      "prov:specializationOf": {
+        "@id": "http://www.opengis.net/ont/geosparql#asWKT"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Geometry"
+        }
+      ],
+      "rdfs:comment": "The WKT serialisation of the geometry.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_affiliation_Person",
+      "@type": "rdf:Property",
+      "rdfs:label": "affiliation",
+      "name": "affiliation",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/affiliation"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Person"
+        }
+      ],
+      "rdfs:comment": "The organisation that this person is affiliated with. For example, a university or school.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Organization"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_location_Organization",
+      "@type": "rdf:Property",
+      "rdfs:label": "location",
+      "name": "location",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/location"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_Organization"
+        }
+      ],
+      "rdfs:comment": "A location for the organisation, e.g. a city for a publisher.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#prop_encodingFormat_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "encodingFormat",
+      "name": "encodingFormat",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/encodingFormat"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "The media type typically expressed using a MIME format.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        },
+        {
+          "@id": "#class_WebPage"
+        },
+        {
+          "@id": "#class_Standard"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_contentSize_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "contentSize",
+      "name": "contentSize",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/contentSize"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "File size in (mega/kilo)bytes.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_hasPart_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "hasPart",
+      "name": "hasPart",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/hasPart"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "An item or CreativeWork that is part of this item, or CreativeWork (in some sense).",
+      "rangeIncludes": [
+        {
+          "@id": "#class_CreativeWork"
+        },
+        {
+          "@id": "#class_File"
+        }
+      ]
+    }
+  ]
+}
