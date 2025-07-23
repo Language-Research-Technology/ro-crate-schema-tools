@@ -13,8 +13,7 @@ The core metadata vocabularies for this profile are:
   which is mostly [Schema.org](https://schema.org/) terms with a handful of additions. Following
   RO-Crate practice, basic metadata terms such as "who, what, where" and
   bibliographic-style descriptions are chosen from Schema.org where possible.
-- Several terms from [Portland Common Data Model (PCDM)](https://pcdm.org/models), [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) 
-  and [GeoSPARQL](https://www.ogc.org/standards/geosparql/) are used for structural, licensing and geospatial metadata.
+- Several terms from [Language Data Commons Schema Terms](https://w3id.org/ldac/terms), [Portland Common Data Model (PCDM)](https://pcdm.org/models), [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) and [GeoSPARQL](https://www.ogc.org/standards/geosparql/) are used for structural, licensing and geospatial metadata.
 
 <br>
 
@@ -83,7 +82,7 @@ A conformant RO-Crate:
 
 <br>
 
-![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO
+![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO update for non-linguistic data
 
 A collection such as a corpus may be stored in a repository or
 transmitted either as:
@@ -103,7 +102,7 @@ are stored elsewhere in the repository.
 
 ## Classes
 
-In linked data, a class is a resource that represents a concept or entity. Classes specific to the Language Data Commons Schema include: TODO
+In linked data, a class is a resource that represents a concept or entity. Several classes from the Language Data Commons Schema are also applicable to the General Purpose Collection Profile:
 
 | Class                                                                | Description                                                                                                                                                      |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -205,11 +204,11 @@ Specialization of: http://pcdm.org/models#Collection
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryCollection_unnamed_5atsa"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_tqxew"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the RO-Crate profile for collections. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_t2x4k"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
-| <a id="_class_RepositoryCollection_unnamed_6mtnq"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
-| <a id="_class_RepositoryCollection_unnamed_ap7fs"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
+| <a id="_class_RepositoryCollection_unnamed_d0aoy"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | Text |  |
+| <a id="_class_RepositoryCollection_unnamed_0qz34"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the RO-Crate profile for collections. | Text |  |
+| <a id="_class_RepositoryCollection_unnamed_qv4d1"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
+| <a id="_class_RepositoryCollection_unnamed_m00nc"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
+| <a id="_class_RepositoryCollection_unnamed_ppv93"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
 
 
 
@@ -226,7 +225,7 @@ what data owners have chosen to do with their collections in the past.
 If an RO-Crate contains a single Object, the Root Dataset would have a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` with a
 \`conformsTo\` property pointing to the General Purpose Collection Object profile 
-<https://w3id.org/ldac/profile#Object> (this document). TODO
+<https://w3id.org/ldac/profile#Object> (this document). TODO w3id needed
 
 If an RO-Crate contains an entire collection, each Object has a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` and a \`conformsTo\`
@@ -239,7 +238,7 @@ In this example, the Object in question is an interview from a speech
 corpus with three files. The diagram shows the relationships between
 the object and its files, and the contextual metadata of a Person who
 takes the role of the speaker/informant (discussed in more detail
-below). TODO
+below). TODO update for non-linguistic data
 
 ![Structure of an Object crate](media/object-structure.svg)
 
@@ -256,13 +255,13 @@ Specialization of: http://pcdm.org/models#Object
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryObject_unnamed_edoob"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
-| <a id="_class_RepositoryObject_unnamed_ljaht"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_omms2"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_oo5l5"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
+| <a id="_class_RepositoryObject_unnamed_m99p6"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
+| <a id="_class_RepositoryObject_unnamed_tszj0"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_0826u"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
+| <a id="_class_RepositoryObject_unnamed_0mcg8"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
          | #class_PropertyValue, Text, URL |  |
-| <a id="_class_RepositoryObject_unnamed_d8yy2"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
-| <a id="_class_RepositoryObject_unnamed_um71j"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
+| <a id="_class_RepositoryObject_unnamed_lemnr"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="_class_RepositoryObject_unnamed_q7eif"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
       the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.
       Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
 
@@ -275,11 +274,11 @@ Open-ended date ranges can be written with ".." in place of the end date. For ex
 ## Files
 
 There are three important types of files (or references to other
-works) that may be included: \`ldac:PrimaryMaterial\` which is a recording or
-original text, or a citation of or proxy for it, \`ldac:DerivedMaterial\` which
+works) that may be included from the Language Data Commons Schema: \`ldac:PrimaryMaterial\` which an
+original object of study, such as a literary work, film, or recording, \`ldac:DerivedMaterial\` which
 has been generated or sampled from primary material by a process such as format
 conversion or digitization, and \`ldac:Annotation\`, which contains one or more types of
-analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`. TODO
+analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`.
 
 ### A File:
 
@@ -299,12 +298,10 @@ analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`. TODO
 
 #### Describing the columns in CSV or other tabular data
 
-CSV or similar tabular files are often used to represent transcribed
-speech or sign language data, sometimes also with time codes. To enable
-automated location of which column is which, use a [frictionless Table
-Schema](https://specs.frictionlessdata.io/table-schema/) described by a \`File\` entity in the crate. TODO
+CSV or similar tabular files are often used to represent data. To enable
+automated location of which column is which, use a [CSVW](https://csvw.org/) tableSchema described by a \`File\` entity in the crate.
 
-For example:
+For example: TODO update for csvw
 ${exampleEntities('art', ['art_schema.json'])}
 
 <br>
@@ -321,7 +318,7 @@ Identifiers for Objects and Collections MUST be URIs.
 
 Internally, identifiers for all entities that do not have their own URIs
 may use the Archive and Packaging identifier scheme (ARCP), which allows for a DNS-like namespacing of identifiers. For example, the Sydney Speaks corpus top-level
-collection would have the ID: TODO
+collection would have the ID: TODO update for non-linguistic data
 
     arcp://name,http://www.dynamicsoflanguage.edu.au/sydney-speaks/corpus/
 
@@ -356,7 +353,7 @@ modelled:
 2.  For longitudinal studies where it is important to record changing
     demographic information for a \`Person\`, or where precision is
     required in listing contributions to a work use
-    [ldac:PersonSnapshot]. TODO
+    [prov:specializationOf](http://www.w3.org/ns/prov#specializationOf).
 
 3.  If it is important to record lots of contributions to a work (e.g. in
     analysis of a joint work) use [Action](http://schema.org/Action). If more precision is
@@ -372,25 +369,3 @@ modelled:
     we have not seen a use case that requires it.
 
 <br>
-
-## Collection events such as "Sessions"
-
-Where data is collected from participants in a speech study with
-elicitation tasks such as "sessions" (see this [IMDI
-document](https://www.mpi.nl/ISLE/documents/draft/ISLE_MetaData_2.5.pdf))
-or field interviews, this can be recorded in metadata via the
-\`CollectionEvent\` class.
-
-The indirection in this conforms-to relationship is to allow multiple
-objects to have a \`conformsTo\` property which indicates that they conform
-to the _same_ schema while having a local copy of the schema, as per
-RO-Crate best practice of having all local context to use a data
-packages in the package where possible.
-
-<br>
-
-# Examples
-
-[https://www.mpi.nl/ISLE/documents/docs_frame.html](https://www.mpi.nl/ISLE/documents/docs_frame.html)
-
-[ldac:PersonSnapshot]: https://w3id.org/ldac/terms#PersonSnapshot

@@ -1148,6 +1148,450 @@
           "@id": "#class_File"
         }
       ]
+    },
+    {
+      "@id": "ldac:PrimaryMaterial",
+      "@type": "DefinedTerm",
+      "description": "The object of study, such as a literary work, film, or recording of natural discourse.",
+      "inDefinedTermSet": {
+        "@id": "ldac:MaterialTypes"
+      },
+      "name": "PrimaryMaterial"
+    },
+    {
+      "@id": "ldac:MaterialTypes",
+      "@type": "DefinedTermSet",
+      "name": "MaterialTypes",
+      "description": "Set of defined terms for ldac:materialType",
+      "hasDefinedTerm": [
+        {
+          "@id": "ldac:PrimaryMaterial"
+        },
+        {
+          "@id": "ldac:Annotation"
+        },
+        {
+          "@id": "ldac:DerivedMaterial"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:Annotation",
+      "@type": "DefinedTerm",
+      "description": "The resource includes material that adds information to some other linguistic record.",
+      "inDefinedTermSet": {
+        "@id": "ldac:MaterialTypes"
+      },
+      "name": "Annotation"
+    },
+    {
+      "@id": "ldac:DerivedMaterial",
+      "@type": "DefinedTerm",
+      "description": "This is derived from another source, such as a Primary Material, via some process, e.g. a downsampled video or a sample or an abstract of a resource that is not an annotation (an analysis or description).",
+      "inDefinedTermSet": {
+        "@id": "ldac:MaterialTypes"
+      },
+      "name": "DerivedMaterial"
+    },
+    {
+      "@id": "#prop_ldac:materialType_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:materialType",
+      "name": "ldac:materialType",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#materialType"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "Indicates whether the material in a file is the original (primary) source or is derived from it or describes it via annotation.",
+      "rangeIncludes": {
+        "@id": "ldac:MaterialTypes"
+      }
+    },
+    {
+      "@id": "#prop_ldac:derivationOf_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:derivationOf",
+      "name": "ldac:derivationOf",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#derivationOf"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_Annotation"
+        },
+        {
+          "@id": "#class_PrimaryMaterial"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_ldac:hasDerivation_File",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:hasDerivation",
+      "name": "ldac:hasDerivation",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#hasDerivation"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_File"
+        }
+      ],
+      "rdfs:comment": "This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF.",
+      "rangeIncludes": [
+        {
+          "@id": "#class_DerivedMaterial"
+        }
+      ]
+    },
+    {
+      "@id": "#class_ldac:CollectionEvent",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ldac:CollectionEvent",
+      "name": "ldac:CollectionEvent",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#CollectionEvent"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "Event"
+        },
+        {
+          "@id": "CreateAction"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:Session",
+      "@type": "DefinedTerm",
+      "description": "A collection event that is a recording or elicitation session with participants.",
+      "inDefinedTermSet": {
+        "@id": "ldac:CollectionEventTypeTerms"
+      },
+      "name": "Session"
+    },
+    {
+      "@id": "ldac:CollectionEventTypeTerms",
+      "@type": "DefinedTermSet",
+      "name": "CollectionEventTypeTerms",
+      "description": "Set of defined terms for ldac:collectionEventType",
+      "hasDefinedTerm": [
+        {
+          "@id": "ldac:Session"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_ldac:collectionEventType_ldac:CollectionEvent",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:collectionEventType",
+      "name": "ldac:collectionEventType",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#collectionEventType"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:CollectionEvent"
+        }
+      ],
+      "rdfs:comment": "A kind of CollectionEvent characterised by some specific procedures, e.g. a psycholinguistic experiment.",
+      "rangeIncludes": {
+        "@id": "ldac:CollectionEventTypeTerms"
+      }
+    },
+    {
+      "@id": "#class_ldac:CollectionProtocol",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ldac:CollectionProtocol",
+      "name": "ldac:CollectionProtocol",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#CollectionProtocol"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:ElicitationTask",
+      "@type": "DefinedTerm",
+      "description": "The collection protocol includes a task-based prompt to participants.",
+      "inDefinedTermSet": {
+        "@id": "ldac:CollectionProtocolTypeTerms"
+      },
+      "name": "ElicitationTask"
+    },
+    {
+      "@id": "ldac:CollectionProtocolTypeTerms",
+      "@type": "DefinedTermSet",
+      "name": "CollectionProtocolTypeTerms",
+      "description": "Set of defined terms for ldac:collectionProtocolType",
+      "hasDefinedTerm": [
+        {
+          "@id": "ldac:ElicitationTask"
+        },
+        {
+          "@id": "ldac:MaterialSelectionCriteria"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:MaterialSelectionCriteria",
+      "@type": "DefinedTerm",
+      "description": "A description of the criteria used to select texts in a collection.",
+      "inDefinedTermSet": {
+        "@id": "ldac:CollectionProtocolTypeTerms"
+      },
+      "name": "MaterialSelectionCriteria"
+    },
+    {
+      "@id": "#prop_ldac:collectionProtocolType_ldac:CollectionProtocol",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:collectionProtocolType",
+      "name": "ldac:collectionProtocolType",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#collectionProtocolType"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:CollectionProtocol"
+        }
+      ],
+      "rdfs:comment": "A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection.",
+      "rangeIncludes": {
+        "@id": "ldac:CollectionProtocolTypeTerms"
+      },
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_ldac:DataLicense",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ldac:DataLicense",
+      "name": "ldac:DataLicense",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#DataLicense"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "CreativeWork"
+        }
+      ]
+    },
+    {
+      "@id": "#prop_ldac:reviewDate_ldac:DataLicense",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:reviewDate",
+      "name": "ldac:reviewDate",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#reviewDate"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:DataLicense"
+        }
+      ],
+      "rdfs:comment": "The date that this license should be reviewed.",
+      "rangeIncludes": [
+        {
+          "@id": "Text"
+        }
+      ],
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_ldac:DataDepositLicense",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ldac:DataDepositLicense",
+      "name": "ldac:DataDepositLicense",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#DataDepositLicense"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "DataLicense"
+        }
+      ]
+    },
+    {
+      "@id": "#class_ldac:DataReuseLicense",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ldac:DataReuseLicense",
+      "name": "ldac:DataReuseLicense",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#DataReuseLicense"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "DataLicense"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:AuthorizedAccess",
+      "@type": "DefinedTerm",
+      "description": "Indicates that a DataReuseLicense requires some kind of authorization step, from SelfAuthorization (click-through) to processes that require a data steward to grant permission.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AccessTypes"
+      },
+      "name": "AuthorizedAccess"
+    },
+    {
+      "@id": "ldac:AccessTypes",
+      "@type": "DefinedTermSet",
+      "name": "AccessTypes",
+      "description": "Set of defined terms for ldac:access",
+      "hasDefinedTerm": [
+        {
+          "@id": "ldac:AuthorizedAccess"
+        },
+        {
+          "@id": "ldac:OpenAccess"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:OpenAccess",
+      "@type": "DefinedTerm",
+      "description": "Data covered by this license may be accessed as long as the license is served alongside it, and does not require any specific authorization step.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AccessTypes"
+      },
+      "name": "OpenAccess"
+    },
+    {
+      "@id": "#prop_ldac:access_ldac:DataReuseLicense",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:access",
+      "name": "ldac:access",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#access"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:DataReuseLicense"
+        }
+      ],
+      "rdfs:comment": "Whether this is an open or restricted access license.",
+      "rangeIncludes": {
+        "@id": "ldac:AccessTypes"
+      }
+    },
+    {
+      "@id": "#prop_ldac:accessControlList_ldac:DataReuseLicense",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:accessControlList",
+      "name": "ldac:accessControlList",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#accessControlList"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:DataReuseLicense"
+        }
+      ],
+      "rdfs:comment": "When a license has an authorizationWorkflow property with a value of the DefinedTerm AccessControlList this property has a URI value that points to a list of userIDs.",
+      "rangeIncludes": [
+        {
+          "@id": "URL"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:AccessControlList",
+      "@type": "DefinedTerm",
+      "description": "License grants access to data based on a list of approved users, specified using the property accessControlList.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AuthorizationWorkflows"
+      },
+      "name": "AccessControlList"
+    },
+    {
+      "@id": "ldac:AuthorizationWorkflows",
+      "@type": "DefinedTermSet",
+      "name": "AuthorizationWorkflows",
+      "description": "Set of defined terms for ldac:authorizationWorkflow",
+      "hasDefinedTerm": [
+        {
+          "@id": "ldac:AccessControlList"
+        },
+        {
+          "@id": "ldac:AgreeToTerms"
+        },
+        {
+          "@id": "ldac:AuthorizationByApplication"
+        },
+        {
+          "@id": "ldac:AuthorizationByInvitation"
+        },
+        {
+          "@id": "ldac:SelfAuthorization"
+        }
+      ]
+    },
+    {
+      "@id": "ldac:AgreeToTerms",
+      "@type": "DefinedTerm",
+      "description": "A user is expected to explicitly agree to a set of license terms, this may be combined with AccessControlList - to note that even if a user has been pre-approved for a license they must agree to license terms.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AuthorizationWorkflows"
+      },
+      "name": "AgreeToTerms"
+    },
+    {
+      "@id": "ldac:AuthorizationByApplication",
+      "@type": "DefinedTerm",
+      "description": "Users may apply for a license via some workflow, such as a form, with the decision being made by a DataSteward or their delegate about whether to grant the license.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AuthorizationWorkflows"
+      },
+      "name": "AuthorizationByApplication"
+    },
+    {
+      "@id": "ldac:AuthorizationByInvitation",
+      "@type": "DefinedTerm",
+      "description": "A data steward or administrator is expected to use an access control system to invite users, for example, participants, collaborators or students.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AuthorizationWorkflows"
+      },
+      "name": "AuthorizationByInvitation"
+    },
+    {
+      "@id": "ldac:SelfAuthorization",
+      "@type": "DefinedTerm",
+      "description": "A user can be authorised to access data by clicking that they agree to a license, or filling out a form to check their understanding, which can be validated by a machine and does not require human intervention.",
+      "inDefinedTermSet": {
+        "@id": "ldac:AuthorizationWorkflows"
+      },
+      "name": "SelfAuthorization"
+    },
+    {
+      "@id": "#prop_ldac:authorizationWorkflow_ldac:DataReuseLicense",
+      "@type": "rdf:Property",
+      "rdfs:label": "ldac:authorizationWorkflow",
+      "name": "ldac:authorizationWorkflow",
+      "prov:specializationOf": {
+        "@id": "https://w3id.org/ldac/terms#authorizationWorkflow"
+      },
+      "domainIncludes": [
+        {
+          "@id": "#class_ldac:DataReuseLicense"
+        }
+      ],
+      "rdfs:comment": "By what process a user is granted authorization to a license.",
+      "rangeIncludes": {
+        "@id": "ldac:AuthorizationWorkflows"
+      }
     }
   ]
 }

@@ -13,8 +13,7 @@ The core metadata vocabularies for this profile are:
   which is mostly [Schema.org](https://schema.org/) terms with a handful of additions. Following
   RO-Crate practice, basic metadata terms such as "who, what, where" and
   bibliographic-style descriptions are chosen from Schema.org where possible.
-- Several terms from [Portland Common Data Model (PCDM)](https://pcdm.org/models), [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) 
-  and [GeoSPARQL](https://www.ogc.org/standards/geosparql/) are used for structural, licensing and geospatial metadata.
+- Several terms from [Language Data Commons Schema Terms](https://w3id.org/ldac/terms), [Portland Common Data Model (PCDM)](https://pcdm.org/models), [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) and [GeoSPARQL](https://www.ogc.org/standards/geosparql/) are used for structural, licensing and geospatial metadata.
 
 <br>
 
@@ -77,7 +76,7 @@ ${rules.Dataset}
 
 <br>
 
-![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO
+![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO update for non-linguistic data
 
 A collection such as a corpus may be stored in a repository or
 transmitted either as:
@@ -97,7 +96,7 @@ are stored elsewhere in the repository.
 
 ## Classes
 
-In linked data, a class is a resource that represents a concept or entity. Classes specific to the Language Data Commons Schema include: TODO
+In linked data, a class is a resource that represents a concept or entity. Several classes from the Language Data Commons Schema are also applicable to the General Purpose Collection Profile:
 
 | Class                                                                | Description                                                                                                                                                      |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -206,7 +205,7 @@ what data owners have chosen to do with their collections in the past.
 If an RO-Crate contains a single Object, the Root Dataset would have a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` with a
 \`conformsTo\` property pointing to the General Purpose Collection Object profile 
-<https://w3id.org/ldac/profile#Object> (this document). TODO
+<https://w3id.org/ldac/profile#Object> (this document). TODO w3id needed
 
 If an RO-Crate contains an entire collection, each Object has a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` and a \`conformsTo\`
@@ -219,7 +218,7 @@ In this example, the Object in question is an interview from a speech
 corpus with three files. The diagram shows the relationships between
 the object and its files, and the contextual metadata of a Person who
 takes the role of the speaker/informant (discussed in more detail
-below). TODO
+below). TODO update for non-linguistic data
 
 ![Structure of an Object crate](media/object-structure.svg)
 
@@ -235,11 +234,11 @@ ${rules.RepositoryObject}
 ## Files
 
 There are three important types of files (or references to other
-works) that may be included: \`ldac:PrimaryMaterial\` which is a recording or
-original text, or a citation of or proxy for it, \`ldac:DerivedMaterial\` which
+works) that may be included from the Language Data Commons Schema: \`ldac:PrimaryMaterial\` which an
+original object of study, such as a literary work, film, or recording, \`ldac:DerivedMaterial\` which
 has been generated or sampled from primary material by a process such as format
 conversion or digitization, and \`ldac:Annotation\`, which contains one or more types of
-analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`. TODO
+analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`.
 
 ### A File:
 
@@ -259,12 +258,10 @@ ${rules.File}
 
 #### Describing the columns in CSV or other tabular data
 
-CSV or similar tabular files are often used to represent transcribed
-speech or sign language data, sometimes also with time codes. To enable
-automated location of which column is which, use a [frictionless Table
-Schema](https://specs.frictionlessdata.io/table-schema/) described by a \`File\` entity in the crate. TODO
+CSV or similar tabular files are often used to represent data. To enable
+automated location of which column is which, use a [CSVW](https://csvw.org/) tableSchema described by a \`File\` entity in the crate.
 
-For example:
+For example: TODO update for csvw
 ${exampleEntities('art', ['art_schema.json'])}
 
 <br>
@@ -281,7 +278,7 @@ Identifiers for Objects and Collections MUST be URIs.
 
 Internally, identifiers for all entities that do not have their own URIs
 may use the Archive and Packaging identifier scheme (ARCP), which allows for a DNS-like namespacing of identifiers. For example, the Sydney Speaks corpus top-level
-collection would have the ID: TODO
+collection would have the ID: TODO update for non-linguistic data
 
     arcp://name,http://www.dynamicsoflanguage.edu.au/sydney-speaks/corpus/
 
@@ -316,7 +313,7 @@ modelled:
 2.  For longitudinal studies where it is important to record changing
     demographic information for a \`Person\`, or where precision is
     required in listing contributions to a work use
-    [ldac:PersonSnapshot]. TODO
+    [prov:specializationOf](http://www.w3.org/ns/prov#specializationOf).
 
 3.  If it is important to record lots of contributions to a work (e.g. in
     analysis of a joint work) use [Action](http://schema.org/Action). If more precision is
@@ -332,25 +329,3 @@ modelled:
     we have not seen a use case that requires it.
 
 <br>
-
-## Collection events such as "Sessions"
-
-Where data is collected from participants in a speech study with
-elicitation tasks such as "sessions" (see this [IMDI
-document](https://www.mpi.nl/ISLE/documents/draft/ISLE_MetaData_2.5.pdf))
-or field interviews, this can be recorded in metadata via the
-\`CollectionEvent\` class.
-
-The indirection in this conforms-to relationship is to allow multiple
-objects to have a \`conformsTo\` property which indicates that they conform
-to the _same_ schema while having a local copy of the schema, as per
-RO-Crate best practice of having all local context to use a data
-packages in the package where possible.
-
-<br>
-
-# Examples
-
-[https://www.mpi.nl/ISLE/documents/docs_frame.html](https://www.mpi.nl/ISLE/documents/docs_frame.html)
-
-[ldac:PersonSnapshot]: https://w3id.org/ldac/terms#PersonSnapshot
