@@ -186,6 +186,7 @@ try {
     classIdToNormalizedName[classId] = normalizeName(classId);
   });
 
+  // TODO __ NOOOOOO!!!!!!! need to get rid of random IDs in class names
   function normalizeName(name) {
     // Handle null, undefined, or non-string values
     if (!name || typeof name !== 'string') {
@@ -202,6 +203,7 @@ try {
     // Add properties from superclasses
     if (classHierarchy[classId]) {
       classHierarchy[classId].superClasses.forEach(superClass => {
+        // TODO -- WE DO do inheritance if ANY class is locally defined - also this needs to be recursive
         // Check if this is a schema.org class - we don't handle inheritance from external classes
         if (!superClass.startsWith('http:')) {
           const superProps = classPropMap[superClass] || [];
