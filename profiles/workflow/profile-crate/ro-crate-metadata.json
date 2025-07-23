@@ -139,7 +139,7 @@
       "@id": "#prop_license_Dataset",
       "@type": "rdf:Property",
       "rdfs:label": "license",
-      "name": "lic  ense",
+      "name": "license",
       "prov:specializationOf": {
         "@id": "http://schema.org/license"
       },
@@ -164,24 +164,121 @@
       "@id": "#Class_MainWorkflow",
       "@type": "rdfs:Class",
       "prov:specializationOf": [
-        { "@id": "http://schema.org/File" },
+        { "@id": "http://schema.org/MediaObject" },
         { "@id": "http://schema.org/SoftwareSourceCode" },
-        { "@id": "http://schema.org/ComputationalWorkflow" }
+        { "@id": "https://bioschemas.org/ComputationalWorkflow" }
       ],
       "description": "The Main Workflow is the primary workflow of the RO-Crate. It represents the computational process that is described by the RO-Crate.",
       "name": "Main Workflow",
       "sh:minCount": 1
     },
     {
-      "@id": "#Property_hasMainEntity_Workflow",
+      "@id": "#Property_mainEntity_Workflow",
       "@type": "rdf:Property",
-      "prov:specializationOf": { "@id": "http://schema.org/hasMainEntity" },
+      "prov:specializationOf": { "@id": "http://schema.org/mainEntity" },
       "description": "Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow.",
-      "name": "has main workflow",
+      "name": "mainEntity",
+      "rdfs:label": "mainEntity",
       "domainIncludes": [{ "@id": "#Root_Data_Entity" }],
       "rangeIncludes": { "@id": "#Class_MainWorkflow" },
       "sh:minCount": 1,
       "sh:maxCount": 1
+    },
+    {
+      "@id": "#Property_programmingLanguage_Workflow",
+      "@type": "rdf:Property",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/programmingLanguage"
+      },
+      "description": "The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name.",
+      "name": "programmingLanguage",
+      "rdfs:label": "programmingLanguage",
+      "domainIncludes": { "@id": "#Class_MainWorkflow" },
+      "rangeIncludes": { "@id": "#programmingLanguages" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#programmingLanguages",
+      "@type": "ItemList",
+      "name": "Programming Languages",
+      "description": "A list of programming languages that can be used to implement the Main Workflow",
+      "itemListElement": [
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#galaxy"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#knime"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake"
+        }
+      ]
+    },
+
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl",
+      "@type": "ComputerLanguage",
+      "name": "Common Workflow Language",
+      "alternateName": "CWL",
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.2/"
+      },
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      }
+    },
+
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#galaxy",
+      "@type": "ComputerLanguage",
+      "name": "Galaxy",
+      "identifier": {
+        "@id": "https://galaxyproject.org/"
+      },
+      "url": {
+        "@id": "https://galaxyproject.org/"
+      }
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#knime",
+      "@type": "ComputerLanguage",
+      "name": "KNIME",
+      "identifier": {
+        "@id": "https://www.knime.com/"
+      },
+      "url": {
+        "@id": "https://www.knime.com/"
+      }
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow",
+      "@type": "ComputerLanguage",
+      "name": "Nextflow",
+      "identifier": {
+        "@id": "https://www.nextflow.io/"
+      },
+      "url": {
+        "@id": "https://www.nextflow.io/"
+      }
+    },
+
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake",
+      "@type": "ComputerLanguage",
+      "name": "Snakemake",
+      "identifier": {
+        "@id": "https://doi.org/10.1093/bioinformatics/bts480"
+      },
+      "url": {
+        "@id": "https://snakemake.readthedocs.io"
+      }
     }
   ]
 }

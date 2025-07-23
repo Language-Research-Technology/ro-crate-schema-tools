@@ -14,3 +14,10 @@ general-purpose-profile:
 	@echo "Building general-purpose-profile..."
 	node generate-soss-docs.js profiles/general-purpose-collection/profile-crate/ro-crate-metadata.json profiles/general-purpose-collection/profile-text.md profiles/general-purpose-collection/profile-crate/profile-documentation.md
 	@echo "general-purpose-profile built successfully."
+
+
+
+workflow-profile:
+	@echo "Building workflow-profile..."
+	node generate-soss-docs.js profiles/workflow/profile-crate/ro-crate-metadata.json profiles/workflow/profile-text.md profiles/workflow/profile-crate/profile-documentation.md
+	@echo "workflow-profile built successfully."

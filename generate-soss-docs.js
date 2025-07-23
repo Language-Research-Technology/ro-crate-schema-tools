@@ -21,53 +21,40 @@ const outputPath = process.argv[4] || path.join(profileDir, 'profile-documentati
 
 // Load the profile crate
 console.log(`Loading SOSS+ profile from: ${profilePath}`);
+
 try {
   const profileData = fs.readFileSync(profilePath, 'utf8');
   const profileJson = JSON.parse(profileData);
   const profileCrate = new ROCrate(profileJson, { array: true, link: true });
 
+
   // Create rules data structure for use by the template
   const rules = { 
     objects: {}, 
     all: "",  // Will contain all classes summary
-    definedTermSets: {}  // Will contain DefinedTermSet documentation
+    definedTermSets: {},  // Will contain DefinedTermSet documentation
+    itemLists: {},  // Will contain item lists documentation
   };
 
-  // Extract classes from the profile
-  const classRules = profileCrate.getGraph().filter(entity => 
-    entity['@type'] && 
-    (Array.isArray(entity['@type']) ? 
-      entity['@type'].includes('rdfs:Class') : 
-      entity['@type'] === 'rdfs:Class')
-  );
-  
-  // Find property rules
-  const propertyRules = profileCrate.getGraph().filter(entity =>
-    entity['@type'] && 
-    (Array.isArray(entity['@type']) ? 
-      entity['@type'].includes('rdf:Property') : 
-      entity['@type'] === 'rdf:Property')
-  );
-  
-  // Find DefinedTermSet entities
-  const definedTermSetEntities = profileCrate.getGraph().filter(entity =>
-    entity['@type'] && 
-    (Array.isArray(entity['@type']) ? 
-      entity['@type'].includes('DefinedTermSet') : 
-      entity['@type'] === 'DefinedTermSet')
-  );
 
-  // Find DefinedTerm entities
-  const definedTermEntities = profileCrate.getGraph().filter(entity =>
-    entity['@type'] && 
-    (Array.isArray(entity['@type']) ? 
-      entity['@type'].includes('DefinedTerm') : 
-      entity['@type'] === 'DefinedTerm')
-  );
-  
+  // Index entities by @type using native RO-Crate methods
+  const entitiesByType = {};
+
+  for (let entity of profileCrate.entities()) { 
+    for (let type of entity['@type'] || []) {
+      if (!entitiesByType[type]) {
+        entitiesByType[type] = [];
+      }
+      entitiesByType[type].push(entity);
+    }
+  }
+
+ /*  
+
+  TODO: Deal with class inheritance at some point -- maybe later
   // Create a class hierarchy map for inheritance support
   const classHierarchy = {};
-  classRules.forEach(classRule => {
+  entitiesByType["rdfs:Class"].forEach(classRule => {
     const classId = classRule['@id'];
     const superClasses = classRule['prov:specializationOf'] || [];
     const superClassesArray = Array.isArray(superClasses) ? superClasses : [superClasses];
@@ -86,14 +73,13 @@ try {
       }
     });
   });
-  
+   */
   // Group properties by class
+
   const classPropMap = {};
-  propertyRules.forEach(prop => {
-    const domains = prop['domainIncludes'] || [];
-    const domainsArray = Array.isArray(domains) ? domains : [domains];
+  (entitiesByType["rdf:Property"] || []).forEach(prop => {
     
-    domainsArray.forEach(domain => {
+    prop['domainIncludes'].forEach(domain => {
       const classId = typeof domain === 'object' ? domain['@id'] : domain;
       if (!classPropMap[classId]) {
         classPropMap[classId] = [];
@@ -103,7 +89,9 @@ try {
   });
 
   // Find the Root Data Entity class
-  const rootDataEntityClass = classRules.find(rule => rule['@id'] === '#Root_Data_Entity');
+  // TODO this is a bad HACK that should be fixed later
+  //  -- need to look for the ro-crate-metadata.json metadata descriptor class and find root(s) from there
+  const rootDataEntityClass = profileCrate.getEntity("#Root_Data_Entity");
   
   if (rootDataEntityClass) {
     const rootTypes = rootDataEntityClass['prov:specializationOf'] || [];
@@ -132,8 +120,8 @@ try {
 
   // Generate documentation for each DefinedTermSet
   let allDefinedTermSets = "## Defined Term Sets\n\n";
-  
-  definedTermSetEntities.forEach(termSet => {
+
+  (entitiesByType["DefinedTermSet"] || []).forEach(termSet => {
     const termSetId = termSet['@id'];
     const termSetName = termSet['name'] || termSet['rdfs:label'] || termSetId;
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
@@ -174,70 +162,65 @@ try {
   // Add all defined term sets summary to rules
   rules.allDefinedTermSets = allDefinedTermSets;
 
+  // Generate documentation for each ItemList
+  let allItemLists = "## Item Lists\n\n";
+
+  (entitiesByType["ItemList"] || []).forEach(list => {
+    const listId = list['@id'];
+    const listName = list['name'] || listId;
+    const listDescription = list['description'] || '';
+    
+    let listSummary = `### <a id="${listId}"></a>${listName}\n\n`;
+    listSummary += `${listDescription}\n\n`;
+    
+    // Add terms table if there are terms in this set
+    const items = list.itemListElement || [];
+    if (items.length > 0) {
+      
+      // Sort terms alphabetically by name
+      items.sort((a, b) => {
+        const aName = String(a['name']  || a['@id'] || '');
+        const bName = String(b['name']  || b['@id'] || '');
+        return aName.localeCompare(bName);
+      });
+      
+      items.forEach(item => {
+        const itemName = item['name']  || item['@id'];
+        const ItemDesc = item['description']  || '';
+        listSummary += `-  [${itemName}](#${item["@id"]})\n `;
+      });
+
+      listSummary += "<hr/>\n\n";
+
+      items.forEach(item => {
+        listSummary += `\n\n <a id="${item["@id"]}"></a><pre>\n ${JSON.stringify(item, null, 2)}\n</pre>\n\n`;
+      });
+    } else {
+      listSummary += `*No terms defined for this term set*\n\n`;
+    }
+    
+    
+    // Add DefinedTermSet to rules structure
+    rules[listId] = listSummary;
+    rules.itemLists[listId] = listSummary;
+    allItemLists += listSummary;
+  });
+  
+  // Add all defined term sets summary to rules
+  rules.allItemLists = allItemLists;
+
+
   // Generate class documentation
   let allClasses = "## Classes and Properties\n\n";
   
-  // Create a lookup table for class IDs to their normalized names for consistent cross-references
-  const classIdToNormalizedName = {};
-  classRules.forEach(classRule => {
-    const classId = classRule['@id'];
-    const className = classRule['name'] || classRule['rdfs:label'] || classId;
-    // Use class ID as basis for normalization to ensure consistency
-    classIdToNormalizedName[classId] = normalizeName(classId);
-  });
-
-  // TODO __ NOOOOOO!!!!!!! need to get rid of random IDs in class names
-  function normalizeName(name) {
-    // Handle null, undefined, or non-string values
-    if (!name || typeof name !== 'string') {
-      return 'unnamed_' + Math.random().toString(36).substring(2, 7); // Generate a random ID
-    }
-    return name.replace(/[^a-zA-Z0-9]/g, '_');
-  }
-  
-  // Function to get all properties for a class (including inherited)
-  function getAllPropertiesForClass(classId) {
-    // Start with direct properties
-    let props = classPropMap[classId] || [];
-    
-    // Add properties from superclasses
-    if (classHierarchy[classId]) {
-      classHierarchy[classId].superClasses.forEach(superClass => {
-        // TODO -- WE DO do inheritance if ANY class is locally defined - also this needs to be recursive
-        // Check if this is a schema.org class - we don't handle inheritance from external classes
-        if (!superClass.startsWith('http:')) {
-          const superProps = classPropMap[superClass] || [];
-          props = props.concat(superProps);
-        }
-      });
-    }
-    
-    // Deduplicate properties based on name
-    const seen = {};
-    return props.filter(prop => {
-      const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
-      if (seen[propName]) return false;
-      seen[propName] = true;
-      return true;
-    });
-  }
-
-  // Function to check if a range is a DefinedTermSet
-  function isDefinedTermSetRange(rangeId) {
-    return definedTermSetEntities.some(termSet => termSet['@id'] === rangeId);
-  }
-  
-  classRules.forEach(classRule => {
+  entitiesByType["rdfs:Class"].forEach(classRule => {
+    var classSummary = `### <a id="${classRule['@id']}"></a>${classRule['name'] || classRule['rdfs:label'] || classRule['@id']}\n\n`;
     const classId = classRule['@id'];
     const className = classRule['name'] || classRule['rdfs:label'] || classId;
     const classDesc = classRule['description'] || classRule['rdfs:comment'] || '';
     const specialized = classRule['prov:specializationOf'] || [];
     
-    // Use the consistent ID for this class
-    const normalizedClassName = classIdToNormalizedName[classId];
-    
-    let classSummary = `### <a id="${normalizedClassName}"></a>${className}\n\n`;
-    classSummary += `${classDesc}\n\n`;
+     classSummary += `${classDesc}\n\n`;
     
     if (specialized) {
       const specializedArray = Array.isArray(specialized) ? specialized : [specialized];
@@ -246,8 +229,8 @@ try {
       classSummary += `Specialization of: ${specializedStr}\n\n`;
     }
     
-    // Get all properties for this class, including inherited ones
-    const props = getAllPropertiesForClass(classId);
+    // Get all properties for this class (no inheritence support ATM)
+    const props = classRule["@reverse"].domainIncludes
     
     if (props.length > 0) {
       classSummary += `| Property | Required | Description | Range | Value |\n`;
@@ -270,41 +253,25 @@ try {
       props.forEach(prop => {
         const propId = prop['@id'];
         const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
-        const normalizedPropName = normalizeName(propName);
-        const anchorId = `${normalizedClassName}_${normalizedPropName}`;
+        const anchorId = `${classRule["@id"]}_${prop["@id"]}`;
         // Make a link to the 'main' definition of the property
         const propBaseId = prop?.["prov:specializationOf"]?.[0]?.['@id'];
         const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${propBaseId})` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
         
-        const rangeIncludes = prop['rangeIncludes'] || prop['schema:rangeIncludes'] || [];
-        const rangesArray = Array.isArray(rangeIncludes) ? rangeIncludes : [rangeIncludes];
-        
+        const rangesArray = prop['rangeIncludes'] || [];
+      
         // Create links to range classes that are defined in the profile
         const rangeLinks = rangesArray.map(r => {
           const rangeId = typeof r === 'object' ? r['@id'] : r;
           if (!rangeId) return 'Text'; // Default to Text if no range is specified
-          
-          // Check if this is a DefinedTermSet
-          if (isDefinedTermSetRange(rangeId)) {
-            termSet = profileCrate.getEntity(rangeId);
-            const termSetName = termSet ? (termSet['name'] || termSet['rdfs:label'] || rangeId) : rangeId;
-            return `[${termSetName}](#termset_${rangeId})`;
+          const rangeDefiniton = profileCrate.getEntity(rangeId);
+          if(rangeDefiniton) {
+            const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
+            return `<a href="#${rangeId}">${rangeName}</a>`;
           }
-          // Use the consistent normalized ID from our lookup table
-          else if (classIdToNormalizedName[rangeId]) {
-            const rangeClass = classRules.find(c => c['@id'] === rangeId);
-            const rangeName = rangeClass ? (rangeClass['name'] || rangeClass['rdfs:label'] || rangeId) : rangeId;
-            return `[${rangeName}](#${classIdToNormalizedName[rangeId]})`;
-          } else if (rangeId.startsWith('http://schema.org/')) {
-            const shortName = rangeId.replace('http://schema.org/', 'schema:');
-            return shortName;
-          } else if (rangeId.startsWith('schema:')) {
-            return rangeId;
-          } else {
-            return rangeId;
-          }
+          return `${rangeId}`
         }).join(', ');
         
         // Get fixed value if specified
@@ -326,10 +293,7 @@ try {
   // Store all classes summary
   rules.all = allClasses;
   
-  // Add specific mappings for common classes to make them easier to reference in templates
-  rules.RepositoryCollection = rules['#class_RepositoryCollection'] || '';
-  rules.RepositoryObject = rules['#class_RepositoryObject'] || '';
-  
+ 
   // Add provenance information
   // Get the current Git branch by running git command
   let gitBranch = 'main'; // Default to main
@@ -371,6 +335,10 @@ try {
     // Special case for definedTermSets
     if (key === 'allDefinedTermSets') {
       return rules.allDefinedTermSets || '';
+    }
+    // Special case for itemLists
+    if (key === 'allItemLists') {
+      return rules.allItemLists || '';
     }
     return rules[key] || '';
   });
