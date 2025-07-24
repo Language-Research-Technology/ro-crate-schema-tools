@@ -211,30 +211,55 @@ try {
 
 
   // Generate class documentation
-  let allClasses = "## Classes and Properties\n\n";
+  let allClasses = "## Types of entities (specializations of Classes) and expected Properties\n\n";
   
   entitiesByType["rdfs:Class"].forEach(classRule => {
-    var classSummary = `### <a id="${classRule['@id']}"></a>${classRule['name'] || classRule['rdfs:label'] || classRule['@id']}\n\n`;
     const classId = classRule['@id'];
     const className = classRule['name'] || classRule['rdfs:label'] || classId;
     const classDesc = classRule['description'] || classRule['rdfs:comment'] || '';
     const specialized = classRule['prov:specializationOf'] || [];
+    var classSummary = `### <a id="${classRule['@id']}"></a> ${className}\n\n`;
+
+
+    classSummary += `${classDesc}\n\n`;
+
+    const min = classRule["sh:minCount"] !== undefined ? String(classRule["sh:minCount"]) : undefined;
+    const max = classRule["sh:maxCount"] !== undefined ? String(classRule["sh:maxCount"]) : undefined;
     
-     classSummary += `${classDesc}\n\n`;
+    if (min === undefined) {
+      classSummary += `Instances of this type MAY be present in the crate.\n\n`;
+    } else if  (min === "0") {
+      classSummary += `Instances of this type SHOULD be present in the crate.\n\n`;
+    } else {
+      classSummary += `At least ${min} instances of this type MUST be present in the crate.\n\n`;
+    }
+    if (max !== undefined && max > 0) {
+      classSummary += ` A maximum of ${max} instances of this type  MAY be present in the crate.\n\n`;
+    }
+
+    classSummary += `| Min Count | Max Count |\n`;
+    classSummary += `| --------- | --------- |\n`;
+    classSummary += `| ${min !== undefined ? min : 'N/A'} | ${max !== undefined ? max : 'N/A'} |\n\n`;
+
+  
+    
+
+     classSummary += `| Property | Required | Description | Range | Value |\n`;
+     classSummary += `| -------- | -------- | ----------- | ----- | ----- |\n`;
     
     if (specialized) {
       const specializedArray = Array.isArray(specialized) ? specialized : [specialized];
       const specializedStr = specializedArray.map(s => 
         typeof s === 'object' ? s['@id'] : s).join(', ');
-      classSummary += `Specialization of: ${specializedStr}\n\n`;
+      classSummary += `| @type | yes |  |  | ${specializedStr} |\n`;
+
     }
     
     // Get all properties for this class (no inheritence support ATM)
     const props = classRule["@reverse"].domainIncludes
     
     if (props.length > 0) {
-      classSummary += `| Property | Required | Description | Range | Value |\n`;
-      classSummary += `| -------- | -------- | ----------- | ----- | ----- |\n`;
+      
       
       // Sort properties: required first, then alphabetically
       props.sort((a, b) => {

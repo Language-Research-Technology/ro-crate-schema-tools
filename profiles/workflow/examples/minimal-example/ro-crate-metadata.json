@@ -7,10 +7,7 @@
       "about": {
         "@id": "./"
       },
-      "conformsTo": [
-        { "@id": "https://w3id.org/ro/crate/1.1"},
-        { "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"}
-      ]
+      "conformsTo": [{ "@id": "https://w3id.org/ro/crate/1.1" }]
     },
     {
       "@id": "ro-crate-preview.html",
@@ -23,6 +20,9 @@
       "@id": "./",
       "@type": "Dataset",
       "name": "Example Workflow",
+      "conformsTo": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+      },
       "description": "An example workflow RO-Crate",
       "license": "Apache-2.0",
       "mainEntity": {
@@ -41,12 +41,15 @@
       ]
     },
     {
+    "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+    "@type": ["CreativeWork", "Profile"],
+    "name": "Workflow RO-Crate Profile (experimental)",
+    "version": "0.4.0",
+    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity"
+    },
+    {
       "@id": "example_workflow.cwl",
-      "@type": [
-        "File",
-        "SoftwareSourceCode",
-        "ComputationalWorkflow"
-      ],
+      "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
       "programmingLanguage": {
         "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
       },
@@ -58,10 +61,7 @@
     {
       "@id": "diagram.svg",
       "name": "Example Workflow Diagram",
-      "@type": [
-        "File",
-        "ImageObject"
-      ]
+      "@type": ["File", "ImageObject"]
     },
     {
       "@id": "README.md",

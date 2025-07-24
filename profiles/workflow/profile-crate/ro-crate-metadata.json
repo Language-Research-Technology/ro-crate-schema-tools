@@ -199,6 +199,38 @@
       "sh:maxCount": 1
     },
     {
+      "@id": "#Root_Data_Entity_profile_itemList",
+      "@type": "ItemList",
+      "name": "Profile Item List",
+      "description": "A list of valid profile values for this RO-Crate Profile",
+      "itemListElement": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+      }
+    },
+    {
+    "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+    "@type": ["CreativeWork", "Profile"],
+    "name": "Workflow RO-Crate Profile (experimental)",
+    "version": "0.4.0",
+    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity"
+    },
+    {
+      "@type": "rdf:Property",
+      "@id": "#prop_conformsTo_Root_Data_Entity",
+      "name": "conformsTo",
+      "rdfs:label": "conformsTo",
+      "description": "The RO-Crate conforms to this profile. This is a link to to the profile entity",
+      "rangeIncludes": {
+        "@id": "#Root_Data_Entity_profile_itemList"
+      },
+      "domainIncludes": {
+        "@id": "#Root_Data_Entity"
+      },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+  
+    {
       "@id": "#programmingLanguages",
       "@type": "ItemList",
       "name": "Programming Languages",
@@ -279,6 +311,106 @@
       "url": {
         "@id": "https://snakemake.readthedocs.io"
       }
+    },
+     {
+      "@id": "#class_CreativeWork_README",
+      "@type": "rdfs:Class",
+      "name": "README File",
+      "prov:specializationOf": [{ "@id": "http://schema.org/CreativeWork" }, { "@id": "http://schema.org/MediaObject" }],
+      "Description": "The _Crate_ SHOULD contain a File README.md at the root level. If present, it SHOULD have an about property referencing the Root Data Entity and SHOULD have `text/markdown` as its `encodingFormat`.",
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_CreativeWork_README.id",
+      "@type": "rdf:Property",
+      "value": "README.md",
+      "description": "The RO-Crate Metadata ",
+      "rdfs:label": "@id",
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork_README"
+        }
+      ],
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+     {
+      "@id": "#class_CreativeWork_README.encodingFormat",
+      "@type": "rdf:Property",
+      "value": "text/markdown",
+      "description": "Readme file must have an encodingFormat of `text/markdown`.",
+      "rdfs:label": "encodingFormat",
+      "prov:specializationOf": { "@id": "http://schema.org/encodingFormat" },
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork_README"
+        }
+      ],
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_CreativeWork_README.about",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://schema.org/about" },
+      "description": "The README.md file SHOULD have an about property referencing the Root Data Entity.",
+      "name": "about",
+      "domainIncludes": [
+        {
+          "@id": "#class_CreativeWork_README"
+        }
+      ],
+      "rangeIncludes": { "@id": "#Root_Data_Entity" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+     {
+      "@id": "#class_Dataset_Test_Directory",
+      "@type": "rdfs:Class",
+      "name": "Test Directory",
+      "prov:specializationOf": [{ "@id": "http://schema.org/Dataset" }],
+      "Description": "The Crate SHOULD contain a directory for test files at the root level.",
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_Dataset_Test_Directory.id",
+      "@type": "rdf:Property",
+      "value": "test/",
+      "description": "The RO-Crate Metadata ",
+      "rdfs:label": "@id",
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset_Test_Directory"
+        }
+      ],
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+     {
+      "@id": "#class_Dataset_Examples_Directory",
+      "@type": "rdfs:Class",
+      "name": "Examples Directory",
+      "prov:specializationOf": [{ "@id": "http://schema.org/Dataset" }],
+      "Description": "The Crate SHOULD contain a directory for example files at the root level.",
+      "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#class_Dataset_Examples_Directory.id",
+      "@type": "rdf:Property",
+      "value": "examples/",
+      "description": "The RO-Crate Metadata ",
+      "rdfs:label": "@id",
+      "domainIncludes": [
+        {
+          "@id": "#class_Dataset_Examples_Directory"
+        }
+      ],
+      "sh:minCount": 1,
+      "sh:maxCount": 1
     }
   ]
 }
+
