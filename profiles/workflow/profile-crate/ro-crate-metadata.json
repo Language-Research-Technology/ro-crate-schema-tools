@@ -52,7 +52,6 @@
           "@id": "#RO-Crate_Metadata_Descriptor"
         }
       ],
-      "rangeIncludes": { "@id": "#Root_Data_Entity" },
       "sh:minCount": 1,
       "sh:maxCount": 1
     },
@@ -60,7 +59,7 @@
       "@id": "#RO-Crate_Metadata_Descriptor.about",
       "@type": "rdf:Property",
       "prov:specializationOf": { "@id": "http://schema.org/about" },
-      "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity. I a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Enitty with different @type arrays or `@conformsTo` references (or other specializations). In this example there is a single reference.",
+      "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity.",
       "name": "about",
       "domainIncludes": [
         {
@@ -146,7 +145,7 @@
       "domainIncludes": {
         "@id": "#Root_Data_Entity"
       },
-      "rdfs:comment": "SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used",
+      "rdfs:comment": "TODO: Deal with the supplied list of licenses (string values) SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used",
       "rangeIncludes": [
         {
           "@id": "#class_CreativeWork"
@@ -173,6 +172,18 @@
       "sh:minCount": 1
     },
     {
+      "@id": "#Class_MainWorkflow_Description",
+      "@type": "rdfs:Class",
+      "prov:specializationOf": [
+        { "@id": "http://schema.org/MediaObject" },
+        { "@id": "http://schema.org/SoftwareSourceCode" },
+        { "@id": "http://schema.org/HowTo" }
+      ],
+      "description": "The _Crate_ COULD contain a data entity of type `[File, SoftwareSourceCode, HowTo]` as the _Main Workflow CWL Description_.",
+      "name": "Main Workflow Description",
+      "sh:maxCount": 1
+    },
+    {
       "@id": "#Property_mainEntity_Workflow",
       "@type": "rdf:Property",
       "prov:specializationOf": { "@id": "http://schema.org/mainEntity" },
@@ -181,6 +192,18 @@
       "rdfs:label": "mainEntity",
       "domainIncludes": [{ "@id": "#Root_Data_Entity" }],
       "rangeIncludes": { "@id": "#Class_MainWorkflow" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
+    {
+      "@id": "#Property_MainWorkflow_subjectOf",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://schema.org/subjectOf" },
+      "description": "Main Workflow to a workflow description. The RO-Crate MUST contain exactly one Main Workflow Description.",
+      "name": "subjectOf",
+      "rdfs:label": "subjectOf",
+      "rangeIncludes": [{ "@id": "#Class_MainWorkflow_Description" }],
+      "domainIncludes": { "@id": "#Class_MainWorkflow" },
       "sh:minCount": 1,
       "sh:maxCount": 1
     },
@@ -198,6 +221,20 @@
       "sh:minCount": 1,
       "sh:maxCount": 1
     },
+     {
+      "@id": "#Property_programmingLanguage_WorkflowDescription",
+      "@type": "rdf:Property",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/programmingLanguage"
+      },
+      "description": "The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name.",
+      "name": "programmingLanguage",
+      "rdfs:label": "programmingLanguage",
+      "domainIncludes": { "@id": "#Class_MainWorkflow_Description" },
+      "rangeIncludes": { "@id": "#programmingLanguageCWLList" },
+      "sh:minCount": 1,
+      "sh:maxCount": 1
+    },
     {
       "@id": "#Root_Data_Entity_profile_itemList",
       "@type": "ItemList",
@@ -212,7 +249,7 @@
     "@type": ["CreativeWork", "Profile"],
     "name": "Workflow RO-Crate Profile (experimental)",
     "version": "0.4.0",
-    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity"
+    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity  as per RO-Crate 1.2"
     },
     {
       "@type": "rdf:Property",
@@ -250,6 +287,17 @@
         },
         {
           "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake"
+        }
+      ]
+    },
+    {
+      "@id": "#programmingLanguageCWLList",
+      "@type": "ItemList",
+      "name": "Common Workflow Language",
+      "description": "A list containing only the Common Workflow Language (CWL) as a programming language for the WWorkflow Description.",
+      "itemListElement": [
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
         }
       ]
     },
@@ -319,6 +367,26 @@
       "prov:specializationOf": [{ "@id": "http://schema.org/CreativeWork" }, { "@id": "http://schema.org/MediaObject" }],
       "Description": "The _Crate_ SHOULD contain a File README.md at the root level. If present, it SHOULD have an about property referencing the Root Data Entity and SHOULD have `text/markdown` as its `encodingFormat`.",
       "sh:minCount": 0,
+      "sh:maxCount": 1
+    },
+     {
+      "@id": "#Class_ImageObject_Diagram",
+      "@type": "rdfs:Class",
+      "name": "Main Workflow Diagram",
+      "prov:specializationOf": [{ "@id": "http://schema.org/ImageObject"}, { "@id": "http://schema.org/MediaObject" }],
+      "Description": "The _Crate_ COULD contain a _Main Workflow Diagram_, indicated as a data entity of type `[\"File\", \"ImageObject\"]"
+    },
+
+    {
+      "@id": "#Property_MainWorkflow_image",
+      "@type": "rdf:Property",
+      "prov:specializationOf": { "@id": "http://schema.org/image" },
+      "description": "If  _Main Workflow Diagram_ is present, the _Main Workflow_ MUST refer to it via `image`.",
+      "name": "image",
+      "rdfs:label": "image",
+      "rangeIncludes": [{ "@id": "#Class_ImageObject_Diagram" }],
+      "domainIncludes": { "@id": "#Class_MainWorkflow" },
+      "sh:minCount": 1,
       "sh:maxCount": 1
     },
     {

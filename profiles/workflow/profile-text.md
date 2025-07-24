@@ -81,7 +81,6 @@ The _Crate_ JSON-LD MUST be valid according to [RO-Crate 1.1](https://w3id.org/r
 ${rules.Dataset}
 
 
-
 ${rules.all}
 
 
@@ -104,35 +103,6 @@ The [Metadata File Descriptor](https://www.researchobject.org/ro-crate/1.1/root-
 The _Crate_ MUST contain a data entity of type `["File", "SoftwareSourceCode", "ComputationalWorkflow"]` as the _Main Workflow_. 
 
 The _Crate_ MUST refer to the _Main Workflow_ via `mainEntity`. 
-
-*These rules are implemented by* 
-```
-{
-      "@id": "#Class_MainWorkflow",
-      "@type": "rdfs:Class",
-      "prov:specializationOf": [
-        { "@id": "http://schema.org/MediaObject" },
-        { "@id": "http://schema.org/SoftwareSourceCode" },
-        { "@id": "https://bioschemas.org/ComputationalWorkflow" }
-      ],
-      "description": "The Main Workflow is the primary workflow of the RO-Crate. It represents the computational process that is described by the RO-Crate.",
-      "name": "Main Workflow",
-      "sh:minCount": 1
-    },
-    {
-      "@id": "#Property_mainEntity_Workflow",
-      "@type": "rdf:Property",
-      "prov:specializationOf": { "@id": "http://schema.org/mainEntity" },
-      "description": "Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow.",
-      "name": "mainEntity",
-      "rdfs:label": "mainEntity",
-      "domainIncludes": [{ "@id": "#Root_Data_Entity" }],
-      "rangeIncludes": { "@id": "#Class_MainWorkflow" },
-      "sh:minCount": 1,
-      "sh:maxCount": 1
-    }
-
-```
 
 The _Main Workflow_ MUST refer to its type via `programmingLanguage`.
 

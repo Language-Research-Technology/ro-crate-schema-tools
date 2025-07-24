@@ -192,6 +192,22 @@ describe("Worlflow Profile Tests", function () {
     });
 
 
+    // The _Crate_ COULD contain a data entity of type `["File", "SoftwareSourceCode", "HowTo"]` as the _Main Workflow CWL Description_. 
+
+    // A _Main Workflow CWL Description_ SHOULD have `https://w3id.org/workflowhub/workflow-ro-crate#cwl` as its `programmingLanguage` with a corresponding [contextual entity](#cwl).
+
+    // If _Main Workflow CWL Description_ is present, the _Main Workflow_ MUST refer to it the via `subjectOf`.
+
+    
+
+    // ### Main Workflow Diagram
+
+    // The _Crate_ COULD contain a _Main Workflow Diagram_, indicated as a data entity of type `["File", "ImageObject"]`.
+
+    // If  _Main Workflow Diagram_ is present, the _Main Workflow_ MUST refer to it via `image`.
+
+
+
 
     console.log(JSON.stringify(results, null, 2));
 

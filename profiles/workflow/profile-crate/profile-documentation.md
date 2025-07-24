@@ -89,7 +89,6 @@ The _Crate_ JSON-LD MUST be valid according to [RO-Crate 1.1](https://w3id.org/r
 
 
 
-
 ## Types of entities (specializations of Classes) and expected Properties
 
 ### <a id="#RO-Crate_Metadata_Descriptor"></a> RO-Crate Metadadata Descriptor
@@ -107,8 +106,8 @@ At least 1 instances of this type MUST be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | yes |  |  | http://schema.org/CreativeWork |
-| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.id"></a>@id | Yes | The RO-Crate Metadata  | <a href="##Root_Data_Entity">Root Data Entity</a> | ro-crate-metadata.json |
-| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.about"></a>about[?](http://schema.org/about) | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. I a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Enitty with different @type arrays or `@conformsTo` references (or other specializations). In this example there is a single reference. | <a href="##Root_Data_Entity">Root Data Entity</a> |  |
+| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.id"></a>@id | Yes | The RO-Crate Metadata  |  | ro-crate-metadata.json |
+| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.about"></a>about[?](http://schema.org/about) | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. | <a href="##Root_Data_Entity">Root Data Entity</a> |  |
 
 ### <a id="#Root_Data_Entity"></a> Root Data Entity
 
@@ -128,7 +127,7 @@ At least 1 instances of this type MUST be present in the crate.
 | <a id="#Root_Data_Entity_#prop_conformsTo_Root_Data_Entity"></a>conformsTo | Yes | The RO-Crate conforms to this profile. This is a link to to the profile entity | <a href="##Root_Data_Entity_profile_itemList">Profile Item List</a> |  |
 | <a id="#Root_Data_Entity_#prop_datePublised_Dataset"></a>datePublished[?](http://schema.org/datePubished) | Yes | MUST be a string in ISO 8601 date format and SHOULD be specified to at least the precision of a day, MAY be a timestamp down to the millisecond. | schema:Date |  |
 | <a id="#Root_Data_Entity_#prop_description_Dataset"></a>description[?](http://schema.org/description) | Yes | (In addition to the name) SHOULD further elaborate on the name to provide a summary of the context in which the dataset is important. | Text |  |
-| <a id="#Root_Data_Entity_#prop_license_Dataset"></a>license[?](http://schema.org/license) | Yes | SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used | #class_CreativeWork, schema:URL, schema:Text |  |
+| <a id="#Root_Data_Entity_#prop_license_Dataset"></a>license[?](http://schema.org/license) | Yes | TODO: Deal with the supplied list of licenses (string values) SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used | #class_CreativeWork, schema:URL, schema:Text |  |
 | <a id="#Root_Data_Entity_#Property_mainEntity_Workflow"></a>mainEntity[?](http://schema.org/mainEntity) | Yes | Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow. | <a href="##Class_MainWorkflow">Main Workflow</a> |  |
 | <a id="#Root_Data_Entity_http://schema.org/name"></a>name[?](http://schema.org/name) | Yes | SHOULD identify the dataset to humans well enough to disambiguate it from other RO-Crates | Text |  |
 
@@ -145,7 +144,26 @@ At least 1 instances of this type MUST be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | yes |  |  | http://schema.org/MediaObject, http://schema.org/SoftwareSourceCode, https://bioschemas.org/ComputationalWorkflow |
+| <a id="#Class_MainWorkflow_#Property_MainWorkflow_image"></a>image[?](http://schema.org/image) | Yes | If  _Main Workflow Diagram_ is present, the _Main Workflow_ MUST refer to it via `image`. | <a href="##Class_ImageObject_Diagram">Main Workflow Diagram</a> |  |
 | <a id="#Class_MainWorkflow_#Property_programmingLanguage_Workflow"></a>programmingLanguage[?](http://schema.org/programmingLanguage) | Yes | The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name. | <a href="##programmingLanguages">Programming Languages</a> |  |
+| <a id="#Class_MainWorkflow_#Property_MainWorkflow_subjectOf"></a>subjectOf[?](http://schema.org/subjectOf) | Yes | Main Workflow to a workflow description. The RO-Crate MUST contain exactly one Main Workflow Description. | <a href="##Class_MainWorkflow_Description">Main Workflow Description</a> |  |
+
+### <a id="#Class_MainWorkflow_Description"></a> Main Workflow Description
+
+The _Crate_ COULD contain a data entity of type `[File, SoftwareSourceCode, HowTo]` as the _Main Workflow CWL Description_.
+
+Instances of this type MAY be present in the crate.
+
+ A maximum of 1 instances of this type  MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | 1 |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/MediaObject, http://schema.org/SoftwareSourceCode, http://schema.org/HowTo |
+| <a id="#Class_MainWorkflow_Description_#Property_programmingLanguage_WorkflowDescription"></a>programmingLanguage[?](http://schema.org/programmingLanguage) | Yes | The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name. | <a href="##programmingLanguageCWLList">Common Workflow Language</a> |  |
 
 ### <a id="#class_CreativeWork_README"></a> README File
 
@@ -165,6 +183,22 @@ Instances of this type SHOULD be present in the crate.
 | <a id="#class_CreativeWork_README_#class_CreativeWork_README.id"></a>@id | Yes | The RO-Crate Metadata  |  | README.md |
 | <a id="#class_CreativeWork_README_#class_CreativeWork_README.about"></a>about[?](http://schema.org/about) | Yes | The README.md file SHOULD have an about property referencing the Root Data Entity. | <a href="##Root_Data_Entity">Root Data Entity</a> |  |
 | <a id="#class_CreativeWork_README_#class_CreativeWork_README.encodingFormat"></a>encodingFormat[?](http://schema.org/encodingFormat) | Yes | Readme file must have an encodingFormat of `text/markdown`. |  | text/markdown |
+
+### <a id="#Class_ImageObject_Diagram"></a> Main Workflow Diagram
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/ImageObject, http://schema.org/MediaObject |
+*No properties defined for this class*
+
 
 ### <a id="#class_Dataset_Test_Directory"></a> Test Directory
 
@@ -297,6 +331,30 @@ A list of programming languages that can be used to implement the Main Workflow
 }
 </pre>
 
+### <a id="#programmingLanguageCWLList"></a>Common Workflow Language
+
+A list containing only the Common Workflow Language (CWL) as a programming language for the WWorkflow Description.
+
+-  [Common Workflow Language](#https://w3id.org/workflowhub/workflow-ro-crate#cwl)
+ <hr/>
+
+
+
+ <a id="https://w3id.org/workflowhub/workflow-ro-crate#cwl"></a><pre>
+ {
+  "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl",
+  "@type": "ComputerLanguage",
+  "name": "Common Workflow Language",
+  "alternateName": "CWL",
+  "identifier": {
+    "@id": "https://w3id.org/cwl/v1.2/"
+  },
+  "url": {
+    "@id": "https://www.commonwl.org/"
+  }
+}
+</pre>
+
 ### <a id="#Root_Data_Entity_profile_itemList"></a>Profile Item List
 
 A list of valid profile values for this RO-Crate Profile
@@ -315,7 +373,7 @@ A list of valid profile values for this RO-Crate Profile
   ],
   "name": "Workflow RO-Crate Profile (experimental)",
   "version": "0.4.0",
-  "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity"
+  "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity  as per RO-Crate 1.2"
 }
 </pre>
 
@@ -338,35 +396,6 @@ The [Metadata File Descriptor](https://www.researchobject.org/ro-crate/1.1/root-
 The _Crate_ MUST contain a data entity of type `["File", "SoftwareSourceCode", "ComputationalWorkflow"]` as the _Main Workflow_. 
 
 The _Crate_ MUST refer to the _Main Workflow_ via `mainEntity`. 
-
-*These rules are implemented by* 
-```
-{
-      "@id": "#Class_MainWorkflow",
-      "@type": "rdfs:Class",
-      "prov:specializationOf": [
-        { "@id": "http://schema.org/MediaObject" },
-        { "@id": "http://schema.org/SoftwareSourceCode" },
-        { "@id": "https://bioschemas.org/ComputationalWorkflow" }
-      ],
-      "description": "The Main Workflow is the primary workflow of the RO-Crate. It represents the computational process that is described by the RO-Crate.",
-      "name": "Main Workflow",
-      "sh:minCount": 1
-    },
-    {
-      "@id": "#Property_mainEntity_Workflow",
-      "@type": "rdf:Property",
-      "prov:specializationOf": { "@id": "http://schema.org/mainEntity" },
-      "description": "Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow.",
-      "name": "mainEntity",
-      "rdfs:label": "mainEntity",
-      "domainIncludes": [{ "@id": "#Root_Data_Entity" }],
-      "rangeIncludes": { "@id": "#Class_MainWorkflow" },
-      "sh:minCount": 1,
-      "sh:maxCount": 1
-    }
-
-```
 
 The _Main Workflow_ MUST refer to its type via `programmingLanguage`.
 
