@@ -175,9 +175,7 @@ repository developers.
 
 ## Collection
 
-A collection is a group of related Objects. Examples of collections
-include corpora, and sub-corpora, as well as aggregations of cultural
-objects which bring together items collected in a region or on a session with informants.
+A Collection is a group of related resources, which may be contain objects or other collections.
 
 When an RO-Crate is used to package a collection that is part of
 another Collection, it has a \`pcdm:memberOf\` property which references a
@@ -196,8 +194,7 @@ ${rules.RepositoryCollection}
 
 ## Object
 
-An Object is a single unit linked to tightly related files, for example,
-a session in a study, or a work (document) in a written corpus.
+An Object is a single unit, work or digital entity which may contain files or other objects as its components.
 
 The definition of an object is necessarily loose and needs to reflect
 what data owners have chosen to do with their collections in the past.
@@ -232,6 +229,8 @@ ${rules.RepositoryObject}
 <br>
 
 ## Files
+
+A File is a sequence of binary data, which must be contained by an Object.
 
 There are three important types of files (or references to other
 works) that may be included from the Language Data Commons Schema: \`ldac:PrimaryMaterial\` which an
