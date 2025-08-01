@@ -10,11 +10,11 @@
       "@id": "./",
       "@type": "Dataset",
       "name": "CSV For the web RO-Crate Profile",
-      "description": "This is a profile of RO-Crate for the CSV For the Web sepcification, for packaging tabular datasets as the main payload of an RO-Crate.",
+      "description": "This is a profile of RO-Crate for the CSV For the Web sepcification, for packaging tabular datasets as the main payload of an RO-Crate. This software or document includes material copied from or derived from CSVW Namespace Vocabulary Terms <https://www.w3.org/ns/csvw>. Copyright © 2017 World Wide Web Consortium. https://www.w3.org/copyright/software-license-2023/",
       "author": {
         "@id": "https://orcid.org/0000-0002-3545-944X"
       },
-      "license": "GPL-3.0",
+      "license": "https://www.w3.org/copyright/software-license-2023/",
       "conformsTo": {
         "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
       }
@@ -116,7 +116,6 @@
         "@id": "http://schema.org/hasPart"
       },
       "domainIncludes": [{"@id": "#Root_Data_Entity"}],
-  
       "rdfs:comment": "A 'CSVW Table File' must be included in the RO-Crate via a hasPart relationship. This is the main payload of the RO-Crate.",
       "rangeIncludes": [
         {
@@ -156,9 +155,9 @@
       "@type": "rdfs:Class",
       "prov:specializationOf": [{ "@id": "http://schema.org/MediaObject"}, { "@id": "http://www.w3.org/ns/csvw#Table" }],
       "description": "A table containing tabular data, which is a CSV file or similar.",
-      "name": "CSVW Table File",
-      "sh:minCount": 1
+      "name": "CSVW Table File"
     },
+    
  
     {
       "@id": "#Class_Cell",
@@ -228,7 +227,8 @@
       "@type": "rdfs:Class",
       "prov:specializationOf": { "@id": "http://www.w3.org/ns/csvw#Table" },
       "description": "An annotated table is a table that is annotated with additional metadata.",
-      "name": "Annotated Table"
+      "name": "Annotated Table",
+      "sh:minCount": 1
     },
     {
       "@id": "#Class_TableGroup",

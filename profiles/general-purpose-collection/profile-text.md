@@ -1,5 +1,7 @@
 # General Purpose Collection RO-Crate Profile
 
+
+
 This document is an RO-Crate profile for general purpose collection resources. The
 profile specifies the contents of RO-Crate Metadata Documents for 
 resources not specific to a particular domain and gives guidance on how to structure collections both
@@ -328,3 +330,11 @@ modelled:
     we have not seen a use case that requires it.
 
 <br>
+
+
+
+
+
+${rules.allDefinedTermSets}
+
+${rules.all}

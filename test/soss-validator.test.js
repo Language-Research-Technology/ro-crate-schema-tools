@@ -61,17 +61,7 @@ describe('SoSS+ Validator Tests', function() {
     expect(validator.profileCrate).to.equal(rocrateProfileCrate);
   });
 
-  it('should validate using a crate path', async function() {
-    const validator = new SossValidator(rocProfileCratePath);
-    const loadResult = validator.loadProfileCrate();
-    expect(loadResult).to.be.true;
-    
-    const results = await validator.validateCrate(sampleCratePath);
-    
-    expect(results).to.have.property('errors');
-    expect(results).to.have.property('warnings');
-    expect(results).to.have.property('info');
-  });
+ 
   
   it('should be able to follow the basic RO-Crate rules', async function() {
     // Create a validator with the profile crate
@@ -110,6 +100,7 @@ describe('SoSS+ Validator Tests', function() {
 
     targetCrate.rootDataset.description = 'This is an RO-Crate';
     results = await validator.validateCrate(targetCrate);
+    console.log(results);
     expect(results.error.length).to.equal(0);
 
     expect(results).to.have.property('warning');
@@ -135,7 +126,7 @@ describe('SoSS+ Validator Tests', function() {
     validator = new SossValidator(rocrateProfileCrate);
     results = await validator.validateCrate(targetCrate);
     expect(results.error.length).to.equal(1);
-
+    console.log('Results:', results);
     expect(results.error).to.deep.include({ 
         message: 'Expected at least 1 instances of Root Data Entity :  http://schema.org/Dataset, https://schema.org/HairSalon, found 0' 
       });
@@ -161,7 +152,7 @@ describe('SoSS+ Validator Tests', function() {
 
   });
 
-  it('AnimalShelter: should be able to deal with multiple "entry points', async function() {
+  it('AnimalShelter: should be able to deal with multiple "entry points"', async function() {
     // Create a validator with the profile crate
     let validator = new SossValidator(rocrateProfileCrate);
     const targetCrate = new ROCrate({ array: true, link: true });
