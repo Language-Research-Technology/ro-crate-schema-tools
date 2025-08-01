@@ -23,6 +23,7 @@ const outputPath = process.argv[4] || path.join(profileDir, 'profile-documentati
 console.log(`Loading SOSS+ profile from: ${clean(profilePath)}`);
 
 function clean(str) {
+  // Some text has line ends in that break the template rendering so normalize all whitespace to be jsut spaces
   return str.toString().replace(/\s+/g, ' ')
 }
 
