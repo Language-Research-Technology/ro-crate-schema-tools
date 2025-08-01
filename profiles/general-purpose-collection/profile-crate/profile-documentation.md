@@ -1,5 +1,7 @@
 # General Purpose Collection RO-Crate Profile
 
+
+
 This document is an RO-Crate profile for general purpose collection resources. The
 profile specifies the contents of RO-Crate Metadata Documents for 
 resources not specific to a particular domain and gives guidance on how to structure collections both
@@ -72,12 +74,36 @@ and
 
 A conformant RO-Crate:
 
-- MUST be of type(s): http://schema.org/Dataset, http://pcdm.org/models#Collection
-- MUST include the following properties:
-  * name
-  * description
-  * datePublished
-  * license
+### <a id="#class_Dataset"></a> Dataset
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Dataset |
+| <a id="#class_Dataset_#prop_accountablePerson_Dataset"></a>accountablePerson[?](http://schema.org/accountablePerson) | Yes | The person or organisation who is the data steward for this resource. | <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_author_Dataset"></a>author[?](http://schema.org/author) | Yes | The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR. | <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_dct:rightsHolder_Dataset"></a>dct:rightsHolder[?](http://purl.org/dc/terms/rightsHolder) | Yes | The person or organisation owning or managing rights over the resource. | Text, <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_publisher_Dataset"></a>publisher[?](http://schema.org/publisher) | Yes | The organisation responsible for releasing this dataset. | <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_citation_Dataset"></a>citation[?](http://schema.org/citation) | No | Associated publications. | <a href="##class_CreativeWork">CreativeWork</a> |  |
+| <a id="#class_Dataset_#prop_creditText_Dataset"></a>creditText[?](http://schema.org/creditText) | No | A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'. | Text |  |
+| <a id="#class_Dataset_#prop_funder_Dataset"></a>funder[?](http://schema.org/funder) | No | The organisation(s) responsible for funding the creation or collection of this dataset. | <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_hasPart_Dataset"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a>, <a href="##class_Dataset">Dataset</a> |  |
+| <a id="#class_Dataset_#prop_isAccessibleForFree_Dataset"></a>isAccessibleForFree[?](http://schema.org/isAccessibleForFree) | No | This is available under an Open Access license. | Boolean |  |
+| <a id="#class_Dataset_#prop_isBasedOn_Dataset"></a>isBasedOn[?](http://schema.org/isBasedOn) | No | Link to or description of an original resource. | Text, URL, <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_Dataset">Dataset</a>, <a href="##class_File">File</a> |  |
+| <a id="#class_Dataset_#prop_isPartOf_Dataset"></a>isPartOf[?](http://schema.org/isPartOf) | No | An item or CreativeWork that this item, or CreativeWork (in some sense), is part of. | URL, <a href="##class_CreativeWork">CreativeWork</a> |  |
+| <a id="#class_Dataset_#prop_pcdm:hasMember_Dataset"></a>pcdm:hasMember[?](http://pcdm.org/models#hasMember) | No | The sub-collections, if any, associated with this collection. | <a href="##class_RepositoryCollection">RepositoryCollection</a>, <a href="##class_RepositoryObject">RepositoryObject</a> |  |
+| <a id="#class_Dataset_#prop_pcdm:memberOf_Dataset"></a>pcdm:memberOf[?](http://pcdm.org/models#memberOf) | No | Links from a Repository Object or Collection to a containing Repository Object or Collection. | <a href="##class_RepositoryCollection">RepositoryCollection</a> |  |
+| <a id="#class_Dataset_#prop_spatialCoverage_Dataset"></a>spatialCoverage[?](http://schema.org/spatialCoverage) | No | The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape. | <a href="##class_Place">Place</a> |  |
+| <a id="#class_Dataset_#prop_temporalCoverage_Dataset"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level. | DateTime, Text |  |
+| <a id="#class_Dataset_#prop_usageInfo_Dataset"></a>usageInfo[?](http://schema.org/usageInfo) | No | Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'. | Text |  |
+
 
 
 <br>
@@ -196,19 +222,24 @@ The root dataset must have at least these \`@type\` values: \`["Dataset",
 
 ### A RepositoryCollection:
 
-### <a id="_class_RepositoryCollection"></a>RepositoryCollection
+### <a id="#class_RepositoryCollection"></a> RepositoryCollection
 
 
 
-Specialization of: http://pcdm.org/models#Collection
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryCollection_unnamed_d0aoy"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_0qz34"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the RO-Crate profile for collections. | Text |  |
-| <a id="_class_RepositoryCollection_unnamed_qv4d1"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | [Place](#_class_Place) |  |
-| <a id="_class_RepositoryCollection_unnamed_m00nc"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
-| <a id="_class_RepositoryCollection_unnamed_ppv93"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | [Organization](#_class_Organization), Text |  |
+| @type | yes |  |  | http://pcdm.org/models#Collection |
+| <a id="#class_RepositoryCollection_#prop_inLanguage_RepositoryCollection"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | Text |  |
+| <a id="#class_RepositoryCollection_#prop_conformsTo_RepositoryCollection"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the RO-Crate profile for collections. | Text |  |
+| <a id="#class_RepositoryCollection_#prop_contentLocation_RepositoryCollection"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | <a href="##class_Place">Place</a> |  |
+| <a id="#class_RepositoryCollection_#prop_dateCreated_RepositoryCollection"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
+| <a id="#class_RepositoryCollection_#prop_holdingArchive_RepositoryCollection"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | <a href="##class_Organization">Organization</a>, Text |  |
 
 
 
@@ -247,25 +278,25 @@ these use the Schema.org mechanism of \`DefinedTerm\` and \`DefinedTermSet\`.
 
 ### A RepositoryObject:
 
-### <a id="_class_RepositoryObject"></a>RepositoryObject
+### <a id="#class_RepositoryObject"></a> RepositoryObject
 
 
 
-Specialization of: http://pcdm.org/models#Object
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
 
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
-| <a id="_class_RepositoryObject_unnamed_m99p6"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | [Person](#_class_Person) |  |
-| <a id="_class_RepositoryObject_unnamed_tszj0"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_0826u"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
-| <a id="_class_RepositoryObject_unnamed_0mcg8"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.
-         | #class_PropertyValue, Text, URL |  |
-| <a id="_class_RepositoryObject_unnamed_lemnr"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
-| <a id="_class_RepositoryObject_unnamed_q7eif"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In
-      the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.
-      Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
-
-Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated. | Text |  |
+| @type | yes |  |  | http://pcdm.org/models#Object |
+| <a id="#class_RepositoryObject_#prop_creator_RepositoryObject"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | <a href="##class_Person">Person</a> |  |
+| <a id="#class_RepositoryObject_#prop_dateCreated_RepositoryObject"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
+| <a id="#class_RepositoryObject_#prop_description_RepositoryObject"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
+| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | #class_PropertyValue, Text, URL |  |
+| <a id="#class_RepositoryObject_#prop_license_RepositoryObject"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="#class_RepositoryObject_#prop_temporalCoverage_RepositoryObject"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945". Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated. | Text |  |
 
 
 
@@ -281,6 +312,26 @@ conversion or digitization, and \`ldac:Annotation\`, which contains one or more 
 analysis of the \`ldac:PrimaryMaterial\` or \`ldac:DerivedMaterial\`.
 
 ### A File:
+
+### <a id="#class_File"></a> File
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/MediaObject |
+| <a id="#class_File_#prop_contentSize_File"></a>contentSize[?](http://schema.org/contentSize) | No | File size in (mega/kilo)bytes. | Text |  |
+| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
+| <a id="#class_File_#prop_hasPart_File"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a> |  |
+| <a id="#class_File_#prop_ldac:derivationOf_File"></a>ldac:derivationOf[?](https://w3id.org/ldac/terms#derivationOf) | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
+| <a id="#class_File_#prop_ldac:hasDerivation_File"></a>ldac:hasDerivation[?](https://w3id.org/ldac/terms#hasDerivation) | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
+| <a id="#class_File_#prop_ldac:materialType_File"></a>ldac:materialType[?](https://w3id.org/ldac/terms#materialType) | No | Indicates whether the material in a file is the original (primary) source or is derived from it or describes it via annotation. | <a href="#ldac:MaterialTypes">MaterialTypes</a> |  |
 
 
 
@@ -369,3 +420,347 @@ modelled:
     we have not seen a use case that requires it.
 
 <br>
+
+
+
+
+
+## Defined Term Sets
+
+### <a id="termset_ldac:MaterialTypes"></a>MaterialTypes
+
+Set of defined terms for ldac:materialType
+
+| Term | Description |
+| ---- | ----------- |
+| Annotation | The resource includes material that adds information to some other linguistic record. |
+| DerivedMaterial | This is derived from another source, such as a Primary Material, via some process, e.g. a downsampled video or a sample or an abstract of a resource that is not an annotation (an analysis or description). |
+| PrimaryMaterial | The object of study, such as a literary work, film, or recording of natural discourse. |
+
+### <a id="termset_ldac:CollectionEventTypeTerms"></a>CollectionEventTypeTerms
+
+Set of defined terms for ldac:collectionEventType
+
+| Term | Description |
+| ---- | ----------- |
+| Session | A collection event that is a recording or elicitation session with participants. |
+
+### <a id="termset_ldac:CollectionProtocolTypeTerms"></a>CollectionProtocolTypeTerms
+
+Set of defined terms for ldac:collectionProtocolType
+
+| Term | Description |
+| ---- | ----------- |
+| ElicitationTask | The collection protocol includes a task-based prompt to participants. |
+| MaterialSelectionCriteria | A description of the criteria used to select texts in a collection. |
+
+### <a id="termset_ldac:AccessTypes"></a>AccessTypes
+
+Set of defined terms for ldac:access
+
+| Term | Description |
+| ---- | ----------- |
+| AuthorizedAccess | Indicates that a DataReuseLicense requires some kind of authorization step, from SelfAuthorization (click-through) to processes that require a data steward to grant permission. |
+| OpenAccess | Data covered by this license may be accessed as long as the license is served alongside it, and does not require any specific authorization step. |
+
+### <a id="termset_ldac:AuthorizationWorkflows"></a>AuthorizationWorkflows
+
+Set of defined terms for ldac:authorizationWorkflow
+
+| Term | Description |
+| ---- | ----------- |
+| AccessControlList | License grants access to data based on a list of approved users, specified using the property accessControlList. |
+| AgreeToTerms | A user is expected to explicitly agree to a set of license terms, this may be combined with AccessControlList - to note that even if a user has been pre-approved for a license they must agree to license terms. |
+| AuthorizationByApplication | Users may apply for a license via some workflow, such as a form, with the decision being made by a DataSteward or their delegate about whether to grant the license. |
+| AuthorizationByInvitation | A data steward or administrator is expected to use an access control system to invite users, for example, participants, collaborators or students. |
+| SelfAuthorization | A user can be authorised to access data by clicking that they agree to a license, or filling out a form to check their understanding, which can be validated by a machine and does not require human intervention. |
+
+
+
+## Types of entities (specializations of Classes) and expected Properties
+
+### <a id="#RO-Crate_Metadata_Descriptor"></a> RO-Crate Metadata Descriptor
+
+An RO-Crate @graph must contain an entity of Type @CreativeWork which is known as the RO-Crate Metadata descriptor.
+
+At least 1 instances of this type MUST be present in the crate.
+
+ A maximum of 1 instances of this type  MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 1 | 1 |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/CreativeWork |
+| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.id"></a>@id | Yes | The RO-Crate Metadata file identifier | <a href="##Root_Data_Entity">Root Data Entity</a> | ro-crate-metadata.json |
+| <a id="#RO-Crate_Metadata_Descriptor_#RO-Crate_Metadata_Descriptor.about"></a>about[?](http://schema.org/about) | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. In a SoSS+ profile there may be Schemas present for more than one 'flavour' of Root Data Entity with different @type arrays or `@conformsTo` references (or other specializations). | <a href="##Root_Data_Entity">Root Data Entity</a> |  |
+
+### <a id="#Root_Data_Entity"></a> Root Data Entity
+
+The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor. In this profile, it is a Dataset and RepositoryCollection.
+
+At least 1 instances of this type MUST be present in the crate.
+
+ A maximum of 1 instances of this type  MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 1 | 1 |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Dataset, http://pcdm.org/models#Collection |
+| <a id="#Root_Data_Entity_#prop_datePublished_Dataset"></a>datePublished[?](http://schema.org/datePublished) | Yes | A date that this collection was published. This should be the date that the collection was first made available. | Date |  |
+| <a id="#Root_Data_Entity_#prop_description_Dataset"></a>description[?](http://schema.org/description) | Yes | An abstract of the collection. Include as much detail as possible about the motivation and use of the collection. | Text |  |
+| <a id="#Root_Data_Entity_#prop_license_Dataset"></a>license[?](http://schema.org/license) | Yes | A license document that applies to this content, typically indicated by URL. | <a href="##class_CreativeWork">CreativeWork</a>, URL, Text |  |
+| <a id="#Root_Data_Entity_#prop_name_Dataset"></a>name[?](http://schema.org/name) | Yes | The name of this data collection. | Text |  |
+
+### <a id="#class_CreativeWork"></a> CreativeWork
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/CreativeWork |
+| <a id="#class_CreativeWork_#prop_author_CreativeWork"></a>author[?](http://schema.org/author) | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_CreativeWork_#prop_isbn_CreativeWork"></a>isbn[?](http://schema.org/isbn) | No | The ISBN for this work, if applicable. | Text |  |
+| <a id="#class_CreativeWork_#prop_issn_CreativeWork"></a>issn[?](http://schema.org/issn) | No | The ISSN for this publication. | Text |  |
+| <a id="#class_CreativeWork_#prop_publisher_CreativeWork"></a>publisher[?](http://schema.org/publisher) | No | The organisation that published this work. | Text, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_CreativeWork_#prop_recipient_CreativeWork"></a>recipient[?](http://schema.org/recipient) | No | The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR. | Text, <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+
+### <a id="#class_Dataset"></a> Dataset
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Dataset |
+| <a id="#class_Dataset_#prop_accountablePerson_Dataset"></a>accountablePerson[?](http://schema.org/accountablePerson) | Yes | The person or organisation who is the data steward for this resource. | <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_author_Dataset"></a>author[?](http://schema.org/author) | Yes | The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR. | <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_dct:rightsHolder_Dataset"></a>dct:rightsHolder[?](http://purl.org/dc/terms/rightsHolder) | Yes | The person or organisation owning or managing rights over the resource. | Text, <a href="##class_Person">Person</a>, <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_publisher_Dataset"></a>publisher[?](http://schema.org/publisher) | Yes | The organisation responsible for releasing this dataset. | <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_citation_Dataset"></a>citation[?](http://schema.org/citation) | No | Associated publications. | <a href="##class_CreativeWork">CreativeWork</a> |  |
+| <a id="#class_Dataset_#prop_creditText_Dataset"></a>creditText[?](http://schema.org/creditText) | No | A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'. | Text |  |
+| <a id="#class_Dataset_#prop_funder_Dataset"></a>funder[?](http://schema.org/funder) | No | The organisation(s) responsible for funding the creation or collection of this dataset. | <a href="##class_Organization">Organization</a> |  |
+| <a id="#class_Dataset_#prop_hasPart_Dataset"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a>, <a href="##class_Dataset">Dataset</a> |  |
+| <a id="#class_Dataset_#prop_isAccessibleForFree_Dataset"></a>isAccessibleForFree[?](http://schema.org/isAccessibleForFree) | No | This is available under an Open Access license. | Boolean |  |
+| <a id="#class_Dataset_#prop_isBasedOn_Dataset"></a>isBasedOn[?](http://schema.org/isBasedOn) | No | Link to or description of an original resource. | Text, URL, <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_Dataset">Dataset</a>, <a href="##class_File">File</a> |  |
+| <a id="#class_Dataset_#prop_isPartOf_Dataset"></a>isPartOf[?](http://schema.org/isPartOf) | No | An item or CreativeWork that this item, or CreativeWork (in some sense), is part of. | URL, <a href="##class_CreativeWork">CreativeWork</a> |  |
+| <a id="#class_Dataset_#prop_pcdm:hasMember_Dataset"></a>pcdm:hasMember[?](http://pcdm.org/models#hasMember) | No | The sub-collections, if any, associated with this collection. | <a href="##class_RepositoryCollection">RepositoryCollection</a>, <a href="##class_RepositoryObject">RepositoryObject</a> |  |
+| <a id="#class_Dataset_#prop_pcdm:memberOf_Dataset"></a>pcdm:memberOf[?](http://pcdm.org/models#memberOf) | No | Links from a Repository Object or Collection to a containing Repository Object or Collection. | <a href="##class_RepositoryCollection">RepositoryCollection</a> |  |
+| <a id="#class_Dataset_#prop_spatialCoverage_Dataset"></a>spatialCoverage[?](http://schema.org/spatialCoverage) | No | The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape. | <a href="##class_Place">Place</a> |  |
+| <a id="#class_Dataset_#prop_temporalCoverage_Dataset"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level. | DateTime, Text |  |
+| <a id="#class_Dataset_#prop_usageInfo_Dataset"></a>usageInfo[?](http://schema.org/usageInfo) | No | Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'. | Text |  |
+
+### <a id="#class_Person"></a> Person
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Person |
+| <a id="#class_Person_#prop_affiliation_Person"></a>affiliation[?](http://schema.org/affiliation) | No | The organisation that this person is affiliated with. For example, a university or school. | <a href="##class_Organization">Organization</a> |  |
+
+### <a id="#class_Organization"></a> Organization
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Organization |
+| <a id="#class_Organization_#prop_location_Organization"></a>location[?](http://schema.org/location) | No | A location for the organisation, e.g. a city for a publisher. | Text |  |
+
+### <a id="#class_File"></a> File
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/MediaObject |
+| <a id="#class_File_#prop_contentSize_File"></a>contentSize[?](http://schema.org/contentSize) | No | File size in (mega/kilo)bytes. | Text |  |
+| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
+| <a id="#class_File_#prop_hasPart_File"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a> |  |
+| <a id="#class_File_#prop_ldac:derivationOf_File"></a>ldac:derivationOf[?](https://w3id.org/ldac/terms#derivationOf) | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
+| <a id="#class_File_#prop_ldac:hasDerivation_File"></a>ldac:hasDerivation[?](https://w3id.org/ldac/terms#hasDerivation) | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
+| <a id="#class_File_#prop_ldac:materialType_File"></a>ldac:materialType[?](https://w3id.org/ldac/terms#materialType) | No | Indicates whether the material in a file is the original (primary) source or is derived from it or describes it via annotation. | <a href="#ldac:MaterialTypes">MaterialTypes</a> |  |
+
+### <a id="#class_Place"></a> Place
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Place |
+| <a id="#class_Place_#prop_address_Place"></a>address[?](http://schema.org/address) | No | The physical address of the place. | Text |  |
+| <a id="#class_Place_#prop_geo_Place"></a>geo[?](http://schema.org/geo) | No | The geographic coordinates of the place. | <a href="##class_Geometry">Geometry</a> |  |
+
+### <a id="#class_RepositoryCollection"></a> RepositoryCollection
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://pcdm.org/models#Collection |
+| <a id="#class_RepositoryCollection_#prop_inLanguage_RepositoryCollection"></a>inLanguage[?](http://schema.org/inLanguage) | Yes | The language in which the resource is written. | Text |  |
+| <a id="#class_RepositoryCollection_#prop_conformsTo_RepositoryCollection"></a>conformsTo[?](http://purl.org/dc/terms/conformsTo) | No | A link to the RO-Crate profile for collections. | Text |  |
+| <a id="#class_RepositoryCollection_#prop_contentLocation_RepositoryCollection"></a>contentLocation[?](http://schema.org/contentLocation) | No | The location depicted or described in the content. For example, the location in a photograph or painting. | <a href="##class_Place">Place</a> |  |
+| <a id="#class_RepositoryCollection_#prop_dateCreated_RepositoryCollection"></a>dateCreated[?](http://schema.org/dateCreated) | No | The (earliest) date the data in this dataset were created. | Date |  |
+| <a id="#class_RepositoryCollection_#prop_holdingArchive_RepositoryCollection"></a>holdingArchive[?](http://schema.org/holdingArchive) | No | Organisation where the original of this work or collection is housed. | <a href="##class_Organization">Organization</a>, Text |  |
+
+### <a id="#class_RepositoryObject"></a> RepositoryObject
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://pcdm.org/models#Object |
+| <a id="#class_RepositoryObject_#prop_creator_RepositoryObject"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | <a href="##class_Person">Person</a> |  |
+| <a id="#class_RepositoryObject_#prop_dateCreated_RepositoryObject"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
+| <a id="#class_RepositoryObject_#prop_description_RepositoryObject"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
+| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | #class_PropertyValue, Text, URL |  |
+| <a id="#class_RepositoryObject_#prop_license_RepositoryObject"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="#class_RepositoryObject_#prop_temporalCoverage_RepositoryObject"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945". Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated. | Text |  |
+
+### <a id="#class_Geometry"></a> Geometry
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://www.opengis.net/ont/geosparql#Geometry |
+| <a id="#class_Geometry_#prop_geosparql:asWKT_Geometry"></a>geosparql:asWKT[?](http://www.opengis.net/ont/geosparql#asWKT) | No | The WKT serialisation of the geometry. | Text |  |
+
+### <a id="#class_ldac:CollectionEvent"></a> ldac:CollectionEvent
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | https://w3id.org/ldac/terms#CollectionEvent |
+| <a id="#class_ldac:CollectionEvent_#prop_ldac:collectionEventType_ldac:CollectionEvent"></a>ldac:collectionEventType[?](https://w3id.org/ldac/terms#collectionEventType) | No | A kind of CollectionEvent characterised by some specific procedures, e.g. a psycholinguistic experiment. | <a href="#ldac:CollectionEventTypeTerms">CollectionEventTypeTerms</a> |  |
+
+### <a id="#class_ldac:CollectionProtocol"></a> ldac:CollectionProtocol
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | https://w3id.org/ldac/terms#CollectionProtocol |
+| <a id="#class_ldac:CollectionProtocol_#prop_ldac:collectionProtocolType_ldac:CollectionProtocol"></a>ldac:collectionProtocolType[?](https://w3id.org/ldac/terms#collectionProtocolType) | No | A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection. | <a href="#ldac:CollectionProtocolTypeTerms">CollectionProtocolTypeTerms</a> |  |
+
+### <a id="#class_ldac:DataLicense"></a> ldac:DataLicense
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | https://w3id.org/ldac/terms#DataLicense |
+| <a id="#class_ldac:DataLicense_#prop_ldac:reviewDate_ldac:DataLicense"></a>ldac:reviewDate[?](https://w3id.org/ldac/terms#reviewDate) | No | The date that this license should be reviewed. | Text |  |
+
+### <a id="#class_ldac:DataDepositLicense"></a> ldac:DataDepositLicense
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | https://w3id.org/ldac/terms#DataDepositLicense |
+*No properties defined for this class*
+
+
+### <a id="#class_ldac:DataReuseLicense"></a> ldac:DataReuseLicense
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | https://w3id.org/ldac/terms#DataReuseLicense |
+| <a id="#class_ldac:DataReuseLicense_#prop_ldac:access_ldac:DataReuseLicense"></a>ldac:access[?](https://w3id.org/ldac/terms#access) | No | Whether this is an open or restricted access license. | <a href="#ldac:AccessTypes">AccessTypes</a> |  |
+| <a id="#class_ldac:DataReuseLicense_#prop_ldac:accessControlList_ldac:DataReuseLicense"></a>ldac:accessControlList[?](https://w3id.org/ldac/terms#accessControlList) | No | When a license has an authorizationWorkflow property with a value of the DefinedTerm AccessControlList this property has a URI value that points to a list of userIDs. | URL |  |
+| <a id="#class_ldac:DataReuseLicense_#prop_ldac:authorizationWorkflow_ldac:DataReuseLicense"></a>ldac:authorizationWorkflow[?](https://w3id.org/ldac/terms#authorizationWorkflow) | No | By what process a user is granted authorization to a license. | <a href="#ldac:AuthorizationWorkflows">AuthorizationWorkflows</a> |  |
+

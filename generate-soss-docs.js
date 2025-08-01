@@ -20,7 +20,11 @@ const profileDir = path.dirname(profilePath);
 const outputPath = process.argv[4] || path.join(profileDir, 'profile-documentation.md');
 
 // Load the profile crate
-console.log(`Loading SOSS+ profile from: ${profilePath}`);
+console.log(`Loading SOSS+ profile from: ${clean(profilePath)}`);
+
+function clean(str) {
+  return str.toString().replace(/\s+/g, ' ')
+}
 
 try {
   const profileData = fs.readFileSync(profilePath, 'utf8');
@@ -111,7 +115,7 @@ try {
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0;
         
         if (isRequired) {
-          rules.Dataset += `  * ${propName}\n`;
+          rules.Dataset += `  * ${clean(propName)}\n`;
         }
       });
     }
@@ -126,8 +130,8 @@ try {
     const termSetName = termSet['name'] || termSet['rdfs:label'] || termSetId;
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
     
-    let termSetSummary = `### <a id="termset_${termSetId}"></a>${termSetName}\n\n`;
-    termSetSummary += `${termSetDesc}\n\n`;
+    let termSetSummary = `### <a id="termset_${clean(termSetId)}"></a>${clean(termSetName)}\n\n`;
+    termSetSummary += `${clean(termSetDesc)}\n\n`;
     
     // Add terms table if there are terms in this set
     const terms = termSet["@reverse"]?.["inDefinedTermSet"] || [];
@@ -145,7 +149,7 @@ try {
       terms.forEach(term => {
         const termName = term['name'] || term['rdfs:label'] || term['@id'];
         const termDesc = term['description'] || term['rdfs:comment'] || '';
-        termSetSummary += `| ${termName} | ${termDesc} |\n`;
+        termSetSummary += `| ${clean(termName)} | ${clean(termDesc)} |\n`;
       });
     } else {
       termSetSummary += `*No terms defined for this term set*\n\n`;
@@ -170,8 +174,8 @@ try {
     const listName = list['name'] || listId;
     const listDescription = list['description'] || '';
     
-    let listSummary = `### <a id="${listId}"></a>${listName}\n\n`;
-    listSummary += `${listDescription}\n\n`;
+    let listSummary = `### <a id="${clean(listId)}"></a>${clean(listName)}\n\n`;
+    listSummary += `${clean(listDescription)}\n\n`;
     
     // Add terms table if there are terms in this set
     const items = list.itemListElement || [];
@@ -187,7 +191,7 @@ try {
       items.forEach(item => {
         const itemName = item['name']  || item['@id'];
         const ItemDesc = item['description']  || '';
-        listSummary += `-  [${itemName}](#${item["@id"]})\n `;
+        listSummary += `-  [${clean(itemName)}](#${item["@id"]})\n `;
       });
 
       listSummary += "<hr/>\n\n";
@@ -218,10 +222,10 @@ try {
     const className = classRule['name'] || classRule['rdfs:label'] || classId;
     const classDesc = classRule['description'] || classRule['rdfs:comment'] || '';
     const specialized = classRule['prov:specializationOf'] || [];
-    var classSummary = `### <a id="${classRule['@id']}"></a> ${className}\n\n`;
+    var classSummary = `### <a id="${classRule['@id']}"></a> ${clean(className)}\n\n`;
 
 
-    classSummary += `${classDesc}\n\n`;
+    classSummary += `${clean(classDesc)}\n\n`;
 
     const min = classRule["sh:minCount"] !== undefined ? String(classRule["sh:minCount"]) : undefined;
     const max = classRule["sh:maxCount"] !== undefined ? String(classRule["sh:maxCount"]) : undefined;
@@ -231,10 +235,10 @@ try {
     } else if  (min === "0") {
       classSummary += `Instances of this type SHOULD be present in the crate.\n\n`;
     } else {
-      classSummary += `At least ${min} instances of this type MUST be present in the crate.\n\n`;
+      classSummary += `At least ${clean(min)} instances of this type MUST be present in the crate.\n\n`;
     }
     if (max !== undefined && max > 0) {
-      classSummary += ` A maximum of ${max} instances of this type  MAY be present in the crate.\n\n`;
+      classSummary += ` A maximum of ${clean(max)} instances of this type  MAY be present in the crate.\n\n`;
     }
 
     classSummary += `| Min Count | Max Count |\n`;
@@ -251,7 +255,7 @@ try {
       const specializedArray = Array.isArray(specialized) ? specialized : [specialized];
       const specializedStr = specializedArray.map(s => 
         typeof s === 'object' ? s['@id'] : s).join(', ');
-      classSummary += `| @type | yes |  |  | ${specializedStr} |\n`;
+      classSummary += `| @type | yes |  |  | ${clean(specializedStr)} |\n`;
 
     }
     
@@ -281,7 +285,7 @@ try {
         const anchorId = `${classRule["@id"]}_${prop["@id"]}`;
         // Make a link to the 'main' definition of the property
         const propBaseId = prop?.["prov:specializationOf"]?.[0]?.['@id'];
-        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${propBaseId})` : "";
+        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${clean(propBaseId)})` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
         
@@ -294,15 +298,15 @@ try {
           const rangeDefiniton = profileCrate.getEntity(rangeId);
           if(rangeDefiniton) {
             const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
-            return `<a href="#${rangeId}">${rangeName}</a>`;
+            return `<a href="#${clean(rangeId)}">${clean(rangeName)}</a>`;
           }
-          return `${rangeId}`
+          return `${clean(rangeId)}`
         }).join(', ');
         
         // Get fixed value if specified
         const fixedValue = prop['schema:value'] || prop['value'] || '';
         
-        classSummary += `| <a id="${anchorId}"></a>${propName}${link} | ${isRequired} | ${propDesc} | ${rangeLinks} | ${fixedValue} |\n`;
+        classSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(isRequired)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
       });
     } else {
       classSummary += `*No properties defined for this class*\n\n`;
@@ -311,7 +315,7 @@ try {
     classSummary += `\n`;
     
     // Add class to rules structure
-    rules[classId] = classSummary;
+    rules[className] = classSummary;
     allClasses += classSummary;
   });
   
@@ -338,17 +342,17 @@ try {
     console.warn(`Warning: Could not determine Git branch: ${error.message}`);
   }
 
-  const repoUrl = `https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/${gitBranch}`;
+  const repoUrl = `https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/${clean(gitBranch)}`;
   const scriptPath = path.relative(__dirname, path.resolve(__dirname, 'generate-soss-docs.js'));
   const templateRelPath = path.relative(__dirname, templatePath);
   const profileRelPath = path.relative(__dirname, profilePath);
   
-  rules.provenance = `This document was compiled using [generate-soss-docs.js](${repoUrl}/${scriptPath}), ` +
-                     `based on [${templateRelPath}](${repoUrl}/${templateRelPath}) ` +
-                     `using a SoSS+ Schema defined in [${profileRelPath}](${repoUrl}/${profileRelPath}).`;
+  rules.provenance = `This document was compiled using [generate-soss-docs.js](${clean(repoUrl)}/${clean(scriptPath)}), ` +
+                     `based on [${clean(templateRelPath)}](${clean(repoUrl)}/${clean(templateRelPath)}) ` +
+                     `using a SoSS+ Schema defined in [${clean(profileRelPath)}](${clean(repoUrl)}/${clean(profileRelPath)}).`;
 
   // Read the template file
-  console.log(`Reading template from: ${templatePath}`);
+  console.log(`Reading template from: ${clean(templatePath)}`);
   const template = fs.readFileSync(templatePath, 'utf8');
   
   // Simple template engine - add support for including definedTermSets in the template
@@ -365,6 +369,8 @@ try {
     if (key === 'allItemLists') {
       return rules.allItemLists || '';
     }
+
+    // Otherwise, return the property from rules
     return rules[key] || '';
   });
   
@@ -376,7 +382,7 @@ try {
 
   // Write the output to file
   fs.writeFileSync(outputPath, output, 'utf8');
-  console.log(`Documentation generated successfully: ${outputPath}`);
+  console.log(`Documentation generated successfully: ${clean(outputPath)}`);
 } catch (error) {
   console.error(`Error generating documentation: ${error.message}`);
   console.error(error.stack);
