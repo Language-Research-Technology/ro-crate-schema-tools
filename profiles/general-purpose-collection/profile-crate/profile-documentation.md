@@ -207,9 +207,7 @@ repository developers.
 
 ## Collection
 
-A collection is a group of related Objects. Examples of collections
-include corpora, and sub-corpora, as well as aggregations of cultural
-objects which bring together items collected in a region or on a session with informants.
+A Collection is a group of related resources, which may be contain objects or other collections.
 
 When an RO-Crate is used to package a collection that is part of
 another Collection, it has a \`pcdm:memberOf\` property which references a
@@ -247,8 +245,7 @@ Instances of this type MAY be present in the crate.
 
 ## Object
 
-An Object is a single unit linked to tightly related files, for example,
-a session in a study, or a work (document) in a written corpus.
+An Object is a single unit, work or digital entity which may contain files or other objects as its components.
 
 The definition of an object is necessarily loose and needs to reflect
 what data owners have chosen to do with their collections in the past.
@@ -294,8 +291,7 @@ Instances of this type MAY be present in the crate.
 | <a id="#class_RepositoryObject_#prop_creator_RepositoryObject"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | <a href="##class_Person">Person</a> |  |
 | <a id="#class_RepositoryObject_#prop_dateCreated_RepositoryObject"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
 | <a id="#class_RepositoryObject_#prop_description_RepositoryObject"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
-| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | #class_PropertyValue, Text, URL |  |
-| <a id="#class_RepositoryObject_#prop_license_RepositoryObject"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | <a href="##class_PropertyValue">PropertyValue</a>, Text, URL |  |
 | <a id="#class_RepositoryObject_#prop_temporalCoverage_RepositoryObject"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945". Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated. | Text |  |
 
 
@@ -303,6 +299,8 @@ Instances of this type MAY be present in the crate.
 <br>
 
 ## Files
+
+A File is a sequence of binary data, which must be contained by an Object.
 
 There are three important types of files (or references to other
 works) that may be included from the Language Data Commons Schema: \`ldac:PrimaryMaterial\` which an
@@ -327,7 +325,7 @@ Instances of this type MAY be present in the crate.
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | yes |  |  | http://schema.org/MediaObject |
 | <a id="#class_File_#prop_contentSize_File"></a>contentSize[?](http://schema.org/contentSize) | No | File size in (mega/kilo)bytes. | Text |  |
-| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
+| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, <a href="##class_WebPage">WebPage</a> |  |
 | <a id="#class_File_#prop_hasPart_File"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a> |  |
 | <a id="#class_File_#prop_ldac:derivationOf_File"></a>ldac:derivationOf[?](https://w3id.org/ldac/terms#derivationOf) | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
 | <a id="#class_File_#prop_ldac:hasDerivation_File"></a>ldac:hasDerivation[?](https://w3id.org/ldac/terms#hasDerivation) | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
@@ -610,7 +608,7 @@ Instances of this type MAY be present in the crate.
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | yes |  |  | http://schema.org/MediaObject |
 | <a id="#class_File_#prop_contentSize_File"></a>contentSize[?](http://schema.org/contentSize) | No | File size in (mega/kilo)bytes. | Text |  |
-| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, #class_WebPage, #class_Standard |  |
+| <a id="#class_File_#prop_encodingFormat_File"></a>encodingFormat[?](http://schema.org/encodingFormat) | No | The media type typically expressed using a MIME format. | Text, <a href="##class_WebPage">WebPage</a> |  |
 | <a id="#class_File_#prop_hasPart_File"></a>hasPart[?](http://schema.org/hasPart) | No | An item or CreativeWork that is part of this item, or CreativeWork (in some sense). | <a href="##class_CreativeWork">CreativeWork</a>, <a href="##class_File">File</a> |  |
 | <a id="#class_File_#prop_ldac:derivationOf_File"></a>ldac:derivationOf[?](https://w3id.org/ldac/terms#derivationOf) | No | This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF. | #class_Annotation, #class_PrimaryMaterial |  |
 | <a id="#class_File_#prop_ldac:hasDerivation_File"></a>ldac:hasDerivation[?](https://w3id.org/ldac/terms#hasDerivation) | No | This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF. | #class_DerivedMaterial |  |
@@ -667,9 +665,24 @@ Instances of this type MAY be present in the crate.
 | <a id="#class_RepositoryObject_#prop_creator_RepositoryObject"></a>creator[?](http://schema.org/creator) | No | The creator/author of this CreativeWork. This is the same as the Author property for CreativeWork. | <a href="##class_Person">Person</a> |  |
 | <a id="#class_RepositoryObject_#prop_dateCreated_RepositoryObject"></a>dateCreated[?](http://schema.org/dateCreated) | No | The date on which the CreativeWork was created or the item was added to a DataFeed. | Text |  |
 | <a id="#class_RepositoryObject_#prop_description_RepositoryObject"></a>description[?](http://schema.org/description) | No | A description of the item. | Text |  |
-| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | #class_PropertyValue, Text, URL |  |
-| <a id="#class_RepositoryObject_#prop_license_RepositoryObject"></a>license[?](http://schema.org/license) | No | A license document that applies to this content, typically indicated by URL. | #class_OrganizationReuseLicense |  |
+| <a id="#class_RepositoryObject_#prop_identifier_RepositoryObject"></a>identifier[?](http://schema.org/identifier) | No | The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See [background notes](/docs/datamodel.html#identifierBg) for more details.  | <a href="##class_PropertyValue">PropertyValue</a>, Text, URL |  |
 | <a id="#class_RepositoryObject_#prop_temporalCoverage_RepositoryObject"></a>temporalCoverage[?](http://schema.org/temporalCoverage) | No | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945". Open-ended date ranges can be written with ".." in place of the end date. For example, "2015-11/.." indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated. | Text |  |
+
+### <a id="#class_PropertyValue"></a> PropertyValue
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/PropertyValue |
+*No properties defined for this class*
+
 
 ### <a id="#class_Geometry"></a> Geometry
 
@@ -685,6 +698,22 @@ Instances of this type MAY be present in the crate.
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | yes |  |  | http://www.opengis.net/ont/geosparql#Geometry |
 | <a id="#class_Geometry_#prop_geosparql:asWKT_Geometry"></a>geosparql:asWKT[?](http://www.opengis.net/ont/geosparql#asWKT) | No | The WKT serialisation of the geometry. | Text |  |
+
+### <a id="#class_WebPage"></a> WebPage
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/WebPage |
+*No properties defined for this class*
+
 
 ### <a id="#class_ldac:CollectionEvent"></a> ldac:CollectionEvent
 

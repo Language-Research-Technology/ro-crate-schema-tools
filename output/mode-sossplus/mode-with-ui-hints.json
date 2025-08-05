@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "name": "Collection Mode",
-    "description": "Implements the basic RO-Crate elements found in the specification for the top-level, objects and files.",
+    "name": "General Purpose Collection Mode",
+    "description": "Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
     "version": 0.3,
     "author": "University of Queensland",
     "license": "GPL-3.0"
@@ -147,6 +147,7 @@
     "RepositoryObject",
     "CreativeWork",
     "File",
+    "WebPage",
     "ldac:CollectionEvent",
     "ldac:CollectionProtocol",
     "ldac:DataDepositLicense",
@@ -184,7 +185,7 @@
           "required": true,
           "multiple": false,
           "type": [
-            "DataReuseLicense"
+            "ldac:DataReuseLicense"
           ]
         },
         {
@@ -621,7 +622,7 @@
           "help": "A license document that applies to this content, typically indicated by URL.",
           "multiple": true,
           "type": [
-            "OrganizationReuseLicense"
+            "ldac:DataReuseLicense"
           ]
         },
         {
@@ -872,8 +873,7 @@
           "multiple": true,
           "type": [
             "Text",
-            "WebPage",
-            "Standard"
+            "WebPage"
           ]
         },
         {
@@ -891,7 +891,7 @@
           "help": "A license document that applies to this content, typically indicated by URL.",
           "multiple": true,
           "type": [
-            "OrganizationReuseLicense"
+            "ldac:DataReuseLicense"
           ]
         },
         {
@@ -1139,8 +1139,8 @@
         "CreativeWork"
       ],
       "hasSubclass": [
-        "DataDepositLicense",
-        "DataReuseLicense"
+        "ldac:DataDepositLicense",
+        "ldac:DataReuseLicense"
       ],
       "inputs": [
         {
@@ -1259,6 +1259,18 @@
           ]
         }
       ]
+    },
+    "PropertyValue": {
+      "id": "http://schema.org/PropertyValue",
+      "subClassOf": [],
+      "inputs": []
+    },
+    "WebPage": {
+      "id": "http://schema.org/WebPage",
+      "subClassOf": [
+        "CreativeWork"
+      ],
+      "inputs": []
     }
   },
   "ui-hints": {

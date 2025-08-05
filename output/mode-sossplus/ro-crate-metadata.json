@@ -9,8 +9,8 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Collection Mode Schema",
-      "description": "Schema derived from Collection Mode: Implements the basic RO-Crate elements found in the specification for the top-level, objects and files.",
+      "name": "General Purpose Collection Mode Schema",
+      "description": "Schema derived from General Purpose Collection Mode: Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
       "author": [
         {
           "@id": "#author"
@@ -807,26 +807,6 @@
       ]
     },
     {
-      "@id": "#prop_license_RepositoryObject",
-      "@type": "rdf:Property",
-      "rdfs:label": "license",
-      "name": "license",
-      "prov:specializationOf": {
-        "@id": "http://schema.org/license"
-      },
-      "domainIncludes": [
-        {
-          "@id": "#class_RepositoryObject"
-        }
-      ],
-      "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
-      "rangeIncludes": [
-        {
-          "@id": "#class_OrganizationReuseLicense"
-        }
-      ]
-    },
-    {
       "@id": "#prop_identifier_RepositoryObject",
       "@type": "rdf:Property",
       "rdfs:label": "identifier",
@@ -851,6 +831,15 @@
           "@id": "URL"
         }
       ]
+    },
+    {
+      "@id": "#class_PropertyValue",
+      "@type": "rdfs:Class",
+      "rdfs:label": "PropertyValue",
+      "name": "PropertyValue",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/PropertyValue"
+      }
     },
     {
       "@id": "#prop_author_CreativeWork",
@@ -1100,9 +1089,20 @@
         },
         {
           "@id": "#class_WebPage"
-        },
+        }
+      ]
+    },
+    {
+      "@id": "#class_WebPage",
+      "@type": "rdfs:Class",
+      "rdfs:label": "WebPage",
+      "name": "WebPage",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/WebPage"
+      },
+      "rdfs:subClassOf": [
         {
-          "@id": "#class_Standard"
+          "@id": "CreativeWork"
         }
       ]
     },
