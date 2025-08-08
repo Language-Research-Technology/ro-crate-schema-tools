@@ -131,9 +131,15 @@ try {
     const termSetName = termSet['name'] || termSet['rdfs:label'] || termSetId;
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
     
-    let termSetSummary = `### <a id="termset_${clean(termSetId)}"></a>${clean(termSetName)}\n\n`;
+    let termSetSummary = `### <a id="${clean(termSetId)}"></a>${clean(termSetName)}\n\n`;
     termSetSummary += `${clean(termSetDesc)}\n\n`;
-    
+    const inRangeOf = termSet['@reverse'].rangeIncludes;
+    for (let r of inRangeOf) {
+      console.log(r['@id'])
+      console.log(r['rdfs:label']);
+    }
+    // TODO
+
     // Add terms table if there are terms in this set
     const terms = termSet["@reverse"]?.["inDefinedTermSet"] || [];
     if (terms.length > 0) {
@@ -322,7 +328,41 @@ try {
   
   // Store all classes summary
   rules.all = allClasses;
+
+  // Add a properties table
+  let propsSummary = '## All Properties\n\n';
+  propsSummary += `| Property | Description | Occurs in Domain(s) |\n`;
+  propsSummary += `| ---- | ----------- | ----------- |\n`;
+  const properties = (entitiesByType['rdf:Property'] || []).slice().sort((a, b) => {
+    const aName = String(a['name'] || a['rdfs:label'] || a['@id'] || '');
+    const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
+    return aName.localeCompare(bName);
+  });
   
+  for (p of properties) {
+    const propId = p['@id'];
+    const anchorId = `${p["@id"]}_${p["@id"]}`;
+    const propBaseId = p?.["prov:specializationOf"]?.[0]?.['@id'];
+    const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${clean(propBaseId)})` : "";
+    const propName = p['name'] || p['rdfs:label'] || propId;
+    const propDesc = p['description'] || p['rdfs:comment'] || '';
+
+    // Add backlinks within the profile for the domains
+    const propDomains = (p.domainIncludes || []).map(domain => {
+      const domainId = typeof domain === 'object' ? domain['@id'] : domain;
+      if (!domainId) return ''; // Skip if no ID
+      const domainDef = profileCrate.getEntity(domainId);
+      if (domainDef) {
+        const domainName = domainDef['name'] || domainDef['rdfs:label'] || domainId;
+        return `<a href="#${clean(domainId)}">${clean(domainName)}</a>`;
+      }
+      return clean(domainId); // fallback to plain text
+    }).join(', ');
+
+    propsSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(propDesc)} | ${propDomains} |\n`;
+  }
+  rules.all += propsSummary
+
  
   // Add provenance information
   // Get the current Git branch by running git command

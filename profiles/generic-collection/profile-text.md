@@ -1,4 +1,4 @@
-# General Purpose Collection RO-Crate Profile
+# Generic Collection RO-Crate Profile
 
 
 
@@ -53,7 +53,7 @@ This profile covers various kinds of crate metadata:
 
 # Structural Metadata
 
-The structural elements of a General Purpose Collection RO-Crate are:
+The structural elements of a Generic Collection RO-Crate are:
 
 - **A Collection / Object hierarchy** to allow data to be
   grouped. For example, a corpus with sub-corpora, or collections of
@@ -78,7 +78,7 @@ ${rules.Dataset}
 
 <br>
 
-![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO update for non-linguistic data
+<!-- ![Structure of collections that conform to the Language Data Commons Profile](media/structure.svg) TODO update for non-linguistic data -->
 
 A collection such as a corpus may be stored in a repository or
 transmitted either as:
@@ -98,7 +98,7 @@ are stored elsewhere in the repository.
 
 ## Classes
 
-In linked data, a class is a resource that represents a concept or entity. Several classes from the Language Data Commons Schema are also applicable to the General Purpose Collection Profile:
+In linked data, a class is a resource that represents a concept or entity. Several classes from the Language Data Commons Schema are also applicable to the Generic Collection Profile:
 
 | Class                                                                | Description                                                                                                                                                      |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -203,8 +203,8 @@ what data owners have chosen to do with their collections in the past.
 
 If an RO-Crate contains a single Object, the Root Dataset would have a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` with a
-\`conformsTo\` property pointing to the General Purpose Collection Object profile 
-<https://w3id.org/ldac/profile#Object> (this document). TODO w3id needed
+\`conformsTo\` property pointing to the Generic Collection Object profile 
+<https://w3id.org/ldac/collections-profile#Object> (this document).
 
 If an RO-Crate contains an entire collection, each Object has a
 \`@type\` property of \`["Dataset", "RepositoryObject"]\` and a \`conformsTo\`
@@ -213,13 +213,13 @@ property referencing this document. For example:
 Objects SHOULD have files (which may be included in an RO-Crate for the
 object, or as part of a collection crate).
 
-In this example, the Object in question is an interview from a speech
+<!-- In this example, the Object in question is an interview from a speech
 corpus with three files. The diagram shows the relationships between
 the object and its files, and the contextual metadata of a Person who
 takes the role of the speaker/informant (discussed in more detail
 below). TODO update for non-linguistic data
 
-![Structure of an Object crate](media/object-structure.svg)
+![Structure of an Object crate](media/object-structure.svg) -->
 
 There are a number of terms that can be used to characterise resources -
 these use the Schema.org mechanism of \`DefinedTerm\` and \`DefinedTermSet\`.
@@ -262,8 +262,8 @@ ${rules.File}
 CSV or similar tabular files are often used to represent data. To enable
 automated location of which column is which, use a [CSVW](https://csvw.org/) tableSchema described by a \`File\` entity in the crate.
 
-For example: TODO update for csvw
-${exampleEntities('art', ['art_schema.json'])}
+<!-- For example: TODO update for csvw
+${exampleEntities('art', ['art_schema.json'])} -->
 
 <br>
 
@@ -278,7 +278,8 @@ The place in which data was collected may be indicated using the \`contentLocati
 Identifiers for Objects and Collections MUST be URIs.
 
 Internally, identifiers for all entities that do not have their own URIs
-may use the Archive and Packaging identifier scheme (ARCP), which allows for a DNS-like namespacing of identifiers. For example, the Sydney Speaks corpus top-level
+may use the Archive and Packaging identifier scheme (ARCP), which allows for a DNS-like namespacing of identifiers.
+<!-- For example, the Sydney Speaks corpus top-level
 collection would have the ID: TODO update for non-linguistic data
 
     arcp://name,http://www.dynamicsoflanguage.edu.au/sydney-speaks/corpus/
@@ -293,7 +294,7 @@ An object:
 
 A person:
 
-    arcp://name,http://www.dynamicsoflanguage.edu.au/sydney-speaks/corpus/person/54
+    arcp://name,http://www.dynamicsoflanguage.edu.au/sydney-speaks/corpus/person/54 -->
 
 <br>
 
@@ -321,7 +322,7 @@ modelled:
     required in describing the provenance of items, e.g. this work on
     [The Declaration of Rights of Man and of the
     Citizen](https://www.uts.edu.au/about/faculty-design-architecture-and-building/staff-showcase/writing-rights)
-    (Lorber-Kasunic & Sweetapple). TODO
+    (Lorber-Kasunic & Sweetapple).
 
     NOTE: If this approach is used, special care will have to be taken in
     developing user interfaces and/or training communities to use this way

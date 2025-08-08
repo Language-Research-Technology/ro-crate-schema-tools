@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "name": "General Purpose Collection Mode",
+    "name": "Generic Collection Mode",
     "description": "Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
     "version": 0.3,
     "author": "University of Queensland",
@@ -1011,8 +1011,7 @@
           "name": "ldac:derivationOf",
           "help": "This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF.",
           "type": [
-            "Annotation",
-            "PrimaryMaterial"
+            "CreativeWork"
           ],
           "multiple": true
         },
@@ -1021,7 +1020,7 @@
           "name": "ldac:hasDerivation",
           "help": "This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF.",
           "type": [
-            "DerivedMaterial"
+            "CreativeWork"
           ],
           "multiple": true
         }

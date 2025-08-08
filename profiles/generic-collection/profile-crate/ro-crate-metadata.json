@@ -9,8 +9,8 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "General Purpose Collection Mode Schema",
-      "description": "Schema derived from General Purpose Collection Mode: Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
+      "name": "Generic Collection Mode Schema",
+      "description": "Schema derived from Generic Collection Mode: Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
       "author": [
         {
           "@id": "#author"
@@ -1227,10 +1227,7 @@
       "rdfs:comment": "This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF.",
       "rangeIncludes": [
         {
-          "@id": "#class_Annotation"
-        },
-        {
-          "@id": "#class_PrimaryMaterial"
+          "@id": "#class_CreativeWork"
         }
       ]
     },
@@ -1250,7 +1247,7 @@
       "rdfs:comment": "This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF.",
       "rangeIncludes": [
         {
-          "@id": "#class_DerivedMaterial"
+          "@id": "#class_CreativeWork"
         }
       ]
     },
