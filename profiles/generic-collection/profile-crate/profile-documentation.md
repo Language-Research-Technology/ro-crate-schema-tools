@@ -162,7 +162,7 @@ The same relationship applies for \`hasPart\` and \`isPartOf\` at the Object and
 
 Depending on the data, using one term over another may be preferable when creating the hierarchical relationship. For example, if you are describing multiple files in a spreadsheet, it is easier to use \`isPartOf\` at the File level referencing the Object it belongs to, rather than listing all the \`hasPart\` entries at the Object level.
 
-The following diagram shows how these relationships are encoded in a single "bundled" RO-Crate.
+<!-- The following diagram shows how these relationships are encoded in a single "bundled" RO-Crate.
 
 ![Self-contained collection crate with all resources](media/bundled-crate.svg)
 
@@ -172,7 +172,7 @@ The next diagram shows how distributed crates (with one RO-Crate per Object and 
 
 Which linking strategy is used is an implementation choice for
 repository developers.
-
+-->
 <br>
 
 ## When to choose collection-as-crate ("bundled") vs collection-in-multiple-crates ("distributed")
