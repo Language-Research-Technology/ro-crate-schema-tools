@@ -432,9 +432,9 @@ Set of defined terms for ldac:materialType
 
 | Term | Description |
 | ---- | ----------- |
-| Annotation | The resource includes material that adds information to some other linguistic record. |
-| DerivedMaterial | This is derived from another source, such as a Primary Material, via some process, e.g. a downsampled video or a sample or an abstract of a resource that is not an annotation (an analysis or description). |
-| PrimaryMaterial | The object of study, such as a literary work, film, or recording of natural discourse. |
+| <a id="ldac:Annotation_ldac:Annotation"></a>Annotation[?](https://w3id.org/ldac/terms#Annotation) | The resource includes material that adds information to some other linguistic record. |
+| <a id="ldac:DerivedMaterial_ldac:DerivedMaterial"></a>DerivedMaterial[?](https://w3id.org/ldac/terms#DerivedMaterial) | This is derived from another source, such as a Primary Material, via some process, e.g. a downsampled video or a sample or an abstract of a resource that is not an annotation (an analysis or description). |
+| <a id="ldac:PrimaryMaterial_ldac:PrimaryMaterial"></a>PrimaryMaterial[?](https://w3id.org/ldac/terms#PrimaryMaterial) | The object of study, such as a literary work, film, or recording of natural discourse. |
 
 ### <a id="ldac:CollectionEventTypeTerms"></a>CollectionEventTypeTerms
 
@@ -442,7 +442,7 @@ Set of defined terms for ldac:collectionEventType
 
 | Term | Description |
 | ---- | ----------- |
-| Session | A collection event that is a recording or elicitation session with participants. |
+| <a id="ldac:Session_ldac:Session"></a>Session[?](https://w3id.org/ldac/terms#Session) | A collection event that is a recording or elicitation session with participants. |
 
 ### <a id="ldac:CollectionProtocolTypeTerms"></a>CollectionProtocolTypeTerms
 
@@ -450,8 +450,8 @@ Set of defined terms for ldac:collectionProtocolType
 
 | Term | Description |
 | ---- | ----------- |
-| ElicitationTask | The collection protocol includes a task-based prompt to participants. |
-| MaterialSelectionCriteria | A description of the criteria used to select texts in a collection. |
+| <a id="ldac:ElicitationTask_ldac:ElicitationTask"></a>ElicitationTask[?](https://w3id.org/ldac/terms#ElicitationTask) | The collection protocol includes a task-based prompt to participants. |
+| <a id="ldac:MaterialSelectionCriteria_ldac:MaterialSelectionCriteria"></a>MaterialSelectionCriteria[?](https://w3id.org/ldac/terms#MaterialSelectionCriteria) | A description of the criteria used to select texts in a collection. |
 
 ### <a id="ldac:AccessTypes"></a>AccessTypes
 
@@ -459,8 +459,8 @@ Set of defined terms for ldac:access
 
 | Term | Description |
 | ---- | ----------- |
-| AuthorizedAccess | Indicates that a DataReuseLicense requires some kind of authorization step, from SelfAuthorization (click-through) to processes that require a data steward to grant permission. |
-| OpenAccess | Data covered by this license may be accessed as long as the license is served alongside it, and does not require any specific authorization step. |
+| <a id="ldac:AuthorizedAccess_ldac:AuthorizedAccess"></a>AuthorizedAccess[?](https://w3id.org/ldac/terms#AuthorizedAccess) | Indicates that a DataReuseLicense requires some kind of authorization step, from SelfAuthorization (click-through) to processes that require a data steward to grant permission. |
+| <a id="ldac:OpenAccess_ldac:OpenAccess"></a>OpenAccess[?](https://w3id.org/ldac/terms#OpenAccess) | Data covered by this license may be accessed as long as the license is served alongside it, and does not require any specific authorization step. |
 
 ### <a id="ldac:AuthorizationWorkflows"></a>AuthorizationWorkflows
 
@@ -468,11 +468,11 @@ Set of defined terms for ldac:authorizationWorkflow
 
 | Term | Description |
 | ---- | ----------- |
-| AccessControlList | License grants access to data based on a list of approved users, specified using the property accessControlList. |
-| AgreeToTerms | A user is expected to explicitly agree to a set of license terms, this may be combined with AccessControlList - to note that even if a user has been pre-approved for a license they must agree to license terms. |
-| AuthorizationByApplication | Users may apply for a license via some workflow, such as a form, with the decision being made by a DataSteward or their delegate about whether to grant the license. |
-| AuthorizationByInvitation | A data steward or administrator is expected to use an access control system to invite users, for example, participants, collaborators or students. |
-| SelfAuthorization | A user can be authorised to access data by clicking that they agree to a license, or filling out a form to check their understanding, which can be validated by a machine and does not require human intervention. |
+| <a id="ldac:AccessControlList_ldac:AccessControlList"></a>AccessControlList[?](https://w3id.org/ldac/terms#AccessControlList) | License grants access to data based on a list of approved users, specified using the property accessControlList. |
+| <a id="ldac:AgreeToTerms_ldac:AgreeToTerms"></a>AgreeToTerms[?](https://w3id.org/ldac/terms#AgreeToTerms) | A user is expected to explicitly agree to a set of license terms, this may be combined with AccessControlList - to note that even if a user has been pre-approved for a license they must agree to license terms. |
+| <a id="ldac:AuthorizationByApplication_ldac:AuthorizationByApplication"></a>AuthorizationByApplication[?](https://w3id.org/ldac/terms#AuthorizationByApplication) | Users may apply for a license via some workflow, such as a form, with the decision being made by a DataSteward or their delegate about whether to grant the license. |
+| <a id="ldac:AuthorizationByInvitation_ldac:AuthorizationByInvitation"></a>AuthorizationByInvitation[?](https://w3id.org/ldac/terms#AuthorizationByInvitation) | A data steward or administrator is expected to use an access control system to invite users, for example, participants, collaborators or students. |
+| <a id="ldac:SelfAuthorization_ldac:SelfAuthorization"></a>SelfAuthorization[?](https://w3id.org/ldac/terms#SelfAuthorization) | A user can be authorised to access data by clicking that they agree to a license, or filling out a form to check their understanding, which can be validated by a machine and does not require human intervention. |
 
 
 

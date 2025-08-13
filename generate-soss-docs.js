@@ -34,8 +34,8 @@ try {
 
 
   // Create rules data structure for use by the template
-  const rules = { 
-    objects: {}, 
+  const rules = {
+    objects: {},
     all: "",  // Will contain all classes summary
     definedTermSets: {},  // Will contain DefinedTermSet documentation
     itemLists: {},  // Will contain item lists documentation
@@ -45,7 +45,7 @@ try {
   // Index entities by @type using native RO-Crate methods
   const entitiesByType = {};
 
-  for (let entity of profileCrate.entities()) { 
+  for (let entity of profileCrate.entities()) {
     for (let type of entity['@type'] || []) {
       if (!entitiesByType[type]) {
         entitiesByType[type] = [];
@@ -54,36 +54,36 @@ try {
     }
   }
 
- /*  
-
-  TODO: Deal with class inheritance at some point -- maybe later
-  // Create a class hierarchy map for inheritance support
-  const classHierarchy = {};
-  entitiesByType["rdfs:Class"].forEach(classRule => {
-    const classId = classRule['@id'];
-    const superClasses = classRule['prov:specializationOf'] || [];
-    const superClassesArray = Array.isArray(superClasses) ? superClasses : [superClasses];
-    
-    classHierarchy[classId] = {
-      superClasses: superClassesArray.map(sc => typeof sc === 'object' ? sc['@id'] : sc),
-      subClasses: []
-    };
-  });
-  
-  // Populate subClasses
-  Object.keys(classHierarchy).forEach(classId => {
-    classHierarchy[classId].superClasses.forEach(superClass => {
-      if (classHierarchy[superClass]) {
-        classHierarchy[superClass].subClasses.push(classId);
-      }
-    });
-  });
-   */
+  /*  
+ 
+   TODO: Deal with class inheritance at some point -- maybe later
+   // Create a class hierarchy map for inheritance support
+   const classHierarchy = {};
+   entitiesByType["rdfs:Class"].forEach(classRule => {
+     const classId = classRule['@id'];
+     const superClasses = classRule['prov:specializationOf'] || [];
+     const superClassesArray = Array.isArray(superClasses) ? superClasses : [superClasses];
+     
+     classHierarchy[classId] = {
+       superClasses: superClassesArray.map(sc => typeof sc === 'object' ? sc['@id'] : sc),
+       subClasses: []
+     };
+   });
+   
+   // Populate subClasses
+   Object.keys(classHierarchy).forEach(classId => {
+     classHierarchy[classId].superClasses.forEach(superClass => {
+       if (classHierarchy[superClass]) {
+         classHierarchy[superClass].subClasses.push(classId);
+       }
+     });
+   });
+    */
   // Group properties by class
 
   const classPropMap = {};
   (entitiesByType["rdf:Property"] || []).forEach(prop => {
-    
+
     prop['domainIncludes'].forEach(domain => {
       const classId = typeof domain === 'object' ? domain['@id'] : domain;
       if (!classPropMap[classId]) {
@@ -97,24 +97,24 @@ try {
   // TODO this is a bad HACK that should be fixed later
   //  -- need to look for the ro-crate-metadata.json metadata descriptor class and find root(s) from there
   const rootDataEntityClass = profileCrate.getEntity("#Root_Data_Entity");
-  
+
   if (rootDataEntityClass) {
     const rootTypes = rootDataEntityClass['prov:specializationOf'] || [];
     const rootTypesArray = Array.isArray(rootTypes) ? rootTypes : [rootTypes];
     const rootTypesIds = rootTypesArray.map(t => typeof t === 'object' ? t['@id'] : t);
-    
+
     // Store information about Dataset (Root Data Entity)
     rules.Dataset = `- MUST be of type(s): ${rootTypesIds.join(', ')}\n`;
-    
+
     // Add additional requirements
     const rootProps = classPropMap['#Root_Data_Entity'] || [];
     if (rootProps.length > 0) {
       rules.Dataset += `- MUST include the following properties:\n`;
-      
+
       rootProps.forEach(prop => {
         const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0;
-        
+
         if (isRequired) {
           rules.Dataset += `  * ${clean(propName)}\n`;
         }
@@ -130,46 +130,57 @@ try {
     const termSetId = termSet['@id'];
     const termSetName = termSet['name'] || termSet['rdfs:label'] || termSetId;
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
-    
+
     let termSetSummary = `### <a id="${clean(termSetId)}"></a>${clean(termSetName)}\n\n`;
     termSetSummary += `${clean(termSetDesc)}\n\n`;
-    const inRangeOf = termSet['@reverse'].rangeIncludes;
-    for (let r of inRangeOf) {
-      console.log(r['@id'])
-      console.log(r['rdfs:label']);
-    }
-    // TODO
+    // const inRangeOf = termSet['@reverse'].rangeIncludes;
+    // for (let r of inRangeOf) {
+    //   console.log(r['@id'])
+    //   console.log(r['rdfs:label']);
+    // }
 
     // Add terms table if there are terms in this set
     const terms = termSet["@reverse"]?.["inDefinedTermSet"] || [];
     if (terms.length > 0) {
       termSetSummary += `| Term | Description |\n`;
       termSetSummary += `| ---- | ----------- |\n`;
-      
+
       // Sort terms alphabetically by name
       terms.sort((a, b) => {
         const aName = String(a['name'] || a['rdfs:label'] || a['@id'] || '');
         const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
         return aName.localeCompare(bName);
       });
-      
-      terms.forEach(term => {
-        const termName = term['name'] || term['rdfs:label'] || term['@id'];
-        const termDesc = term['description'] || term['rdfs:comment'] || '';
-        termSetSummary += `| ${clean(termName)} | ${clean(termDesc)} |\n`;
-      });
+
+      for (const t of terms) {
+        const anchorId = `${t["@id"]}_${t["@id"]}`;
+        const termBaseId = `https://w3id.org/ldac/terms#${t?.name}`;
+        const link = termBaseId && termBaseId.match(/^http(s)?:/i) ? `[?](${clean(termBaseId)})` : "";
+        const termName = t['name'] || t['rdfs:label'] || t['@id'];
+        const termDesc = t['description'] || t['rdfs:comment'] || '';
+        termSetSummary += `| <a id="${clean(anchorId)}"></a>${clean(termName)}${clean(link)} | ${clean(termDesc)} |\n`;
+      }
+
     } else {
       termSetSummary += `*No terms defined for this term set*\n\n`;
     }
-    
+    // terms.forEach(term => {
+    //   const termName = term['name'] || term['rdfs:label'] || term['@id'];
+    //   const termDesc = term['description'] || term['rdfs:comment'] || '';
+    //   termSetSummary += `| ${clean(termName)} | ${clean(termDesc)} |\n`;
+    // });
+    // } else {
+    //   termSetSummary += `*No terms defined for this term set*\n\n`;
+    // }
+
     termSetSummary += `\n`;
-    
+
     // Add DefinedTermSet to rules structure
     rules[termSetId] = termSetSummary;
     rules.definedTermSets[termSetId] = termSetSummary;
     allDefinedTermSets += termSetSummary;
   });
-  
+
   // Add all defined term sets summary to rules
   rules.allDefinedTermSets = allDefinedTermSets;
 
@@ -180,24 +191,24 @@ try {
     const listId = list['@id'];
     const listName = list['name'] || listId;
     const listDescription = list['description'] || '';
-    
+
     let listSummary = `### <a id="${clean(listId)}"></a>${clean(listName)}\n\n`;
     listSummary += `${clean(listDescription)}\n\n`;
-    
+
     // Add terms table if there are terms in this set
     const items = list.itemListElement || [];
     if (items.length > 0) {
-      
+
       // Sort terms alphabetically by name
       items.sort((a, b) => {
-        const aName = String(a['name']  || a['@id'] || '');
-        const bName = String(b['name']  || b['@id'] || '');
+        const aName = String(a['name'] || a['@id'] || '');
+        const bName = String(b['name'] || b['@id'] || '');
         return aName.localeCompare(bName);
       });
-      
+
       items.forEach(item => {
-        const itemName = item['name']  || item['@id'];
-        const ItemDesc = item['description']  || '';
+        const itemName = item['name'] || item['@id'];
+        const ItemDesc = item['description'] || '';
         listSummary += `-  [${clean(itemName)}](#${item["@id"]})\n `;
       });
 
@@ -209,21 +220,21 @@ try {
     } else {
       listSummary += `*No terms defined for this term set*\n\n`;
     }
-    
-    
+
+
     // Add DefinedTermSet to rules structure
     rules[listId] = listSummary;
     rules.itemLists[listId] = listSummary;
     allItemLists += listSummary;
   });
-  
+
   // Add all defined term sets summary to rules
   rules.allItemLists = allItemLists;
 
 
   // Generate class documentation
   let allClasses = "## Types of entities (specializations of Classes) and expected Properties\n\n";
-  
+
   entitiesByType["rdfs:Class"].forEach(classRule => {
     const classId = classRule['@id'];
     const className = classRule['name'] || classRule['rdfs:label'] || classId;
@@ -236,10 +247,10 @@ try {
 
     const min = classRule["sh:minCount"] !== undefined ? String(classRule["sh:minCount"]) : undefined;
     const max = classRule["sh:maxCount"] !== undefined ? String(classRule["sh:maxCount"]) : undefined;
-    
+
     if (min === undefined) {
       classSummary += `Instances of this type MAY be present in the crate.\n\n`;
-    } else if  (min === "0") {
+    } else if (min === "0") {
       classSummary += `Instances of this type SHOULD be present in the crate.\n\n`;
     } else {
       classSummary += `At least ${clean(min)} instances of this type MUST be present in the crate.\n\n`;
@@ -252,40 +263,40 @@ try {
     classSummary += `| --------- | --------- |\n`;
     classSummary += `| ${min !== undefined ? min : 'N/A'} | ${max !== undefined ? max : 'N/A'} |\n\n`;
 
-  
-    
 
-     classSummary += `| Property | Required | Description | Range | Value |\n`;
-     classSummary += `| -------- | -------- | ----------- | ----- | ----- |\n`;
-    
+
+
+    classSummary += `| Property | Required | Description | Range | Value |\n`;
+    classSummary += `| -------- | -------- | ----------- | ----- | ----- |\n`;
+
     if (specialized) {
       const specializedArray = Array.isArray(specialized) ? specialized : [specialized];
-      const specializedStr = specializedArray.map(s => 
+      const specializedStr = specializedArray.map(s =>
         typeof s === 'object' ? s['@id'] : s).join(', ');
       classSummary += `| @type | yes |  |  | ${clean(specializedStr)} |\n`;
 
     }
-    
+
     // Get all properties for this class (no inheritence support ATM)
     const props = classRule["@reverse"].domainIncludes
-    
+
     if (props.length > 0) {
-      
-      
+
+
       // Sort properties: required first, then alphabetically
       props.sort((a, b) => {
         const aRequired = a['sh:minCount'] && parseInt(a['sh:minCount']) > 0;
         const bRequired = b['sh:minCount'] && parseInt(b['sh:minCount']) > 0;
-        
+
         if (aRequired && !bRequired) return -1;
         if (!aRequired && bRequired) return 1;
-        
+
         const aName = String(a['name'] || a['rdfs:label'] || a['@id'] || '');
         const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
-        
+
         return aName.localeCompare(bName);
       });
-      
+
       props.forEach(prop => {
         const propId = prop['@id'];
         const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
@@ -295,37 +306,37 @@ try {
         const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${clean(propBaseId)})` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
-        
+
         const rangesArray = prop['rangeIncludes'] || [];
-      
+
         // Create links to range classes that are defined in the profile
         const rangeLinks = rangesArray.map(r => {
           const rangeId = typeof r === 'object' ? r['@id'] : r;
           if (!rangeId) return 'Text'; // Default to Text if no range is specified
           const rangeDefiniton = profileCrate.getEntity(rangeId);
-          if(rangeDefiniton) {
+          if (rangeDefiniton) {
             const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
             return `<a href="#${clean(rangeId)}">${clean(rangeName)}</a>`;
           }
           return `${clean(rangeId)}`
         }).join(', ');
-        
+
         // Get fixed value if specified
         const fixedValue = prop['schema:value'] || prop['value'] || '';
-        
+
         classSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(isRequired)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
       });
     } else {
       classSummary += `*No properties defined for this class*\n\n`;
     }
-    
+
     classSummary += `\n`;
-    
+
     // Add class to rules structure
     rules[className] = classSummary;
     allClasses += classSummary;
   });
-  
+
   // Store all classes summary
   rules.all = allClasses;
 
@@ -338,7 +349,7 @@ try {
     const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
     return aName.localeCompare(bName);
   });
-  
+
   for (p of properties) {
     const propId = p['@id'];
     const anchorId = `${p["@id"]}_${p["@id"]}`;
@@ -363,7 +374,7 @@ try {
   }
   rules.all += propsSummary
 
- 
+
   // Add provenance information
   // Get the current Git branch by running git command
   let gitBranch = 'main'; // Default to main
@@ -374,10 +385,10 @@ try {
     // Handle detached HEAD state
     if (gitBranch === 'HEAD') {
       // Try to get the branch from CI environment variables
-      gitBranch = process.env.GITHUB_REF_NAME || 
-                  process.env.CI_COMMIT_REF_NAME || 
-                  process.env.BRANCH_NAME || 
-                  'main';
+      gitBranch = process.env.GITHUB_REF_NAME ||
+        process.env.CI_COMMIT_REF_NAME ||
+        process.env.BRANCH_NAME ||
+        'main';
     }
   } catch (error) {
     console.warn(`Warning: Could not determine Git branch: ${error.message}`);
@@ -387,15 +398,15 @@ try {
   const scriptPath = path.relative(__dirname, path.resolve(__dirname, 'generate-soss-docs.js'));
   const templateRelPath = path.relative(__dirname, templatePath);
   const profileRelPath = path.relative(__dirname, profilePath);
-  
+
   rules.provenance = `This document was compiled using [generate-soss-docs.js](${clean(repoUrl)}/${clean(scriptPath)}), ` +
-                     `based on [${clean(templateRelPath)}](${clean(repoUrl)}/${clean(templateRelPath)}) ` +
-                     `using a SoSS+ Schema defined in [${clean(profileRelPath)}](${clean(repoUrl)}/${clean(profileRelPath)}).`;
+    `based on [${clean(templateRelPath)}](${clean(repoUrl)}/${clean(templateRelPath)}) ` +
+    `using a SoSS+ Schema defined in [${clean(profileRelPath)}](${clean(repoUrl)}/${clean(profileRelPath)}).`;
 
   // Read the template file
   console.log(`Reading template from: ${clean(templatePath)}`);
   const template = fs.readFileSync(templatePath, 'utf8');
-  
+
   // Simple template engine - add support for including definedTermSets in the template
   const output = template.replace(/\${rules\.([^}]+)}/g, (match, key) => {
     // If the key starts with '#', look it up directly
@@ -414,7 +425,7 @@ try {
     // Otherwise, return the property from rules
     return rules[key] || '';
   });
-  
+
   // Ensure output directory exists
   const outputDir = path.dirname(outputPath);
   if (!fs.existsSync(outputDir)) {

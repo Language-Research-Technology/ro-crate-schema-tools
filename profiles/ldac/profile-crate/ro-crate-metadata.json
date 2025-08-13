@@ -65,19 +65,21 @@
       "sh:maxCount": 1
     },
     {
-      "@id": "#class_Language",
+      "@id": "#Root_Data_Entity",
       "@type": "rdfs:Class",
-      "description": "TODO: Language description",
-      "name": "Language",
-      "rdfs:label": "Language",
+      "description": "The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor. In this profile, it is a Dataset and RepositoryCollection.",
+      "name": "Root Data Entity",
       "sh:minCount": 1,
+      "sh:maxCount": 1,
       "prov:specializationOf": [
         {
-          "@id": "http://schema.org/Language"
+          "@id": "http://schema.org/Dataset"
+        },
+        {
+          "@id": "http://pcdm.org/models#Collection"
         }
       ]
     },
-
     {
       "@id": "#RO-Crate_Metadata_Descriptor.about",
       "@type": "rdf:Property",
@@ -185,17 +187,13 @@
       }
     },
     {
-      "@id": "#Root_Data_Entity",
+      "@id": "#class_Dataset",
       "@type": "rdfs:Class",
       "rdfs:label": "Dataset",
       "name": "Dataset",
-      "prov:specializationOf": [{
+      "prov:specializationOf": {
         "@id": "http://schema.org/Dataset"
-
-      },
-      {
-        "@id": "http://pcdm.org/models#Collection"
-      }]
+      }
     },
     {
       "@id": "#prop_isAccessibleForFree_Dataset",
@@ -207,7 +205,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "This is available under an Open Access license.",
@@ -248,7 +246,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The person or organisation owning or managing rights over the resource.",
@@ -294,7 +292,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "Link to or description of an original resource.",
@@ -309,7 +307,7 @@
           "@id": "#class_CreativeWork"
         },
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         },
         {
           "@id": "#class_File"
@@ -335,7 +333,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "A free text bibliographic citation for this material, e.g. 'Cite as: Musgrave (2023). Title of work. DOI'.",
@@ -355,7 +353,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "Additional information on licensing options for using the data, e.g. 'Contact the Data Steward to discuss license terms'.",
@@ -375,7 +373,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR.",
@@ -399,7 +397,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The person or organisation who is the data steward for this resource.",
@@ -423,7 +421,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The organisation responsible for releasing this dataset.",
@@ -444,7 +442,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The organisation(s) responsible for funding the creation or collection of this dataset.",
@@ -464,7 +462,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "Associated publications.",
@@ -484,7 +482,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "A Digital Object Identifier, e.g. https://doi.org/10.1000/182.",
@@ -505,7 +503,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level.",
@@ -528,7 +526,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The place(s) that are the focus of the content. It is a sub-property of contentLocation intended primarily for more technical and detailed materials. For example, with a dataset, it indicates areas that the dataset describes: a dataset Cape York languages would have spatialCoverage which was the place: the outline of the Cape.",
@@ -557,7 +555,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection.",
@@ -592,7 +590,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The sub-collections, if any, associated with this collection.",
@@ -638,7 +636,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "An item or CreativeWork that is part of this item, or CreativeWork (in some sense).",
@@ -650,7 +648,7 @@
           "@id": "#class_File"
         },
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ]
     },
@@ -664,7 +662,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "An item or CreativeWork that this item, or CreativeWork (in some sense), is part of.",
@@ -687,7 +685,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "Links from a Repository Object or Collection to a containing Repository Object or Collection.",
@@ -707,7 +705,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant produced an annotation of this or a related resource.",
@@ -730,7 +728,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant is responsible for collecting the sub-parts of the resource together.",
@@ -753,7 +751,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language.",
@@ -776,7 +774,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant responsible for entering, re-typing, and/or structuring the data contained in the resource.",
@@ -799,7 +797,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant responsible for depositing the resource in an archive.",
@@ -822,7 +820,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource.",
@@ -845,7 +843,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant reviewed, corrected, and/or tested the resource.",
@@ -868,7 +866,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant contributed drawings or other illustrations to the resource.",
@@ -891,7 +889,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource.",
@@ -914,7 +912,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant was a respondent in an interview.",
@@ -937,7 +935,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant conducted an interview that forms part of the resource.",
@@ -960,7 +958,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant was present during the creation of the resource, but did not contribute substantially to its content.",
@@ -983,7 +981,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'.",
@@ -1006,7 +1004,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant took the photograph, or shot the film, that appears in or constitutes the resource.",
@@ -1029,7 +1027,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant operated the recording machinery used to create the resource.",
@@ -1052,7 +1050,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research.",
@@ -1075,7 +1073,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource.",
@@ -1098,7 +1096,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others.",
@@ -1121,7 +1119,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
@@ -1144,7 +1142,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource.",
@@ -1167,7 +1165,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
@@ -1190,7 +1188,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant contributed financial support to the creation of the resource.",
@@ -1213,7 +1211,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant produced a transcription of this or a related resource.",
@@ -1236,7 +1234,7 @@
       },
       "domainIncludes": [
         {
-          "@id": "#Root_Data_Entity"
+          "@id": "#class_Dataset"
         }
       ],
       "rdfs:comment": "The participant produced a translation of this or a related resource.",
@@ -1267,7 +1265,8 @@
         {
           "@id": "#class_Place"
         }
-      ]
+      ],
+      "sh:maxCount": 1
     },
     {
       "@id": "https://w3id.org/ldac/profile#Collection",
