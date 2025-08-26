@@ -373,6 +373,22 @@ ${exampleEntities('art', ['art_schema.json'])}
 
 #### A [Language] entity:
 
+### <a id="#class_Language"></a> Language
+
+TODO: Language description
+
+At least 1 instances of this type MUST be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| 1 | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | yes |  |  | http://schema.org/Language |
+*No properties defined for this class*
+
+
 
 
 ## Places

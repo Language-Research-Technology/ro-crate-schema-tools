@@ -2,6 +2,45 @@
 
 This repository contains node-based tools for Research Object Crate ([RO-Crate](https://www.researchobject.org/ro-crate/)) to be used for creating and distributing Schema.org Style Schemas (SOSSs) and Mode Files for configuring the [Crate-O editor](https://github.com/Language-Research-Technology/crate-o).
 
+## Install
+
+```bash
+npm install
+```
+
+This project uses Git submodules for test data and schema definitions. The `npm install` command will automatically initialize the submodules.
+
+### Manual submodule initialization
+
+If you need to manually initialize the submodules:
+
+```bash
+git submodule update --init
+```
+
+### Submodules included
+
+The submodules include:
+- Test data: `test_data/UDHR-Translations` (locked to commit db6467c)
+- Schema definitions: `schemas/danala-schema`
+
+### For developers: Adding submodules
+
+To add the test data submodule:
+
+```bash
+git submodule add https://github.com/Language-Research-Technology/test-collections.git test_data/UDHR-Translations
+cd test_data/UDHR-Translations
+git checkout db6467c
+cd ../..
+```
+
+To add the schema definitions submodule:
+
+```bash
+git submodule add https://github.com/Language-Research-Technology/danala-schema.git schemas/danala-schema
+```
+
 
 ## Background: What's a Schema.org Style Schema?
 
