@@ -155,7 +155,7 @@ try {
       for (const t of terms) {
         const anchorId = `${t["@id"]}_${t["@id"]}`;
         const termBaseId = `https://w3id.org/ldac/terms#${t?.name}`;
-        const link = termBaseId && termBaseId.match(/^http(s)?:/i) ? `[?](${clean(termBaseId)})` : "";
+        const link = termBaseId && termBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(termBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
         const termName = t['name'] || t['rdfs:label'] || t['@id'];
         const termDesc = t['description'] || t['rdfs:comment'] || '';
         termSetSummary += `| <a id="${clean(anchorId)}"></a>${clean(termName)}${clean(link)} | ${clean(termDesc)} |\n`;
@@ -273,7 +273,7 @@ try {
       const specializedArray = Array.isArray(specialized) ? specialized : [specialized];
       const specializedStr = specializedArray.map(s =>
         typeof s === 'object' ? s['@id'] : s).join(', ');
-      classSummary += `| @type | yes |  |  | ${clean(specializedStr)} |\n`;
+      classSummary += `| @type | Yes |  |  | ${clean(specializedStr)} |\n`;
 
     }
 
@@ -303,7 +303,7 @@ try {
         const anchorId = `${classRule["@id"]}_${prop["@id"]}`;
         // Make a link to the 'main' definition of the property
         const propBaseId = prop?.["prov:specializationOf"]?.[0]?.['@id'];
-        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${clean(propBaseId)})` : "";
+        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(propBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
 
@@ -354,7 +354,7 @@ try {
     const propId = p['@id'];
     const anchorId = `${p["@id"]}_${p["@id"]}`;
     const propBaseId = p?.["prov:specializationOf"]?.[0]?.['@id'];
-    const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? `[?](${clean(propBaseId)})` : "";
+    const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(propBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
     const propName = p['name'] || p['rdfs:label'] || propId;
     const propDesc = p['description'] || p['rdfs:comment'] || '';
 

@@ -1,18 +1,14 @@
 {
   "metadata": {
-    "name": "Language Data Commons Comprehensive Collection",
-    "description": "Implements the language data commons RO-Crate Metadata Profile for the top-level, objects and files.",
+    "name": "Generic Collection Mode",
+    "description": "Implements the basic RO-Crate elements found in the specification for the top-level, objects and files of a general purpose collection.",
     "version": 0.3,
     "author": "University of Queensland",
     "license": "GPL-3.0"
   },
-  "contextPrefixes": {
-    "ldac": "https://w3id.org/ldac/terms#"
-  },
+  "contextPrefixes": {},
   "context": [],
-  "conformsToUri": [
-    "https://w3id.org/ldac/profile#Collection"
-  ],
+  "conformsToUri": [],
   "rootDataset": {
     "type": [
       "Dataset",
@@ -37,24 +33,13 @@
         "http://schema.org/usageInfo",
         "http://schema.org/about",
         "http://schema.org/mentions",
-        "http://schema.org/mainEntity",
-        "https://w3id.org/ldac/terms#age",
-        "https://w3id.org/ldac/terms#doi",
-        "https://w3id.org/ldac/terms#indexableText",
-        "https://w3id.org/ldac/terms#itemLocation",
-        "https://w3id.org/ldac/terms#materialType"
+        "http://schema.org/mainEntity"
       ]
     },
     {
       "name": "Access",
       "help": "",
-      "inputs": [
-        "https://w3id.org/ldac/terms#access",
-        "https://w3id.org/ldac/terms#accessControlList",
-        "https://w3id.org/ldac/terms#authorizationWorkflow",
-        "https://w3id.org/ldac/terms#openAccessIndex",
-        "https://w3id.org/ldac/terms#reviewDate"
-      ]
+      "inputs": []
     },
     {
       "name": "Related People, Orgs & Works",
@@ -67,31 +52,7 @@
         "http://schema.org/affiliation",
         "http://schema.org/citation",
         "http://purl.org/dc/terms/rightsHolder",
-        "https://w3id.org/ldac/terms#annotator",
-        "http://schema.org/author",
-        "https://w3id.org/ldac/terms#compiler",
-        "https://w3id.org/ldac/terms#consultant",
-        "https://w3id.org/ldac/terms#dataInputter",
-        "https://w3id.org/ldac/terms#depositor",
-        "https://w3id.org/ldac/terms#developer",
-        "https://w3id.org/ldac/terms#editor",
-        "https://w3id.org/ldac/terms#illustrator",
-        "https://w3id.org/ldac/terms#interpreter",
-        "https://w3id.org/ldac/terms#interviewee",
-        "https://w3id.org/ldac/terms#interviewer",
-        "https://w3id.org/ldac/terms#participant",
-        "https://w3id.org/ldac/terms#performer",
-        "https://w3id.org/ldac/terms#photographer",
-        "https://w3id.org/ldac/terms#recorder",
-        "https://w3id.org/ldac/terms#researcher",
-        "https://w3id.org/ldac/terms#researchParticipant",
-        "https://w3id.org/ldac/terms#responder",
-        "https://w3id.org/ldac/terms#signer",
-        "https://w3id.org/ldac/terms#singer",
-        "https://w3id.org/ldac/terms#speaker",
-        "https://w3id.org/ldac/terms#sponsor",
-        "https://w3id.org/ldac/terms#transcriber",
-        "https://w3id.org/ldac/terms#translator"
+        "http://schema.org/author"
       ]
     },
     {
@@ -102,10 +63,6 @@
         "http://pcdm.org/models#hasMember",
         "http://schema.org/isPartOf",
         "http://schema.org/hasPart",
-        "https://w3id.org/ldac/terms#annotationOf",
-        "https://w3id.org/ldac/terms#hasAnnotation",
-        "https://w3id.org/ldac/terms#derivationOf",
-        "https://w3id.org/ldac/terms#hasDerivation",
         "http://schema.org/inDefinedTermSet",
         "http://schema.org/hasDefinedTerm"
       ]
@@ -119,25 +76,7 @@
         "http://schema.org/instrument",
         "http://schema.org/result",
         "http://schema.org/participant",
-        "http://schema.org/target",
-        "https://w3id.org/ldac/terms#collectionEventType",
-        "https://w3id.org/ldac/terms#collectionProtocolType",
-        "https://w3id.org/ldac/terms#hasCollectionProtocol",
-        "https://w3id.org/ldac/terms#isDeIdentified",
-        "https://w3id.org/ldac/terms#material",
-        "https://w3id.org/ldac/terms#writtenLanguageFormat"
-      ]
-    },
-    {
-      "name": "Language",
-      "help": "Metadata related to the languages used, modes of communication and other linguistic classifications.",
-      "inputs": [
-        "http://schema.org/inLanguage",
-        "https://w3id.org/ldac/terms#subjectLanguage",
-        "https://w3id.org/ldac/terms#communicationMode",
-        "https://w3id.org/ldac/terms#linguisticGenre",
-        "https://w3id.org/ldac/terms#annotationType",
-        "https://w3id.org/ldac/terms#register"
+        "http://schema.org/target"
       ]
     },
     {
@@ -145,7 +84,6 @@
       "help": "Where and when the data was collected; the times and places it mentions or describes.",
       "inputs": [
         "http://schema.org/dateCreated",
-        "https://w3id.org/ldac/terms#dateFreeText",
         "http://schema.org/temporalCoverage",
         "http://schema.org/spatialCoverage",
         "http://schema.org/contentLocation",
@@ -175,8 +113,7 @@
         "http://schema.org/softwareRequirements",
         "http://schema.org/softwareVersion",
         "http://schema.org/storageRequirements",
-        "http://schema.org/supportingData",
-        "https://w3id.org/ldac/terms#channels"
+        "http://schema.org/supportingData"
       ]
     }
   ],
@@ -209,12 +146,13 @@
     "RepositoryCollection",
     "RepositoryObject",
     "CreativeWork",
-    "CollectionEvent",
+    "File",
+    "WebPage",
+    "ldac:CollectionEvent",
     "ldac:CollectionProtocol",
-    "DataDepositLicense",
-    "DataLicense",
-    "DataReuseLicense",
-    "File"
+    "ldac:DataDepositLicense",
+    "ldac:DataLicense",
+    "ldac:DataReuseLicense"
   ],
   "classes": {
     "Dataset": {
@@ -247,17 +185,7 @@
           "required": true,
           "multiple": false,
           "type": [
-            "DataReuseLicense"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#annotationOf",
-          "name": "ldac:annotationOf",
-          "help": "This resource contains some kind of description that adds information to the resource it references.",
-          "required": false,
-          "multiple": true,
-          "type": [
-            "PrimaryMaterial"
+            "ldac:DataReuseLicense"
           ]
         },
         {
@@ -365,16 +293,6 @@
           "multiple": false
         },
         {
-          "id": "https://w3id.org/ldac/terms#doi",
-          "name": "ldac:doi",
-          "label": "DOI",
-          "help": "A Digital Object Identifier, e.g. https://doi.org/10.1000/182.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
           "id": "http://schema.org/temporalCoverage",
           "name": "temporalCoverage",
           "help": "The range of years of creation for items in this dataset using a slash, e.g. 1900/1945. If there are sub-collections with different coverages put this on the sub-collections not the top-level.",
@@ -392,15 +310,6 @@
             "Place"
           ],
           "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#hasCollectionProtocol",
-          "name": "ldac:hasCollectionProtocol",
-          "help": "A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection.",
-          "type": [
-            "ldac:CollectionProtocol"
-          ],
-          "multiple": false
         },
         {
           "id": "http://pcdm.org/models#hasMember",
@@ -452,246 +361,6 @@
             "DateTime",
             "Date"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#annotator",
-          "name": "ldac:annotator",
-          "help": "The participant produced an annotation of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#compiler",
-          "name": "ldac:compiler",
-          "help": "The participant is responsible for collecting the sub-parts of the resource together.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#consultant",
-          "name": "ldac:consultant",
-          "help": "The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#dataInputter",
-          "name": "ldac:dataInputter",
-          "help": "The participant responsible for entering, re-typing, and/or structuring the data contained in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#depositor",
-          "name": "ldac:depositor",
-          "help": "The participant responsible for depositing the resource in an archive.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#developer",
-          "name": "ldac:developer",
-          "help": "The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#editor",
-          "name": "ldac:editor",
-          "help": "The participant reviewed, corrected, and/or tested the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#illustrator",
-          "name": "ldac:illustrator",
-          "help": "The participant contributed drawings or other illustrations to the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interpreter",
-          "name": "ldac:interpreter",
-          "help": "The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewee",
-          "name": "ldac:interviewee",
-          "help": "The participant was a respondent in an interview.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewer",
-          "name": "ldac:interviewer",
-          "help": "The participant conducted an interview that forms part of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#participant",
-          "name": "ldac:participant",
-          "help": "The participant was present during the creation of the resource, but did not contribute substantially to its content.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#performer",
-          "name": "ldac:performer",
-          "help": "The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#photographer",
-          "name": "ldac:photographer",
-          "help": "The participant took the photograph, or shot the film, that appears in or constitutes the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#recorder",
-          "name": "ldac:recorder",
-          "help": "The participant operated the recording machinery used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researcher",
-          "name": "ldac:researcher",
-          "help": "The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researchParticipant",
-          "name": "ldac:researchParticipant",
-          "help": "The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#responder",
-          "name": "ldac:responder",
-          "help": "The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#signer",
-          "name": "ldac:signer",
-          "help": "The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#singer",
-          "name": "ldac:singer",
-          "help": "The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#speaker",
-          "name": "ldac:speaker",
-          "help": "The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#sponsor",
-          "name": "ldac:sponsor",
-          "help": "The participant contributed financial support to the creation of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#transcriber",
-          "name": "ldac:transcriber",
-          "help": "The participant produced a transcription of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#translator",
-          "name": "ldac:translator",
-          "help": "The participant produced a translation of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
         }
       ]
     },
@@ -713,35 +382,20 @@
         {
           "id": "http://purl.org/dc/terms/conformsTo",
           "name": "conformsTo",
-          "help": "A link to the language data commons RO-Crate profile for collections.",
+          "help": "A link to the RO-Crate profile for collections.",
+          "multiple": true,
           "type": [
-            "Select"
-          ],
-          "values": [
-            {
-              "@id": "https://w3id.org/ldac/profile#Collection"
-            }
-          ],
-          "multiple": false
+            "Text"
+          ]
         },
         {
           "id": "http://schema.org/inLanguage",
           "name": "inLanguage",
           "help": "The language in which the resource is written.",
           "type": [
-            "Language"
+            "Text"
           ],
           "required": true,
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#subjectLanguage",
-          "name": "ldac:subjectLanguage",
-          "help": "The languages that the materials in the collection are about (not the language that it is in).",
-          "type": [
-            "Language"
-          ],
-          "required": false,
           "multiple": true
         },
         {
@@ -827,15 +481,6 @@
           "multiple": true
         },
         {
-          "id": "https://w3id.org/ldac/terms#hasCollectionProtocol",
-          "name": "ldac:hasCollectionProtocol",
-          "help": "A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection.",
-          "type": [
-            "ldac:CollectionProtocol"
-          ],
-          "multiple": false
-        },
-        {
           "id": "http://pcdm.org/models#hasMember",
           "name": "pcdm:hasMember",
           "help": "The sub-collection.",
@@ -855,15 +500,6 @@
           "multiple": false
         },
         {
-          "id": "https://w3id.org/ldac/terms#dateFreeText",
-          "name": "ldac:dateFreeText",
-          "help": "Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
           "id": "http://schema.org/holdingArchive",
           "name": "holdingArchive",
           "help": "Organisation where the original of this work or collection is housed.",
@@ -872,26 +508,6 @@
             "Organization",
             "Text"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#itemLocation",
-          "name": "ldac:itemLocation",
-          "help": "Current location of the item, e.g. where a set of audio tapes are stored.",
-          "type": [
-            "Place",
-            "Organization"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#doi",
-          "name": "ldac:doi",
-          "label": "DOI",
-          "help": "A Digital Object Identifier, e.g. https://doi.org/10.1000/182.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
         }
       ]
     },
@@ -912,7 +528,7 @@
         {
           "id": "http://purl.org/dc/terms/conformsTo",
           "name": "conformsTo",
-          "help": "A link to the language data commons RO-Crate profile for collections.",
+          "help": "A link to the RO-Crate profile for collections.",
           "multiple": true,
           "type": [
             "Text"
@@ -934,16 +550,6 @@
           "multiple": true,
           "type": [
             "Person"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#compiler",
-          "name": "ldac:compiler",
-          "help": "The participant is responsible for collecting the sub-parts of the resource together.",
-          "multiple": true,
-          "type": [
-            "Person",
-            "Organization"
           ]
         },
         {
@@ -989,18 +595,8 @@
           "help": "The language in which the resource is written.",
           "multiple": true,
           "type": [
-            "Language"
+            "Text"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#subjectLanguage",
-          "name": "ldac:subjectLanguage",
-          "help": "The languages that the materials in the collection are about (not the language that it is in).",
-          "type": [
-            "Language"
-          ],
-          "required": false,
-          "multiple": true
         },
         {
           "id": "http://schema.org/dateCreated",
@@ -1026,262 +622,13 @@
           "help": "A license document that applies to this content, typically indicated by URL.",
           "multiple": true,
           "type": [
-            "OrganizationReuseLicense"
+            "ldac:DataReuseLicense"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#hasAnnotation",
-          "name": "ldac:hasAnnotation",
-          "help": "This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis.",
-          "multiple": true,
-          "type": [
-            "Annotation"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#annotator",
-          "name": "ldac:annotator",
-          "help": "The participant produced an annotation of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
         },
         {
           "id": "http://schema.org/author",
           "name": "author",
           "help": "The person or organisation responsible for creating this work. Authors should be identified using URIs such as ORCiD or ROR.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#consultant",
-          "name": "ldac:consultant",
-          "help": "The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#dataInputter",
-          "name": "ldac:dataInputter",
-          "help": "The participant responsible for entering, re-typing, and/or structuring the data contained in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#depositor",
-          "name": "ldac:depositor",
-          "help": "The participant responsible for depositing the resource in an archive.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#developer",
-          "name": "ldac:developer",
-          "help": "The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#editor",
-          "name": "ldac:editor",
-          "help": "The participant reviewed, corrected, and/or tested the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#illustrator",
-          "name": "ldac:illustrator",
-          "help": "The participant contributed drawings or other illustrations to the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interpreter",
-          "name": "ldac:interpreter",
-          "help": "The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewee",
-          "name": "ldac:interviewee",
-          "help": "The participant was a respondent in an interview.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewer",
-          "name": "ldac:interviewer",
-          "help": "The participant conducted an interview that forms part of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#itemLocation",
-          "name": "ldac:itemLocation",
-          "help": "Current location of the item, e.g. where a set of audio tapes are stored.",
-          "type": [
-            "Place",
-            "Organization"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#participant",
-          "name": "ldac:participant",
-          "help": "The participant was present during the creation of the resource, but did not contribute substantially to its content.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#performer",
-          "name": "ldac:performer",
-          "help": "The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#photographer",
-          "name": "ldac:photographer",
-          "help": "The participant took the photograph, or shot the film, that appears in or constitutes the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#recorder",
-          "name": "ldac:recorder",
-          "help": "The participant operated the recording machinery used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researcher",
-          "name": "ldac:researcher",
-          "help": "The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researchParticipant",
-          "name": "ldac:researchParticipant",
-          "help": "The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#responder",
-          "name": "ldac:responder",
-          "help": "The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#signer",
-          "name": "ldac:signer",
-          "help": "The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#singer",
-          "name": "ldac:singer",
-          "help": "The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#speaker",
-          "name": "ldac:speaker",
-          "help": "The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#sponsor",
-          "name": "ldac:sponsor",
-          "help": "The participant contributed financial support to the creation of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#transcriber",
-          "name": "ldac:transcriber",
-          "help": "The participant produced a transcription of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#translator",
-          "name": "ldac:translator",
-          "help": "The participant produced a translation of this or a related resource.",
           "type": [
             "Person",
             "Organization"
@@ -1304,8 +651,7 @@
     "CreativeWork": {
       "id": "http://schema.org/CreativeWork",
       "hasSubclass": [
-        "RepositoryCollection",
-        "ldac:CollectionProtocol"
+        "RepositoryCollection"
       ],
       "inputs": [
         {
@@ -1339,381 +685,12 @@
           "multiple": true
         },
         {
-          "id": "https://w3id.org/ldac/terms#annotationOf",
-          "name": "ldac:annotationOf",
-          "help": "This resource contains some kind of description that adds information to the resource it references.",
-          "required": false,
-          "multiple": true,
-          "type": [
-            "PrimaryMaterial"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#annotationType",
-          "name": "ldac:annotationType",
-          "help": "The type of an Annotation resource.",
-          "multiple": true,
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Gestural",
-              "@type": "DefinedTerm",
-              "description": "The resource describes the gestural content of the resource it annotates.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Gestural"
-            },
-            {
-              "@id": "ldac:Orthographic",
-              "@type": "DefinedTerm",
-              "description": "The resource contains annotations using orthography (a writing system) as opposed to a coded representation such as a phonetic transcription.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Orthographic"
-            },
-            {
-              "@id": "ldac:PartOfSpeech",
-              "@type": "DefinedTerm",
-              "description": "An annotation that assigns lexical elements of language to classes on the basis of their distributional properties (for sign languages, the term 'sign class' is appropriate).",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "PartOfSpeech"
-            },
-            {
-              "@id": "ldac:Phonemic",
-              "@type": "DefinedTerm",
-              "description": "An annotation that represents speech in terms of the sound contrasts made in a language.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Phonemic"
-            },
-            {
-              "@id": "ldac:Phonetic",
-              "@type": "DefinedTerm",
-              "description": "A representation of speech in terms of the sounds produced, typically using the International Phonetic Alphabet.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Phonetic"
-            },
-            {
-              "@id": "ldac:Phonological",
-              "@type": "DefinedTerm",
-              "description": "An annotation that includes information about the sound system of a language, such as the contrasts between sounds which make up the sound system and the locally conditioned realisations of sounds which characterise speech in the language.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Phonological"
-            },
-            {
-              "@id": "ldac:Prosodic",
-              "@type": "DefinedTerm",
-              "description": "An annotation that provides a symbolic record of intonation, stress, tone or other suprasegmental features, which is expressed independently of regular phonetic transcription.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Prosodic"
-            },
-            {
-              "@id": "ldac:Semantic",
-              "@type": "DefinedTerm",
-              "description": "The resource includes annotation or analysis concerning the encoding of meaning.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Semantic"
-            },
-            {
-              "@id": "ldac:Syntactic",
-              "@type": "DefinedTerm",
-              "description": "The resource contains annotation or analysis describing the combinatorial patterns of words in another resource.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Syntactic"
-            },
-            {
-              "@id": "ldac:Transcription",
-              "@type": "DefinedTerm",
-              "description": "The resource contains a transcription, which is a written representation (orthographic or coded) of an audio or visual signal.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Transcription"
-            },
-            {
-              "@id": "ldac:Translation",
-              "@type": "DefinedTerm",
-              "description": "This is a translation of a resource in another language.",
-              "inDefinedTermSet": {
-                "@id": "ldac:AnnotationTypeTerms"
-              },
-              "name": "Translation"
-            }
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#annotator",
-          "name": "ldac:annotator",
-          "help": "The participant produced an annotation of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#channels",
-          "name": "ldac:channels",
-          "help": "The number of audio channels this resource contains (e.g. 1, 2, 5.1).",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#communicationMode",
-          "name": "ldac:communicationMode",
-          "help": "The mode (spoken, written, signed etc.) of this resource. There may be more than one value for this property.",
-          "multiple": true,
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Coded",
-              "@type": "DefinedTerm",
-              "description": "The resource contains an analysis or annotations represented by a code (such as the International Phonetic Alphabet).",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "Coded"
-            },
-            {
-              "@id": "ldac:Gesture",
-              "@type": "DefinedTerm",
-              "description": "The resource contains non-linguistic gestural communication (i.e. not sign language).",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "Gesture"
-            },
-            {
-              "@id": "ldac:SignedLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was signing.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "SignedLanguage"
-            },
-            {
-              "@id": "ldac:Song",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was song.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "Song"
-            },
-            {
-              "@id": "ldac:SpokenLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was speech.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "SpokenLanguage"
-            },
-            {
-              "@id": "ldac:WhistledLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was whistling.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "WhistledLanguage"
-            },
-            {
-              "@id": "ldac:WrittenLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was writing.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "WrittenLanguage"
-            }
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#compiler",
-          "name": "ldac:compiler",
-          "help": "The participant is responsible for collecting the sub-parts of the resource together.",
-          "multiple": true,
-          "type": [
-            "Person",
-            "Organization"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#consultant",
-          "name": "ldac:consultant",
-          "help": "The participant contributes expertise to the creation of a work, for example by contributing knowledge of their native language.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#dataInputter",
-          "name": "ldac:dataInputter",
-          "help": "The participant responsible for entering, re-typing, and/or structuring the data contained in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#dateFreeText",
-          "name": "ldac:dateFreeText",
-          "help": "Date information which cannot be put in one of the standard date formats, e.g. 'mid-1970s', or it is not clear, for example, if it is a creation or publication date.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
           "id": "http://schema.org/datePublished",
           "name": "datePublished",
           "help": "The (earliest) date this work was created.",
           "type": [
             "DateTime",
             "Date"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#depositor",
-          "name": "ldac:depositor",
-          "help": "The participant responsible for depositing the resource in an archive.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#developer",
-          "name": "ldac:developer",
-          "help": "The participant developed the methodology or tools (including software) that constitute the resource, or that were used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#doi",
-          "name": "ldac:doi",
-          "label": "DOI",
-          "help": "A Digital Object Identifier, e.g. https://doi.org/10.1000/182.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#editor",
-          "name": "ldac:editor",
-          "help": "The participant reviewed, corrected, and/or tested the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#hasAnnotation",
-          "name": "ldac:hasAnnotation",
-          "help": "This resource is referenced by another resource that adds information to it such as a translation, transcription or other analysis.",
-          "multiple": true,
-          "type": [
-            "Annotation"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#hasCollectionProtocol",
-          "name": "ldac:hasCollectionProtocol",
-          "help": "A link to a CollectionProtocol object with (at least) a summary of how resources were selected or elicited for this collection/sub-collection.",
-          "type": [
-            "ldac:CollectionProtocol"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#illustrator",
-          "name": "ldac:illustrator",
-          "help": "The participant contributed drawings or other illustrations to the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#indexableText",
-          "name": "ldac:indexableText",
-          "help": "One or more target File(s) that together contain the full text of an item – each file should indicate its language.",
-          "type": [
-            "MediaObject"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interpreter",
-          "name": "ldac:interpreter",
-          "help": "The contributor renders the discourse recorded in the resource into another language in real time, or the contributor explains the discourse recorded in the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewee",
-          "name": "ldac:interviewee",
-          "help": "The participant was a respondent in an interview.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#interviewer",
-          "name": "ldac:interviewer",
-          "help": "The participant conducted an interview that forms part of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#isDeIdentified",
-          "name": "ldac:isDeIdentified",
-          "label": "Is De-identified",
-          "help": "The data in this item has had potentially identifying information removed, which may include replacing names with pseudonyms.",
-          "type": [
-            "Boolean"
           ],
           "multiple": false
         },
@@ -1738,184 +715,6 @@
           "multiple": false
         },
         {
-          "id": "https://w3id.org/ldac/terms#linguisticGenre",
-          "name": "ldac:linguisticGenre",
-          "help": "A linguistic classification of the genre of this resource.",
-          "multiple": true,
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Dialogue",
-              "@type": "DefinedTerm",
-              "description": "An interactive discourse with two or more participants. Examples of dialogues include conversations, interviews, correspondence, consultations, greetings and leave-takings.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Dialogue"
-            },
-            {
-              "@id": "ldac:Drama",
-              "@type": "DefinedTerm",
-              "description": "A planned, creative rendition of discourse with two or more participants intended for presentation to an audience.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Drama"
-            },
-            {
-              "@id": "ldac:Formulaic",
-              "@type": "DefinedTerm",
-              "description": "The resource is a ritually or conventionally structured discourse.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Formulaic"
-            },
-            {
-              "@id": "ldac:Informational",
-              "@type": "DefinedTerm",
-              "description": "Discourse whose primary purpose is to inform the audience about the natural or social world.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Informational"
-            },
-            {
-              "@id": "ldac:Interview",
-              "@type": "DefinedTerm",
-              "description": "The resource is a conversation where one or more speakers are directing the conversation.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Interview"
-            },
-            {
-              "@id": "ldac:Lexicon",
-              "@type": "DefinedTerm",
-              "description": "The resource includes a systematic listing of lexical items.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Lexicon"
-            },
-            {
-              "@id": "ldac:Ludic",
-              "@type": "DefinedTerm",
-              "description": "Language whose primary function is to be part of play, or a style of speech that involves a creative manipulation of the structures of the language. Examples of ludic discourse are play languages, jokes, secret languages, and speech disguises.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Ludic"
-            },
-            {
-              "@id": "ldac:Narrative",
-              "@type": "DefinedTerm",
-              "description": "A discourse, monologic or co-constructed, which represents temporally organised events. Types of narratives include historical, traditional, and personal narratives, myths, folktales, fables, and humorous stories.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Narrative"
-            },
-            {
-              "@id": "ldac:Oratory",
-              "@type": "DefinedTerm",
-              "description": "The art of public speaking, or of speaking eloquently according to rules or conventions. Examples of oratory include sermons, lectures, political speeches, and invocations.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Oratory"
-            },
-            {
-              "@id": "ldac:Procedural",
-              "@type": "DefinedTerm",
-              "description": "An explanation or description of a method, process, or situation having ordered steps.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Procedural"
-            },
-            {
-              "@id": "ldac:Report",
-              "@type": "DefinedTerm",
-              "description": "A factual account of some event or circumstance.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Report"
-            },
-            {
-              "@id": "ldac:Thesaurus",
-              "@type": "DefinedTerm",
-              "description": "The resource contains a list or data structure consisting of words or concepts arranged according to sense.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Thesaurus"
-            }
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#material",
-          "name": "ldac:material",
-          "help": "Description of the original media, e.g. audio cassette tapes, participant questionnaires, field notes.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#openAccessIndex",
-          "name": "ldac:openAccessIndex",
-          "help": "One or more public index types allowed by a license, e.g. FullText indexing may be allowed for discovery even when an item is not.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false,
-          "values": [
-            {
-              "@id": "ldac:FullText",
-              "@type": "DefinedTerm",
-              "description": "A text index that makes the full text of a data resource findable via a search interface.",
-              "inDefinedTermSet": {
-                "@id": "ldac:IndexTypes"
-              },
-              "name": "FullText"
-            }
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#participant",
-          "name": "ldac:participant",
-          "help": "The participant was present during the creation of the resource, but did not contribute substantially to its content.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#performer",
-          "name": "ldac:performer",
-          "help": "The participant performed some portion of a recorded, filmed, or transcribed resource. It is recommended that this term be used only for creative participants whose role is not better indicated by a more specific term, such as 'speaker', 'signer', or 'singer'.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#photographer",
-          "name": "ldac:photographer",
-          "help": "The participant took the photograph, or shot the film, that appears in or constitutes the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
           "id": "http://schema.org/publisher",
           "name": "publisher",
           "help": "The organisation that published this work.",
@@ -1935,231 +734,6 @@
             "Organization"
           ],
           "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#recorder",
-          "name": "ldac:recorder",
-          "help": "The participant operated the recording machinery used to create the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#register",
-          "name": "ldac:register",
-          "help": "The type of register (any of the varieties of a language that a speaker uses in a particular social context [Merriam-Webster]) of the contents of a language resource.",
-          "type": [
-            "Text"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researchParticipant",
-          "name": "ldac:researchParticipant",
-          "help": "The participant acted as a research subject or responded to a questionnaire, the results of which study form the basis of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#researcher",
-          "name": "ldac:researcher",
-          "help": "The resource was created as part of the participant's research, or the research presents interim or final results from the participant's research.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#responder",
-          "name": "ldac:responder",
-          "help": "The participant was an interlocutor in some sort of discourse event, but only reacted to the contributions of others.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#signer",
-          "name": "ldac:signer",
-          "help": "The contributor was a principal signer in a resource that consists of a recording, a film, or a transcription of a recorded resource. Signers are those whose gestures predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#singer",
-          "name": "ldac:singer",
-          "help": "The participant sang, either individually or as part of a group, in a resource that consists of a recording, a film, or a transcription of a recorded resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#speaker",
-          "name": "ldac:speaker",
-          "help": "The contributor was a principal speaker in a resource that consists of a recording, a film, or a transcription of a recorded resource. Speakers are those whose voices predominate in a recorded or filmed resource. (The resource may be a transcription of that recording).",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#sponsor",
-          "name": "ldac:sponsor",
-          "help": "The participant contributed financial support to the creation of the resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#transcriber",
-          "name": "ldac:transcriber",
-          "help": "The participant produced a transcription of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#translator",
-          "name": "ldac:translator",
-          "help": "The participant produced a translation of this or a related resource.",
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#writtenLanguageFormat",
-          "name": "ldac:writtenLanguageFormat",
-          "help": "The format of the resource resulting from the way the text was produced (handwritten, typeset, typewritten).",
-          "multiple": true,
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Handwritten",
-              "@type": "DefinedTerm",
-              "description": "The resource was written using a writing implement such as a pen, pencil, brush or computer stylus (except where the digital handwriting is converted to standard text).",
-              "inDefinedTermSet": {
-                "@id": "ldac:WrittenLanguageTypeTerms"
-              },
-              "name": "Handwritten"
-            },
-            {
-              "@id": "ldac:Typeset",
-              "@type": "DefinedTerm",
-              "description": "The resource has been formatted for printing or display.",
-              "inDefinedTermSet": {
-                "@id": "ldac:WrittenLanguageTypeTerms"
-              },
-              "name": "Typeset"
-            },
-            {
-              "@id": "ldac:Typewritten",
-              "@type": "DefinedTerm",
-              "description": "The resource contains text produced on a typewriter.",
-              "inDefinedTermSet": {
-                "@id": "ldac:WrittenLanguageTypeTerms"
-              },
-              "name": "Typewritten"
-            }
-          ]
-        }
-      ]
-    },
-    "ldac:CollectionProtocol": {
-      "id": "https://w3id.org/ldac/terms#CollectionProtocol",
-      "subClassOf": [
-        "CreativeWork"
-      ],
-      "inputs": [
-        {
-          "id": "http://schema.org/name",
-          "name": "name",
-          "help": "The name of this protocol.",
-          "required": true,
-          "multiple": false,
-          "type": [
-            "Text"
-          ]
-        },
-        {
-          "id": "http://schema.org/author",
-          "name": "author",
-          "help": "The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR.",
-          "required": true,
-          "type": [
-            "Person",
-            "Organization"
-          ],
-          "multiple": true
-        },
-        {
-          "id": "http://schema.org/description",
-          "name": "description",
-          "help": "A summary of the collection protocol used for this collection or sub-collection, e.g. how texts were selected, or what prompts were given to participants.",
-          "type": [
-            "TextArea"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#collectionProtocolType",
-          "name": "ldac:collectionProtocolType",
-          "help": "A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection.",
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:ElicitationTask",
-              "@type": "DefinedTerm",
-              "description": "The collection protocol includes a task-based prompt to participants.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CollectionProtocolTypeTerms"
-              },
-              "name": "ElicitationTask"
-            },
-            {
-              "@id": "ldac:MaterialSelectionCriteria",
-              "@type": "DefinedTerm",
-              "description": "A description of the criteria used to select texts in a collection.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CollectionProtocolTypeTerms"
-              },
-              "name": "MaterialSelectionCriteria"
-            }
-          ],
-          "multiple": false
-        },
-        {
-          "id": "http://schema.org/datePublished",
-          "name": "datePublished",
-          "help": "The (earliest) date the collection protocol was published.",
-          "type": [
-            "DateTime",
-            "Date"
-          ],
-          "required": true,
-          "multiple": false
         }
       ]
     },
@@ -2253,25 +827,6 @@
           "type": [
             "Organization"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#age",
-          "name": "ldac:age",
-          "help": "The age of a person. If an age is specified, a specializationOf pointing to a 'canonical' ageless version of that Person can also be included.",
-          "type": [
-            "Text"
-          ],
-          "multiple": false
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#isDeIdentified",
-          "name": "ldac:isDeIdentified",
-          "label": "Is De-Identified",
-          "help": "The data in this item has had potentially identifying information removed,  which may include replacing names with pseudonyms.",
-          "type": [
-            "Boolean"
-          ],
-          "multiple": false
         }
       ]
     },
@@ -2318,72 +873,7 @@
           "multiple": true,
           "type": [
             "Text",
-            "WebPage",
-            "Standard"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#communicationMode",
-          "name": "ldac:communicationMode",
-          "help": "The mode(s) (spoken, written, signed, etc.) used in the interaction represented by this resource.",
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Gesture",
-              "@type": "DefinedTerm",
-              "description": "The resource contains non-linguistic gestural communication (i.e. not sign language).",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "Gesture"
-            },
-            {
-              "@id": "ldac:SignedLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was signing.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "SignedLanguage"
-            },
-            {
-              "@id": "ldac:Song",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was song.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "Song"
-            },
-            {
-              "@id": "ldac:SpokenLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was speech.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "SpokenLanguage"
-            },
-            {
-              "@id": "ldac:WhistledLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was whistling.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "WhistledLanguage"
-            },
-            {
-              "@id": "ldac:WrittenLanguage",
-              "@type": "DefinedTerm",
-              "description": "The resource contains data for which the medium of interaction was writing.",
-              "inDefinedTermSet": {
-                "@id": "ldac:CommunicationModeTerms"
-              },
-              "name": "WrittenLanguage"
-            }
+            "WebPage"
           ]
         },
         {
@@ -2401,126 +891,7 @@
           "help": "A license document that applies to this content, typically indicated by URL.",
           "multiple": true,
           "type": [
-            "OrganizationReuseLicense"
-          ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#linguisticGenre",
-          "name": "ldac:linguisticGenre",
-          "help": "A linguistic classification of the genre of this resource.",
-          "multiple": true,
-          "type": [
-            "SelectObject"
-          ],
-          "values": [
-            {
-              "@id": "ldac:Dialogue",
-              "@type": "DefinedTerm",
-              "description": "An interactive discourse with two or more participants. Examples of dialogues include conversations, interviews, correspondence, consultations, greetings and leave-takings.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Dialogue"
-            },
-            {
-              "@id": "ldac:Drama",
-              "@type": "DefinedTerm",
-              "description": "A planned, creative rendition of discourse with two or more participants intended for presentation to an audience.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Drama"
-            },
-            {
-              "@id": "ldac:Formulaic",
-              "@type": "DefinedTerm",
-              "description": "The resource is a ritually or conventionally structured discourse.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Formulaic"
-            },
-            {
-              "@id": "ldac:Informational",
-              "@type": "DefinedTerm",
-              "description": "Discourse whose primary purpose is to inform the audience about the natural or social world.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Informational"
-            },
-            {
-              "@id": "ldac:Interview",
-              "@type": "DefinedTerm",
-              "description": "The resource is a conversation where one or more speakers are directing the conversation.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Interview"
-            },
-            {
-              "@id": "ldac:Lexicon",
-              "@type": "DefinedTerm",
-              "description": "The resource includes a systematic listing of lexical items.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Lexicon"
-            },
-            {
-              "@id": "ldac:Ludic",
-              "@type": "DefinedTerm",
-              "description": "Language whose primary function is to be part of play, or a style of speech that involves a creative manipulation of the structures of the language. Examples of ludic discourse are play languages, jokes, secret languages, and speech disguises.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Ludic"
-            },
-            {
-              "@id": "ldac:Narrative",
-              "@type": "DefinedTerm",
-              "description": "A discourse, monologic or co-constructed, which represents temporally organised events. Types of narratives include historical, traditional, and personal narratives, myths, folktales, fables, and humorous stories.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Narrative"
-            },
-            {
-              "@id": "ldac:Oratory",
-              "@type": "DefinedTerm",
-              "description": "The art of public speaking, or of speaking eloquently according to rules or conventions. Examples of oratory include sermons, lectures, political speeches, and invocations.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Oratory"
-            },
-            {
-              "@id": "ldac:Procedural",
-              "@type": "DefinedTerm",
-              "description": "An explanation or description of a method, process, or situation having ordered steps.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Procedural"
-            },
-            {
-              "@id": "ldac:Report",
-              "@type": "DefinedTerm",
-              "description": "A factual account of some event or circumstance.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Report"
-            },
-            {
-              "@id": "ldac:Thesaurus",
-              "@type": "DefinedTerm",
-              "description": "The resource contains a list or data structure consisting of words or concepts arranged according to sense.",
-              "inDefinedTermSet": {
-                "@id": "ldac:LinguisticGenreTerms"
-              },
-              "name": "Thesaurus"
-            }
+            "ldac:DataReuseLicense"
           ]
         },
         {
@@ -2585,18 +956,8 @@
           "help": "The language in which the resource is written.",
           "multiple": true,
           "type": [
-            "Language"
+            "Text"
           ]
-        },
-        {
-          "id": "https://w3id.org/ldac/terms#subjectLanguage",
-          "name": "ldac:subjectLanguage",
-          "help": "The languages that the materials in the collection are about (not the language that it is in).",
-          "type": [
-            "Language"
-          ],
-          "required": false,
-          "multiple": true
         },
         {
           "id": "http://schema.org/dateCreated",
@@ -2650,8 +1011,7 @@
           "name": "ldac:derivationOf",
           "help": "This property references another resource from which the current resource is derived, e.g. downsampling audio or video files, or extracting text from a PDF.",
           "type": [
-            "Annotation",
-            "PrimaryMaterial"
+            "CreativeWork"
           ],
           "multiple": true
         },
@@ -2660,13 +1020,13 @@
           "name": "ldac:hasDerivation",
           "help": "This property references another resource that is derived from it, such as a downsampled audio or video file, or text extracted from a PDF.",
           "type": [
-            "DerivedMaterial"
+            "CreativeWork"
           ],
           "multiple": true
         }
       ]
     },
-    "CollectionEvent": {
+    "ldac:CollectionEvent": {
       "id": "https://w3id.org/ldac/terms#CollectionEvent",
       "subClassOf": [
         "Event",
@@ -2694,14 +1054,92 @@
         }
       ]
     },
-    "DataLicense": {
+    "ldac:CollectionProtocol": {
+      "id": "https://w3id.org/ldac/terms#CollectionProtocol",
+      "subClassOf": [
+        "CreativeWork"
+      ],
+      "inputs": [
+        {
+          "id": "http://schema.org/name",
+          "name": "name",
+          "help": "The name of this protocol.",
+          "required": true,
+          "multiple": false,
+          "type": [
+            "Text"
+          ]
+        },
+        {
+          "id": "http://schema.org/author",
+          "name": "author",
+          "help": "The person or organisation responsible for creating this collection of data. Authors should be identified using URIs such as ORCiD or ROR.",
+          "required": true,
+          "type": [
+            "Person",
+            "Organization"
+          ],
+          "multiple": true
+        },
+        {
+          "id": "http://schema.org/description",
+          "name": "description",
+          "help": "A summary of the collection protocol used for this collection or sub-collection, e.g. how texts were selected, or what prompts were given to participants.",
+          "type": [
+            "TextArea"
+          ],
+          "multiple": false
+        },
+        {
+          "id": "https://w3id.org/ldac/terms#collectionProtocolType",
+          "name": "ldac:collectionProtocolType",
+          "help": "A description of the process used to collect or collate data, such as prompts given to participants, or how texts are selected for inclusion in a collection.",
+          "type": [
+            "SelectObject"
+          ],
+          "values": [
+            {
+              "@id": "ldac:ElicitationTask",
+              "@type": "DefinedTerm",
+              "description": "The collection protocol includes a task-based prompt to participants.",
+              "inDefinedTermSet": {
+                "@id": "ldac:CollectionProtocolTypeTerms"
+              },
+              "name": "ElicitationTask"
+            },
+            {
+              "@id": "ldac:MaterialSelectionCriteria",
+              "@type": "DefinedTerm",
+              "description": "A description of the criteria used to select texts in a collection.",
+              "inDefinedTermSet": {
+                "@id": "ldac:CollectionProtocolTypeTerms"
+              },
+              "name": "MaterialSelectionCriteria"
+            }
+          ],
+          "multiple": false
+        },
+        {
+          "id": "http://schema.org/datePublished",
+          "name": "datePublished",
+          "help": "The (earliest) date the collection protocol was published.",
+          "type": [
+            "DateTime",
+            "Date"
+          ],
+          "required": true,
+          "multiple": false
+        }
+      ]
+    },
+    "ldac:DataLicense": {
       "id": "https://w3id.org/ldac/terms#DataLicense",
       "subClassOf": [
         "CreativeWork"
       ],
       "hasSubclass": [
-        "DataDepositLicense",
-        "DataReuseLicense"
+        "ldac:DataDepositLicense",
+        "ldac:DataReuseLicense"
       ],
       "inputs": [
         {
@@ -2715,14 +1153,14 @@
         }
       ]
     },
-    "DataDepositLicense": {
+    "ldac:DataDepositLicense": {
       "id": "https://w3id.org/ldac/terms#DataDepositLicense",
       "subClassOf": [
         "DataLicense"
       ],
       "inputs": []
     },
-    "DataReuseLicense": {
+    "ldac:DataReuseLicense": {
       "id": "https://w3id.org/ldac/terms#DataReuseLicense",
       "subClassOf": [
         "DataLicense"
@@ -2821,52 +1259,16 @@
         }
       ]
     },
-    "dct:Collection": {
-      "id": "http://purl.org/dc/terms/Collection",
+    "PropertyValue": {
+      "id": "http://schema.org/PropertyValue",
+      "subClassOf": [],
       "inputs": []
     },
-    "dct:Dataset": {
-      "id": "http://purl.org/dc/terms/Dataset",
-      "inputs": []
-    },
-    "dct:Event": {
-      "id": "http://purl.org/dc/terms/Event",
-      "inputs": []
-    },
-    "dct:Image": {
-      "id": "http://purl.org/dc/terms/Image",
-      "inputs": []
-    },
-    "dct:InteractiveResource": {
-      "id": "http://purl.org/dc/terms/InteractiveResource",
-      "inputs": []
-    },
-    "dct:MovingImage": {
-      "id": "http://purl.org/dc/terms/MovingImage",
-      "inputs": []
-    },
-    "dct:PhysicalObject": {
-      "id": "http://purl.org/dc/terms/PhysicalObject",
-      "inputs": []
-    },
-    "dct:Service": {
-      "id": "http://purl.org/dc/terms/Service",
-      "inputs": []
-    },
-    "dct:Software": {
-      "id": "http://purl.org/dc/terms/Software",
-      "inputs": []
-    },
-    "dct:Sound": {
-      "id": "http://purl.org/dc/terms/Sound",
-      "inputs": []
-    },
-    "dct:StillImage": {
-      "id": "http://purl.org/dc/terms/StillImage",
-      "inputs": []
-    },
-    "dct:Text": {
-      "id": "http://purl.org/dc/terms/Text",
+    "WebPage": {
+      "id": "http://schema.org/WebPage",
+      "subClassOf": [
+        "CreativeWork"
+      ],
       "inputs": []
     }
   },
@@ -2881,9 +1283,6 @@
       "CreativeWork": {
         "description": true
       },
-      "ldac:CollectionProtocol": {
-        "description": true
-      },
       "Place": {
         "description": true
       },
@@ -2891,6 +1290,9 @@
         "description": true
       },
       "Organization": {
+        "description": true
+      },
+      "ldac:CollectionProtocol": {
         "description": true
       }
     },
@@ -2901,21 +1303,21 @@
         "isBasedOn": true,
         "creditText": true,
         "usageInfo": true,
-        "ldac:doi": true,
         "temporalCoverage": true
       },
       "RepositoryCollection": {
+        "conformsTo": true,
+        "inLanguage": true,
         "name": true,
         "isBasedOn": true,
         "temporalCoverage": true,
-        "ldac:dateFreeText": true,
-        "holdingArchive": true,
-        "ldac:doi": true
+        "holdingArchive": true
       },
       "RepositoryObject": {
         "conformsTo": true,
         "description": true,
         "temporalCoverage": true,
+        "inLanguage": true,
         "dateCreated": true,
         "name": true,
         "identifier": true
@@ -2923,19 +1325,10 @@
       "CreativeWork": {
         "name": true,
         "author": true,
-        "ldac:channels": true,
-        "ldac:dateFreeText": true,
-        "ldac:doi": true,
         "isbn": true,
         "issn": true,
-        "ldac:material": true,
-        "ldac:openAccessIndex": true,
         "publisher": true,
-        "recipient": true,
-        "ldac:register": true
-      },
-      "ldac:CollectionProtocol": {
-        "name": true
+        "recipient": true
       },
       "Place": {
         "name": true,
@@ -2945,8 +1338,7 @@
         "geosparql:asWKT": true
       },
       "Person": {
-        "name": true,
-        "ldac:age": true
+        "name": true
       },
       "Organization": {
         "name": true,
@@ -2957,9 +1349,13 @@
         "name": true,
         "contentSize": true,
         "temporalCoverage": true,
+        "inLanguage": true,
         "dateCreated": true
       },
-      "DataLicense": {
+      "ldac:CollectionProtocol": {
+        "name": true
+      },
+      "ldac:DataLicense": {
         "ldac:reviewDate": true
       }
     },
