@@ -72,7 +72,7 @@ The structural elements of a Language Data Commons RO-Crate are:
 
 - Dataset and File entities (as per RO-Crate). Files may be referenced
   locally or via URI - e.g. from an API. If an RO-Crate contains files
-  they MUST be linked to the root dataset using \`hasPart\`
+  they MUST be linked to the root dataset using `hasPart`
   relationships as per the RO-Crate specification.
 
 NOTE: The terms Collection and Object
@@ -103,7 +103,7 @@ Distributed Collections may reference member collections or Objects in
 hasMember property but should not include descriptions of Objects that
 are stored elsewhere in the repository.
 
-Objects are placed in a Collection using the \`memberOf\` property (\`pcdm:memberOf\`), which is required. The reverse may also be encoded using the \`hasMember\` property on a Collection.
+Objects are placed in a Collection using the `memberOf` property (`pcdm:memberOf`), which is required. The reverse may also be encoded using the `hasMember` property on a Collection.
 
 The following diagram shows how these relationships are encoded in a single "bundled" RO-Crate.
 
@@ -193,12 +193,12 @@ The definition of an object is necessarily loose and needs to reflect
 what data owners have chosen to do with their collections in the past.
 
 If an RO-Crate contains a single Object the Root Dataset would have a
-\`@type\` property of ["Dataset", "RepositoryObject"] with a
+`@type` property of ["Dataset", "RepositoryObject"] with a
 conformsTo property pointing to the language-data-commons Object profile
 (this document).
 
 If an RO-Crate contains an entire collection then each Object has a
-\`@type\` property of ["Dataset", "RepositoryObject"] and a conformsTo
+`@type` property of ["Dataset", "RepositoryObject"] and a conformsTo
 property referencing this document. For example:
 
 Objects SHOULD have files (which may be included in an RO-Crate for the
@@ -222,15 +222,15 @@ ${rules.RepositoryObject}
 ## Files
 
 There are three important types of files (or references to other
-works) that may be included - \`PrimaryMaterial\` - which is a recording or
-original text, or a citation of or proxy for it, \`DerivedMaterial\` which
+works) that may be included - `PrimaryMaterial` - which is a recording or
+original text, or a citation of or proxy for it, `DerivedMaterial` which
 has been generated or sampled from primary material by a process such as format
-conversion or digitization, and \`Annotation\`, which contains one or more types of
-analysis of the \`PrimaryMaterial\` or \`DerivedMaterial\`.
+conversion or digitization, and `Annotation`, which contains one or more types of
+analysis of the `PrimaryMaterial` or `DerivedMaterial`.
 
 ### PrimaryMaterial
 
-\`PrimaryMaterial\` MAY be a video or audio file if it is available or MAY be a ContextualEntity referencing a primary text such as a book.
+`PrimaryMaterial` MAY be a video or audio file if it is available or MAY be a ContextualEntity referencing a primary text such as a book.
 
 
 #### A [File, PrimaryMaterial]:
@@ -278,7 +278,7 @@ ${rules.Language}
 
 
 
-The place in which data was collected may be indicated using the \`contentLocation\` property. 
+The place in which data was collected may be indicated using the `contentLocation` property. 
 
 
 ${exampleEntities('paradisec-item-NT1-001', ['./', 'https://www.ethnologue.com/country/VU', '#Vanuatu'])}

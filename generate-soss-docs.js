@@ -342,8 +342,8 @@ try {
 
   // Add a properties table
   let propsSummary = '## All Properties\n\n';
-  propsSummary += `| Property | Description | Occurs in Domain(s) |\n`;
-  propsSummary += `| ---- | ----------- | ----------- |\n`;
+  propsSummary += `| Property | Description | Range | Occurs in Domain(s) |\n`;
+  propsSummary += `| ---- | ----------- | ----------- | ----------- |\n`;
   const properties = (entitiesByType['rdf:Property'] || []).slice().sort((a, b) => {
     const aName = String(a['name'] || a['rdfs:label'] || a['@id'] || '');
     const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
@@ -357,6 +357,7 @@ try {
     const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(propBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
     const propName = p['name'] || p['rdfs:label'] || propId;
     const propDesc = p['description'] || p['rdfs:comment'] || '';
+    const rangesArray = p['rangeIncludes'] || [];
 
     // Add backlinks within the profile for the domains
     const propDomains = (p.domainIncludes || []).map(domain => {
@@ -370,7 +371,20 @@ try {
       return clean(domainId); // fallback to plain text
     }).join(', ');
 
-    propsSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(propDesc)} | ${propDomains} |\n`;
+    // Add range column
+    // Create links to range classes that are defined in the profile
+    const rangeLinks = rangesArray.map(r => {
+      const rangeId = typeof r === 'object' ? r['@id'] : r;
+      if (!rangeId) return 'Text'; // Default to Text if no range is specified
+      const rangeDefiniton = profileCrate.getEntity(rangeId);
+      if (rangeDefiniton) {
+        const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
+        return `<a href="#${clean(rangeId)}">${clean(rangeName)}</a>`;
+      }
+      return `${clean(rangeId)}`
+    }).join(', ');
+
+    propsSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${propDomains} |\n`;
   }
   rules.all += propsSummary
 
