@@ -15,9 +15,17 @@ generic-profile:
 	node generate-soss-docs.js profiles/generic-collection/profile-crate/ro-crate-metadata.json profiles/generic-collection/profile-text.md profiles/generic-collection/profile-crate/profile-documentation.md
 	@echo "generic-profile built successfully."
 
-
+danala-schema:
+	@echo "Building danala-schema..."
+	node generate-soss-docs.js schemas/danala-schema/schema-crate/ro-crate-metadata.json schemas/danala-schema/schema-text.md schemas/danala-schema/schema-crate/schema-documentation.md
+	@echo "danala-schema built successfully."
 
 workflow-profile:
 	@echo "Building workflow-profile..."
 	node generate-soss-docs.js profiles/workflow/profile-crate/ro-crate-metadata.json profiles/workflow/profile-text.md profiles/workflow/profile-crate/profile-documentation.md
 	@echo "workflow-profile built successfully."
+
+soa-profile:
+	@echo "Building soa-profile..."
+	node generate-soss-docs.js profiles/soa/profile-crate/ro-crate-metadata.json profiles/soa/profile-text.md profiles/soa/profile-crate/profile-documentation.md
+	@echo "soa-profile built successfully."

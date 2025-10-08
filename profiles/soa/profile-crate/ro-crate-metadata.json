@@ -1,0 +1,1914 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.2/context",
+    {
+      "soa": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#",
+      "sh": "http://www.w3.org/ns/shacl#",
+      "Composition": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Composition",
+      "Effect": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Effect",
+      "SOAEvent": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Event",
+      "HumanActor": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#HumanActor",
+      "InformationType": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#InformationType",
+      "Policy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Policy",
+      "Process": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Process",
+      "SOAService": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Service",
+      "ServiceComposition": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#ServiceComposition",
+      "ServiceContract": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#ServiceContract",
+      "ServiceInterface": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#ServiceInterface",
+      "System": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#System",
+      "Task": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#Task",
+      "appliesTo": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#appliesTo",
+      "compositionPattern": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#compositionPattern",
+      "constraints": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#constraints",
+      "does": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#does",
+      "doneBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#doneBy",
+      "hasContract": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#hasContract",
+      "hasInput": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#hasInput",
+      "hasInterface": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#hasInterface",
+      "hasOutput": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#hasOutput",
+      "interactionAspect": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#interactionAspect",
+      "involvesParty": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#involvesParty",
+      "isContractFor": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isContractFor",
+      "isInputAt": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isInputAt",
+      "isInterfaceOf": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isInterfaceOf",
+      "isOutputAt": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isOutputAt",
+      "isSetBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isSetBy",
+      "isSpecifiedBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isSpecifiedBy",
+      "isSubjectTo": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#isSubjectTo",
+      "legalAspect": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#legalAspect",
+      "orchestratedBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#orchestratedBy",
+      "orchestrates": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#orchestrates",
+      "performedBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#performedBy",
+      "performs": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#performs",
+      "representedBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#representedBy",
+      "represents": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#represents",
+      "respondedToBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#respondedToBy",
+      "respondsTo": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#respondsTo",
+      "setsPolicy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#setsPolicy",
+      "specifies": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#specifies",
+      "usedBy": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#usedBy",
+      "uses": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl#uses"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.2"
+      },
+      "about": {
+        "@id": "https://stain.github.io/soa-schema/"
+      },
+      "creator": {
+        "@id": "https://orcid.org/0000-0001-9842-9718"
+      }
+    },
+    {
+      "@id": "https://stain.github.io/soa-schema/",
+      "@type": [
+        "Dataset",
+        "Profile"
+      ],
+      "name": "Service-Oriented Architecture Ontology Profile Crate",
+      "description": "An RO-Crate profile for applying the SOA ontology",
+      "version": "0.1.0",
+      "datePublished": "2025-10-02",
+      "author": [
+        { 
+          "@id": "http://opengroup.org/getinvolved/workgroups/soa"
+        },
+        {
+          "@id": "https://orcid.org/0000-0001-9842-9718"
+        }
+      ],
+      "isBasedOn": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "license": {
+        "@id": "https://www.apache.org/licenses/LICENSE-2.0"
+      },
+      "isProfileOf": [
+        {"@id": "https://w3id.org/ro/crate/1.2"}
+      ],
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/profiles/schema/1.0"
+      },
+      "hasResource": [
+        {
+          "@id": "#hasSOAVocabulary"
+        },
+        {
+          "@id": "#hasExampleCarWash"
+        },
+        {
+          "@id": "#hasExampleInternetPurchase"
+        }
+      ],
+      "hasPart": [
+        {
+          "@id": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl"
+        },
+        {
+          "@id": "#CarWashBusiness"
+        },
+        {
+          "@id": "#OnlineTVSales"
+        }
+      ],     
+      "mentions": [
+        {
+          "@id": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl"
+        }
+      ]
+    },
+    {
+      "@id": "http://opengroup.org/getinvolved/workgroups/soa",
+      "@type": "Organization",
+      "name": "The Open Group Service-Oriented Architecture (SOA) Work Group",
+      "parentOrganization": {
+        "@id": "https://www.opengroup.org/"
+      },
+      "url": "https://web.archive.org/web/20140625102324/http://opengroup.org/getinvolved/workgroups/soa"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-9842-9718",
+      "@type": "Person",
+      "name": "Stian Soiland-Reyes",
+      "affiliation": {
+        "@id": "https://ror.org/027m9bs27"
+      }
+    },
+    {
+      "@id": "https://ror.org/027m9bs27",
+      "@type": "CollegeOrUniversity",
+      "name": "The University of Manchester",
+      "url": "https://www.manchester.ac.uk/"
+    },
+    {
+      "@id": "https://www.apache.org/licenses/LICENSE-2.0",
+      "@type": "CreativeWork",
+      "name": "Apache License 2.0",
+      "version": "2.0",
+      "identifier": { "@id": "http://spdx.org/licenses/Apache-2.0"}
+    },
+    { 
+      "@id": "#hasSOAVocabulary",
+      "@type": "ResourceDescriptor",
+      "name": "Vocabulary: SOA",
+      "hasRole": { "@id": "http://www.w3.org/ns/dx/prof/role/vocabulary" },
+      "hasArtifact": {"@id": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl"}
+    },
+    {
+      "@id": "#hasExampleCarWash",
+      "@type": "ResourceDescriptor",
+      "name": "Example: Car wash",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/example"
+      },
+      "hasArtifact": {
+        "@id": "#CarWashExample"
+      }
+    },
+    {
+      "@id": "#CarWashExample",
+      "@type": "LearningResource",
+      "name": "Car wash business represented using SOA",
+      "isBasedOn": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p8.htm"
+      },
+      "mainEntity": {
+        "@id": "#CarWashBusiness"
+      },
+      "hasPart": [
+        { "@id": "#Administration"}, 
+        { "@id": "#AdministrativeSystem"}, 
+        { "@id": "#AutomatedCarWash"}, 
+        { "@id": "#AutomatedCarWashProcess"}, 
+        { "@id": "#BasicWash"}, 
+        { "@id": "#BasicWashContract"}, 
+        { "@id": "#CarWash"}, 
+        { "@id": "#CarWashBusiness"}, 
+        { "@id": "#CarWashProcess"}, 
+        { "@id": "#CarWashSystem"}, 
+        { "@id": "#Dry"}, 
+        { "@id": "#GoldWash"}, 
+        { "@id": "#InitiateAutomatedWash"}, 
+        { "@id": "#Jack"}, 
+        { "@id": "#Joe"}, 
+        { "@id": "#John"}, 
+        { "@id": "#Judy"}, 
+        { "@id": "#Mary"}, 
+        { "@id": "#Owner"}, 
+        { "@id": "#PaymentUpFront"}, 
+        { "@id": "#PreWash"}, 
+        { "@id": "#PreWashGuy"}, 
+        { "@id": "#PushWashButton"}, 
+        { "@id": "#Secretary"}, 
+        { "@id": "#TypeOfWash"}, 
+        { "@id": "#Wash"}, 
+        { "@id": "#Wash" }, 
+        { "@id": "#WashingMachineInterface"}, 
+        { "@id": "#WashManager"}, 
+        { "@id": "#WashOperator"}, 
+        { "@id": "#WashWindows"}
+      ]
+    },
+    {
+      "@id": "#InternetPurchaseExample",
+      "@type": "LearningResource",
+      "name": "Internet Purchase example represented using SOA",
+      "isBasedOn": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p9.htm"
+      },
+      "mainEntity": {
+        "@id": "#OnlineTVSales"
+      },
+      "hasPart": [
+        { "@id": "#Jill"},
+        { "@id": "#PurchaseTV"},
+        { "@id": "#BuyTVOnline"},
+        { "@id": "#PurchaseTV"},
+        { "@id": "#BuyTVOnlineContract"},
+        { "@id": "#OnlineSalesComponent"},
+        { "@id": "#OnlineTVSales"},
+        { "@id": "#SelectWhatToBuyComponent"},
+        { "@id": "#SelectWhatToBuyService"},
+        { "@id": "#PayComponent"},
+        { "@id": "#PayService"},
+        { "@id": "#PayForTV"},
+        { "@id": "#DeliverTV"},
+        { "@id": "#OnlineTVSalesProcess"}
+      ]
+    },
+    {
+      "@id": "#hasExampleInternetPurchase",
+      "@type": "ResourceDescriptor",
+      "name": "Example: Internet Purchase",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/example"
+      },
+      "hasArtifact": {
+        "@id": "#InternetPurchaseExample"
+      }
+    },
+    {
+      "@id": "schema:Organization",
+      "@type": "rdfs:Class",
+      "inDefinedTermSet": {
+        "@id": "https://schema.org/docs/releases.html#v22.0"
+      },
+      "rdfs:subClassOf": {
+        "@id": "soa:HumanActor"
+      }
+    },
+    {
+      "@id": "schema:Person",
+      "@type": "rdfs:Class",
+      "inDefinedTermSet": {
+        "@id": "https://schema.org/docs/releases.html#v22.0"
+      },
+      "rdfs:subClassOf": {
+        "@id": "soa:HumanActor"
+      }
+    },
+    {
+      "@id": "http://www.semanticweb.org/ontologies/2010/01/core-soa.owl",
+      "@type": "DefinedTermSet",
+      "path": "https://www.opengroup.org/soa/ontology/20140404/soa.owl",
+      "hasDefinedTerm": [
+        {
+          "@id": "soa:Composition"
+        },
+        {
+          "@id": "soa:Effect"
+        },
+        {
+          "@id": "soa:Element"
+        },
+        {
+          "@id": "soa:Event"
+        },
+        {
+          "@id": "soa:HumanActor"
+        },
+        {
+          "@id": "soa:InformationType"
+        },
+        {
+          "@id": "soa:Policy"
+        },
+        {
+          "@id": "soa:Process"
+        },
+        {
+          "@id": "soa:Service"
+        },
+        {
+          "@id": "soa:ServiceComposition"
+        },
+        {
+          "@id": "soa:ServiceContract"
+        },
+        {
+          "@id": "soa:ServiceInterface"
+        },
+        {
+          "@id": "soa:System"
+        },
+        {
+          "@id": "soa:Task"
+        },
+        {
+          "@id": "soa:appliesTo"
+        },
+        {
+          "@id": "soa:compositionPattern"
+        },
+        {
+          "@id": "soa:constraints"
+        },
+        {
+          "@id": "soa:does"
+        },
+        {
+          "@id": "soa:doneBy"
+        },
+        {
+          "@id": "soa:generatedBy"
+        },
+        {
+          "@id": "soa:generates"
+        },
+        {
+          "@id": "soa:hasContract"
+        },
+        {
+          "@id": "soa:hasInput"
+        },
+        {
+          "@id": "soa:hasInterface"
+        },
+        {
+          "@id": "soa:hasOutput"
+        },
+        {
+          "@id": "soa:interactionAspect"
+        },
+        {
+          "@id": "soa:involvesParty"
+        },
+        {
+          "@id": "soa:isContractFor"
+        },
+        {
+          "@id": "soa:isInputAt"
+        },
+        {
+          "@id": "soa:isInterfaceOf"
+        },
+        {
+          "@id": "soa:isOutputAt"
+        },
+        {
+          "@id": "soa:isPartyTo"
+        },
+        {
+          "@id": "soa:isSetBy"
+        },
+        {
+          "@id": "soa:isSpecifiedBy"
+        },
+        {
+          "@id": "soa:isSubjectTo"
+        },
+        {
+          "@id": "soa:legalAspect"
+        },
+        {
+          "@id": "soa:orchestratedBy"
+        },
+        {
+          "@id": "soa:orchestrates"
+        },
+        {
+          "@id": "soa:performedBy"
+        },
+        {
+          "@id": "soa:performs"
+        },
+        {
+          "@id": "soa:representedBy"
+        },
+        {
+          "@id": "soa:represents"
+        },
+        {
+          "@id": "soa:respondedToBy"
+        },
+        {
+          "@id": "soa:respondsTo"
+        },
+        {
+          "@id": "soa:setsPolicy"
+        },
+        {
+          "@id": "soa:specifies"
+        },
+        {
+          "@id": "soa:usedBy"
+        },
+        {
+          "@id": "soa:uses"
+        }
+      ],
+      "license": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p15.htm"
+      },
+      "name": "Service-Oriented Architecture Ontology",
+      "description": "OWL ontology with definitions of SOA Ontology. The terms referenced from hasDefinedTerm represents equivalent Schema.org-like-Schema definitions without using OWL constraints.",
+      "subjectOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "version": "2.0"
+    },
+    {
+      "@id": "soa:Composition",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A composition is the result of assembling a collection of things for a particular purpose. Note in particular that we have purposefully distinguished between the act of composing and the resulting composition as a thing, and that it is in the latter sense we are using the concept of composition here.",
+      "name": "Composition",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p5.htm"
+      },
+      "termCode": "Composition",
+      "rdfs:subClassOf": {
+        "@id": "soa:System"
+      }
+    },
+    {
+      "@id": "soa:Effect",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "Interacting with something performing a service has effects. These comprise the outcome of that interaction, and are how a service (through the element that performs it) delivers value to its consumers.<p>Note that the Effect class purely represents how results or value is delivered to someone interacting with a service. Any possible internal side-effects are explicitly not covered by the Effect class.",
+      "name": "Effect",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "Effect",
+      "rdfs:subClassOf": {
+        "@id": "schema:Intangible"
+      }
+    },
+    {
+      "@id": "soa:Element",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "An element is an opaque entity that is indivisible at a given level of abstraction. The element has a clearly defined boundary.",
+      "name": "Element",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Thing"
+      }
+    },
+    {
+      "@id": "soa:Event",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "An event is something that happens, to which an element may choose to respond. Events can be responded to by any element. Similarly, events may be generated (emitted) by any element. Knowing the events generated or responded to by an element makes it easier and more transparent to interact with that element. Note that some events may occur whether generated or responded to by an element or not.<p>Event as a concept is generic and has relevance to the domain of SOA as well as many other domains. For the purposes of this ontology, event is used in its generic sense. <p>From a design perspective events may have more granular parts or may be expressed and made operational through specific syntax or semantics. We have chosen to stay at the concept level and not include such design aspects in the ontology.",
+      "name": "SOAEvent",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm"
+      },
+      "termCode": "Event",
+      "rdfs:subClassOf": {
+        "@id": "schema:Thing"
+      }
+    },
+    {
+      "@id": "soa:HumanActor",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A human actor is a person or an organization. (...) HumanActor is specifically not defined as disjoint with System since an organization in many cases is in fact just a particular kind of system",
+      "name": "Human actor",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p3.htm"
+      },
+      "termCode": "HumanActor",
+      "rdfs:subClassOf": {
+        "@id": "soa:Element"
+      }
+    },
+    {
+      "@id": "soa:InformationType",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A service interface can enable another element to give information to or receive information from a service (when it uses that service); specifically the types of information given or received.<p>In any concrete interaction through a service interface the information types on that interface are instantiated by information items, yet for the service interface itself it is the types that are important. Note that the constraints datatype property on ServiceInterface, if necessary, can be used to express constraints on allowed values for certain information types.",
+      "name": "Information type",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "InformationType",
+      "rdfs:subClassOf": {
+        "@id": "schema:Intangible"
+      }
+    },
+    {
+      "@id": "soa:Policy",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A policy is a statement of direction that a human actor may intend to follow or may intend that another human actor should follow. Knowing the policies that apply to something makes it easier and more transparent to interact with that something.<p>Policy as a concept is generic and has relevance outside the domain of SOA. For the purposes of this SOA ontology it has not been necessary or relevant to restrict the generic nature of the Policy class itself. The relationships between Policy and HumanActor are of course bound by the SOA-specific restrictions that have been applied on the definition of HumanActor.<p>From a design perspective policies may have more granular parts or may be expressed and made operational through specific rules. We have chosen to stay at the concept level and not include such design aspects in the ontology.<p>Policy is distinct from all other concepts in this ontology, hence the Policy class is defined as disjoint with all other defined classes. In particular, Policy is disjoint with ServiceContract. While policies may apply to service contracts – such as security policies on who may change a given service contract – or conversely be referred to by service contracts as part of the terms, conditions, and interaction rules that interacting participants must agree to, service contracts are themselves not policies as they do not describe an intended course of action.",
+      "name": "Policy",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm"
+      },
+      "termCode": "Policy",
+      "rdfs:subClassOf": {
+        "@id": "schema:CreativeWork"
+      }
+    },
+    {
+      "@id": "soa:Process",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "Another key SOA concept is the notion of process. A process is a composition whose elements are composed into a sequence or flow of activities and interactions with the objective of carrying out certain work. This definition is consistent with, for instance, the Business Process Modeling Notation (BPMN) 2.0 definition of a process. <p> Elements in process compositions can be things like human actors, tasks, services, other processes, etc. A process always adds logic via the composition pattern; the result is more than the parts",
+      "name": "Process",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p5.htm"
+      },
+      "termCode": "Process",
+      "rdfs:subClassOf": [
+        {
+          "@id": "soa:Composition"
+        },
+        {
+          "@id": "schema:HowTo"
+        }
+      ]
+    },
+    {
+      "@id": "soa:Service",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A service is a logical representation of a repeatable activity that has a specified outcome. It is self-contained and is a ‘black box’ to its consumers. In the context of the SOA ontology we consider only SOA-based services.",
+      "name": "SOAService",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "Service",
+      "rdfs:subClassOf": [
+        {
+        "@id": "soa:Element"
+        },
+        {
+          "@id": "http://schema.org/Service"
+        }
+      ]
+    },
+    {
+      "@id": "soa:ServiceComposition",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A key SOA concept is the notion of service composition, the result of assembling a collection of services in order to perform a new higher-level service. As a service composition is the result of assembling a collection of services, ServiceComposition is naturally a subclass of Composition.<p>A service composition may, and typically will, add logic (or even “code”) via the composition pattern. Note that a service composition is not the new higher-level service itself (due to the System and Service classes being disjoint); rather it performs (as an element) that higher-level service.",
+      "name": "Service composition",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p5.htm"
+      },
+      "termCode": "ServiceComposition",
+      "rdfs:subClassOf": {
+        "@id": "soa:Composition"
+      }
+    },
+    {
+      "@id": "soa:ServiceContract",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "In many cases, specific agreements are needed in order to define how to use a service. This can either be because of a desire to regulate such use or can simply be because the service will not function properly unless interaction with it is done in a certain sequence. A service contract defines the terms, conditions, and interaction rules that interacting participants must agree to (directly or indirectly). A service contract is binding on all participants in the interaction, including the service itself and the element that provides it for the particular interaction in question",
+      "name": "Service contract",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "ServiceContract",
+      "rdfs:subClassOf": {
+        "@id": "schema:Thing"
+      }
+    },
+    {
+      "@id": "soa:ServiceInterface",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "An important characteristic of services is that they have simple, well-defined interfaces. This makes it easy to interact with them, and enables other elements to use them in a structured manner. A service interface defines the way in which other elements can interact and exchange information with a service.<p>The concept of an interface is in general well understood by practitioners, including the notion that interfaces define the parameters for information passing in and out of them when invoked. What differs from domain to domain is the specific nature of how an interface is invoked and how information is passed back and forth. Service interfaces are typically, but not necessarily, message-based (to support loose-coupling). Furthermore, service interfaces are always defined independently from any service implementing them (to support loose-coupling and service mediation).",
+      "name": "Service interface",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "ServiceInterface",
+      "rdfs:subClassOf": {
+        "@id": "http;//schema.org/CreativeWork"
+      }
+    },
+    {
+      "@id": "soa:System",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A system is an organized collection of other things. Specifically things in a system collection are instances of Element, each such instance being used by the system.",
+      "name": "System",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "System",
+      "rdfs:subClassOf": {
+        "@id": "soa:Element"
+      }
+    },
+    {
+      "@id": "soa:Task",
+      "@type": [
+        "rdfs:Class",
+        "DefinedTerm"
+      ],
+      "description": "A task is an atomic action which accomplishes a defined result. Tasks are done by people or organizations, specifically by instances of HumanActor.",
+      "name": "Task",
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p3.htm"
+      },
+      "termCode": "Task",
+      "rdfs:subClassOf": {
+        "@id": "soa:Element"
+      }
+    },
+    {
+      "@id": "soa:appliesTo",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Policies can apply to things other than elements; in fact, policies can apply to anything at all, including other policies. For instance, a security policy might specify which actors have the authority to change some other policy. The appliesTo property, and its inverse isSubjectTo, capture the abstract notion that a policy can apply to any instance of Thing. Note specifically that Element is a subclass of Thing, hence policies by inference can apply to any instance of Element.<p>In one direction, a policy can apply to zero (in the case where a policy has been formulated but not yet explicitly applied to anything), one, or more instances of Thing. Note that having a policy apply to multiple things does not mean that these things are the same, only that they are (partly) regulated by the same intent. In the other direction, an instance of Thing may be subject to zero, one, or more policies. Note that where multiple policies apply to the same instance of Thing this is often because the multiple policies are from multiple different policy domains (such as security and governance).<p>The SOA ontology does not attempt to enumerate different policy domains; such policy-focused details are deemed more appropriate for a policy ontology. It is worth pointing out that a particular policy ontology may also restrict (if desired) the kinds of things that policies can apply to.",
+      "domainIncludes": {
+        "@id": "soa:Policy"
+      },
+      "name": "applies to",
+      "rangeIncludes": {
+        "@id": "schema:Thing"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm"
+      },
+      "termCode": "appliesTo"
+    },
+    {
+      "@id": "soa:compositionPattern",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "As discussed above, any composition must have associated with it a specific composition pattern, that pattern describing the way in which a collection of elements is assembled to a result. The concept of a composition pattern is captured by the compositionPattern datatype property. Note that even though certain kinds of composition patterns are of special interest within SOA (see below), the compositionPattern datatype property may take any value as long as that value describes how to assemble the elements used by the composition with which it is associated.",
+      "domainIncludes": {
+        "@id": "soa:Composition"
+      },
+      "name": "composition pattern",
+      "rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p5.htm"
+      },
+      "termCode": "compositionPattern",
+      "sh:maxCount": 1,
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:constraints",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The constraints datatype property on ServiceInterface captures the notion that there can be constraints on the allowed interaction such as only certain value ranges allowed on given parameters. Depending on the nature of the service and the service interface in question, these constraints may be defined either formally or informally (the informal case being relevant at a minimum for certain types of real-world services).",
+      "domainIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "name": "constraints",
+      "rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "constraints",
+      "sh:maxCount": 1,
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:does",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:doneBy",
+      "domainIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "inverseOf": {
+        "@id": "soa:doneBy"
+      },
+      "name": "does",
+      "rangeIncludes": {
+        "@id": "soa:Task"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p3.htm"
+      },
+      "termCode": "does"
+    },
+    {
+      "@id": "soa:doneBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Tasks are naturally thought of as being done by people or organizations. If we think of tasks as being the actual things done, then the natural cardinality is that each instance of Task is done by at most one instance of HumanActor. Due to the atomic nature of instances of Task we rule out the case where such an instance is done jointly by multiple instances of HumanActor. The cardinality can be zero if someone chooses not to instantiate all possible human actors. On the other hand, the same instance of HumanActor can (over time) easily do more than one instance of Task. The does property, and its inverse doneBy, capture the relation between a human actor and the tasks it performs.",
+      "domainIncludes": {
+        "@id": "soa:Task"
+      },
+      "name": "done by",
+      "rangeIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p3.htm"
+      },
+      "termCode": "doneBy",
+      "sh:maxCount": 1,
+      "sh:minCount": 0
+    },
+    {
+      "@id": "soa:generatedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:generates",
+      "domainIncludes": {
+        "@id": "soa:Event"
+      },
+      "inverseOf": {
+        "@id": "soa:generates"
+      },
+      "name": "generated by",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm"
+      }
+    },
+    {
+      "@id": "soa:generates",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Events can, but need not necessarily, be generated by elements. The generates property, and its inverse generatedBy, capture the abstract notion that an element generates an event. <p> Note that the same event may be generated by many different elements. Similarly, the same element may generate many different events.",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "name": "generates",
+      "rangeIncludes": {
+        "@id": "soa:Event"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm"
+      }
+    },
+    {
+      "@id": "soa:hasContract",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:isContractFor",
+      "domainIncludes": {
+        "@id": "soa:Service"
+      },
+      "inverseOf": {
+        "@id": "soa:isContractFor"
+      },
+      "name": "has contract",
+      "rangeIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "hasContract"
+    },
+    {
+      "@id": "soa:hasInput",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The hasInput property, and its inverse isInputAt, capture the abstract notion of a particular type of information being given when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and input information types. A given information type may be input at many service interfaces or none at all. Similarly, a given service interface may have many information types as input or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements).",
+      "domainIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "name": "has input",
+      "rangeIncludes": {
+        "@id": "soa:InformationType"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "hasInput"
+    },
+    {
+      "@id": "soa:hasInterface",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The hasInterface property, and its inverse isInterfaceOf, capture the abstract notion of a service having a particular service interface. In one direction, any service must have at least one service interface; anything else would be contrary to the definition of a service as a representation of a repeatable activity that has a specified outcome and is a ‘black box’ to its consumers. In the other direction, there can be service interfaces that are not yet interfaces of any defined services. Also, the same service interface can be an interface of multiple services. The latter does not mean that these services are the same, nor even that they have the same effect; it only means that it is possible to interact with all these services in the manner defined by the service interface in question.",
+      "domainIncludes": {
+        "@id": "soa:Service"
+      },
+      "name": "has interface",
+      "rangeIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "hasInterface",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:hasOutput",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The hasOutput property, and its inverse isOutputAt, capture the abstract notion of a particular type of information being received when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and output information types. A given information type may be output at many service interfaces or none at all. Similarly, a given service interface may have many information types as output or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements).",
+      "domainIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "name": "has output",
+      "rangeIncludes": {
+        "@id": "soa:InformationType"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "hasOutput"
+    },
+    {
+      "@id": "soa:interactionAspect",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class.",
+      "domainIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "name": "interaction aspect",
+      "rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "interactionAspect",
+      "sh:maxCount": 1,
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:involvesParty",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:isPartyTo",
+      "domainIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "inverseOf": {
+        "@id": "soa:isPartyTo"
+      },
+      "name": "involves party",
+      "rangeIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "involvesParty"
+    },
+    {
+      "@id": "soa:isContractFor",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The hasContract property, and its inverse isContractFor, capture the abstract notion of a service having a service contract. Anyone wanting to use a service must obey the interaction aspects (as defined in the interactionAspect datatype property) of any service contract applying to that interaction. In that fashion, the interaction aspects of a service contract are context-independent; they capture the defined or intrinsic ways in which a service may be used.<p>By definition, any service contract must be a contract for at least one service. It is possible that the same service contract can be a contract for more than one service; for instance, in cases where a group of services share the same interaction pattern or where a service contract (legally – see the involvesParty and isPartyTo properties below) regulates the providing and consuming of multiple services.",
+      "domainIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "name": "is contract for",
+      "rangeIncludes": {
+        "@id": "soa:Service"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "isContractFor",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:isInputAt",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:hasInput",
+      "domainIncludes": {
+        "@id": "soa:InformationType"
+      },
+      "inverseOf": {
+        "@id": "soa:hasInput"
+      },
+      "name": "is input at",
+      "rangeIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "isInputAt"
+    },
+    {
+      "@id": "soa:isInterfaceOf",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:hasInterface",
+      "domainIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "inverseOf": {
+        "@id": "soa:hasInterface"
+      },
+      "name": "is interface of",
+      "rangeIncludes": {
+        "@id": "soa:Service"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "isInterfaceOf"
+    },
+    {
+      "@id": "soa:isOutputAt",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:hasOutput",
+      "domainIncludes": {
+        "@id": "soa:InformationType"
+      },
+      "inverseOf": {
+        "@id": "soa:hasOutput"
+      },
+      "name": "is output at",
+      "rangeIncludes": {
+        "@id": "soa:ServiceInterface"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "isOutputAt"
+    },
+    {
+      "@id": "soa:isPartyTo",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "name": "is party to",
+      "termCode": "isPartyTo",
+      "description": "In addition to the rules and regulations that intrinsically apply to any interaction with a service (the interaction aspect of service contracts captured in the interactionAspect datatype property) there may be additional legal agreements that apply to certain human actors and their use of services. The involvesParty property, and its inverse isPartyTo, capture the abstract notion of a service contract specifying legal obligations between human actors in the context of using the one or more services for which the service contract is a contract.",
+      "domainIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "rangeIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      }
+    },
+    {
+      "@id": "soa:isSetBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "rdfs:subPropertyOf": {
+        "@id": "http://schema.org/author"
+      },
+      "description": "Inverse of property soa:setsPolicy",
+      "domainIncludes": {
+        "@id": "soa:Policy"
+      },
+      "inverseOf": {
+        "@id": "soa:setsPolicy"
+      },
+      "name": "is set by",
+      "rangeIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm"
+      },
+      "termCode": "isSetBy"
+    },
+    {
+      "@id": "soa:isSpecifiedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of soa:specifies",
+      "domainIncludes": {
+        "@id": "soa:Effect"
+      },
+      "inverseOf": {
+        "@id": "soa:specifies"
+      },
+      "name": "is specified by",
+      "rangeIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "isSpecifiedBy",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:isSubjectTo",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:appliesTo",
+      "domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "inverseOf": {
+        "@id": "soa:appliesTo"
+      },
+      "name": "is subject to",
+      "rangeIncludes": {
+        "@id": "soa:Policy"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm"
+      },
+      "termCode": "isSubjectTo"
+    },
+    {
+      "@id": "soa:legalAspect",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class. Note that the second of these attributes, the legal agreement aspects, includes concepts such as Service-Level Agreements (SLAs).",
+      "domainIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "name": "legal aspect",
+      "rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "legalAspect",
+      "sh:maxCount": 1,
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:orchestratedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "An orchestration has one particular element that oversees and directs the other elements used by the composition. This type of relationship is important enough that we have chosen to capture the abstract notion in the orchestrates property and its inverse orchestratedBy.<p>In one direction, a composition has at most one element that orchestrates it, and the cardinality can only be one (1) if in fact the composition pattern of that composition is an orchestration. In the other direction, an element can orchestrate at most one composition which then must have an orchestration as its composition pattern.<p>Note that in practical applications of the ontology, even though Service is a subclass of Element, a service (as a purely logical representation) is not expected to orchestrate a composition.",
+      "domainIncludes": {
+        "@id": "soa:Composition"
+      },
+      "name": "orchestrated by",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "orchestratedBy",
+      "sh:maxCount": 1,
+      "sh:minCount": 0
+    },
+    {
+      "@id": "soa:orchestrates",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:orchestratedBy",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "inverseOf": {
+        "@id": "soa:orchestratedBy"
+      },
+      "name": "orchestrates",
+      "rangeIncludes": {
+        "@id": "soa:Composition"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "orchestrates",
+      "sh:maxCount": 1,
+      "sh:minCount": 0
+    },
+    {
+      "@id": "soa:performedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:performs",
+      "domainIncludes": {
+        "@id": "soa:Service"
+      },
+      "inverseOf": {
+        "@id": "soa:performs"
+      },
+      "name": "performed by",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "performedBy"
+    },
+    {
+      "@id": "soa:performs",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "As a service itself is only a logical representation, any service is performed by something. The something that performs a service must be opaque to anyone interacting with it, an opaqueness which is the exact nature of the Element class. This concept is captured by the performs and performedBy properties. This also captures the fact that services can be performed by elements of other types than systems. This includes elements such as software components, human actors, and tasks.",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "name": "performs",
+      "rangeIncludes": {
+        "@id": "soa:Service"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "performs"
+    },
+    {
+      "@id": "soa:representedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:represents",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "inverseOf": {
+        "@id": "soa:represents"
+      },
+      "name": "represented By",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "representedBy"
+    },
+    {
+      "@id": "soa:represents",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The environment described by an SOA is intrinsically hierarchically composite (see also Section 5.2 for a definition of the Composition class); in other words, the elements of SOA systems can be repeatedly composed to ever higher levels of abstraction. One aspect of this has already been addressed by the uses and usedBy properties in that we can use these to express the notion of systems of systems. This is still a very concrete relationship though, and does not express the concept of architectural abstraction. We find the need for architectural abstraction in various places such as a role representing the people playing that role, an organizational unit representing the people within it (subtly different from that same organizational unit using the people within it, as the represents relationship indicates the organizational unit as a substitute interaction point), an architectural building block representing an underlying construct (for instance, important to enterprise architects wanting to explicitly distinguish between constructs and building blocks), and an Enterprise Service Bus (ESB) representing the services that are accessible through it (for instance, relevant when explicitly modeling operational interaction and dependencies). The concept of such an explicitly changing viewpoint, or level of abstraction, is captured by the represents and representedBy properties.",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "name": "represents",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "represents"
+    },
+    {
+      "@id": "soa:respondedToBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:respondsTo",
+      "domainIncludes": {
+        "@id": "soa:Event"
+      },
+      "inverseOf": {
+        "@id": "soa:respondsTo"
+      },
+      "name": "responded to by",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm"
+      },
+      "termCode": "respondedToBy"
+    },
+    {
+      "@id": "soa:respondsTo",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Events can, but need not necessarily, be responded to by elements. The respondsTo property, and its inverse respondedToBy, capture the abstract notion that an element responds to an event.<p>Note that the same event may be responded to by many different elements. Similarly, the same element may respond to many different events.",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "name": "responds to",
+      "rangeIncludes": {
+        "@id": "soa:Event"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm"
+      },
+      "termCode": "respondsTo"
+    },
+    {
+      "@id": "soa:setsPolicy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "The setsPolicy property, and its inverse isSetBy, capture the abstract notion that a policy can be set by one or more human actors.<p>      In one direction, a policy can be set by zero (in the case where actors setting the policy by choice are not defined or captured), one, or more human actors. Note specifically that some policies are set by multiple human actors in conjunction, meaning that all these human actors need to discuss and agree on the policy before it can take effect. A real-world example would be two parents in conjunction setting policies for acceptable child behavior. In the other direction, a human actor may potentially set (or be part of setting) multiple policies.<p>      The SOA ontology purposefully separates the setting of the policy itself and the application of the policy to one or more instances of Thing. In some cases these two acts may be inseparably bound together, yet in other cases they are definitely not. One such example is an overall compliance policy that is formulated at the corporate level yet applied by the compliance officer in each line of business.<p>      Also, while a particular case of interest for this ontology is that where the provider of a service has a policy for the service, a policy for a service is not necessarily owned by the provider. For example, government food and hygiene regulations (a policy that is law) cover restaurant services independently of anything desired or defined by the restaurant owner.",
+      "domainIncludes": {
+        "@id": "soa:HumanActor"
+      },
+      "name": "sets policy",
+      "rangeIncludes": {
+        "@id": "soa:Policy"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm"
+      },
+      "termCode": "setsPolicy"
+    },
+    {
+      "@id": "soa:specifies",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "While a service intrinsically has an effect every time someone interacts with it, in order to trust the effect to be something in particular, the effect needs to be specified as part of a service contract. The specifies property, and its inverse isSpecifiedBy, capture the abstract notion of a service contract specifying a particular effect as part of the agreement for using a service. Note that the specified effect can apply to both the interactionAspect datatype property (simply specifying what will happen when interacting with the service according to the service contract) and the legalAspect datatype property (specifying a contractually promised effect).<p>Anyone wanting a guaranteed effect of the interaction with a given service must ensure that the desired effect is specified in a service contract applying to that interaction. By definition, any service contract must specify at least one effect. In the other direction, an effect must be an effect of at least one service contract; this represents that fact that we have chosen only to formalize those effects that are specified by service contracts (and not all intrinsic effects of all services).",
+      "domainIncludes": {
+        "@id": "soa:ServiceContract"
+      },
+      "name": "specifies",
+      "rangeIncludes": {
+        "@id": "soa:Effect"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm"
+      },
+      "termCode": "specifies",
+      "sh:minCount": 1
+    },
+    {
+      "@id": "soa:usedBy",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Inverse of property soa:uses",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "inverseOf": {
+        "@id": "soa:uses"
+      },
+      "name": "used by",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "usedBy"
+    },
+    {
+      "@id": "soa:uses",
+      "@type": [
+        "rdf:Property",
+        "DefinedTerm"
+      ],
+      "description": "Elements may use other elements in various ways. In general, the notion of some element using another element is applied by practitioners for all of models, executables, and physical objects. What differs from domain to domain is the way in which such use is perceived. <p>An element uses another element if it interacts with it in some fashion. Interacts here is interpreted very broadly ranging through, for example, an element simply being a member of (used by) some system (see later for a formal definition of the System class), an element interacting with (using) another element (such as a service; see later for a formal definition of the Service class) in an ad hoc fashion, or even a strongly coupled dependency in a composition (see Section 5.2 for a formal definition of the Composition class). The uses property, and its inverse usedBy, capture the abstract notion of an element using another. These properties capture not just transient relations. Instantiations of the property can include “uses at this instant”, “has used”, and “may in future use”. <p>For the purposes of this ontology we have chosen not to attempt to enumerate and formally define the multitude of different possible semantics of a uses relationship. We leave the semantic interpretations to a particular sub-domain, application, or even design approach.",
+      "domainIncludes": {
+        "@id": "soa:Element"
+      },
+      "name": "uses",
+      "rangeIncludes": {
+        "@id": "soa:Element"
+      },
+      "subjectOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm"
+      },
+      "termCode": "uses"
+    },
+    {
+      "@id": "https://www.opengroup.org/",
+      "@type": "Organization",
+      "name": "The Open Group"
+    },
+    {
+      "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "http://www.opengroup.org/soa/source-book/intro/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/intro/",
+      "@type": "Book",
+      "copyrightHolder": {
+        "@id": "https://www.opengroup.org/"
+      },
+      "datePublished": "2014-04",
+      "isbn": "978-1-93-721850-8",
+      "license": {
+        "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p15.htm"
+      },
+      "name": "SOA Source Book",
+      "publisher": {
+        "@id": "https://www.opengroup.org/"
+      },
+      "url": "https://www.opengroup.org/what-we-do-technology-standards/soa/source-book/intro"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p15.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Legal",
+      "text": "Copyright<p>      Copyright © 2010-2014, The Open Group<p>The Open Group hereby authorizes you to use this document for any purpose, PROVIDED THAT any copy of this document, or any part thereof, which you make shall retain all copyright and other proprietary notices contained herein.<p>This document may contain other proprietary notices and copyright information.<p>Nothing contained herein shall be construed as conferring by implication, estoppel, or otherwise any license or right under any patent or trademark of The Open Group or any third party. Except as expressly provided above, nothing contained herein shall be construed as conferring any license or right under any copyright of The Open Group.<p>Note that any product, process, or technology in this document may be the subject of other intellectual property rights reserved by The Open Group, and may not be licensed hereunder.<p>This document is provided \"AS IS\" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. Some jurisdictions do not allow the exclusion of implied warranties, so the above exclusion may not apply to you.<p>Any publication of The Open Group may include technical inaccuracies or typographical errors. Changes may be periodically made to these publications; these changes will be incorporated in new editions of these publications. The Open Group may make improvements and/or changes in the products and/or the programs described in these publications at any time without notice.<p>Should any viewer of this document respond with information including feedback data, such as questions, comments, suggestions, or the like regarding the content of this document, such information shall be deemed to be non-confidential and The Open Group shall have no obligation of any kind with respect to such information and shall be free to reproduce, use, disclose, and distribute the information to others without limitation. Further, The Open Group shall be free to use any ideas, concepts, know-how, or techniques contained in such information for any purpose whatsoever including but not limited to developing, manufacturing, and marketing products incorporating such information.<p>If you did not obtain this copy through The Open Group, it may not be the latest version. For your convenience, the latest version of this publication may be downloaded at www.opengroup.org/bookstore.<p><p>Open Group Standard<p>Service-Oriented Architecture Ontology, Version 2.0<p>ISBN:  1-937218-50-8<p>Document Number:  C144<p><p>Published by The Open Group, April 2014.<p><p>Comments relating to the material contained in this document may be submitted to:<p>The Open Group, Apex Plaza, Forbury Road, Reading, Berkshire, RG1 1AX, United Kingdom<p>or by electronic mail to:<p>ogspecs@opengroup.org\n      Trademarks<p>ArchiMate®, DirecNet®, Jericho Forum®, Making Standards Work®, OpenPegasus®, The Open Group®, TOGAF®, and UNIX® are registered trademarks and Boundaryless Information Flow™, Build with Integrity Buy with Confidence™, Dependability Through Assuredness™, FACE™, Open Platform 3.0™, Open Trusted Technology Provider™, and The Open Group Certification Mark™ are trademarks of The Open Group.<p>All other brands, company, and product names are used for identification purposes only and may be trademarks that are the sole property of their respective owners."
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p2.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – System and Element"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p3.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – HumanActor and Task"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p4.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Service, ServiceContract, and ServiceInterface"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p5.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Composition and its Subclasses"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p6.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Policy"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p7.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Event"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p8.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Complete Car Wash Example"
+    },
+    {
+      "@id": "http://www.opengroup.org/soa/source-book/ontologyv2/p9.htm",
+      "@type": "Chapter",
+      "isPartOf": {
+        "@id": "https://www.opengroup.org/soa/source-book/ontologyv2/"
+      },
+      "name": "Service-Oriented Architecture Ontology Version 2.0 – Internet Purchase Example"
+    },    
+    {
+      "@id": "#Administration",
+      "@type": "HumanActor",
+      "name": "Administration",
+      "represents": {
+        "@id": "#AdministrativeSystem"
+      },
+      "uses": [
+        {
+          "@id": "#Owner"
+        },
+        {
+          "@id": "#Secretary"
+        }
+      ]
+    },
+    {
+      "@id": "#AdministrativeSystem",
+      "@type": "System",
+      "name": "Administrative system"
+    },
+    {
+      "@id": "#AutomatedCarWashProcess",
+      "@type": ["Process", "Orchestration"],
+      "name": "Automated car wash process",
+      "uses": [
+        {"@id": "#Wash"},
+        {"@id": "#Dry"}
+      ]
+    },
+    {
+      "@id": "#AutomatedCarWash",
+      "@type": "Element",
+      "name": "Automated car wash",
+      "represents": {
+        "@id": "#AutomatedCarWashProcess"
+      },
+      "orchestrates": {
+        "@id": "#AutomatedCarWashProcess"
+      }
+    },
+    {
+      "@id": "#Wash", 
+      "@type": "Task", 
+      "name": "Wash"
+    },
+    {
+      "@id": "#Dry",
+      "@type": "Task", 
+      "name": "Dry"
+    },
+    {
+      "@id": "#BasicWash",
+      "@type": "Service",
+      "name": "Basic wash",
+      "hasContract": {
+        "@id": "#BasicWashContract"
+      },
+      "hasInterface": {
+        "@id": "#WashingMachineInterface"
+      },
+      "representedBy": {
+        "@id": "#WashManager"
+      }
+    },
+    {
+      "@id": "#BasicWashContract",
+      "@type": "ServiceContract",
+      "name": "Basic wash contract",
+      "interactionAspect": "Car returned clean after 2 hours",
+      "involvesParty": [
+        {
+          "@id": "#CarWashBusiness"
+        },
+        {
+          "@id": "#Judy"
+        }
+      ],
+      "legalAspect": "$10 for one basic wash"
+    },
+    {
+      "@id": "#CarWash",
+      "@type": "HumanActor",
+      "name": "Car wash",
+      "represents": {
+        "@id": "#CarWashSystem"
+      }
+    },
+    {
+      "@id": "#CarWashBusiness",
+      "@type": [
+        "HumanActor",
+        "System",
+        "LocalBusiness"
+      ],
+      "name": "Car wash business (example)",
+      "uses": [
+        {
+          "@id": "#CarWash"
+        },
+        {
+          "@id": "#Administration"
+        }
+      ]
+    },
+    {
+      "@id": "#CarWashProcess",
+      "@type": "Process",
+      "name": "Car wash process",
+      "uses": [
+        {
+          "@id": "#AutomatedCarWash"
+        },
+        {
+          "@id": "#PreWash"
+        },
+        {
+          "@id": "#PreWashGuy"
+        },
+        
+        {
+          "@id": "#InitiateAutomatedWash"
+        },
+        {
+          "@id": "#WashOperator"
+        }
+      ]
+    },
+    {
+      "@id": "#CarWashSystem",
+      "@type": "System",
+      "name": "Car wash system",
+      "performs": [
+        {
+          "@id": "#BasicWash"
+        },
+        {
+          "@id": "#GoldWash"
+        }
+      ],
+      "uses": [
+        {
+          "@id": "#PreWashGuy"
+        },
+        {
+          "@id": "#WashOperator"
+        },
+        {
+          "@id": "#WashManager"
+        },
+        {
+          "@id": "#CarWashProcess"
+        }
+      ]
+    },
+    {
+      "@id": "#GoldWash",
+      "@type": "Service",
+      "name": "Gold wash",
+      "hasInterface": {
+        "@id": "#WashingMachineInterface"
+      },
+      "representedBy": {
+        "@id": "#WashManager"
+      }
+    },
+    {
+      "@id": "#InitiateAutomatedWash",
+      "@type": "Element",
+      "name": "Initiate automated wash",
+      "represents": {
+        "@id": "#PushWashButton"
+      }
+    },
+    {
+      "@id": "#Jack",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "Jack"
+    },
+    {
+      "@id": "#Joe",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "Joe"
+    },
+    {
+      "@id": "#John",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "John"
+    },
+    {
+      "@id": "#Judy",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "Judy",
+      "uses": {
+        "@id": "#WashManager"
+      }
+    },
+    {
+      "@id": "#Mary",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "Mary"
+    },
+    {
+      "@id": "#Owner",
+      "@type": "Element",
+      "name": "Owner",
+      "representedBy": {
+        "@id": "#Joe"
+      }
+    },
+    {
+      "@id": "#PaymentUpFront",
+      "@type": "Policy",
+      "name": "Payment up front",
+      "isSetBy": {
+        "@id": "#Joe"
+      },
+      "appliesTo": [
+        {"@id": "#GoldWash"},
+        {"@id": "#BasicWash"}
+
+      ]
+    },
+    {
+      "@id": "#PreWash",
+      "@type": "Element", 
+      "name": "Pre wash",
+      "represents": {
+        "@id": "#WashWindows"
+      }
+    },
+    {
+      "@id": "#PreWashGuy",
+      "@type": "Element",
+      "name": "Pre wash guy",
+      "representedBy": {
+        "@id": "#John"
+      }
+    },
+    {
+      "@id": "#PushWashButton",
+      "@type": "Task",
+      "name": "Push wash button",
+      "doneBy": {
+        "@id": "#Jack"
+      }
+    },
+    {
+      "@id": "#Secretary",
+      "@type": "Element",
+      "name": "Wash operator",
+      "representedBy": {
+        "@id": "#Mary"
+      }
+    },
+    {
+      "@id": "#TypeOfWash",
+      "@type": [
+        "InformationType",
+        "Enumeration"
+      ],
+      "name": "Type of wash"
+    },
+    {
+      "@id": "#WashManager",
+      "@type": "Element",
+      "name": "Wash manager",
+      "representedBy": {
+        "@id": "#Jack"
+      }
+    },
+    {
+      "@id": "#WashOperator",
+      "@type": "Element",
+      "name": "Wash operator",
+      "representedBy": {
+        "@id": "#Jack"
+      }
+    },
+    {
+      "@id": "#WashWindows",
+      "@type": "Task",
+      "name": "Wash windows",
+      "doneBy": {
+        "@id": "#John"
+      }
+    },
+    {
+      "@id": "#WashingMachineInterface",
+      "@type": "ServiceInterface",
+      "name": "Washing machine interface",
+      "hasInput": {
+        "@id": "#TypeOfWash"
+      }
+    },
+
+    {
+      "@id": "#BuyTVOnline",
+      "@type": "Service",
+      "name": "Buy TV online"
+    },
+    {
+      "@id": "#BuyTVOnlineContract",
+      "@type": "ServiceContract",
+      "name": "Buy TV Online contract",
+      "interactionAspect": "Click the Buy button after reviewing basket",
+      "legalAspect": "Will deliver in 5 working days"
+    },
+    {
+      "@id": "#DeliverTV",
+      "@type": "Task",
+      "name": "Deliver TV"
+    },
+    {
+      "@id": "#Jill",
+      "@type": [
+        "HumanActor",
+        "Person"
+      ],
+      "name": "Jill",
+      "does": [
+        {
+          "@id": "#PurchaseTV"
+        },
+        {
+          "@id": "#PayForTV"
+        }
+      ]
+    },
+    {
+      "@id": "#OnlineSalesComponent",
+      "@type": "Element",
+      "name": "Online Sales component",
+      "performs": {
+        "@id": "#OnlineTVSales"
+      },
+      "uses": [
+        {
+          "@id": "#SelectWhatToBuyService"
+        },
+        {
+          "@id": "#PayService"
+        }
+      ]
+    },
+    {
+      "@id": "#OnlineTVSales",
+      "@type": [
+        "HumanActor",
+        "Organization"
+      ],
+      "name": "Online TV Sales"
+    },
+    {
+      "@id": "#OnlineTVSalesProcess",
+      "@type": "Process",
+      "name": "OnlineTVSalesProces",
+      "uses": [
+        {
+          "@id": "#Jill"
+        },
+        {
+          "@id": "#OnlineTVSales"
+        },
+        {
+          "@id": "#PurchaseTV"
+        },
+        {
+          "@id": "#PayForTV"
+        },
+        {
+          "@id": "#DeliverTV"
+        }
+      ]
+    },
+    {
+      "@id": "#PayComponent",
+      "@type": "Element",
+      "name": "Pay component",
+      "performs": {
+        "@id": "#PayService"
+      }
+    },
+    {
+      "@id": "#PayForTV",
+      "@type": "Task",
+      "name": "Pay for TV",
+      "uses": {
+        "@id": "#BuyTVOnline"
+      }
+    },
+    {
+      "@id": "#PayService",
+      "@type": "Service",
+      "name": "Pay service"
+    },
+    {
+      "@id": "#PurchaseTV",
+      "@type": "Task",
+      "name": "Purchase TV",
+      "uses": {
+        "@id": "#BuyTVOnline"
+      }
+    },
+    {
+      "@id": "#SelectWhatToBuyComponent",
+      "@type": "Element",
+      "name": "Select what to buy component",
+      "performs": {
+        "@id": "#SelectWhatToBuyService"
+      }
+    },
+    {
+      "@id": "#SelectWhatToBuyService",
+      "@type": "Service",
+      "name": "Select what to buy service"
+    }
+  ]
+}

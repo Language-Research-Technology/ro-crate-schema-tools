@@ -83,8 +83,8 @@ try {
 
   const classPropMap = {};
   (entitiesByType["rdf:Property"] || []).forEach(prop => {
-
-    prop['domainIncludes'].forEach(domain => {
+    const domains = prop['domainIncludes'] || [];
+    domains.forEach(domain => {
       const classId = typeof domain === 'object' ? domain['@id'] : domain;
       if (!classPropMap[classId]) {
         classPropMap[classId] = [];
