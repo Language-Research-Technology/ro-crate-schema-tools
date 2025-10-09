@@ -27,6 +27,15 @@ function clean(str) {
   return str.toString().replace(/\s+/g, ' ')
 }
 
+function createGitHubCompatibleId(id) {
+  // GitHub Pages converts IDs to lowercase and replaces special chars with hyphens
+  return id
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
+
 try {
   const profileData = fs.readFileSync(profilePath, 'utf8');
   const profileJson = JSON.parse(profileData);
@@ -128,10 +137,11 @@ try {
 
   (entitiesByType["DefinedTermSet"] || []).forEach(termSet => {
     const termSetId = termSet['@id'];
-    const termSetName = termSet['name'] || termSet['rdfs:label'] || termSetId;
+    const termSetName = `Defined Term Set: ${termSet['name'] || termSet['rdfs:label'] || termSetId}`;
+    const githubId = createGitHubCompatibleId(termSetName);
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
 
-    let termSetSummary = `### <a id="${clean(termSetId)}"></a>${clean(termSetName)}\n\n`;
+    let termSetSummary = `### <a id="${githubId}"></a>${clean(termSetName)}\n\n`;
     termSetSummary += `${clean(termSetDesc)}\n\n`;
     // const inRangeOf = termSet['@reverse'].rangeIncludes;
     // for (let r of inRangeOf) {
@@ -152,13 +162,18 @@ try {
         return aName.localeCompare(bName);
       });
 
+      // For terms within the set:
       for (const t of terms) {
-        const anchorId = `${t["@id"]}_${t["@id"]}`;
+        const termId = t["@id"];
+        const anchorId = `${termId}_${termId}`;
         const termBaseId = `https://w3id.org/ldac/terms#${t?.name}`;
         const link = termBaseId && termBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(termBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
-        const termName = t['name'] || t['rdfs:label'] || t['@id'];
+        const termName = `Defined Term: ${t['name'] || t['rdfs:label'] || t['@id']}`;
+        const termGithubId = createGitHubCompatibleId(termName);
+
         const termDesc = t['description'] || t['rdfs:comment'] || '';
-        termSetSummary += `| <a id="${clean(anchorId)}"></a>${clean(termName)}${clean(link)} | ${clean(termDesc)} |\n`;
+        termSetSummary += `### <a id="${termGithubId}"></a>${clean(termName)}${clean(link)}\n`
+        termSetSummary += `${clean(termDesc)}\n\n`;
       }
 
     } else {
@@ -189,10 +204,10 @@ try {
 
   (entitiesByType["ItemList"] || []).forEach(list => {
     const listId = list['@id'];
-    const listName = list['name'] || listId;
+    const listName = `Item List: ${list['name'] || listId}`;
     const listDescription = list['description'] || '';
-
-    let listSummary = `### <a id="${clean(listId)}"></a>${clean(listName)}\n\n`;
+    const listGithubId = createGitHubCompatibleId(listName);
+    let listSummary = `### <a id="${clean(listGithubId)}"></a>${clean(listName)}\n\n`;
     listSummary += `${clean(listDescription)}\n\n`;
 
     // Add terms table if there are terms in this set
@@ -206,16 +221,21 @@ try {
         return aName.localeCompare(bName);
       });
 
+      // For items within the list:
       items.forEach(item => {
+        const itemId = item["@id"];
+        const itemGithubId = createGitHubCompatibleId(itemId);
         const itemName = item['name'] || item['@id'];
         const ItemDesc = item['description'] || '';
-        listSummary += `-  [${clean(itemName)}](#${item["@id"]})\n `;
+        listSummary += `-  [${clean(itemName)}](#${itemGithubId})\n `;
       });
 
       listSummary += "<hr/>\n\n";
 
       items.forEach(item => {
-        listSummary += `\n\n <a id="${item["@id"]}"></a><pre>\n ${JSON.stringify(item, null, 2)}\n</pre>\n\n`;
+        const itemId = item["@id"];
+        const itemGithubId = createGitHubCompatibleId(itemId);
+        listSummary += `### <a id="${itemId}"></a><a id="${itemGithubId}"></a><pre>\n ${JSON.stringify(item, null, 2)}\n</pre>\n\n`;
       });
     } else {
       listSummary += `*No terms defined for this term set*\n\n`;
@@ -237,10 +257,12 @@ try {
 
   entitiesByType["rdfs:Class"].forEach(classRule => {
     const classId = classRule['@id'];
-    const className = classRule['name'] || classRule['rdfs:label'] || classId;
+    const className = `Class: ${classRule['name'] || classRule['rdfs:label'] || classId}`;
+    const githubId = createGitHubCompatibleId(className);
+
     const classDesc = classRule['description'] || classRule['rdfs:comment'] || '';
     const specialized = classRule['prov:specializationOf'] || [];
-    var classSummary = `### <a id="${classRule['@id']}"></a> ${clean(className)}\n\n`;
+    var classSummary = `\n### <a id="${githubId}"></a> ${clean(className)}\n\n`;
 
 
     classSummary += `${clean(classDesc)}\n\n`;
@@ -298,12 +320,11 @@ try {
       });
 
       props.forEach(prop => {
-        const propId = prop['@id'];
         const propName = prop['name'] || prop['rdfs:label'] || prop['@id'];
-        const anchorId = `${classRule["@id"]}_${prop["@id"]}`;
+        const anchorGithubId = createGitHubCompatibleId(`Property: ${propName}`);
         // Make a link to the 'main' definition of the property
         const propBaseId = prop?.["prov:specializationOf"]?.[0]?.['@id'];
-        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(propBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
+        const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="#${anchorGithubId}" target="_blank" rel="noopener">ⓘ</a>` : "";
         const isRequired = prop['sh:minCount'] && parseInt(prop['sh:minCount']) > 0 ? "Yes" : "No";
         const propDesc = prop['description'] || prop['rdfs:comment'] || '';
 
@@ -316,7 +337,8 @@ try {
           const rangeDefiniton = profileCrate.getEntity(rangeId);
           if (rangeDefiniton) {
             const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
-            return `<a href="#${clean(rangeId)}">${clean(rangeName)}</a>`;
+            const rangeGithubId = createGitHubCompatibleId(`Class: ${rangeName}`);
+            return `<a href="#${rangeGithubId}">${clean(rangeName)}</a>`;
           }
           return `${clean(rangeId)}`
         }).join(', ');
@@ -324,7 +346,7 @@ try {
         // Get fixed value if specified
         const fixedValue = prop['schema:value'] || prop['value'] || '';
 
-        classSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(isRequired)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
+        classSummary += `| <a href="#${anchorGithubId}">${clean(propName)}${clean(link)}</a> | ${clean(isRequired)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
       });
     } else {
       classSummary += `*No properties defined for this class*\n\n`;
@@ -342,8 +364,7 @@ try {
 
   // Add a properties table
   let propsSummary = '## All Properties\n\n';
-  propsSummary += `| Property | Description | Range | Occurs in Domain(s) |\n`;
-  propsSummary += `| ---- | ----------- | ----------- | ----------- |\n`;
+
   const properties = (entitiesByType['rdf:Property'] || []).slice().sort((a, b) => {
     const aName = String(a['name'] || a['rdfs:label'] || a['@id'] || '');
     const bName = String(b['name'] || b['rdfs:label'] || b['@id'] || '');
@@ -351,40 +372,46 @@ try {
   });
 
   for (p of properties) {
-    const propId = p['@id'];
-    const anchorId = `${p["@id"]}_${p["@id"]}`;
+    const propName = `Property: ${p['name'] || p['rdfs:label'] || p['@id']}`; // Add this line
+    const anchorGithubId = createGitHubCompatibleId(propName); // Add this line
+
+    const propDesc = p['description'] || p['rdfs:comment'] || ''; // Add this line
+    
+    // Make a link to the 'main' definition of the property
     const propBaseId = p?.["prov:specializationOf"]?.[0]?.['@id'];
     const link = propBaseId && propBaseId.match(/^http(s)?:/i) ? ` <a href="${clean(propBaseId)}" target="_blank" rel="noopener">ⓘ</a>` : "";
-    const propName = p['name'] || p['rdfs:label'] || propId;
-    const propDesc = p['description'] || p['rdfs:comment'] || '';
+    
+    // Create range links
     const rangesArray = p['rangeIncludes'] || [];
-
-    // Add backlinks within the profile for the domains
+    const rangeLinks = rangesArray.map(r => {
+      const rangeId = typeof r === 'object' ? r['@id'] : r;
+      if (!rangeId) return 'Text';
+      const rangeDefinition = profileCrate.getEntity(rangeId);
+      if (rangeDefinition) {
+        const rangeName = rangeDefinition['name'] || rangeDefinition['rdfs:label'] || rangeId;
+        const rangeGithubId = createGitHubCompatibleId(`Class: ${rangeName}`);
+        return `<a href="#${rangeGithubId}">${clean(rangeName)}</a>`;
+      }
+      return `${clean(rangeId)}`;
+    }).join(', ');
+    
+    // Update domain links:
     const propDomains = (p.domainIncludes || []).map(domain => {
       const domainId = typeof domain === 'object' ? domain['@id'] : domain;
-      if (!domainId) return ''; // Skip if no ID
+      if (!domainId) return '';
       const domainDef = profileCrate.getEntity(domainId);
       if (domainDef) {
         const domainName = domainDef['name'] || domainDef['rdfs:label'] || domainId;
-        return `<a href="#${clean(domainId)}">${clean(domainName)}</a>`;
+        const domainGithubId = createGitHubCompatibleId(`Class: ${domainName}`);
+        return `<a href="#${domainGithubId}">${clean(domainName)}</a>`;
       }
-      return clean(domainId); // fallback to plain text
+      return clean(domainId);
     }).join(', ');
 
-    // Add range column
-    // Create links to range classes that are defined in the profile
-    const rangeLinks = rangesArray.map(r => {
-      const rangeId = typeof r === 'object' ? r['@id'] : r;
-      if (!rangeId) return 'Text'; // Default to Text if no range is specified
-      const rangeDefiniton = profileCrate.getEntity(rangeId);
-      if (rangeDefiniton) {
-        const rangeName = rangeDefiniton['name'] || rangeDefiniton['rdfs:label'] || rangeId;
-        return `<a href="#${clean(rangeId)}">${clean(rangeName)}</a>`;
-      }
-      return `${clean(rangeId)}`
-    }).join(', ');
-
-    propsSummary += `| <a id="${clean(anchorId)}"></a>${clean(propName)}${clean(link)} | ${clean(propDesc)} | ${clean(rangeLinks)} | ${propDomains} |\n`;
+    propsSummary += `### <a id="${anchorGithubId}"></a> ${clean(propName)}${clean(link)}\n\n`
+    propsSummary +=   `| Description | Range | Occurs in Domain(s) |\n`;
+     propsSummary += `| ----------- | ----------- | ----------- |\n`;
+    propsSummary += `| ${clean(propDesc)} | ${clean(rangeLinks)} | ${propDomains} |\n`;
   }
   rules.all += propsSummary
 
