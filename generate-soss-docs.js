@@ -142,6 +142,7 @@ try {
     const termSetDesc = termSet['description'] || termSet['rdfs:comment'] || '';
 
     let termSetSummary = `### <a id="${githubId}"></a>${clean(termSetName)}\n\n`;
+    termSetSummary += `ID: ${clean(termSetId)}\n\n`;
     termSetSummary += `${clean(termSetDesc)}\n\n`;
     // const inRangeOf = termSet['@reverse'].rangeIncludes;
     // for (let r of inRangeOf) {
@@ -172,7 +173,8 @@ try {
         const termGithubId = createGitHubCompatibleId(termName);
 
         const termDesc = t['description'] || t['rdfs:comment'] || '';
-        termSetSummary += `### <a id="${termGithubId}"></a>${clean(termName)}${clean(link)}\n`
+        termSetSummary += `### <a id="${termGithubId}"></a>${clean(termName)}${clean(link)}\n`;
+        termSetSummary += `ID: ${clean(termId)}\n\n`;
         termSetSummary += `${clean(termDesc)}\n\n`;
       }
 
@@ -236,6 +238,7 @@ try {
         const itemId = item["@id"];
         const itemGithubId = createGitHubCompatibleId(itemId);
         listSummary += `### <a id="${itemId}"></a><a id="${itemGithubId}"></a><pre>\n ${JSON.stringify(item, null, 2)}\n</pre>\n\n`;
+        listSummary += `ID: ${clean(itemId)}\n\n`;
       });
     } else {
       listSummary += `*No terms defined for this term set*\n\n`;
@@ -263,7 +266,7 @@ try {
     const classDesc = classRule['description'] || classRule['rdfs:comment'] || '';
     const specialized = classRule['prov:specializationOf'] || [];
     var classSummary = `\n### <a id="${githubId}"></a> ${clean(className)}\n\n`;
-
+    classSummary += `ID: ${clean(classId)}\n\n`;
 
     classSummary += `${clean(classDesc)}\n\n`;
 
@@ -409,6 +412,7 @@ try {
     }).join(', ');
 
     propsSummary += `### <a id="${anchorGithubId}"></a> ${clean(propName)}${clean(link)}\n\n`
+    propsSummary += `ID: ${clean(p['@id'])}\n\n`;
     propsSummary +=   `| Description | Range | Occurs in Domain(s) |\n`;
      propsSummary += `| ----------- | ----------- | ----------- |\n`;
     propsSummary += `| ${clean(propDesc)} | ${clean(rangeLinks)} | ${propDomains} |\n`;
