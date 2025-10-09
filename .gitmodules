@@ -1,6 +1,3 @@
 [submodule "test_data/test-collections"]
 	path = test_data/test-collections
 	url = https://github.com/Language-Research-Technology/test-collections.git
-[submodule "schemas/danala-schema"]
-	path = schemas/danala-schema
-	url = https://github.com/Language-Research-Technology/danala-schema.git
