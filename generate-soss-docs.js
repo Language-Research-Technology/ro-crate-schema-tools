@@ -186,7 +186,7 @@ try {
               2
             )}\n</pre>\n\n`;
             for (let t of partEntity["@type"] || []) {
-              const uri = profileCrate.resolveTerm(t);
+              const uri = profileCrate.resolveTerm(t) || t;
               if (!examplesOfType[uri]) { examplesOfType[uri] = "#### Examples \n"; }
               examplesOfType[uri] += `-  [${partName}](#${partAnchorId})\n`;
               }

@@ -43,34 +43,6 @@ Instances of this type MAY be present in the crate.
 *No properties defined for this class*
 
 
-#### Examples 
--  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
--  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
--  [Example-1: #BasicWash](#example-1-basicwash)
--  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
--  [Example-1: #GoldWash](#example-1-goldwash)
--  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
--  [Example-1: #Jack](#example-1-jack)
--  [Example-1: #Joe](#example-1-joe)
--  [Example-1: #John](#example-1-john)
--  [Example-1: #Judy](#example-1-judy)
--  [Example-1: #Mary](#example-1-mary)
--  [Example-1: #Owner](#example-1-owner)
--  [Example-1: #PreWash](#example-1-prewash)
--  [Example-1: #PreWashGuy](#example-1-prewashguy)
--  [Example-1: #Secretary](#example-1-secretary)
--  [Example-1: #TypeOfWash](#example-1-typeofwash)
--  [Example-1: #WashManager](#example-1-washmanager)
--  [Example-1: #WashOperator](#example-1-washoperator)
--  [Example-2: #Jill](#example-2-jill)
--  [Example-2: #BuyTVOnline](#example-2-buytvonline)
--  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
--  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
--  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
--  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
--  [Example-2: #PayComponent](#example-2-paycomponent)
--  [Example-2: #PayService](#example-2-payservice)
-
 
 ### <a id="class-human-actor"></a> Class: Human actor
 
@@ -121,34 +93,6 @@ Instances of this type MAY be present in the crate.
 | @type | Yes |  |  |  |
 *No properties defined for this class*
 
-
-#### Examples 
--  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
--  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
--  [Example-1: #BasicWash](#example-1-basicwash)
--  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
--  [Example-1: #GoldWash](#example-1-goldwash)
--  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
--  [Example-1: #Jack](#example-1-jack)
--  [Example-1: #Joe](#example-1-joe)
--  [Example-1: #John](#example-1-john)
--  [Example-1: #Judy](#example-1-judy)
--  [Example-1: #Mary](#example-1-mary)
--  [Example-1: #Owner](#example-1-owner)
--  [Example-1: #PreWash](#example-1-prewash)
--  [Example-1: #PreWashGuy](#example-1-prewashguy)
--  [Example-1: #Secretary](#example-1-secretary)
--  [Example-1: #TypeOfWash](#example-1-typeofwash)
--  [Example-1: #WashManager](#example-1-washmanager)
--  [Example-1: #WashOperator](#example-1-washoperator)
--  [Example-2: #Jill](#example-2-jill)
--  [Example-2: #BuyTVOnline](#example-2-buytvonline)
--  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
--  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
--  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
--  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
--  [Example-2: #PayComponent](#example-2-paycomponent)
--  [Example-2: #PayService](#example-2-payservice)
 
 
 ### <a id="class-composition"></a> Class: Composition
