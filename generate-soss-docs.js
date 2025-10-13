@@ -416,6 +416,10 @@ try {
         return aName.localeCompare(bName);
       });
 
+      // Update the table header to include Domain column
+      classSummary += `| Property | Required | Description | Domain | Range | Value |\n`;
+      classSummary += `| -------- | -------- | ----------- | ------ | ----- | ----- |\n`;
+
       props.forEach((prop) => {
         const propName = prop["name"] || prop["rdfs:label"] || prop["@id"];
         const anchorGithubId = createGitHubCompatibleId(
@@ -432,6 +436,27 @@ try {
             ? "Yes"
             : "No";
         const propDesc = prop["description"] || prop["rdfs:comment"] || "";
+
+        // Create domain links following the same pattern as range
+        const domainsArray = prop["domainIncludes"] || [];
+        const domainLinks = domainsArray
+          .map((d) => {
+            const domainId = typeof d === "object" ? d["@id"] : d;
+            if (!domainId) return ""; 
+            const domainDefinition = profileCrate.getEntity(domainId);
+            if (domainDefinition) {
+              const domainName =
+                domainDefinition["name"] ||
+                domainDefinition["rdfs:label"] ||
+                domainId;
+              const domainGithubId = createGitHubCompatibleId(
+                `Class: ${domainName}`
+              );
+              return `<a href="#${domainGithubId}">${clean(domainName)}</a>`;
+            }
+            return `${clean(domainId)}`;
+          })
+          .join(", ");
 
         const rangesArray = prop["rangeIncludes"] || [];
 
@@ -458,11 +483,12 @@ try {
         // Get fixed value if specified
         const fixedValue = prop["schema:value"] || prop["value"] || "";
 
+        // Update the table row to include Domain column
         classSummary += `| <a href="#${anchorGithubId}">${clean(
           propName
         )}${clean(link)}</a> | ${clean(isRequired)} | ${clean(
           propDesc
-        )} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
+        )} | ${clean(domainLinks)} | ${clean(rangeLinks)} | ${clean(fixedValue)} |\n`;
       });
     } else {
       classSummary += `*No properties defined for this class*\n\n`;
