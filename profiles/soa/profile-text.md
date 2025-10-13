@@ -16,3 +16,7 @@ ${rules.all}
 ## Provenance
 
 ${rules.provenance}
+
+## Examples
+
+${rules.examples}
