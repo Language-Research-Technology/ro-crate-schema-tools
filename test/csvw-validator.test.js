@@ -51,8 +51,7 @@ describe('SoSS+ Validator Tests', function() {
     var results = await validator.validateCrate(sampleCrate);
 
     expect(results).to.have.property('error');
-    expect(results).to.have.property('warning');
-    expect(results).to.have.property('info');
+    expect(results.error.length).to.equal(0); 
     console.log(results);
   });
 });
