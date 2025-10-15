@@ -5,9 +5,7 @@
       "@vocab": "http://schema.org/"
     },
     {
-      "txc": {
-        "@id": "http://purl.archive.org/textcommons/terms#"
-      }
+      "ldac": "https://w3id.org/ldac/terms#"
     },
     {
       "@base": null

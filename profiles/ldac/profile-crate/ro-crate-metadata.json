@@ -2,7 +2,9 @@
   "@context": [
     "https://w3id.org/ro/crate/1.1/context",
     {
-      "@vocab": "http://schema.org/"
+      "@vocab": "http://schema.org/",
+      "ldac": "https://w3id.org/ldac/terms#"
+
     }
   ],
   "@graph": [
@@ -166,7 +168,7 @@
       "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
       "rangeIncludes": [
         {
-          "@id": "#class_CreativeWork"
+          "@id": "#class_DataReuseLicense"
         },
         {
           "@id": "URL"
@@ -1265,8 +1267,8 @@
         {
           "@id": "#class_Place"
         }
-      ],
-      "sh:maxCount": 1
+      ]
+      
     },
     {
       "@id": "https://w3id.org/ldac/profile#Collection",
@@ -1325,6 +1327,15 @@
         }
       ],
       "sh:minCount": 1
+    },
+      {
+      "@id": "#class_Language",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Language",
+      "name": "Language",
+      "prov:specializationOf": {
+        "@id": "http://schema.org/Language"
+      }
     },
     {
       "@id": "#prop_ldac:subjectLanguage_RepositoryCollection",
@@ -1552,7 +1563,7 @@
       "rdfs:comment": "A license document that applies to this content, typically indicated by URL.",
       "rangeIncludes": [
         {
-          "@id": "#class_OrganizationReuseLicense"
+          "@id": "#class_DataReuseLicense"
         }
       ]
     },
@@ -2832,7 +2843,7 @@
       },
       "rdfs:subClassOf": [
         {
-          "@id": "DataLicense"
+          "@id": "#DataLicense"
         }
       ]
     },

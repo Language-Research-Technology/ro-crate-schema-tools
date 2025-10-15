@@ -204,7 +204,7 @@
       "rdfs:label": "subjectOf",
       "rangeIncludes": [{ "@id": "#Class_MainWorkflow_Description" }],
       "domainIncludes": { "@id": "#Class_MainWorkflow" },
-      "sh:minCount": 1,
+      "sh:minCount": 0,
       "sh:maxCount": 1
     },
     {
@@ -386,7 +386,7 @@
       "rdfs:label": "image",
       "rangeIncludes": [{ "@id": "#Class_ImageObject_Diagram" }],
       "domainIncludes": { "@id": "#Class_MainWorkflow" },
-      "sh:minCount": 1,
+      "sh:minCount": 0,
       "sh:maxCount": 1
     },
     {

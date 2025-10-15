@@ -25,6 +25,7 @@
       },
       "description": "An example workflow RO-Crate",
       "license": "Apache-2.0",
+      "datePublished": "2025-10-15",
       "mainEntity": {
         "@id": "example_workflow.cwl"
       },
@@ -45,7 +46,7 @@
     "@type": ["CreativeWork", "Profile"],
     "name": "Workflow RO-Crate Profile (experimental)",
     "version": "0.4.0",
-    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity"
+    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity  as per RO-Crate 1.2"
     },
     {
       "@id": "example_workflow.cwl",
@@ -69,13 +70,17 @@
       "about": "./",
       "encodingFormat": "text/markdown"
     },
-    {
+      {
       "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl",
       "@type": "ComputerLanguage",
       "name": "Common Workflow Language",
       "alternateName": "CWL",
-      "identifier": "https://w3id.org/cwl/v1.2/",
-      "url": "https://www.commonwl.org/"
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.2/"
+      },
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      }
     }
   ]
 }
