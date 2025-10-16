@@ -66,6 +66,11 @@ describe('SoSS+ Validator Tests', function() {
   it('should be able to follow the basic RO-Crate rules', async function() {
     // Create a validator with the profile crate
     const validator = new SossValidator(rocrateProfileCrate);
+    validator.parseRules();
+    console.log(validator.rules);
+    expect(validator.rules.rootRuleId).to.equal("SOMETHING")
+
+
     const targetCrate = new ROCrate({ array: true, link: true });
     var results = await validator.validateCrate(targetCrate);
     expect(results).to.have.property('error');

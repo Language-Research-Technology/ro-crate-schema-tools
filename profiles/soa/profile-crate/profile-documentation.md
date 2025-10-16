@@ -43,6 +43,113 @@ Instances of this type MAY be present in the crate.
 *No properties defined for this class*
 
 
+### Examples of Type
+#### Examples
+-  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
+
+-  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
+
+-  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
+
+-  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
+
+-  [Example-1: #BasicWash](#example-1-basicwash)
+
+-  [Example-1: #BasicWash](#example-1-basicwash)
+
+-  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
+-  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
+-  [Example-1: #GoldWash](#example-1-goldwash)
+
+-  [Example-1: #GoldWash](#example-1-goldwash)
+
+-  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
+
+-  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
+
+-  [Example-1: #Jack](#example-1-jack)
+
+-  [Example-1: #Jack](#example-1-jack)
+
+-  [Example-1: #Joe](#example-1-joe)
+
+-  [Example-1: #Joe](#example-1-joe)
+
+-  [Example-1: #John](#example-1-john)
+
+-  [Example-1: #John](#example-1-john)
+
+-  [Example-1: #Judy](#example-1-judy)
+
+-  [Example-1: #Judy](#example-1-judy)
+
+-  [Example-1: #Mary](#example-1-mary)
+
+-  [Example-1: #Mary](#example-1-mary)
+
+-  [Example-1: #Owner](#example-1-owner)
+
+-  [Example-1: #Owner](#example-1-owner)
+
+-  [Example-1: #PreWash](#example-1-prewash)
+
+-  [Example-1: #PreWash](#example-1-prewash)
+
+-  [Example-1: #PreWashGuy](#example-1-prewashguy)
+
+-  [Example-1: #PreWashGuy](#example-1-prewashguy)
+
+-  [Example-1: #Secretary](#example-1-secretary)
+
+-  [Example-1: #Secretary](#example-1-secretary)
+
+-  [Example-1: #TypeOfWash](#example-1-typeofwash)
+
+-  [Example-1: #TypeOfWash](#example-1-typeofwash)
+
+-  [Example-1: #WashManager](#example-1-washmanager)
+
+-  [Example-1: #WashManager](#example-1-washmanager)
+
+-  [Example-1: #WashOperator](#example-1-washoperator)
+
+-  [Example-1: #WashOperator](#example-1-washoperator)
+
+-  [Example-2: #Jill](#example-2-jill)
+
+-  [Example-2: #Jill](#example-2-jill)
+
+-  [Example-2: #BuyTVOnline](#example-2-buytvonline)
+
+-  [Example-2: #BuyTVOnline](#example-2-buytvonline)
+
+-  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
+
+-  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
+
+-  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
+
+-  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
+
+-  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
+
+-  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
+
+-  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
+
+-  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
+
+-  [Example-2: #PayComponent](#example-2-paycomponent)
+
+-  [Example-2: #PayComponent](#example-2-paycomponent)
+
+-  [Example-2: #PayService](#example-2-payservice)
+
+-  [Example-2: #PayService](#example-2-payservice)
+
+
 
 ### <a id="class-human-actor"></a> Class: Human actor
 
@@ -59,23 +166,32 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-does">does</a> | No | Inverse of property soa:doneBy | <a href="#class-human-actor">Human actor</a> | <a href="#class-task">Task</a> |  |
-| <a href="#property-is-party-to">is party to</a> | No | In addition to the rules and regulations that intrinsically apply to any interaction with a service (the interaction aspect of service contracts captured in the interactionAspect datatype property) there may be additional legal agreements that apply to certain human actors and their use of services. The involvesParty property, and its inverse isPartyTo, capture the abstract notion of a service contract specifying legal obligations between human actors in the context of using the one or more services for which the service contract is a contract. | <a href="#class-human-actor">Human actor</a> | <a href="#class-service-contract">Service contract</a> |  |
-| <a href="#property-sets-policy">sets policy</a> | No | The setsPolicy property, and its inverse isSetBy, capture the abstract notion that a policy can be set by one or more human actors.<p> In one direction, a policy can be set by zero (in the case where actors setting the policy by choice are not defined or captured), one, or more human actors. Note specifically that some policies are set by multiple human actors in conjunction, meaning that all these human actors need to discuss and agree on the policy before it can take effect. A real-world example would be two parents in conjunction setting policies for acceptable child behavior. In the other direction, a human actor may potentially set (or be part of setting) multiple policies.<p> The SOA ontology purposefully separates the setting of the policy itself and the application of the policy to one or more instances of Thing. In some cases these two acts may be inseparably bound together, yet in other cases they are definitely not. One such example is an overall compliance policy that is formulated at the corporate level yet applied by the compliance officer in each line of business.<p> Also, while a particular case of interest for this ontology is that where the provider of a service has a policy for the service, a policy for a service is not necessarily owned by the provider. For example, government food and hygiene regulations (a policy that is law) cover restaurant services independently of anything desired or defined by the restaurant owner. | <a href="#class-human-actor">Human actor</a> | <a href="#class-policy">Policy</a> |  |
+| <a href="#property-does">does</a> | No | Inverse of property soa:doneBy | <a href="#class-task">Task</a> |  |
+| <a href="#property-is-party-to">is party to</a> | No | In addition to the rules and regulations that intrinsically apply to any interaction with a service (the interaction aspect of service contracts captured in the interactionAspect datatype property) there may be additional legal agreements that apply to certain human actors and their use of services. The involvesParty property, and its inverse isPartyTo, capture the abstract notion of a service contract specifying legal obligations between human actors in the context of using the one or more services for which the service contract is a contract. | <a href="#class-service-contract">Service contract</a> |  |
+| <a href="#property-sets-policy">sets policy</a> | No | The setsPolicy property, and its inverse isSetBy, capture the abstract notion that a policy can be set by one or more human actors.<p> In one direction, a policy can be set by zero (in the case where actors setting the policy by choice are not defined or captured), one, or more human actors. Note specifically that some policies are set by multiple human actors in conjunction, meaning that all these human actors need to discuss and agree on the policy before it can take effect. A real-world example would be two parents in conjunction setting policies for acceptable child behavior. In the other direction, a human actor may potentially set (or be part of setting) multiple policies.<p> The SOA ontology purposefully separates the setting of the policy itself and the application of the policy to one or more instances of Thing. In some cases these two acts may be inseparably bound together, yet in other cases they are definitely not. One such example is an overall compliance policy that is formulated at the corporate level yet applied by the compliance officer in each line of business.<p> Also, while a particular case of interest for this ontology is that where the provider of a service has a policy for the service, a policy for a service is not necessarily owned by the provider. For example, government food and hygiene regulations (a policy that is law) cover restaurant services independently of anything desired or defined by the restaurant owner. | <a href="#class-policy">Policy</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #Administration](#example-1-administration)
+
 -  [Example-1: #CarWash](#example-1-carwash)
+
 -  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
 -  [Example-1: #Jack](#example-1-jack)
+
 -  [Example-1: #Joe](#example-1-joe)
+
 -  [Example-1: #John](#example-1-john)
+
 -  [Example-1: #Judy](#example-1-judy)
+
 -  [Example-1: #Mary](#example-1-mary)
+
 -  [Example-2: #Jill](#example-2-jill)
+
 -  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
+
 
 
 ### <a id="class-schema-person"></a> Class: schema:Person
@@ -96,6 +212,113 @@ Instances of this type MAY be present in the crate.
 *No properties defined for this class*
 
 
+### Examples of Type
+#### Examples
+-  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
+
+-  [Example-1: #AutomatedCarWash](#example-1-automatedcarwash)
+
+-  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
+
+-  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
+
+-  [Example-1: #BasicWash](#example-1-basicwash)
+
+-  [Example-1: #BasicWash](#example-1-basicwash)
+
+-  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
+-  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
+-  [Example-1: #GoldWash](#example-1-goldwash)
+
+-  [Example-1: #GoldWash](#example-1-goldwash)
+
+-  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
+
+-  [Example-1: #InitiateAutomatedWash](#example-1-initiateautomatedwash)
+
+-  [Example-1: #Jack](#example-1-jack)
+
+-  [Example-1: #Jack](#example-1-jack)
+
+-  [Example-1: #Joe](#example-1-joe)
+
+-  [Example-1: #Joe](#example-1-joe)
+
+-  [Example-1: #John](#example-1-john)
+
+-  [Example-1: #John](#example-1-john)
+
+-  [Example-1: #Judy](#example-1-judy)
+
+-  [Example-1: #Judy](#example-1-judy)
+
+-  [Example-1: #Mary](#example-1-mary)
+
+-  [Example-1: #Mary](#example-1-mary)
+
+-  [Example-1: #Owner](#example-1-owner)
+
+-  [Example-1: #Owner](#example-1-owner)
+
+-  [Example-1: #PreWash](#example-1-prewash)
+
+-  [Example-1: #PreWash](#example-1-prewash)
+
+-  [Example-1: #PreWashGuy](#example-1-prewashguy)
+
+-  [Example-1: #PreWashGuy](#example-1-prewashguy)
+
+-  [Example-1: #Secretary](#example-1-secretary)
+
+-  [Example-1: #Secretary](#example-1-secretary)
+
+-  [Example-1: #TypeOfWash](#example-1-typeofwash)
+
+-  [Example-1: #TypeOfWash](#example-1-typeofwash)
+
+-  [Example-1: #WashManager](#example-1-washmanager)
+
+-  [Example-1: #WashManager](#example-1-washmanager)
+
+-  [Example-1: #WashOperator](#example-1-washoperator)
+
+-  [Example-1: #WashOperator](#example-1-washoperator)
+
+-  [Example-2: #Jill](#example-2-jill)
+
+-  [Example-2: #Jill](#example-2-jill)
+
+-  [Example-2: #BuyTVOnline](#example-2-buytvonline)
+
+-  [Example-2: #BuyTVOnline](#example-2-buytvonline)
+
+-  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
+
+-  [Example-2: #OnlineSalesComponent](#example-2-onlinesalescomponent)
+
+-  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
+
+-  [Example-2: #OnlineTVSales](#example-2-onlinetvsales)
+
+-  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
+
+-  [Example-2: #SelectWhatToBuyComponent](#example-2-selectwhattobuycomponent)
+
+-  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
+
+-  [Example-2: #SelectWhatToBuyService](#example-2-selectwhattobuyservice)
+
+-  [Example-2: #PayComponent](#example-2-paycomponent)
+
+-  [Example-2: #PayComponent](#example-2-paycomponent)
+
+-  [Example-2: #PayService](#example-2-payservice)
+
+-  [Example-2: #PayService](#example-2-payservice)
+
+
 
 ### <a id="class-composition"></a> Class: Composition
 
@@ -112,10 +335,8 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-composition-pattern">composition pattern</a> | Yes | As discussed above, any composition must have associated with it a specific composition pattern, that pattern describing the way in which a collection of elements is assembled to a result. The concept of a composition pattern is captured by the compositionPattern datatype property. Note that even though certain kinds of composition patterns are of special interest within SOA (see below), the compositionPattern datatype property may take any value as long as that value describes how to assemble the elements used by the composition with which it is associated. | <a href="#class-composition">Composition</a> | schema:Text |  |
-| <a href="#property-orchestrated-by">orchestrated by</a> | No | An orchestration has one particular element that oversees and directs the other elements used by the composition. This type of relationship is important enough that we have chosen to capture the abstract notion in the orchestrates property and its inverse orchestratedBy.<p>In one direction, a composition has at most one element that orchestrates it, and the cardinality can only be one (1) if in fact the composition pattern of that composition is an orchestration. In the other direction, an element can orchestrate at most one composition which then must have an orchestration as its composition pattern.<p>Note that in practical applications of the ontology, even though Service is a subclass of Element, a service (as a purely logical representation) is not expected to orchestrate a composition. | <a href="#class-composition">Composition</a> | <a href="#class-element">Element</a> |  |
+| <a href="#property-composition-pattern">composition pattern</a> | Yes | As discussed above, any composition must have associated with it a specific composition pattern, that pattern describing the way in which a collection of elements is assembled to a result. The concept of a composition pattern is captured by the compositionPattern datatype property. Note that even though certain kinds of composition patterns are of special interest within SOA (see below), the compositionPattern datatype property may take any value as long as that value describes how to assemble the elements used by the composition with which it is associated. | schema:Text |  |
+| <a href="#property-orchestrated-by">orchestrated by</a> | No | An orchestration has one particular element that oversees and directs the other elements used by the composition. This type of relationship is important enough that we have chosen to capture the abstract notion in the orchestrates property and its inverse orchestratedBy.<p>In one direction, a composition has at most one element that orchestrates it, and the cardinality can only be one (1) if in fact the composition pattern of that composition is an orchestration. In the other direction, an element can orchestrate at most one composition which then must have an orchestration as its composition pattern.<p>Note that in practical applications of the ontology, even though Service is a subclass of Element, a service (as a purely logical representation) is not expected to orchestrate a composition. | <a href="#class-element">Element</a> |  |
 
 
 ### <a id="class-effect"></a> Class: Effect
@@ -133,9 +354,7 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-is-specified-by">is specified by</a> | Yes | Inverse of soa:specifies | <a href="#class-effect">Effect</a> | <a href="#class-service-contract">Service contract</a> |  |
+| <a href="#property-is-specified-by">is specified by</a> | Yes | Inverse of soa:specifies | <a href="#class-service-contract">Service contract</a> |  |
 
 
 ### <a id="class-element"></a> Class: Element
@@ -153,16 +372,14 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-generates">generates</a> | No | Events can, but need not necessarily, be generated by elements. The generates property, and its inverse generatedBy, capture the abstract notion that an element generates an event. <p> Note that the same event may be generated by many different elements. Similarly, the same element may generate many different events. | <a href="#class-element">Element</a> | <a href="#class-soaevent">SOAEvent</a> |  |
-| <a href="#property-orchestrates">orchestrates</a> | No | Inverse of property soa:orchestratedBy | <a href="#class-element">Element</a> | <a href="#class-composition">Composition</a> |  |
-| <a href="#property-performs">performs</a> | No | As a service itself is only a logical representation, any service is performed by something. The something that performs a service must be opaque to anyone interacting with it, an opaqueness which is the exact nature of the Element class. This concept is captured by the performs and performedBy properties. This also captures the fact that services can be performed by elements of other types than systems. This includes elements such as software components, human actors, and tasks. | <a href="#class-element">Element</a> | <a href="#class-soaservice">SOAService</a> |  |
-| <a href="#property-represented-by">represented By</a> | No | Inverse of property soa:represents | <a href="#class-element">Element</a> | <a href="#class-element">Element</a> |  |
-| <a href="#property-represents">represents</a> | No | The environment described by an SOA is intrinsically hierarchically composite (see also Section 5.2 for a definition of the Composition class); in other words, the elements of SOA systems can be repeatedly composed to ever higher levels of abstraction. One aspect of this has already been addressed by the uses and usedBy properties in that we can use these to express the notion of systems of systems. This is still a very concrete relationship though, and does not express the concept of architectural abstraction. We find the need for architectural abstraction in various places such as a role representing the people playing that role, an organizational unit representing the people within it (subtly different from that same organizational unit using the people within it, as the represents relationship indicates the organizational unit as a substitute interaction point), an architectural building block representing an underlying construct (for instance, important to enterprise architects wanting to explicitly distinguish between constructs and building blocks), and an Enterprise Service Bus (ESB) representing the services that are accessible through it (for instance, relevant when explicitly modeling operational interaction and dependencies). The concept of such an explicitly changing viewpoint, or level of abstraction, is captured by the represents and representedBy properties. | <a href="#class-element">Element</a> | <a href="#class-element">Element</a> |  |
-| <a href="#property-responds-to">responds to</a> | No | Events can, but need not necessarily, be responded to by elements. The respondsTo property, and its inverse respondedToBy, capture the abstract notion that an element responds to an event.<p>Note that the same event may be responded to by many different elements. Similarly, the same element may respond to many different events. | <a href="#class-element">Element</a> | <a href="#class-soaevent">SOAEvent</a> |  |
-| <a href="#property-used-by">used by</a> | No | Inverse of property soa:uses | <a href="#class-element">Element</a> | <a href="#class-element">Element</a> |  |
-| <a href="#property-uses">uses</a> | No | Elements may use other elements in various ways. In general, the notion of some element using another element is applied by practitioners for all of models, executables, and physical objects. What differs from domain to domain is the way in which such use is perceived. <p>An element uses another element if it interacts with it in some fashion. Interacts here is interpreted very broadly ranging through, for example, an element simply being a member of (used by) some system (see later for a formal definition of the System class), an element interacting with (using) another element (such as a service; see later for a formal definition of the Service class) in an ad hoc fashion, or even a strongly coupled dependency in a composition (see Section 5.2 for a formal definition of the Composition class). The uses property, and its inverse usedBy, capture the abstract notion of an element using another. These properties capture not just transient relations. Instantiations of the property can include “uses at this instant”, “has used”, and “may in future use”. <p>For the purposes of this ontology we have chosen not to attempt to enumerate and formally define the multitude of different possible semantics of a uses relationship. We leave the semantic interpretations to a particular sub-domain, application, or even design approach. | <a href="#class-element">Element</a> | <a href="#class-element">Element</a> |  |
+| <a href="#property-generates">generates</a> | No | Events can, but need not necessarily, be generated by elements. The generates property, and its inverse generatedBy, capture the abstract notion that an element generates an event. <p> Note that the same event may be generated by many different elements. Similarly, the same element may generate many different events. | <a href="#class-soaevent">SOAEvent</a> |  |
+| <a href="#property-orchestrates">orchestrates</a> | No | Inverse of property soa:orchestratedBy | <a href="#class-composition">Composition</a> |  |
+| <a href="#property-performs">performs</a> | No | As a service itself is only a logical representation, any service is performed by something. The something that performs a service must be opaque to anyone interacting with it, an opaqueness which is the exact nature of the Element class. This concept is captured by the performs and performedBy properties. This also captures the fact that services can be performed by elements of other types than systems. This includes elements such as software components, human actors, and tasks. | <a href="#class-soaservice">SOAService</a> |  |
+| <a href="#property-represented-by">represented By</a> | No | Inverse of property soa:represents | <a href="#class-element">Element</a> |  |
+| <a href="#property-represents">represents</a> | No | The environment described by an SOA is intrinsically hierarchically composite (see also Section 5.2 for a definition of the Composition class); in other words, the elements of SOA systems can be repeatedly composed to ever higher levels of abstraction. One aspect of this has already been addressed by the uses and usedBy properties in that we can use these to express the notion of systems of systems. This is still a very concrete relationship though, and does not express the concept of architectural abstraction. We find the need for architectural abstraction in various places such as a role representing the people playing that role, an organizational unit representing the people within it (subtly different from that same organizational unit using the people within it, as the represents relationship indicates the organizational unit as a substitute interaction point), an architectural building block representing an underlying construct (for instance, important to enterprise architects wanting to explicitly distinguish between constructs and building blocks), and an Enterprise Service Bus (ESB) representing the services that are accessible through it (for instance, relevant when explicitly modeling operational interaction and dependencies). The concept of such an explicitly changing viewpoint, or level of abstraction, is captured by the represents and representedBy properties. | <a href="#class-element">Element</a> |  |
+| <a href="#property-responds-to">responds to</a> | No | Events can, but need not necessarily, be responded to by elements. The respondsTo property, and its inverse respondedToBy, capture the abstract notion that an element responds to an event.<p>Note that the same event may be responded to by many different elements. Similarly, the same element may respond to many different events. | <a href="#class-soaevent">SOAEvent</a> |  |
+| <a href="#property-used-by">used by</a> | No | Inverse of property soa:uses | <a href="#class-element">Element</a> |  |
+| <a href="#property-uses">uses</a> | No | Elements may use other elements in various ways. In general, the notion of some element using another element is applied by practitioners for all of models, executables, and physical objects. What differs from domain to domain is the way in which such use is perceived. <p>An element uses another element if it interacts with it in some fashion. Interacts here is interpreted very broadly ranging through, for example, an element simply being a member of (used by) some system (see later for a formal definition of the System class), an element interacting with (using) another element (such as a service; see later for a formal definition of the Service class) in an ad hoc fashion, or even a strongly coupled dependency in a composition (see Section 5.2 for a formal definition of the Composition class). The uses property, and its inverse usedBy, capture the abstract notion of an element using another. These properties capture not just transient relations. Instantiations of the property can include “uses at this instant”, “has used”, and “may in future use”. <p>For the purposes of this ontology we have chosen not to attempt to enumerate and formally define the multitude of different possible semantics of a uses relationship. We leave the semantic interpretations to a particular sub-domain, application, or even design approach. | <a href="#class-element">Element</a> |  |
 
 
 ### <a id="class-soaevent"></a> Class: SOAEvent
@@ -180,10 +397,8 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-generated-by">generated by</a> | No | Inverse of property soa:generates | <a href="#class-soaevent">SOAEvent</a> | <a href="#class-element">Element</a> |  |
-| <a href="#property-responded-to-by">responded to by</a> | No | Inverse of property soa:respondsTo | <a href="#class-soaevent">SOAEvent</a> | <a href="#class-element">Element</a> |  |
+| <a href="#property-generated-by">generated by</a> | No | Inverse of property soa:generates | <a href="#class-element">Element</a> |  |
+| <a href="#property-responded-to-by">responded to by</a> | No | Inverse of property soa:respondsTo | <a href="#class-element">Element</a> |  |
 
 
 ### <a id="class-information-type"></a> Class: Information type
@@ -201,13 +416,13 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-is-input-at">is input at</a> | No | Inverse of property soa:hasInput | <a href="#class-information-type">Information type</a> | <a href="#class-service-interface">Service interface</a> |  |
-| <a href="#property-is-output-at">is output at</a> | No | Inverse of property soa:hasOutput | <a href="#class-information-type">Information type</a> | <a href="#class-service-interface">Service interface</a> |  |
+| <a href="#property-is-input-at">is input at</a> | No | Inverse of property soa:hasInput | <a href="#class-service-interface">Service interface</a> |  |
+| <a href="#property-is-output-at">is output at</a> | No | Inverse of property soa:hasOutput | <a href="#class-service-interface">Service interface</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #TypeOfWash](#example-1-typeofwash)
+
 
 
 ### <a id="class-policy"></a> Class: Policy
@@ -225,13 +440,13 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-applies-to">applies to</a> | No | Policies can apply to things other than elements; in fact, policies can apply to anything at all, including other policies. For instance, a security policy might specify which actors have the authority to change some other policy. The appliesTo property, and its inverse isSubjectTo, capture the abstract notion that a policy can apply to any instance of Thing. Note specifically that Element is a subclass of Thing, hence policies by inference can apply to any instance of Element.<p>In one direction, a policy can apply to zero (in the case where a policy has been formulated but not yet explicitly applied to anything), one, or more instances of Thing. Note that having a policy apply to multiple things does not mean that these things are the same, only that they are (partly) regulated by the same intent. In the other direction, an instance of Thing may be subject to zero, one, or more policies. Note that where multiple policies apply to the same instance of Thing this is often because the multiple policies are from multiple different policy domains (such as security and governance).<p>The SOA ontology does not attempt to enumerate different policy domains; such policy-focused details are deemed more appropriate for a policy ontology. It is worth pointing out that a particular policy ontology may also restrict (if desired) the kinds of things that policies can apply to. | <a href="#class-policy">Policy</a> | schema:Thing |  |
-| <a href="#property-is-set-by">is set by</a> | No | Inverse of property soa:setsPolicy | <a href="#class-policy">Policy</a> | <a href="#class-human-actor">Human actor</a> |  |
+| <a href="#property-applies-to">applies to</a> | No | Policies can apply to things other than elements; in fact, policies can apply to anything at all, including other policies. For instance, a security policy might specify which actors have the authority to change some other policy. The appliesTo property, and its inverse isSubjectTo, capture the abstract notion that a policy can apply to any instance of Thing. Note specifically that Element is a subclass of Thing, hence policies by inference can apply to any instance of Element.<p>In one direction, a policy can apply to zero (in the case where a policy has been formulated but not yet explicitly applied to anything), one, or more instances of Thing. Note that having a policy apply to multiple things does not mean that these things are the same, only that they are (partly) regulated by the same intent. In the other direction, an instance of Thing may be subject to zero, one, or more policies. Note that where multiple policies apply to the same instance of Thing this is often because the multiple policies are from multiple different policy domains (such as security and governance).<p>The SOA ontology does not attempt to enumerate different policy domains; such policy-focused details are deemed more appropriate for a policy ontology. It is worth pointing out that a particular policy ontology may also restrict (if desired) the kinds of things that policies can apply to. | schema:Thing |  |
+| <a href="#property-is-set-by">is set by</a> | No | Inverse of property soa:setsPolicy | <a href="#class-human-actor">Human actor</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #PaymentUpFront](#example-1-paymentupfront)
+
 
 
 ### <a id="class-process"></a> Class: Process
@@ -252,10 +467,14 @@ Instances of this type MAY be present in the crate.
 *No properties defined for this class*
 
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #AutomatedCarWashProcess](#example-1-automatedcarwashprocess)
+
 -  [Example-1: #CarWashProcess](#example-1-carwashprocess)
+
 -  [Example-2: #OnlineTVSalesProcess](#example-2-onlinetvsalesprocess)
+
 
 
 ### <a id="class-soaservice"></a> Class: SOAService
@@ -273,11 +492,9 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-has-interface">has interface</a> | Yes | The hasInterface property, and its inverse isInterfaceOf, capture the abstract notion of a service having a particular service interface. In one direction, any service must have at least one service interface; anything else would be contrary to the definition of a service as a representation of a repeatable activity that has a specified outcome and is a ‘black box’ to its consumers. In the other direction, there can be service interfaces that are not yet interfaces of any defined services. Also, the same service interface can be an interface of multiple services. The latter does not mean that these services are the same, nor even that they have the same effect; it only means that it is possible to interact with all these services in the manner defined by the service interface in question. | <a href="#class-soaservice">SOAService</a> | <a href="#class-service-interface">Service interface</a> |  |
-| <a href="#property-has-contract">has contract</a> | No | Inverse of property soa:isContractFor | <a href="#class-soaservice">SOAService</a> | <a href="#class-service-contract">Service contract</a> |  |
-| <a href="#property-performed-by">performed by</a> | No | Inverse of property soa:performs | <a href="#class-soaservice">SOAService</a> | <a href="#class-element">Element</a> |  |
+| <a href="#property-has-interface">has interface</a> | Yes | The hasInterface property, and its inverse isInterfaceOf, capture the abstract notion of a service having a particular service interface. In one direction, any service must have at least one service interface; anything else would be contrary to the definition of a service as a representation of a repeatable activity that has a specified outcome and is a ‘black box’ to its consumers. In the other direction, there can be service interfaces that are not yet interfaces of any defined services. Also, the same service interface can be an interface of multiple services. The latter does not mean that these services are the same, nor even that they have the same effect; it only means that it is possible to interact with all these services in the manner defined by the service interface in question. | <a href="#class-service-interface">Service interface</a> |  |
+| <a href="#property-has-contract">has contract</a> | No | Inverse of property soa:isContractFor | <a href="#class-service-contract">Service contract</a> |  |
+| <a href="#property-performed-by">performed by</a> | No | Inverse of property soa:performs | <a href="#class-element">Element</a> |  |
 
 
 ### <a id="class-service-composition"></a> Class: Service composition
@@ -314,17 +531,18 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-interaction-aspect">interaction aspect</a> | Yes | Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class. | <a href="#class-service-contract">Service contract</a> | schema:Text |  |
-| <a href="#property-is-contract-for">is contract for</a> | Yes | The hasContract property, and its inverse isContractFor, capture the abstract notion of a service having a service contract. Anyone wanting to use a service must obey the interaction aspects (as defined in the interactionAspect datatype property) of any service contract applying to that interaction. In that fashion, the interaction aspects of a service contract are context-independent; they capture the defined or intrinsic ways in which a service may be used.<p>By definition, any service contract must be a contract for at least one service. It is possible that the same service contract can be a contract for more than one service; for instance, in cases where a group of services share the same interaction pattern or where a service contract (legally – see the involvesParty and isPartyTo properties below) regulates the providing and consuming of multiple services. | <a href="#class-service-contract">Service contract</a> | <a href="#class-soaservice">SOAService</a> |  |
-| <a href="#property-legal-aspect">legal aspect</a> | Yes | Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class. Note that the second of these attributes, the legal agreement aspects, includes concepts such as Service-Level Agreements (SLAs). | <a href="#class-service-contract">Service contract</a> | schema:Text |  |
-| <a href="#property-specifies">specifies</a> | Yes | While a service intrinsically has an effect every time someone interacts with it, in order to trust the effect to be something in particular, the effect needs to be specified as part of a service contract. The specifies property, and its inverse isSpecifiedBy, capture the abstract notion of a service contract specifying a particular effect as part of the agreement for using a service. Note that the specified effect can apply to both the interactionAspect datatype property (simply specifying what will happen when interacting with the service according to the service contract) and the legalAspect datatype property (specifying a contractually promised effect).<p>Anyone wanting a guaranteed effect of the interaction with a given service must ensure that the desired effect is specified in a service contract applying to that interaction. By definition, any service contract must specify at least one effect. In the other direction, an effect must be an effect of at least one service contract; this represents that fact that we have chosen only to formalize those effects that are specified by service contracts (and not all intrinsic effects of all services). | <a href="#class-service-contract">Service contract</a> | <a href="#class-effect">Effect</a> |  |
-| <a href="#property-involves-party">involves party</a> | No | Inverse of property soa:isPartyTo | <a href="#class-service-contract">Service contract</a> | <a href="#class-human-actor">Human actor</a> |  |
+| <a href="#property-interaction-aspect">interaction aspect</a> | Yes | Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class. | schema:Text |  |
+| <a href="#property-is-contract-for">is contract for</a> | Yes | The hasContract property, and its inverse isContractFor, capture the abstract notion of a service having a service contract. Anyone wanting to use a service must obey the interaction aspects (as defined in the interactionAspect datatype property) of any service contract applying to that interaction. In that fashion, the interaction aspects of a service contract are context-independent; they capture the defined or intrinsic ways in which a service may be used.<p>By definition, any service contract must be a contract for at least one service. It is possible that the same service contract can be a contract for more than one service; for instance, in cases where a group of services share the same interaction pattern or where a service contract (legally – see the involvesParty and isPartyTo properties below) regulates the providing and consuming of multiple services. | <a href="#class-soaservice">SOAService</a> |  |
+| <a href="#property-legal-aspect">legal aspect</a> | Yes | Service contracts explicitly regulate both the interaction aspects (see the hasContract and isContractFor properties) and the legal agreement aspects (see the involvedParty and isPartyTo properties) of using a service. The two types of aspects are formally captured by defining the interactionAspect and legalAspect datatype properties on the ServiceContract class. Note that the second of these attributes, the legal agreement aspects, includes concepts such as Service-Level Agreements (SLAs). | schema:Text |  |
+| <a href="#property-specifies">specifies</a> | Yes | While a service intrinsically has an effect every time someone interacts with it, in order to trust the effect to be something in particular, the effect needs to be specified as part of a service contract. The specifies property, and its inverse isSpecifiedBy, capture the abstract notion of a service contract specifying a particular effect as part of the agreement for using a service. Note that the specified effect can apply to both the interactionAspect datatype property (simply specifying what will happen when interacting with the service according to the service contract) and the legalAspect datatype property (specifying a contractually promised effect).<p>Anyone wanting a guaranteed effect of the interaction with a given service must ensure that the desired effect is specified in a service contract applying to that interaction. By definition, any service contract must specify at least one effect. In the other direction, an effect must be an effect of at least one service contract; this represents that fact that we have chosen only to formalize those effects that are specified by service contracts (and not all intrinsic effects of all services). | <a href="#class-effect">Effect</a> |  |
+| <a href="#property-involves-party">involves party</a> | No | Inverse of property soa:isPartyTo | <a href="#class-human-actor">Human actor</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #BasicWashContract](#example-1-basicwashcontract)
+
 -  [Example-2: #BuyTVOnlineContract](#example-2-buytvonlinecontract)
+
 
 
 ### <a id="class-service-interface"></a> Class: Service interface
@@ -342,15 +560,15 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-constraints">constraints</a> | Yes | The constraints datatype property on ServiceInterface captures the notion that there can be constraints on the allowed interaction such as only certain value ranges allowed on given parameters. Depending on the nature of the service and the service interface in question, these constraints may be defined either formally or informally (the informal case being relevant at a minimum for certain types of real-world services). | <a href="#class-service-interface">Service interface</a> | schema:Text |  |
-| <a href="#property-has-input">has input</a> | No | The hasInput property, and its inverse isInputAt, capture the abstract notion of a particular type of information being given when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and input information types. A given information type may be input at many service interfaces or none at all. Similarly, a given service interface may have many information types as input or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements). | <a href="#class-service-interface">Service interface</a> | <a href="#class-information-type">Information type</a> |  |
-| <a href="#property-has-output">has output</a> | No | The hasOutput property, and its inverse isOutputAt, capture the abstract notion of a particular type of information being received when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and output information types. A given information type may be output at many service interfaces or none at all. Similarly, a given service interface may have many information types as output or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements). | <a href="#class-service-interface">Service interface</a> | <a href="#class-information-type">Information type</a> |  |
-| <a href="#property-is-interface-of">is interface of</a> | No | Inverse of property soa:hasInterface | <a href="#class-service-interface">Service interface</a> | <a href="#class-soaservice">SOAService</a> |  |
+| <a href="#property-constraints">constraints</a> | Yes | The constraints datatype property on ServiceInterface captures the notion that there can be constraints on the allowed interaction such as only certain value ranges allowed on given parameters. Depending on the nature of the service and the service interface in question, these constraints may be defined either formally or informally (the informal case being relevant at a minimum for certain types of real-world services). | schema:Text |  |
+| <a href="#property-has-input">has input</a> | No | The hasInput property, and its inverse isInputAt, capture the abstract notion of a particular type of information being given when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and input information types. A given information type may be input at many service interfaces or none at all. Similarly, a given service interface may have many information types as input or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements). | <a href="#class-information-type">Information type</a> |  |
+| <a href="#property-has-output">has output</a> | No | The hasOutput property, and its inverse isOutputAt, capture the abstract notion of a particular type of information being received when interacting with a service through a service interface.<p>Note that there is a many-to-many relationship between service interfaces and output information types. A given information type may be output at many service interfaces or none at all. Similarly, a given service interface may have many information types as output or none at all. It is important to realize that some services may have only inputs (triggering an asynchronous action without a defined response) and other services may have only outputs (elements performing these services execute independently yet may provide output that is used by other elements). | <a href="#class-information-type">Information type</a> |  |
+| <a href="#property-is-interface-of">is interface of</a> | No | Inverse of property soa:hasInterface | <a href="#class-soaservice">SOAService</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #WashingMachineInterface](#example-1-washingmachineinterface)
+
 
 
 ### <a id="class-system"></a> Class: System
@@ -371,10 +589,14 @@ Instances of this type MAY be present in the crate.
 *No properties defined for this class*
 
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #AdministrativeSystem](#example-1-administrativesystem)
+
 -  [Example-1: #CarWashBusiness](#example-1-carwashbusiness)
+
 -  [Example-1: #CarWashSystem](#example-1-carwashsystem)
+
 
 
 ### <a id="class-task"></a> Class: Task
@@ -392,18 +614,24 @@ Instances of this type MAY be present in the crate.
 | Property | Required | Description | Range | Value |
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  |  |
-| Property | Required | Description | Domain | Range | Value |
-| -------- | -------- | ----------- | ------ | ----- | ----- |
-| <a href="#property-done-by">done by</a> | No | Tasks are naturally thought of as being done by people or organizations. If we think of tasks as being the actual things done, then the natural cardinality is that each instance of Task is done by at most one instance of HumanActor. Due to the atomic nature of instances of Task we rule out the case where such an instance is done jointly by multiple instances of HumanActor. The cardinality can be zero if someone chooses not to instantiate all possible human actors. On the other hand, the same instance of HumanActor can (over time) easily do more than one instance of Task. The does property, and its inverse doneBy, capture the relation between a human actor and the tasks it performs. | <a href="#class-task">Task</a> | <a href="#class-human-actor">Human actor</a> |  |
+| <a href="#property-done-by">done by</a> | No | Tasks are naturally thought of as being done by people or organizations. If we think of tasks as being the actual things done, then the natural cardinality is that each instance of Task is done by at most one instance of HumanActor. Due to the atomic nature of instances of Task we rule out the case where such an instance is done jointly by multiple instances of HumanActor. The cardinality can be zero if someone chooses not to instantiate all possible human actors. On the other hand, the same instance of HumanActor can (over time) easily do more than one instance of Task. The does property, and its inverse doneBy, capture the relation between a human actor and the tasks it performs. | <a href="#class-human-actor">Human actor</a> |  |
 
-#### Examples 
+### Examples of Type
+#### Examples
 -  [Example-1: #Dry](#example-1-dry)
+
 -  [Example-1: #PushWashButton](#example-1-pushwashbutton)
+
 -  [Example-1: #Wash](#example-1-wash)
+
 -  [Example-1: #WashWindows](#example-1-washwindows)
+
 -  [Example-2: #PurchaseTV](#example-2-purchasetv)
+
 -  [Example-2: #PayForTV](#example-2-payfortv)
+
 -  [Example-2: #DeliverTV](#example-2-delivertv)
+
 
 ## All Properties
 
@@ -657,6 +885,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 
 ## Example-1: Example: Car wash
 
+
 ### <a id="artifact-car-wash-business-represented-using-soa"></a> Artifact: Car wash business represented using SOA
 
 <pre>
@@ -765,6 +994,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-administration"></a>Example-1: #Administration
 
 <pre>
@@ -786,6 +1016,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-administrativesystem"></a>Example-1: #AdministrativeSystem
 
 <pre>
@@ -795,6 +1026,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Administrative system"
 }
 </pre>
+
 
 #### <a id="example-1-automatedcarwash"></a>Example-1: #AutomatedCarWash
 
@@ -811,6 +1043,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-automatedcarwashprocess"></a>Example-1: #AutomatedCarWashProcess
 
@@ -833,6 +1066,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-basicwash"></a>Example-1: #BasicWash
 
 <pre>
@@ -851,6 +1085,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-basicwashcontract"></a>Example-1: #BasicWashContract
 
@@ -872,6 +1107,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-carwash"></a>Example-1: #CarWash
 
 <pre>
@@ -884,6 +1120,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-carwashbusiness"></a>Example-1: #CarWashBusiness
 
@@ -906,6 +1143,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   ]
 }
 </pre>
+
 
 #### <a id="example-1-carwashprocess"></a>Example-1: #CarWashProcess
 
@@ -933,6 +1171,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   ]
 }
 </pre>
+
 
 #### <a id="example-1-carwashsystem"></a>Example-1: #CarWashSystem
 
@@ -966,6 +1205,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-dry"></a>Example-1: #Dry
 
 <pre>
@@ -975,6 +1215,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Dry"
 }
 </pre>
+
 
 #### <a id="example-1-goldwash"></a>Example-1: #GoldWash
 
@@ -992,6 +1233,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-initiateautomatedwash"></a>Example-1: #InitiateAutomatedWash
 
 <pre>
@@ -1004,6 +1246,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-jack"></a>Example-1: #Jack
 
@@ -1018,6 +1261,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-joe"></a>Example-1: #Joe
 
 <pre>
@@ -1031,6 +1275,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-john"></a>Example-1: #John
 
 <pre>
@@ -1043,6 +1288,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "John"
 }
 </pre>
+
 
 #### <a id="example-1-judy"></a>Example-1: #Judy
 
@@ -1060,6 +1306,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-mary"></a>Example-1: #Mary
 
 <pre>
@@ -1073,6 +1320,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-owner"></a>Example-1: #Owner
 
 <pre>
@@ -1085,6 +1333,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-paymentupfront"></a>Example-1: #PaymentUpFront
 
@@ -1107,6 +1356,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-prewash"></a>Example-1: #PreWash
 
 <pre>
@@ -1119,6 +1369,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-prewashguy"></a>Example-1: #PreWashGuy
 
@@ -1133,6 +1384,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-pushwashbutton"></a>Example-1: #PushWashButton
 
 <pre>
@@ -1145,6 +1397,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-secretary"></a>Example-1: #Secretary
 
@@ -1159,6 +1412,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-typeofwash"></a>Example-1: #TypeOfWash
 
 <pre>
@@ -1172,6 +1426,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-wash"></a>Example-1: #Wash
 
 <pre>
@@ -1181,6 +1436,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Wash"
 }
 </pre>
+
 
 #### <a id="example-1-washingmachineinterface"></a>Example-1: #WashingMachineInterface
 
@@ -1195,6 +1451,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-washmanager"></a>Example-1: #WashManager
 
 <pre>
@@ -1208,6 +1465,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-1-washoperator"></a>Example-1: #WashOperator
 
 <pre>
@@ -1220,6 +1478,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   }
 }
 </pre>
+
 
 #### <a id="example-1-washwindows"></a>Example-1: #WashWindows
 
@@ -1237,6 +1496,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 <a id="example-2-example-internet-purchase"></a>
 
 ## Example-2: Example: Internet Purchase
+
 
 ### <a id="artifact-internet-purchase-example-represented-using-soa"></a> Artifact: Internet Purchase example represented using SOA
 
@@ -1295,6 +1555,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-jill"></a>Example-2: #Jill
 
 <pre>
@@ -1316,6 +1577,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-purchasetv"></a>Example-2: #PurchaseTV
 
 <pre>
@@ -1329,6 +1591,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-buytvonline"></a>Example-2: #BuyTVOnline
 
 <pre>
@@ -1338,6 +1601,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Buy TV online"
 }
 </pre>
+
 
 #### <a id="example-2-buytvonlinecontract"></a>Example-2: #BuyTVOnlineContract
 
@@ -1350,6 +1614,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "legalAspect": "Will deliver in 5 working days"
 }
 </pre>
+
 
 #### <a id="example-2-onlinesalescomponent"></a>Example-2: #OnlineSalesComponent
 
@@ -1372,6 +1637,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-onlinetvsales"></a>Example-2: #OnlineTVSales
 
 <pre>
@@ -1384,6 +1650,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Online TV Sales"
 }
 </pre>
+
 
 #### <a id="example-2-selectwhattobuycomponent"></a>Example-2: #SelectWhatToBuyComponent
 
@@ -1398,6 +1665,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-selectwhattobuyservice"></a>Example-2: #SelectWhatToBuyService
 
 <pre>
@@ -1407,6 +1675,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Select what to buy service"
 }
 </pre>
+
 
 #### <a id="example-2-paycomponent"></a>Example-2: #PayComponent
 
@@ -1421,6 +1690,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-payservice"></a>Example-2: #PayService
 
 <pre>
@@ -1430,6 +1700,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Pay service"
 }
 </pre>
+
 
 #### <a id="example-2-payfortv"></a>Example-2: #PayForTV
 
@@ -1444,6 +1715,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
 }
 </pre>
 
+
 #### <a id="example-2-delivertv"></a>Example-2: #DeliverTV
 
 <pre>
@@ -1453,6 +1725,7 @@ This document was compiled using [generate-soss-docs.js](https://github.com/Lang
   "name": "Deliver TV"
 }
 </pre>
+
 
 #### <a id="example-2-onlinetvsalesprocess"></a>Example-2: #OnlineTVSalesProcess
 

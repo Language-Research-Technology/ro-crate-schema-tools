@@ -6,13 +6,18 @@
  * that can be used by a template to generate documentation.
  */
 
-const { ROCrate } = require("ro-crate");
-const fs = require("fs");
-const path = require("path");
-const { profile } = require("console");
-const { range } = require("lodash");
-const { example } = require("yargs");
+import { ROCrate } from "ro-crate";
+import fs from "fs";
+import path from "path";
+import { SossValidator } from './lib/soss-validator.js';
+import { execSync } from "child_process";
+import { fileURLToPath } from 'url';
 
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+async function main() {
 // Parse command line arguments
 const profilePath =
   process.argv[2] ||
@@ -31,8 +36,6 @@ const profileDir = path.dirname(profilePath);
 const outputPath =
   process.argv[4] || path.join(profileDir, "profile-documentation.md");
 
-// Load the profile crate
-console.log(`Loading SOSS+ profile from: ${clean(profilePath)}`);
 
 function clean(str) {
   // Some text has line ends in that break the template rendering so normalize all whitespace to be jsut spaces
@@ -53,8 +56,13 @@ try {
   const profileJson = JSON.parse(profileData);
   const profileCrate = new ROCrate(profileJson, { array: true, link: true });
 
-  // Create rules data structure for use by the template
-  const rules = {
+  const validator = new SossValidator(profileCrate);
+
+  // Find all the rules in the profile crate -- TODO we will use this in this script rather than parsing them again
+  validator.parseRules();
+
+  // Create rules data structure for use by the t    semplate
+  const rules = { 
     objects: {},
     all: "", // Will contain all classes summary
     definedTermSets: {}, // Will contain DefinedTermSet documentation
@@ -63,7 +71,6 @@ try {
 
   // Index entities by @type using native RO-Crate methods
   const entitiesByType = {};
-
   for (let entity of profileCrate.entities()) {
     for (let type of entity["@type"] || []) {
       if (!entitiesByType[type]) {
@@ -73,33 +80,8 @@ try {
     }
   }
 
-  /*  
- 
-   TODO: Deal with class inheritance at some point -- maybe later
-   // Create a class hierarchy map for inheritance support
-   const classHierarchy = {};
-   entitiesByType["rdfs:Class"].forEach(classRule => {
-     const classId = classRule['@id'];
-     const superClasses = classRule['prov:specializationOf'] || [];
-     const superClassesArray = Array.isArray(superClasses) ? superClasses : [superClasses];
-     
-     classHierarchy[classId] = {
-       superClasses: superClassesArray.map(sc => typeof sc === 'object' ? sc['@id'] : sc),
-       subClasses: []
-     };
-   });
-   
-   // Populate subClasses
-   Object.keys(classHierarchy).forEach(classId => {
-     classHierarchy[classId].superClasses.forEach(superClass => {
-       if (classHierarchy[superClass]) {
-         classHierarchy[superClass].subClasses.push(classId);
-       }
-     });
-   });
-    */
-  // Group properties by class
-
+  /*
+  Get rid of this slop 
   const classPropMap = {};
   (entitiesByType["rdf:Property"] || []).forEach((prop) => {
     const domains = prop["domainIncludes"] || [];
@@ -111,24 +93,26 @@ try {
       classPropMap[classId].push(prop);
     });
   });
+  */
 
   // Find the Root Data Entity class
   // TODO this is a bad HACK that should be fixed later
   //  -- need to look for the ro-crate-metadata.json metadata descriptor class and find root(s) from there
-  const rootDataEntityClass = profileCrate.getEntity("#Root_Data_Entity");
+  const rootDataEntityClassRule = validator.rules.rootClassRule
 
-  if (rootDataEntityClass) {
+
+  if (rootDataEntityClassRule) {
+    // TODO: Change all the code in this script to use Rules like this instead of dealing with entities directly
+    const rootDataEntityClass = rootDataEntityClassRule.entity;
     const rootTypes = rootDataEntityClass["prov:specializationOf"] || [];
     const rootTypesArray = Array.isArray(rootTypes) ? rootTypes : [rootTypes];
     const rootTypesIds = rootTypesArray.map((t) =>
       typeof t === "object" ? t["@id"] : t
     );
 
-    // Store information about Dataset (Root Data Entity)
-    rules.Dataset = `- MUST be of type(s): ${rootTypesIds.join(", ")}\n`;
 
     // Add additional requirements
-    const rootProps = classPropMap["#Root_Data_Entity"] || [];
+    const rootProps = rootDataEntityClass.propertyRules || [];
     if (rootProps.length > 0) {
       rules.Dataset += `- MUST include the following properties:\n`;
 
@@ -156,7 +140,6 @@ try {
         (role) => role["@id"] === "http://www.w3.org/ns/dx/prof/role/example"
       )
     ) {
-      console.log(resources);
 
       const exampleId = resources["@id"];
       const exampleName = `Example-${++exampleCount}: ${resources["name"] || exampleId}`;
@@ -166,9 +149,9 @@ try {
       exampleLinks[exampleId] = exampleAnchorId;
 
       for (let exampleArtifact of resources["hasArtifact"] || []) {
-        exampleArtifactName = `Artifact: ${exampleArtifact["name"] || exampleArtifact["@id"]}`; 
+        const exampleArtifactName = `Artifact: ${exampleArtifact["name"] || exampleArtifact["@id"]}`; 
         const exampleArtifactAnchorId = createGitHubCompatibleId(exampleArtifactName);
-        exampleSummary += `### <a id="${exampleArtifactAnchorId}"></a> ${exampleArtifactName}\n\n`;
+        exampleSummary += `\n### <a id="${exampleArtifactAnchorId}"></a> ${exampleArtifactName}\n\n`;
         exampleSummary += `<pre>\n ${JSON.stringify(
           exampleArtifact,
           null,
@@ -179,17 +162,22 @@ try {
           if (partId) {
             const partName = `Example-${exampleCount}: ${partId}`;
             const partAnchorId = createGitHubCompatibleId(partName);
-            exampleSummary += `#### <a id="${partAnchorId}"></a>${partName}\n\n`;
+            exampleSummary += `\n#### <a id="${partAnchorId}"></a>${partName}\n\n`;
             exampleSummary += `<pre>\n ${JSON.stringify(
               partEntity,
               null,
               2
             )}\n</pre>\n\n`;
-            for (let t of partEntity["@type"] || []) {
-              const uri = profileCrate.resolveTerm(t) || t;
-              if (!examplesOfType[uri]) { examplesOfType[uri] = "#### Examples \n"; }
-              examplesOfType[uri] += `-  [${partName}](#${partAnchorId})\n`;
+            for (let cRule of Object.values(validator.rules.classes)) {
+              if (cRule.validateEntityTypes(partEntity)) {
+                  const classURI = profileCrate.resolveTerm(cRule.entity["@id"]);
+
+                if (!examplesOfType[classURI]) {
+                  examplesOfType[classURI] = `#### Examples\n`;
+                }
+                examplesOfType[classURI]  += `-  [${partName}](#${partAnchorId})\n\n`;;
               }
+            }
           }
         }
       }
@@ -339,6 +327,7 @@ try {
   let allClasses =
     "## Types of entities (specializations of Classes) and expected Properties\n\n";
 
+  // TODO: Chage this to use validator.rules.classes
   entitiesByType["rdfs:Class"].forEach((classRule) => {
     const classId = classRule["@id"];
     const classURI = profileCrate.resolveTerm(classId);
@@ -471,7 +460,7 @@ try {
     classSummary += `\n`;
 
     if (examplesOfType[classURI]) {
-      classSummary += `${examplesOfType[classURI]}\n`;
+      classSummary += `### Examples of Type\n${examplesOfType[classURI]}\n`;
     }
 
     // Add class to rules structure
@@ -493,7 +482,7 @@ try {
       return aName.localeCompare(bName);
     });
 
-  for (p of properties) {
+  for (let p of properties) {
     const propName = `Property: ${p["name"] || p["rdfs:label"] || p["@id"]}`; // Add this line
     const anchorGithubId = createGitHubCompatibleId(propName); // Add this line
 
@@ -557,7 +546,6 @@ try {
   // Get the current Git branch by running git command
   let gitBranch = "main"; // Default to main
   try {
-    const { execSync } = require("child_process");
     const gitCommand = "git rev-parse --abbrev-ref HEAD";
     gitBranch = execSync(gitCommand, {
       cwd: __dirname,
@@ -638,3 +626,6 @@ try {
   console.error(error.stack);
   process.exit(1);
 }
+}
+
+await main()
