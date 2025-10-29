@@ -9,8 +9,8 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Schema profile  Schema",
-      "description": "This is a mini-profile for RO-Crate itself",
+      "name": "Workflow Profile",
+      "description": "This is an experimental port of the RO-Crate Workflow Profile to a proposed 'RO-Crate Schema' format.",
       "author": {
         "@id": "#author"
       },
