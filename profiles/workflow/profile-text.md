@@ -86,9 +86,10 @@ ${rules.all}
 
 ${rules.allItemLists}
 
+${rules.examples}
 
 
-
+<!--
 
 ## ORIGINAL TEXT BELOW -- WITH NOTES
 
@@ -420,3 +421,5 @@ A minimal example of _Workflow RO-Crate_ metadata, containing a CWL workflow, an
   ]
 }
 ```
+
+-->

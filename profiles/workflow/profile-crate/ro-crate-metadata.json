@@ -17,8 +17,131 @@
       "license": "GPL-3.0",
       "conformsTo": {
         "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
+      },
+       "hasResource": [
+        {
+          "@id": "#hasSpecializedSchema"
+        },
+        {
+          "@id": "#hasExampleWorkflow"
+        }]
+    },
+     { 
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": { "@id": "http://www.w3.org/ns/dx/prof/role/schema" },
+      "hasPart": 
+      [
+        { "@id": "#RO-Crate_Metadata_Descriptor" },
+        { "@id": "#Root_Data_Entity" },
+        { "@id": "#Class_MainWorkflow" },
+        { "@id": "#Class_MainWorkflow_Description" },
+        { "@id": "#class_CreativeWork_README" },
+        { "@id": "#class_Dataset_Test_Directory" },
+        { "@id": "#class_Dataset_Examples_Directory" }
+      ]
+    },
+    {
+      "@id": "#hasExampleWorkflow",
+      "@type": "ResourceDescriptor",
+      "name": "Example: Workflow",
+      "hasRole": {
+        "@id": "http://www.w3.org/ns/dx/prof/role/example"
+      },
+      "hasArtifact": {
+        "@id": "#WorkflowExample"
       }
     },
+    {
+      "@id": "#WorkflowExample",
+      "@type": "LearningResource",
+      "name": "An example workflow RO-Crate",
+    
+      "mainEntity": {
+        "@id": "./"
+      },
+      "hasPart": [
+        {"@id": "./" },
+            {"@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"},
+            {"@id": "example_workflow.cwl" },
+            {"@id": "diagram.svg" },
+            {"@id": "README.md" },]]
+            {"@id": "#RO-Crate_Metadata_Descriptor.id"},
+            {"@id": "#RO-Crate_Metadata_Descriptor.about" },
+            {"@id": "#Root_Data_Entity.name" },
+            {"@id": "#prop_description_Dataset" },
+            {"@id": "#prop_datePublised_Dataset" },
+            {"@id": "#prop_license_Dataset" },
+            {"@id": "#Property_mainEntity_Workflow" },
+            {"@id": "#Property_programmingLanguage_Workflow" },
+            {"@id": "#Property_programmingLanguage_WorkflowDescription" },
+            {"@id": "#prop_conformsTo_Root_Data_Entity" },
+            {"@id": "#class_CreativeWork_README.id" },
+            {"@id": "#class_CreativeWork_README.encodingFormat" },
+            {"@id": "#class_CreativeWork_README.about" },
+            {"@id": "#class_Dataset_Test_Directory.id" },
+            {"@id": "#class_Dataset_Examples_Directory.id" }
+
+      ]
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Example Workflow",
+      "conformsTo": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+      },
+      "description": "An example workflow RO-Crate",
+      "license": "Apache-2.0",
+      "datePublished": "2025-10-15",
+      "mainEntity": {
+        "@id": "example_workflow.cwl"
+      },
+      "hasPart": [
+        {
+          "@id": "example_workflow.cwl"
+        },
+        {
+          "@id": "diagram.svg"
+        },
+        {
+          "@id": "README.md"
+        },
+        {"@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"}
+
+      ]
+    },
+    {
+    "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+    "@type": ["CreativeWork", "Profile"],
+    "name": "Workflow RO-Crate Profile (experimental)",
+    "version": "0.4.0",
+    "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity  as per RO-Crate 1.2"
+    },
+    {
+      "@id": "example_workflow.cwl",
+      "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
+      "programmingLanguage": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
+      },
+      "name": "Example Workflow",
+      "image": {
+        "@id": "diagram.svg"
+      }
+    },
+    {
+      "@id": "diagram.svg",
+      "name": "Example Workflow Diagram",
+      "@type": ["File", "ImageObject"]
+    },
+    {
+      "@id": "README.md",
+      "@type": "File",
+      "about": "./",
+      "encodingFormat": "text/markdown"
+    },
+    
     {
       "@id": "ro-crate-metadata.json",
       "@type": "CreativeWork",

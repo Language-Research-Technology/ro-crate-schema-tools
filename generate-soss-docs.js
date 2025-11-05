@@ -80,20 +80,7 @@ try {
     }
   }
 
-  /*
-  Get rid of this slop 
-  const classPropMap = {};
-  (entitiesByType["rdf:Property"] || []).forEach((prop) => {
-    const domains = prop["domainIncludes"] || [];
-    domains.forEach((domain) => {
-      const classId = typeof domain === "object" ? domain["@id"] : domain;
-      if (!classPropMap[classId]) {
-        classPropMap[classId] = [];
-      }
-      classPropMap[classId].push(prop);
-    });
-  });
-  */
+
 
   // Find the Root Data Entity class
   // TODO this is a bad HACK that should be fixed later
@@ -134,6 +121,8 @@ try {
   const examplesOfType = {};
   let exampleCount = 0;
 
+  // TODO refactor to link from the root data entity hasResource.  
+
   for (let resources of entitiesByType["ResourceDescriptor"] || []) {
     if (
       resources?.["hasRole"]?.some(
@@ -142,6 +131,7 @@ try {
     ) {
 
       const exampleId = resources["@id"];
+      console.log(`\n\nProcessing example resource: ${exampleId}`);
       const exampleName = `Example-${++exampleCount}: ${resources["name"] || exampleId}`;
       const exampleAnchorId = createGitHubCompatibleId(exampleName);
       exampleSummary += `<a id="${exampleAnchorId}"></a>\n\n`;
@@ -149,6 +139,7 @@ try {
       exampleLinks[exampleId] = exampleAnchorId;
 
       for (let exampleArtifact of resources["hasArtifact"] || []) {
+        console.log(`Processing example artifact: ${exampleArtifact["@id"]}`);  
         const exampleArtifactName = `Artifact: ${exampleArtifact["name"] || exampleArtifact["@id"]}`; 
         const exampleArtifactAnchorId = createGitHubCompatibleId(exampleArtifactName);
         exampleSummary += `\n### <a id="${exampleArtifactAnchorId}"></a> ${exampleArtifactName}\n\n`;
@@ -158,6 +149,7 @@ try {
           2
         )}\n</pre>\n\n`;
         for (let partEntity of exampleArtifact?.hasPart || []) {
+          console.log(`Processing example artifact part: ${partEntity["@id"]}`);
           const partId = partEntity["@id"];
           if (partId) {
             const partName = `Example-${exampleCount}: ${partId}`;
@@ -170,7 +162,8 @@ try {
             )}\n</pre>\n\n`;
             for (let cRule of Object.values(validator.rules.classes)) {
               if (cRule.validateEntityTypes(partEntity)) {
-                  const classURI = profileCrate.resolveTerm(cRule.entity["@id"]);
+                const classURI = cRule.id;
+                console.log(`Found matching class for part ${partName}: ${classURI}`);
 
                 if (!examplesOfType[classURI]) {
                   examplesOfType[classURI] = `#### Examples\n`;
@@ -185,6 +178,7 @@ try {
   }
   rules.examples = exampleSummary || "No examples defined.\n\n";
 
+  console.log(examplesOfType)
   // Generate documentation for each DefinedTermSet
   let allDefinedTermSets = "## Defined Term Sets\n\n";
 
@@ -330,7 +324,7 @@ try {
   // TODO: Chage this to use validator.rules.classes
   entitiesByType["rdfs:Class"].forEach((classRule) => {
     const classId = classRule["@id"];
-    const classURI = profileCrate.resolveTerm(classId);
+    const classURI = classId;
     const className = `Class: ${
       classRule["name"] || classRule["rdfs:label"] || classId
     }`;

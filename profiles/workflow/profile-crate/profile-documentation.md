@@ -86,7 +86,7 @@ The _Crate_ JSON-LD MUST be valid according to [RO-Crate 1.1](https://w3id.org/r
 
 ### <a id="class-ro-crate-metadadata-descriptor"></a> Class: RO-Crate Metadadata Descriptor
 
-#### IRI: undefined  
+#### IRI: #RO-Crate_Metadata_Descriptor  
 
 
 
@@ -107,7 +107,7 @@ At least 1 instances of this type MUST be present in the crate.
 
 ### <a id="class-root-data-entity"></a> Class: Root Data Entity
 
-#### IRI: undefined  
+#### IRI: #Root_Data_Entity  
 
 The Root Data Entity for an RO-Crate. This is the main entity of the RO-Crate and is the one that is referenced by the RO-Crate Metadata Descriptor.
 
@@ -132,7 +132,7 @@ At least 1 instances of this type MUST be present in the crate.
 
 ### <a id="class-main-workflow"></a> Class: Main Workflow
 
-#### IRI: undefined  
+#### IRI: #Class_MainWorkflow  
 
 The Main Workflow is the primary workflow of the RO-Crate. It represents the computational process that is described by the RO-Crate.
 
@@ -152,7 +152,7 @@ At least 1 instances of this type MUST be present in the crate.
 
 ### <a id="class-main-workflow-description"></a> Class: Main Workflow Description
 
-#### IRI: undefined  
+#### IRI: #Class_MainWorkflow_Description  
 
 The _Crate_ COULD contain a data entity of type `[File, SoftwareSourceCode, HowTo]` as the _Main Workflow CWL Description_.
 
@@ -172,7 +172,7 @@ Instances of this type MAY be present in the crate.
 
 ### <a id="class-readme-file"></a> Class: README File
 
-#### IRI: undefined  
+#### IRI: #class_CreativeWork_README  
 
 
 
@@ -192,28 +192,9 @@ Instances of this type SHOULD be present in the crate.
 | <a href="#property-encodingformat">encodingFormat <a href="#property-encodingformat" target="_blank" rel="noopener">ⓘ</a></a> | Yes | Readme file must have an encodingFormat of `text/markdown`. |  | text/markdown |
 
 
-### <a id="class-main-workflow-diagram"></a> Class: Main Workflow Diagram
-
-#### IRI: undefined  
-
-
-
-Instances of this type MAY be present in the crate.
-
-| Min Count | Max Count |
-| --------- | --------- |
-| N/A | N/A |
-
-| Property | Required | Description | Range | Value |
-| -------- | -------- | ----------- | ----- | ----- |
-| @type | Yes |  |  | http://schema.org/ImageObject, http://schema.org/MediaObject |
-*No properties defined for this class*
-
-
-
 ### <a id="class-test-directory"></a> Class: Test Directory
 
-#### IRI: undefined  
+#### IRI: #class_Dataset_Test_Directory  
 
 
 
@@ -233,7 +214,7 @@ Instances of this type SHOULD be present in the crate.
 
 ### <a id="class-examples-directory"></a> Class: Examples Directory
 
-#### IRI: undefined  
+#### IRI: #class_Dataset_Examples_Directory  
 
 
 
@@ -249,6 +230,25 @@ Instances of this type SHOULD be present in the crate.
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  | http://schema.org/Dataset |
 | <a href="#property-id">@id</a> | Yes | The RO-Crate Metadata  |  | examples/ |
+
+
+### <a id="class-main-workflow-diagram"></a> Class: Main Workflow Diagram
+
+#### IRI: #Class_ImageObject_Diagram  
+
+
+
+Instances of this type MAY be present in the crate.
+
+| Min Count | Max Count |
+| --------- | --------- |
+| N/A | N/A |
+
+| Property | Required | Description | Range | Value |
+| -------- | -------- | ----------- | ----- | ----- |
+| @type | Yes |  |  | http://schema.org/ImageObject, http://schema.org/MediaObject |
+*No properties defined for this class*
+
 
 ## All Properties
 
@@ -516,9 +516,135 @@ ID: https://w3id.org/workflowhub/workflow-ro-crate/1.0
 
 
 
+<a id="example-1-example-workflow"></a>
+
+## Example-1: Example: Workflow
+
+
+### <a id="artifact-an-example-workflow-ro-crate"></a> Artifact: An example workflow RO-Crate
+
+<pre>
+ {
+  "@id": "#WorkflowExample",
+  "@type": "LearningResource",
+  "name": "An example workflow RO-Crate",
+  "mainEntity": {
+    "@id": "./"
+  },
+  "hasPart": [
+    {
+      "@id": "./"
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+    },
+    {
+      "@id": "example_workflow.cwl"
+    },
+    {
+      "@id": "diagram.svg"
+    },
+    {
+      "@id": "README.md"
+    }
+  ]
+}
+</pre>
+
+
+#### <a id="example-1"></a>Example-1: ./
+
+<pre>
+ {
+  "@id": "./",
+  "@type": "Dataset",
+  "name": "Workflow Profile",
+  "description": "This is an experimental port of the RO-Crate Workflow Profile to a proposed 'RO-Crate Schema' format.",
+  "author": {
+    "@id": "#author"
+  },
+  "license": "GPL-3.0",
+  "conformsTo": {
+    "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
+  },
+  "hasResource": [
+    {
+      "@id": "#hasSpecializedSchema"
+    },
+    {
+      "@id": "#hasExampleWorkflow"
+    }
+  ]
+}
+</pre>
+
+
+#### <a id="example-1-https-w3id-org-workflowhub-workflow-ro-crate-1-0"></a>Example-1: https://w3id.org/workflowhub/workflow-ro-crate/1.0
+
+<pre>
+ {
+  "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+  "@type": [
+    "CreativeWork",
+    "Profile"
+  ],
+  "name": "Workflow RO-Crate Profile (experimental)",
+  "version": "0.4.0",
+  "description": "This is a profile for RO-Crates that are used to describe workflows -- NOTE have moved the conformsTo to the ROOT Data Entity  as per RO-Crate 1.2"
+}
+</pre>
+
+
+#### <a id="example-1-example-workflow-cwl"></a>Example-1: example_workflow.cwl
+
+<pre>
+ {
+  "@id": "example_workflow.cwl",
+  "@type": [
+    "File",
+    "SoftwareSourceCode",
+    "ComputationalWorkflow"
+  ],
+  "programmingLanguage": {
+    "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl"
+  },
+  "name": "Example Workflow",
+  "image": {
+    "@id": "diagram.svg"
+  }
+}
+</pre>
+
+
+#### <a id="example-1-diagram-svg"></a>Example-1: diagram.svg
+
+<pre>
+ {
+  "@id": "diagram.svg",
+  "name": "Example Workflow Diagram",
+  "@type": [
+    "File",
+    "ImageObject"
+  ]
+}
+</pre>
+
+
+#### <a id="example-1-readme-md"></a>Example-1: README.md
+
+<pre>
+ {
+  "@id": "README.md",
+  "@type": "File",
+  "about": "./",
+  "encodingFormat": "text/markdown"
+}
+</pre>
 
 
 
+
+<!--
 
 ## ORIGINAL TEXT BELOW -- WITH NOTES
 
@@ -850,3 +976,5 @@ A minimal example of _Workflow RO-Crate_ metadata, containing a CWL workflow, an
   ]
 }
 ```
+
+-->
