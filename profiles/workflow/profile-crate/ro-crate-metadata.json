@@ -65,6 +65,9 @@
           "@id": "#class_Dataset_Examples_Directory"
         },
         {
+          "@id": "#Class_ImageObject_Diagram"
+        },
+        {
           "@id": "#RO-Crate_Metadata_Descriptor.id"
         },
         {
@@ -111,8 +114,13 @@
         },
         {
           "@id": "#Property_MainWorkflow_subjectOf"
+        },
+        {
+          "@id": "http://schema.org/name"
+        },
+        {
+          "@id": "#Property_MainWorkflow_image"
         }
-        
       ]
     },
     {

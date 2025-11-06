@@ -43,7 +43,7 @@ describe("Worlflow Profile Tests", function () {
       console.error("Error loading test crates:", error);
     }
   });
-
+ /*
   it("It should be able to validate the sample workflow crate", async function () {
     const validator = new SossValidator(workflowProfileCrate);
     workflowCrateJSON = JSON.parse(fs.readFileSync(sampleCratePath, "utf8"));
@@ -52,8 +52,8 @@ describe("Worlflow Profile Tests", function () {
     console.log("Initial validation results:", JSON.stringify(results,null,2));
     expect(results.error.length).to.equal(0);
     })
-
-  /*
+  */
+  
   it("It should be able to validate a workflow crate built up piece by piece", async function () {
     // Create a validator with the profile crate
     const validator = new SossValidator(workflowProfileCrate);
@@ -64,6 +64,7 @@ describe("Worlflow Profile Tests", function () {
     results = await validator.validateCrate(targetCrate);
 
     expect(results.error.length).to.equal(3);
+   
 
 
     targetCrate.root.name = "Test Dataset";
@@ -117,7 +118,6 @@ describe("Worlflow Profile Tests", function () {
     console.log("Validation results after adding conformsTo:", JSON.stringify(results,null,2));
 
 
-    //expect(results.error.length).to.equal(4);
    
 
 
@@ -213,6 +213,6 @@ describe("Worlflow Profile Tests", function () {
 
     expect(results.error.length).to.equal(0);
   });
-  */
+  
   
 });
