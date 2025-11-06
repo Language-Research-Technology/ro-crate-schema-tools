@@ -29,3 +29,8 @@ soa-profile:
 	@echo "Building soa-profile..."
 	node generate-soss-docs.js profiles/soa/profile-crate/ro-crate-metadata.json profiles/soa/profile-text.md profiles/soa/profile-crate/profile-documentation.md
 	@echo "soa-profile built successfully."
+
+austalk-schema:
+	@echo "Building austalk-schema..."
+	node generate-soss-docs.js profiles/austalk/schema-crate/ro-crate-metadata.json profiles/austalk/schema-text.md profiles/austalk/schema-crate/schema-documentation.md
+	@echo "austalk-schema built successfully."
