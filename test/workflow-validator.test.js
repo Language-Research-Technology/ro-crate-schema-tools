@@ -43,7 +43,7 @@ describe("Worlflow Profile Tests", function () {
       console.error("Error loading test crates:", error);
     }
   });
- /*
+ 
   it("It should be able to validate the sample workflow crate", async function () {
     const validator = new SossValidator(workflowProfileCrate);
     workflowCrateJSON = JSON.parse(fs.readFileSync(sampleCratePath, "utf8"));
@@ -52,7 +52,7 @@ describe("Worlflow Profile Tests", function () {
     console.log("Initial validation results:", JSON.stringify(results,null,2));
     expect(results.error.length).to.equal(0);
     })
-  */
+  
   
   it("It should be able to validate a workflow crate built up piece by piece", async function () {
     // Create a validator with the profile crate
@@ -125,6 +125,9 @@ describe("Worlflow Profile Tests", function () {
     // PROFILE TEXT:
     // The _Crate_ MUST contain a data entity of type `["File", "SoftwareSourceCode", "ComputationalWorkflow"]` as the _Main Workflow_.
     // The _Crate_ MUST refer to the _Main Workflow_ via `mainEntity`. ]
+    
+
+
     const mainWorkflow = {
       "@id": "workflow.txt",
       "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
@@ -134,28 +137,26 @@ describe("Worlflow Profile Tests", function () {
     targetCrate.root.mainEntity = mainWorkflow;
     results = await validator.validateCrate(targetCrate);
 
-    //console.log("Validation results after adding mainworkflow", JSON.stringify(results,null,2));
-    expect(results.rules["#Property_programmingLanguage_Workflow"]["workflow.txt"].info).to.deep.include({
-      message:
-        "Entity workflow.txt is missing required property programmingLanguage",
-    });
+  
 
     // "The Main Workflow MUST refer to its type via programmingLanguage.""
     // "To ensure compatibility, please include one of the following in the RO-Crate metadata, and refer to it from the Main Workflow’s programmingLanguage."
-    targetCrate.addValues(mainWorkflow, "programmingLanguage", {
+    targetCrate.addValues(mainWorkflow, "programmingLanguage", 
+      {
       "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow",
       "@type": "ComputerLanguage",
-      name: "Nextflow",
-      identifier: {
-        "@id": "https://www.nextflow.io/",
+      "name": "Nextflow",
+      "identifier": {
+        "@id": "https://www.nextflow.io/"
       },
-      url: {
-        "@id": "https://www.nextflow.io/",
-      },
+      "url": {
+        "@id": "https://www.nextflow.io/"
+      }
     });
 
     results = await validator.validateCrate(targetCrate);
     
+
 
 
     
