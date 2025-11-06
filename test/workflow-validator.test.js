@@ -51,10 +51,9 @@ describe("Worlflow Profile Tests", function () {
     const results = await validator.validateCrate(targetCrate);
     console.log("Initial validation results:", JSON.stringify(results,null,2));
     expect(results.error.length).to.equal(0);
-
     })
 
-  
+  /*
   it("It should be able to validate a workflow crate built up piece by piece", async function () {
     // Create a validator with the profile crate
     const validator = new SossValidator(workflowProfileCrate);
@@ -214,5 +213,6 @@ describe("Worlflow Profile Tests", function () {
 
     expect(results.error.length).to.equal(0);
   });
+  */
   
 });

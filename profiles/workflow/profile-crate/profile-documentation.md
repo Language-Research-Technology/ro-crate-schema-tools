@@ -104,6 +104,11 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#property-id">@id</a> | Yes | The RO-Crate Metadata  |  | ro-crate-metadata.json |
 | <a href="#property-about">about <a href="#property-about" target="_blank" rel="noopener">ⓘ</a></a> | Yes | This property on the RO-Crate Metadata Descriptor references the Root Data Entity. | <a href="#class-root-data-entity">Root Data Entity</a> |  |
 
+### Examples of Type
+#### Examples
+-  [Example-1: https://w3id.org/workflowhub/workflow-ro-crate/1.0](#example-1-https-w3id-org-workflowhub-workflow-ro-crate-1-0)
+
+
 
 ### <a id="class-root-data-entity"></a> Class: Root Data Entity
 
@@ -129,6 +134,11 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#property-mainentity">mainEntity <a href="#property-mainentity" target="_blank" rel="noopener">ⓘ</a></a> | Yes | Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow. | <a href="#class-main-workflow">Main Workflow</a> |  |
 | <a href="#property-name">name <a href="#property-name" target="_blank" rel="noopener">ⓘ</a></a> | Yes | SHOULD identify the dataset to humans well enough to disambiguate it from other RO-Crates | Text |  |
 
+### Examples of Type
+#### Examples
+-  [Example-1: ./](#example-1)
+
+
 
 ### <a id="class-main-workflow"></a> Class: Main Workflow
 
@@ -148,6 +158,11 @@ At least 1 instances of this type MUST be present in the crate.
 | <a href="#property-programminglanguage">programmingLanguage <a href="#property-programminglanguage" target="_blank" rel="noopener">ⓘ</a></a> | Yes | The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name. | <a href="#class-programming-languages">Programming Languages</a> |  |
 | <a href="#property-image">image <a href="#property-image" target="_blank" rel="noopener">ⓘ</a></a> | No | If _Main Workflow Diagram_ is present, the _Main Workflow_ MUST refer to it via `image`. | <a href="#class-main-workflow-diagram">Main Workflow Diagram</a> |  |
 | <a href="#property-subjectof">subjectOf <a href="#property-subjectof" target="_blank" rel="noopener">ⓘ</a></a> | No | Main Workflow to a workflow description. The RO-Crate MUST contain exactly one Main Workflow Description. | <a href="#class-main-workflow-description">Main Workflow Description</a> |  |
+
+### Examples of Type
+#### Examples
+-  [Example-1: example_workflow.cwl](#example-1-example-workflow-cwl)
+
 
 
 ### <a id="class-main-workflow-description"></a> Class: Main Workflow Description
@@ -211,6 +226,11 @@ Instances of this type SHOULD be present in the crate.
 | @type | Yes |  |  | http://schema.org/Dataset |
 | <a href="#property-id">@id</a> | Yes | The RO-Crate Metadata  |  | test/ |
 
+### Examples of Type
+#### Examples
+-  [Example-1: ./](#example-1)
+
+
 
 ### <a id="class-examples-directory"></a> Class: Examples Directory
 
@@ -230,6 +250,11 @@ Instances of this type SHOULD be present in the crate.
 | -------- | -------- | ----------- | ----- | ----- |
 | @type | Yes |  |  | http://schema.org/Dataset |
 | <a href="#property-id">@id</a> | Yes | The RO-Crate Metadata  |  | examples/ |
+
+### Examples of Type
+#### Examples
+-  [Example-1: ./](#example-1)
+
 
 
 ### <a id="class-main-workflow-diagram"></a> Class: Main Workflow Diagram
@@ -546,6 +571,51 @@ ID: https://w3id.org/workflowhub/workflow-ro-crate/1.0
     },
     {
       "@id": "README.md"
+    },
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor.id"
+    },
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor.about"
+    },
+    {
+      "@id": "#Root_Data_Entity.name"
+    },
+    {
+      "@id": "#prop_description_Dataset"
+    },
+    {
+      "@id": "#prop_datePublised_Dataset"
+    },
+    {
+      "@id": "#prop_license_Dataset"
+    },
+    {
+      "@id": "#Property_mainEntity_Workflow"
+    },
+    {
+      "@id": "#Property_programmingLanguage_Workflow"
+    },
+    {
+      "@id": "#Property_programmingLanguage_WorkflowDescription"
+    },
+    {
+      "@id": "#prop_conformsTo_Root_Data_Entity"
+    },
+    {
+      "@id": "#class_CreativeWork_README.id"
+    },
+    {
+      "@id": "#class_CreativeWork_README.encodingFormat"
+    },
+    {
+      "@id": "#class_CreativeWork_README.about"
+    },
+    {
+      "@id": "#class_Dataset_Test_Directory.id"
+    },
+    {
+      "@id": "#class_Dataset_Examples_Directory.id"
     }
   ]
 }
@@ -638,6 +708,342 @@ ID: https://w3id.org/workflowhub/workflow-ro-crate/1.0
   "@type": "File",
   "about": "./",
   "encodingFormat": "text/markdown"
+}
+</pre>
+
+
+#### <a id="example-1-ro-crate-metadata-descriptor-id"></a>Example-1: #RO-Crate_Metadata_Descriptor.id
+
+<pre>
+ {
+  "@id": "#RO-Crate_Metadata_Descriptor.id",
+  "@type": "rdf:Property",
+  "value": "ro-crate-metadata.json",
+  "description": "The RO-Crate Metadata ",
+  "rdfs:label": "@id",
+  "domainIncludes": [
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor"
+    }
+  ],
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-ro-crate-metadata-descriptor-about"></a>Example-1: #RO-Crate_Metadata_Descriptor.about
+
+<pre>
+ {
+  "@id": "#RO-Crate_Metadata_Descriptor.about",
+  "@type": "rdf:Property",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/about"
+  },
+  "description": "This property on the RO-Crate Metadata Descriptor references the Root Data Entity.",
+  "name": "about",
+  "domainIncludes": [
+    {
+      "@id": "#RO-Crate_Metadata_Descriptor"
+    }
+  ],
+  "rangeIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-root-data-entity-name"></a>Example-1: #Root_Data_Entity.name
+
+<pre>
+ {
+  "@id": "#Root_Data_Entity.name"
+}
+</pre>
+
+
+#### <a id="example-1-prop-description-dataset"></a>Example-1: #prop_description_Dataset
+
+<pre>
+ {
+  "@id": "#prop_description_Dataset",
+  "@type": "rdf:Property",
+  "rdfs:label": "description",
+  "name": "description",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/description"
+  },
+  "domainIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "rdfs:comment": "(In addition to the name) SHOULD further elaborate on the name to provide a summary of the context in which the dataset is important.",
+  "rangeIncludes": {
+    "@id": "Text"
+  },
+  "sh:minCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-prop-datepublised-dataset"></a>Example-1: #prop_datePublised_Dataset
+
+<pre>
+ {
+  "@id": "#prop_datePublised_Dataset",
+  "@type": "rdf:Property",
+  "rdfs:label": "datePublished",
+  "name": "datePublished",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/datePubished"
+  },
+  "domainIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "rdfs:comment": "MUST be a string in ISO 8601 date format and SHOULD be specified to at least the precision of a day, MAY be a timestamp down to the millisecond.",
+  "rangeIncludes": [
+    {
+      "@id": "schema:Date"
+    }
+  ],
+  "sh:minCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-prop-license-dataset"></a>Example-1: #prop_license_Dataset
+
+<pre>
+ {
+  "@id": "#prop_license_Dataset",
+  "@type": "rdf:Property",
+  "rdfs:label": "license",
+  "name": "license",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/license"
+  },
+  "domainIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "rdfs:comment": "TODO: Deal with the supplied list of licenses (string values) SHOULD link to a Contextual Entity in the RO-Crate Metadata File with a name and description. MAY have a URI (eg for Creative Commons or Open Source licenses). MAY if necessary be a textual description of how the RO-Crate may be used",
+  "rangeIncludes": [
+    {
+      "@id": "#class_CreativeWork"
+    },
+    {
+      "@id": "schema:URL"
+    },
+    {
+      "@id": "schema:Text"
+    }
+  ],
+  "sh:minCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-property-mainentity-workflow"></a>Example-1: #Property_mainEntity_Workflow
+
+<pre>
+ {
+  "@id": "#Property_mainEntity_Workflow",
+  "@type": "rdf:Property",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/mainEntity"
+  },
+  "description": "Links the Root Data Entity to the Main Workflow. The RO-Crate MUST contain exactly one Main Workflow.",
+  "name": "mainEntity",
+  "rdfs:label": "mainEntity",
+  "domainIncludes": [
+    {
+      "@id": "#Root_Data_Entity"
+    }
+  ],
+  "rangeIncludes": {
+    "@id": "#Class_MainWorkflow"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-property-programminglanguage-workflow"></a>Example-1: #Property_programmingLanguage_Workflow
+
+<pre>
+ {
+  "@id": "#Property_programmingLanguage_Workflow",
+  "@type": "rdf:Property",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/programmingLanguage"
+  },
+  "description": "The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name.",
+  "name": "programmingLanguage",
+  "rdfs:label": "programmingLanguage",
+  "domainIncludes": {
+    "@id": "#Class_MainWorkflow"
+  },
+  "rangeIncludes": {
+    "@id": "#programmingLanguages"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-property-programminglanguage-workflowdescription"></a>Example-1: #Property_programmingLanguage_WorkflowDescription
+
+<pre>
+ {
+  "@id": "#Property_programmingLanguage_WorkflowDescription",
+  "@type": "rdf:Property",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/programmingLanguage"
+  },
+  "description": "The programming language used to implement the Main Workflow. This is a string that should be a valid programming language name.",
+  "name": "programmingLanguage",
+  "rdfs:label": "programmingLanguage",
+  "domainIncludes": {
+    "@id": "#Class_MainWorkflow_Description"
+  },
+  "rangeIncludes": {
+    "@id": "#programmingLanguageCWLList"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-prop-conformsto-root-data-entity"></a>Example-1: #prop_conformsTo_Root_Data_Entity
+
+<pre>
+ {
+  "@id": "#prop_conformsTo_Root_Data_Entity",
+  "@type": "rdf:Property",
+  "name": "conformsTo",
+  "rdfs:label": "conformsTo",
+  "description": "The RO-Crate conforms to this profile. This is a link to to the profile entity",
+  "rangeIncludes": {
+    "@id": "#Root_Data_Entity_profile_itemList"
+  },
+  "domainIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-class-creativework-readme-id"></a>Example-1: #class_CreativeWork_README.id
+
+<pre>
+ {
+  "@id": "#class_CreativeWork_README.id",
+  "@type": "rdf:Property",
+  "value": "README.md",
+  "description": "The RO-Crate Metadata ",
+  "rdfs:label": "@id",
+  "domainIncludes": [
+    {
+      "@id": "#class_CreativeWork_README"
+    }
+  ],
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-class-creativework-readme-encodingformat"></a>Example-1: #class_CreativeWork_README.encodingFormat
+
+<pre>
+ {
+  "@id": "#class_CreativeWork_README.encodingFormat",
+  "@type": "rdf:Property",
+  "value": "text/markdown",
+  "description": "Readme file must have an encodingFormat of `text/markdown`.",
+  "rdfs:label": "encodingFormat",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/encodingFormat"
+  },
+  "domainIncludes": [
+    {
+      "@id": "#class_CreativeWork_README"
+    }
+  ],
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-class-creativework-readme-about"></a>Example-1: #class_CreativeWork_README.about
+
+<pre>
+ {
+  "@id": "#class_CreativeWork_README.about",
+  "@type": "rdf:Property",
+  "prov:specializationOf": {
+    "@id": "http://schema.org/about"
+  },
+  "description": "The README.md file SHOULD have an about property referencing the Root Data Entity.",
+  "name": "about",
+  "domainIncludes": [
+    {
+      "@id": "#class_CreativeWork_README"
+    }
+  ],
+  "rangeIncludes": {
+    "@id": "#Root_Data_Entity"
+  },
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-class-dataset-test-directory-id"></a>Example-1: #class_Dataset_Test_Directory.id
+
+<pre>
+ {
+  "@id": "#class_Dataset_Test_Directory.id",
+  "@type": "rdf:Property",
+  "value": "test/",
+  "description": "The RO-Crate Metadata ",
+  "rdfs:label": "@id",
+  "domainIncludes": [
+    {
+      "@id": "#class_Dataset_Test_Directory"
+    }
+  ],
+  "sh:minCount": 1,
+  "sh:maxCount": 1
+}
+</pre>
+
+
+#### <a id="example-1-class-dataset-examples-directory-id"></a>Example-1: #class_Dataset_Examples_Directory.id
+
+<pre>
+ {
+  "@id": "#class_Dataset_Examples_Directory.id",
+  "@type": "rdf:Property",
+  "value": "examples/",
+  "description": "The RO-Crate Metadata ",
+  "rdfs:label": "@id",
+  "domainIncludes": [
+    {
+      "@id": "#class_Dataset_Examples_Directory"
+    }
+  ],
+  "sh:minCount": 1,
+  "sh:maxCount": 1
 }
 </pre>
 

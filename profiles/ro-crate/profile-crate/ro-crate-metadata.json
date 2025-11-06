@@ -9,7 +9,7 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Schema profile  Schema",
+      "name": "RO-Crate Machine Actionable Profile",
       "description": "This is a mini-profile for RO-Crate itself",
       "author": {
         "@id": "#author"
@@ -17,7 +17,28 @@
       "license": "GPL-3.0",
       "conformsTo": {
         "@id": "https://github.com/Language-Research-Technology/ro-crate-schema-tools/blob/main/profiles/sossplus-profile.md"
-      }
+      },
+      "hasResource": 
+        {
+          "@id": "#hasSpecializedSchema"
+        }
+    },
+     { 
+      "@id": "#hasSpecializedSchema",
+      "@type": "ResourceDescriptor",
+      "name": "Specialized Schema Terms",
+      "hasRole": { "@id": "http://www.w3.org/ns/dx/prof/role/schema" },
+      "hasPart": 
+      [
+        { "@id": "#RO-Crate_Metadata_Descriptor" },
+        { "@id": "#RO-Crate_Metadata_Descriptor.id" },
+        { "@id": "#RO-Crate_Metadata_Descriptor.about" },
+        { "@id": "#Root_Data_Entity" },
+        { "@id": "http://schema.org/name" },
+        { "@id": "#prop_description_Dataset" },
+        { "@id": "#prop_datePublised_Dataset" },
+        { "@id": "#prop_license_Dataset" }
+      ]
     },
     {
       "@id": "ro-crate-metadata.json",
@@ -52,7 +73,6 @@
             "@id": "#RO-Crate_Metadata_Descriptor"
           }
         ],
-        "rangeIncludes": {"@id": "#Root_Data_Entity"},
         "sh:minCount": 1,
         "sh:maxCount": 1
    },
