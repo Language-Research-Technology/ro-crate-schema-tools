@@ -6,7 +6,6 @@ const path = require("path");
 const ROCrate = require("ro-crate").ROCrate;
 const commonmark = require("commonmark");
 const _ = require("lodash");
-const axios = require("axios");
 var crateDir;
 
 program
@@ -46,8 +45,8 @@ async function main() {
   const crateLoc = program.args[0];
   var crateJson, fileBasename, outPath, cratePath;
   if (crateLoc.match(/^https?:/i)) {
-    const resp = await axios.get(crateLoc);
-    crateJson = resp.data;
+    const resp = await fetch(crateLoc);
+    crateJson = await resp.json();
     outPath = "./";
     fileBasename = "ontology";
   } else {
